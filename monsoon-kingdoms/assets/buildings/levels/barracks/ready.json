@@ -1,0 +1,119 @@
+{
+  "type": "barracks",
+  "status": "FINAL",
+  "nativeVerified": true,
+  "assets": [
+    {
+      "level": 2,
+      "file": "assets/buildings/levels/barracks/2.glb",
+      "preview": "assets/buildings/levels/barracks/2.png",
+      "sha256": "8a2fafbd6fbed0c3677c13382767809b6da3eed1986bb3b8b225790d52b782e0",
+      "geometryHash": "eb7e41411c6fce88b4cb962efe3caa9cfc5347d5fd7f7b156d9b34807ba2f50e",
+      "bytes": 633128
+    },
+    {
+      "level": 3,
+      "file": "assets/buildings/levels/barracks/3.glb",
+      "preview": "assets/buildings/levels/barracks/3.png",
+      "sha256": "b97b6cfbc179060011b48ad35b16abf7a1e5511786e70c833b999bc7dda03cfc",
+      "geometryHash": "a1166439af4a10ee13606c447851a082258bce895d8614501d2c16988881e973",
+      "bytes": 658180
+    },
+    {
+      "level": 4,
+      "file": "assets/buildings/levels/barracks/4.glb",
+      "preview": "assets/buildings/levels/barracks/4.png",
+      "sha256": "60936ffeb45275621ebf0e98a558fc125aeef6ff3606cac5bcb3a589a8a7d43b",
+      "geometryHash": "cca9e1081271379c26accfe40ac24a3458f40f928076ebec4764ef55911a4473",
+      "bytes": 687844
+    },
+    {
+      "level": 5,
+      "file": "assets/buildings/levels/barracks/5.glb",
+      "preview": "assets/buildings/levels/barracks/5.png",
+      "sha256": "005e7f5752f16f6a72ee9c83f08017d74b9903867cb5ba3f4f26a1b082e574c4",
+      "geometryHash": "c9fa6c4c62e7fc0bc9d3dcebd81499c7a523699bb32781377c7566150d1b6534",
+      "bytes": 744484
+    },
+    {
+      "level": 6,
+      "file": "assets/buildings/levels/barracks/6.glb",
+      "preview": "assets/buildings/levels/barracks/6.png",
+      "sha256": "45b670223d8561a97bb7f5bc059bd3e4620dd7faa5ed7aa95235f42bb72dd0fb",
+      "geometryHash": "5de2191172f9d376df858e94d290a125330c2906b91a97af64c9dd8676f7e75f",
+      "bytes": 813172
+    },
+    {
+      "level": 7,
+      "file": "assets/buildings/levels/barracks/7.glb",
+      "preview": "assets/buildings/levels/barracks/7.png",
+      "sha256": "872a3b33f0f4f4114ca928a324fb829b5ce033d758fc8f4da5fb2bc05e0e044f",
+      "geometryHash": "6595dc29c8814e26a62a27f00fba131d896da7932019f747c816fa44eb74c485",
+      "bytes": 829072
+    },
+    {
+      "level": 8,
+      "file": "assets/buildings/levels/barracks/8.glb",
+      "preview": "assets/buildings/levels/barracks/8.png",
+      "sha256": "354d393b6dbb13959a26b68c65c1c9f394492a50d0bbe1bf8c032380fb6ccc72",
+      "geometryHash": "b008e5703b53e5ddf357207e381a20533434f80be771f086a0203abd93e84b3e",
+      "bytes": 936980
+    },
+    {
+      "level": 9,
+      "file": "assets/buildings/levels/barracks/9.glb",
+      "preview": "assets/buildings/levels/barracks/9.png",
+      "sha256": "7e1023d2fdc2c3fb7e553d976958dced7a745c0361d2ff007b57b38d002cf277",
+      "geometryHash": "b01b81c679de0235d4da06c3b7c79011a0a96007908da229749bc492abed95a5",
+      "bytes": 955460
+    },
+    {
+      "level": 10,
+      "file": "assets/buildings/levels/barracks/10.glb",
+      "preview": "assets/buildings/levels/barracks/10.png",
+      "sha256": "544a1c2498c8e95f301af00cc6cd156f0cccaea6d10d9e4cb230e5e6e6d19d3c",
+      "geometryHash": "789e2ffde04edd1b6caa69a840e7d8d8c63e1827aaf58ffb51a40d8b7cd2c27e",
+      "bytes": 984408
+    },
+    {
+      "level": 11,
+      "file": "assets/buildings/levels/barracks/11.glb",
+      "preview": "assets/buildings/levels/barracks/11.png",
+      "sha256": "456b2e2c43b16389fd6bc9c1586030ce6c62fcf74739175320090dddd9f1eba7",
+      "geometryHash": "4904d45a3550b86e7fab1b31b71c2042af8aab8f5d28e4aea6a7915bcfb38835",
+      "bytes": 1037068
+    },
+    {
+      "level": 12,
+      "file": "assets/buildings/levels/barracks/12.glb",
+      "preview": "assets/buildings/levels/barracks/12.png",
+      "sha256": "02866d8083fac49d59a993e557fa5d1ce48c4b55ad44cf6cb8b63131ec6c9e33",
+      "geometryHash": "9c12a28a941e8936f6e15057ff31b0341897fc7c4b7fd26921422e76a76af227",
+      "bytes": 1049308
+    },
+    {
+      "level": 13,
+      "file": "assets/buildings/levels/barracks/13.glb",
+      "preview": "assets/buildings/levels/barracks/13.png",
+      "sha256": "cc921320df8dd97eecdcb092699dc9f0b0fa04e160e6798d2e2b68f51011d411",
+      "geometryHash": "80c02eec1a071519d011167e0bca7e59362feb13eb15321a78b8cff4eb482e1f",
+      "bytes": 1075676
+    },
+    {
+      "level": 14,
+      "file": "assets/buildings/levels/barracks/14.glb",
+      "preview": "assets/buildings/levels/barracks/14.png",
+      "sha256": "e7e28adac311f1026981439eb2e3fbf4589852a274f261a981597d9c245cdc2e",
+      "geometryHash": "4ca5f210bb895394586f34bbc66ed35be3a1ab9a85088b43e61d3a2984e13372",
+      "bytes": 1102004
+    },
+    {
+      "level": 15,
+      "file": "assets/buildings/levels/barracks/15.glb",
+      "preview": "assets/buildings/levels/barracks/15.png",
+      "sha256": "d10e40af57c593237abba1891ac64c82b654a290ca3d45eb1c53a7f53354c862",
+      "geometryHash": "be6bd562e6589f548adac9be89731c3c126fbb35104d3b74cbcc17091c8186fd",
+      "bytes": 1162820
+    }
+  ]
+}

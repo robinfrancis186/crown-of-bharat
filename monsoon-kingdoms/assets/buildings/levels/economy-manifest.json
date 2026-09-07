@@ -1,0 +1,1424 @@
+{
+  "source": "assets/blender/levels-economy.blend",
+  "coordinates": "meters; centered XZ; +Y up; feet0",
+  "level1": "Existing assets/buildings/{type}.glb and .png preserved unchanged",
+  "schemes": {
+    "farm": [
+      "Original paddy fields",
+      "Terraced irrigation beds",
+      "Sluice-controlled cross canals",
+      "Raised harvest barn",
+      "Working waterwheel housing",
+      "Wheel drive and pump gantry",
+      "Ventilated grain tower",
+      "Stone rice mill",
+      "Raised irrigation aqueduct",
+      "Upper stepped paddy terrace",
+      "Second irrigation wheel",
+      "Mill roof drying loft",
+      "Grain-hulling crusher",
+      "Four-sail grain mill",
+      "Arcaded reservoir and mill crown"
+    ],
+    "lumber": [
+      "Original teak yard",
+      "Seasoning log racks",
+      "Frame-saw workbench",
+      "Covered log lean-to",
+      "Timber lifting crane",
+      "Braced hoist with drum",
+      "Water-powered saw drive",
+      "Raised workshop loft",
+      "Gang-saw processing line",
+      "Elevated log conveyor",
+      "Second handling crane",
+      "Ventilated drying chamber",
+      "Roof wind-drive system",
+      "Timber drying kiln",
+      "Upper hoist walkway and roof crown"
+    ],
+    "mine": [
+      "Original iron quarry",
+      "Stone-reinforced shaft",
+      "Extended trolley rails",
+      "Second excavation shaft",
+      "Ore lifting headframe",
+      "Counterweight and lift cage",
+      "Twin roller ore crusher",
+      "Upper hoist machinery",
+      "Raised sorting gallery",
+      "Two-track ore dispatch",
+      "Crusher hopper and chute",
+      "Ore washer settling tanks",
+      "Second headframe lift deck",
+      "Twin smelting vents",
+      "Crowned hoist and crushing works"
+    ],
+    "granary": [
+      "Original raised granary",
+      "Ventilated storage plinth",
+      "Front grain bins",
+      "Paired grain silos",
+      "Covered loading platform",
+      "Raised sorting loft",
+      "Second storage floor",
+      "Side ventilation towers",
+      "Four-bin storage system",
+      "Tall reinforced silos",
+      "Grain elevator and bridge",
+      "Roof drying dormers",
+      "Pneumatic grain chutes",
+      "Domed ventilation caps",
+      "Royal multi-tier storehouse"
+    ],
+    "gem_mine": [
+      "Original gem garden",
+      "Terraced emerald excavation",
+      "Twin arched adits",
+      "Gem cutting bench",
+      "Primary excavation hoist",
+      "Second crystal terrace",
+      "Crushing and washing wheel",
+      "Upper extraction headframe",
+      "Stepped access gallery",
+      "Raised arched crystal arcade",
+      "Brass sieving machinery",
+      "Twin excavation lifts",
+      "Covered gem sorting counter",
+      "High quartz seam extraction",
+      "Crowned crystal gallery and chutes"
+    ]
+  },
+  "assets": [
+    {
+      "id": "farm",
+      "level": 2,
+      "file": "assets/buildings/levels/farm/2.glb",
+      "preview": "assets/buildings/levels/farm/2.png",
+      "new_structure": "Terraced irrigation beds",
+      "triangles": 4962,
+      "materials": 2,
+      "bytes": 383400,
+      "size": [
+        5.6,
+        2.7215,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "farm",
+      "level": 3,
+      "file": "assets/buildings/levels/farm/3.glb",
+      "preview": "assets/buildings/levels/farm/3.png",
+      "new_structure": "Sluice-controlled cross canals",
+      "triangles": 5138,
+      "materials": 2,
+      "bytes": 396548,
+      "size": [
+        5.6,
+        2.7215,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "farm",
+      "level": 4,
+      "file": "assets/buildings/levels/farm/4.glb",
+      "preview": "assets/buildings/levels/farm/4.png",
+      "new_structure": "Raised harvest barn",
+      "triangles": 7598,
+      "materials": 2,
+      "bytes": 592752,
+      "size": [
+        5.6,
+        2.6544,
+        5.462
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "farm",
+      "level": 5,
+      "file": "assets/buildings/levels/farm/5.glb",
+      "preview": "assets/buildings/levels/farm/5.png",
+      "new_structure": "Working waterwheel housing",
+      "triangles": 8194,
+      "materials": 2,
+      "bytes": 634344,
+      "size": [
+        5.6,
+        2.6544,
+        5.462
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "farm",
+      "level": 6,
+      "file": "assets/buildings/levels/farm/6.glb",
+      "preview": "assets/buildings/levels/farm/6.png",
+      "new_structure": "Wheel drive and pump gantry",
+      "triangles": 8846,
+      "materials": 2,
+      "bytes": 688800,
+      "size": [
+        5.6,
+        2.6544,
+        5.462
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "farm",
+      "level": 7,
+      "file": "assets/buildings/levels/farm/7.glb",
+      "preview": "assets/buildings/levels/farm/7.png",
+      "new_structure": "Ventilated grain tower",
+      "triangles": 9206,
+      "materials": 2,
+      "bytes": 712560,
+      "size": [
+        5.6,
+        2.6544,
+        5.462
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "farm",
+      "level": 8,
+      "file": "assets/buildings/levels/farm/8.glb",
+      "preview": "assets/buildings/levels/farm/8.png",
+      "new_structure": "Stone rice mill",
+      "triangles": 9446,
+      "materials": 2,
+      "bytes": 729552,
+      "size": [
+        5.6,
+        3.2884,
+        5.462
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "farm",
+      "level": 9,
+      "file": "assets/buildings/levels/farm/9.glb",
+      "preview": "assets/buildings/levels/farm/9.png",
+      "new_structure": "Raised irrigation aqueduct",
+      "triangles": 11878,
+      "materials": 2,
+      "bytes": 935088,
+      "size": [
+        5.6,
+        3.2884,
+        5.462
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "farm",
+      "level": 10,
+      "file": "assets/buildings/levels/farm/10.glb",
+      "preview": "assets/buildings/levels/farm/10.png",
+      "new_structure": "Upper stepped paddy terrace",
+      "triangles": 12010,
+      "materials": 2,
+      "bytes": 946252,
+      "size": [
+        5.6,
+        3.2884,
+        5.462
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "farm",
+      "level": 11,
+      "file": "assets/buildings/levels/farm/11.glb",
+      "preview": "assets/buildings/levels/farm/11.png",
+      "new_structure": "Second irrigation wheel",
+      "triangles": 12450,
+      "materials": 2,
+      "bytes": 974812,
+      "size": [
+        5.6,
+        3.2884,
+        5.462
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "farm",
+      "level": 12,
+      "file": "assets/buildings/levels/farm/12.glb",
+      "preview": "assets/buildings/levels/farm/12.png",
+      "new_structure": "Mill roof drying loft",
+      "triangles": 13060,
+      "materials": 2,
+      "bytes": 1020308,
+      "size": [
+        5.6,
+        4.3711,
+        5.462
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "farm",
+      "level": 13,
+      "file": "assets/buildings/levels/farm/13.glb",
+      "preview": "assets/buildings/levels/farm/13.png",
+      "new_structure": "Grain-hulling crusher",
+      "triangles": 13756,
+      "materials": 2,
+      "bytes": 1077620,
+      "size": [
+        5.6,
+        4.3711,
+        5.462
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "farm",
+      "level": 14,
+      "file": "assets/buildings/levels/farm/14.glb",
+      "preview": "assets/buildings/levels/farm/14.png",
+      "new_structure": "Four-sail grain mill",
+      "triangles": 14032,
+      "materials": 2,
+      "bytes": 1096272,
+      "size": [
+        5.6,
+        4.3711,
+        5.462
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "farm",
+      "level": 15,
+      "file": "assets/buildings/levels/farm/15.glb",
+      "preview": "assets/buildings/levels/farm/15.png",
+      "new_structure": "Arcaded reservoir and mill crown",
+      "triangles": 15486,
+      "materials": 2,
+      "bytes": 1209612,
+      "size": [
+        5.6,
+        5.1496,
+        5.462
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "lumber",
+      "level": 2,
+      "file": "assets/buildings/levels/lumber/2.glb",
+      "preview": "assets/buildings/levels/lumber/2.png",
+      "new_structure": "Seasoning log racks",
+      "triangles": 5890,
+      "materials": 2,
+      "bytes": 466288,
+      "size": [
+        5.6,
+        3.6815,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "lumber",
+      "level": 3,
+      "file": "assets/buildings/levels/lumber/3.glb",
+      "preview": "assets/buildings/levels/lumber/3.png",
+      "new_structure": "Frame-saw workbench",
+      "triangles": 6486,
+      "materials": 2,
+      "bytes": 516520,
+      "size": [
+        5.6,
+        3.6815,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "lumber",
+      "level": 4,
+      "file": "assets/buildings/levels/lumber/4.glb",
+      "preview": "assets/buildings/levels/lumber/4.png",
+      "new_structure": "Covered log lean-to",
+      "triangles": 6952,
+      "materials": 2,
+      "bytes": 548912,
+      "size": [
+        5.6,
+        3.6815,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "lumber",
+      "level": 5,
+      "file": "assets/buildings/levels/lumber/5.glb",
+      "preview": "assets/buildings/levels/lumber/5.png",
+      "new_structure": "Timber lifting crane",
+      "triangles": 7776,
+      "materials": 2,
+      "bytes": 616064,
+      "size": [
+        5.6,
+        3.6815,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "lumber",
+      "level": 6,
+      "file": "assets/buildings/levels/lumber/6.glb",
+      "preview": "assets/buildings/levels/lumber/6.png",
+      "new_structure": "Braced hoist with drum",
+      "triangles": 7860,
+      "materials": 2,
+      "bytes": 621752,
+      "size": [
+        5.6,
+        3.6815,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "lumber",
+      "level": 7,
+      "file": "assets/buildings/levels/lumber/7.glb",
+      "preview": "assets/buildings/levels/lumber/7.png",
+      "new_structure": "Water-powered saw drive",
+      "triangles": 8300,
+      "materials": 2,
+      "bytes": 650312,
+      "size": [
+        5.6,
+        3.6815,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "lumber",
+      "level": 8,
+      "file": "assets/buildings/levels/lumber/8.glb",
+      "preview": "assets/buildings/levels/lumber/8.png",
+      "new_structure": "Raised workshop loft",
+      "triangles": 8392,
+      "materials": 2,
+      "bytes": 657776,
+      "size": [
+        5.6,
+        4.2615,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "lumber",
+      "level": 9,
+      "file": "assets/buildings/levels/lumber/9.glb",
+      "preview": "assets/buildings/levels/lumber/9.png",
+      "new_structure": "Gang-saw processing line",
+      "triangles": 8488,
+      "materials": 2,
+      "bytes": 665264,
+      "size": [
+        5.6,
+        4.2615,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "lumber",
+      "level": 10,
+      "file": "assets/buildings/levels/lumber/10.glb",
+      "preview": "assets/buildings/levels/lumber/10.png",
+      "new_structure": "Elevated log conveyor",
+      "triangles": 9440,
+      "materials": 2,
+      "bytes": 739668,
+      "size": [
+        5.6,
+        4.2615,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "lumber",
+      "level": 11,
+      "file": "assets/buildings/levels/lumber/11.glb",
+      "preview": "assets/buildings/levels/lumber/11.png",
+      "new_structure": "Second handling crane",
+      "triangles": 9628,
+      "materials": 2,
+      "bytes": 754620,
+      "size": [
+        5.6,
+        4.2615,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "lumber",
+      "level": 12,
+      "file": "assets/buildings/levels/lumber/12.glb",
+      "preview": "assets/buildings/levels/lumber/12.png",
+      "new_structure": "Ventilated drying chamber",
+      "triangles": 9672,
+      "materials": 2,
+      "bytes": 758340,
+      "size": [
+        5.6,
+        4.6215,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "lumber",
+      "level": 13,
+      "file": "assets/buildings/levels/lumber/13.glb",
+      "preview": "assets/buildings/levels/lumber/13.png",
+      "new_structure": "Roof wind-drive system",
+      "triangles": 9948,
+      "materials": 2,
+      "bytes": 776988,
+      "size": [
+        5.6,
+        4.7479,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "lumber",
+      "level": 14,
+      "file": "assets/buildings/levels/lumber/14.glb",
+      "preview": "assets/buildings/levels/lumber/14.png",
+      "new_structure": "Timber drying kiln",
+      "triangles": 10908,
+      "materials": 2,
+      "bytes": 856192,
+      "size": [
+        5.6,
+        4.7479,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "lumber",
+      "level": 15,
+      "file": "assets/buildings/levels/lumber/15.glb",
+      "preview": "assets/buildings/levels/lumber/15.png",
+      "new_structure": "Upper hoist walkway and roof crown",
+      "triangles": 13244,
+      "materials": 2,
+      "bytes": 1039844,
+      "size": [
+        5.6,
+        5.4915,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "mine",
+      "level": 2,
+      "file": "assets/buildings/levels/mine/2.glb",
+      "preview": "assets/buildings/levels/mine/2.png",
+      "new_structure": "Stone-reinforced shaft",
+      "triangles": 2432,
+      "materials": 2,
+      "bytes": 187836,
+      "size": [
+        5.6,
+        3.78,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "mine",
+      "level": 3,
+      "file": "assets/buildings/levels/mine/3.glb",
+      "preview": "assets/buildings/levels/mine/3.png",
+      "new_structure": "Extended trolley rails",
+      "triangles": 2516,
+      "materials": 2,
+      "bytes": 194388,
+      "size": [
+        5.6,
+        3.78,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "mine",
+      "level": 4,
+      "file": "assets/buildings/levels/mine/4.glb",
+      "preview": "assets/buildings/levels/mine/4.png",
+      "new_structure": "Second excavation shaft",
+      "triangles": 3144,
+      "materials": 2,
+      "bytes": 247404,
+      "size": [
+        5.6,
+        3.78,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "mine",
+      "level": 5,
+      "file": "assets/buildings/levels/mine/5.glb",
+      "preview": "assets/buildings/levels/mine/5.png",
+      "new_structure": "Ore lifting headframe",
+      "triangles": 3968,
+      "materials": 2,
+      "bytes": 314556,
+      "size": [
+        5.6,
+        3.78,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "mine",
+      "level": 6,
+      "file": "assets/buildings/levels/mine/6.glb",
+      "preview": "assets/buildings/levels/mine/6.png",
+      "new_structure": "Counterweight and lift cage",
+      "triangles": 4020,
+      "materials": 2,
+      "bytes": 318324,
+      "size": [
+        5.6,
+        3.78,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "mine",
+      "level": 7,
+      "file": "assets/buildings/levels/mine/7.glb",
+      "preview": "assets/buildings/levels/mine/7.png",
+      "new_structure": "Twin roller ore crusher",
+      "triangles": 4800,
+      "materials": 2,
+      "bytes": 381760,
+      "size": [
+        5.6,
+        3.78,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "mine",
+      "level": 8,
+      "file": "assets/buildings/levels/mine/8.glb",
+      "preview": "assets/buildings/levels/mine/8.png",
+      "new_structure": "Upper hoist machinery",
+      "triangles": 5240,
+      "materials": 2,
+      "bytes": 411188,
+      "size": [
+        5.6,
+        4.295,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "mine",
+      "level": 9,
+      "file": "assets/buildings/levels/mine/9.glb",
+      "preview": "assets/buildings/levels/mine/9.png",
+      "new_structure": "Raised sorting gallery",
+      "triangles": 7014,
+      "materials": 2,
+      "bytes": 551648,
+      "size": [
+        5.6,
+        4.295,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "mine",
+      "level": 10,
+      "file": "assets/buildings/levels/mine/10.glb",
+      "preview": "assets/buildings/levels/mine/10.png",
+      "new_structure": "Two-track ore dispatch",
+      "triangles": 8230,
+      "materials": 2,
+      "bytes": 637572,
+      "size": [
+        5.6,
+        4.295,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "mine",
+      "level": 11,
+      "file": "assets/buildings/levels/mine/11.glb",
+      "preview": "assets/buildings/levels/mine/11.png",
+      "new_structure": "Crusher hopper and chute",
+      "triangles": 8270,
+      "materials": 2,
+      "bytes": 640404,
+      "size": [
+        5.6,
+        4.295,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "mine",
+      "level": 12,
+      "file": "assets/buildings/levels/mine/12.glb",
+      "preview": "assets/buildings/levels/mine/12.png",
+      "new_structure": "Ore washer settling tanks",
+      "triangles": 8646,
+      "materials": 2,
+      "bytes": 672036,
+      "size": [
+        5.6,
+        4.295,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "mine",
+      "level": 13,
+      "file": "assets/buildings/levels/mine/13.glb",
+      "preview": "assets/buildings/levels/mine/13.png",
+      "new_structure": "Second headframe lift deck",
+      "triangles": 9306,
+      "materials": 2,
+      "bytes": 727836,
+      "size": [
+        5.6,
+        4.915,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "mine",
+      "level": 14,
+      "file": "assets/buildings/levels/mine/14.glb",
+      "preview": "assets/buildings/levels/mine/14.png",
+      "new_structure": "Twin smelting vents",
+      "triangles": 9418,
+      "materials": 2,
+      "bytes": 737148,
+      "size": [
+        5.6,
+        4.915,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "mine",
+      "level": 15,
+      "file": "assets/buildings/levels/mine/15.glb",
+      "preview": "assets/buildings/levels/mine/15.png",
+      "new_structure": "Crowned hoist and crushing works",
+      "triangles": 11710,
+      "materials": 2,
+      "bytes": 917080,
+      "size": [
+        5.6,
+        5.8715,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "granary",
+      "level": 2,
+      "file": "assets/buildings/levels/granary/2.glb",
+      "preview": "assets/buildings/levels/granary/2.png",
+      "new_structure": "Ventilated storage plinth",
+      "triangles": 7682,
+      "materials": 2,
+      "bytes": 610100,
+      "size": [
+        5.6,
+        3.6815,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "granary",
+      "level": 3,
+      "file": "assets/buildings/levels/granary/3.glb",
+      "preview": "assets/buildings/levels/granary/3.png",
+      "new_structure": "Front grain bins",
+      "triangles": 8010,
+      "materials": 2,
+      "bytes": 636260,
+      "size": [
+        5.6,
+        3.6815,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "granary",
+      "level": 4,
+      "file": "assets/buildings/levels/granary/4.glb",
+      "preview": "assets/buildings/levels/granary/4.png",
+      "new_structure": "Paired grain silos",
+      "triangles": 8730,
+      "materials": 2,
+      "bytes": 683780,
+      "size": [
+        5.6,
+        3.6815,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "granary",
+      "level": 5,
+      "file": "assets/buildings/levels/granary/5.glb",
+      "preview": "assets/buildings/levels/granary/5.png",
+      "new_structure": "Covered loading platform",
+      "triangles": 9668,
+      "materials": 2,
+      "bytes": 758744,
+      "size": [
+        5.6,
+        3.6815,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "granary",
+      "level": 6,
+      "file": "assets/buildings/levels/granary/6.glb",
+      "preview": "assets/buildings/levels/granary/6.png",
+      "new_structure": "Raised sorting loft",
+      "triangles": 9680,
+      "materials": 2,
+      "bytes": 759684,
+      "size": [
+        5.6,
+        3.8415,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "granary",
+      "level": 7,
+      "file": "assets/buildings/levels/granary/7.glb",
+      "preview": "assets/buildings/levels/granary/7.png",
+      "new_structure": "Second storage floor",
+      "triangles": 10520,
+      "materials": 2,
+      "bytes": 830388,
+      "size": [
+        5.6,
+        4.4615,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "granary",
+      "level": 8,
+      "file": "assets/buildings/levels/granary/8.glb",
+      "preview": "assets/buildings/levels/granary/8.png",
+      "new_structure": "Side ventilation towers",
+      "triangles": 11252,
+      "materials": 2,
+      "bytes": 883604,
+      "size": [
+        5.6,
+        4.4615,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "granary",
+      "level": 9,
+      "file": "assets/buildings/levels/granary/9.glb",
+      "preview": "assets/buildings/levels/granary/9.png",
+      "new_structure": "Four-bin storage system",
+      "triangles": 11972,
+      "materials": 2,
+      "bytes": 931124,
+      "size": [
+        5.6,
+        4.4615,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "granary",
+      "level": 10,
+      "file": "assets/buildings/levels/granary/10.glb",
+      "preview": "assets/buildings/levels/granary/10.png",
+      "new_structure": "Tall reinforced silos",
+      "triangles": 12052,
+      "materials": 2,
+      "bytes": 936788,
+      "size": [
+        5.6,
+        4.4615,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "granary",
+      "level": 11,
+      "file": "assets/buildings/levels/granary/11.glb",
+      "preview": "assets/buildings/levels/granary/11.png",
+      "new_structure": "Grain elevator and bridge",
+      "triangles": 12888,
+      "materials": 2,
+      "bytes": 1004876,
+      "size": [
+        5.6,
+        4.4615,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "granary",
+      "level": 12,
+      "file": "assets/buildings/levels/granary/12.glb",
+      "preview": "assets/buildings/levels/granary/12.png",
+      "new_structure": "Roof drying dormers",
+      "triangles": 13620,
+      "materials": 2,
+      "bytes": 1058088,
+      "size": [
+        5.6,
+        4.7815,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "granary",
+      "level": 13,
+      "file": "assets/buildings/levels/granary/13.glb",
+      "preview": "assets/buildings/levels/granary/13.png",
+      "new_structure": "Pneumatic grain chutes",
+      "triangles": 13692,
+      "materials": 2,
+      "bytes": 1062840,
+      "size": [
+        5.6,
+        4.7815,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "granary",
+      "level": 14,
+      "file": "assets/buildings/levels/granary/14.glb",
+      "preview": "assets/buildings/levels/granary/14.png",
+      "new_structure": "Domed ventilation caps",
+      "triangles": 14724,
+      "materials": 2,
+      "bytes": 1141032,
+      "size": [
+        5.6,
+        4.7815,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "granary",
+      "level": 15,
+      "file": "assets/buildings/levels/granary/15.glb",
+      "preview": "assets/buildings/levels/granary/15.png",
+      "new_structure": "Royal multi-tier storehouse",
+      "triangles": 16122,
+      "materials": 2,
+      "bytes": 1249716,
+      "size": [
+        5.6,
+        6.0669,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "gem_mine",
+      "level": 2,
+      "file": "assets/buildings/levels/gem_mine/2.glb",
+      "preview": "assets/buildings/levels/gem_mine/2.png",
+      "new_structure": "Terraced emerald excavation",
+      "triangles": 2620,
+      "materials": 2,
+      "bytes": 202780,
+      "size": [
+        3.6,
+        2.5,
+        3.6
+      ],
+      "footprint": [
+        2,
+        2
+      ]
+    },
+    {
+      "id": "gem_mine",
+      "level": 3,
+      "file": "assets/buildings/levels/gem_mine/3.glb",
+      "preview": "assets/buildings/levels/gem_mine/3.png",
+      "new_structure": "Twin arched adits",
+      "triangles": 3236,
+      "materials": 2,
+      "bytes": 254860,
+      "size": [
+        3.6,
+        2.5,
+        3.6
+      ],
+      "footprint": [
+        2,
+        2
+      ]
+    },
+    {
+      "id": "gem_mine",
+      "level": 4,
+      "file": "assets/buildings/levels/gem_mine/4.glb",
+      "preview": "assets/buildings/levels/gem_mine/4.png",
+      "new_structure": "Gem cutting bench",
+      "triangles": 4004,
+      "materials": 2,
+      "bytes": 319088,
+      "size": [
+        3.6,
+        2.5,
+        3.6
+      ],
+      "footprint": [
+        2,
+        2
+      ]
+    },
+    {
+      "id": "gem_mine",
+      "level": 5,
+      "file": "assets/buildings/levels/gem_mine/5.glb",
+      "preview": "assets/buildings/levels/gem_mine/5.png",
+      "new_structure": "Primary excavation hoist",
+      "triangles": 4828,
+      "materials": 2,
+      "bytes": 386256,
+      "size": [
+        3.6,
+        2.615,
+        3.6
+      ],
+      "footprint": [
+        2,
+        2
+      ]
+    },
+    {
+      "id": "gem_mine",
+      "level": 6,
+      "file": "assets/buildings/levels/gem_mine/6.glb",
+      "preview": "assets/buildings/levels/gem_mine/6.png",
+      "new_structure": "Second crystal terrace",
+      "triangles": 4908,
+      "materials": 2,
+      "bytes": 392784,
+      "size": [
+        3.6,
+        2.615,
+        3.6
+      ],
+      "footprint": [
+        2,
+        2
+      ]
+    },
+    {
+      "id": "gem_mine",
+      "level": 7,
+      "file": "assets/buildings/levels/gem_mine/7.glb",
+      "preview": "assets/buildings/levels/gem_mine/7.png",
+      "new_structure": "Crushing and washing wheel",
+      "triangles": 5348,
+      "materials": 2,
+      "bytes": 422216,
+      "size": [
+        3.6,
+        2.615,
+        3.6
+      ],
+      "footprint": [
+        2,
+        2
+      ]
+    },
+    {
+      "id": "gem_mine",
+      "level": 8,
+      "file": "assets/buildings/levels/gem_mine/8.glb",
+      "preview": "assets/buildings/levels/gem_mine/8.png",
+      "new_structure": "Upper extraction headframe",
+      "triangles": 5788,
+      "materials": 2,
+      "bytes": 451640,
+      "size": [
+        3.6,
+        3.29,
+        3.6
+      ],
+      "footprint": [
+        2,
+        2
+      ]
+    },
+    {
+      "id": "gem_mine",
+      "level": 9,
+      "file": "assets/buildings/levels/gem_mine/9.glb",
+      "preview": "assets/buildings/levels/gem_mine/9.png",
+      "new_structure": "Stepped access gallery",
+      "triangles": 5964,
+      "materials": 2,
+      "bytes": 466520,
+      "size": [
+        3.6,
+        3.29,
+        3.6
+      ],
+      "footprint": [
+        2,
+        2
+      ]
+    },
+    {
+      "id": "gem_mine",
+      "level": 10,
+      "file": "assets/buildings/levels/gem_mine/10.glb",
+      "preview": "assets/buildings/levels/gem_mine/10.png",
+      "new_structure": "Raised arched crystal arcade",
+      "triangles": 7240,
+      "materials": 2,
+      "bytes": 574404,
+      "size": [
+        3.6,
+        3.29,
+        3.6
+      ],
+      "footprint": [
+        2,
+        2
+      ]
+    },
+    {
+      "id": "gem_mine",
+      "level": 11,
+      "file": "assets/buildings/levels/gem_mine/11.glb",
+      "preview": "assets/buildings/levels/gem_mine/11.png",
+      "new_structure": "Brass sieving machinery",
+      "triangles": 7900,
+      "materials": 2,
+      "bytes": 629340,
+      "size": [
+        3.6,
+        3.29,
+        3.6
+      ],
+      "footprint": [
+        2,
+        2
+      ]
+    },
+    {
+      "id": "gem_mine",
+      "level": 12,
+      "file": "assets/buildings/levels/gem_mine/12.glb",
+      "preview": "assets/buildings/levels/gem_mine/12.png",
+      "new_structure": "Twin excavation lifts",
+      "triangles": 8000,
+      "materials": 2,
+      "bytes": 636852,
+      "size": [
+        3.6,
+        3.485,
+        3.6
+      ],
+      "footprint": [
+        2,
+        2
+      ]
+    },
+    {
+      "id": "gem_mine",
+      "level": 13,
+      "file": "assets/buildings/levels/gem_mine/13.glb",
+      "preview": "assets/buildings/levels/gem_mine/13.png",
+      "new_structure": "Covered gem sorting counter",
+      "triangles": 8322,
+      "materials": 2,
+      "bytes": 659736,
+      "size": [
+        3.6,
+        3.485,
+        3.6
+      ],
+      "footprint": [
+        2,
+        2
+      ]
+    },
+    {
+      "id": "gem_mine",
+      "level": 14,
+      "file": "assets/buildings/levels/gem_mine/14.glb",
+      "preview": "assets/buildings/levels/gem_mine/14.png",
+      "new_structure": "High quartz seam extraction",
+      "triangles": 8358,
+      "materials": 2,
+      "bytes": 662544,
+      "size": [
+        3.6,
+        3.83,
+        3.6
+      ],
+      "footprint": [
+        2,
+        2
+      ]
+    },
+    {
+      "id": "gem_mine",
+      "level": 15,
+      "file": "assets/buildings/levels/gem_mine/15.glb",
+      "preview": "assets/buildings/levels/gem_mine/15.png",
+      "new_structure": "Crowned crystal gallery and chutes",
+      "triangles": 9074,
+      "materials": 2,
+      "bytes": 713072,
+      "size": [
+        3.6,
+        4.4415,
+        3.6
+      ],
+      "footprint": [
+        2,
+        2
+      ]
+    }
+  ]
+}

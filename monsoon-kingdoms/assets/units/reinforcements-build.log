@@ -1,0 +1,53 @@
+/Volumes/T7/ra.one the game/monsoon-kingdoms/tools/build-units.py:17: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m=bpy.data.materials.new(name);m.diffuse_color=(*color,1);m.use_nodes=True
+/Volumes/T7/ra.one the game/monsoon-kingdoms/tools/build-units.py:313: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  S.world=bpy.data.worlds.new('Soft studio');S.world.use_nodes=True
+INFO Draco is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_draco_bridge.dylib
+INFO MeshOptimizer is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_meshopt_bridge.dylib
+01:17:43 | INFO: Starting glTF 2.0 export
+01:17:43 | INFO: Extracting primitive: Cone.018
+01:17:43 | INFO: Primitives created: 2
+01:17:43 | INFO: Extracting primitive: Cone.021
+01:17:43 | INFO: Primitives created: 3
+01:17:43 | INFO: Extracting primitive: Cone.012
+01:17:43 | INFO: Primitives created: 5
+01:17:43 | INFO: Finished glTF 2.0 export in 0.0481412410736084 s
+00:05.556  render           | Saved: '/Volumes/T7/ra.one the game/monsoon-kingdoms/assets/units/bowler.png'
+
+ASSET_RESULT {"id": "bowler", "file": "bowler.glb", "portrait": "bowler.png", "triangles": 12382, "materials": ["Dark leather and hair", "Hammered brass", "Indigo woven cloth", "Saffron woven cotton", "Warm umber skin", "Weathered basalt"], "height": 2.05, "width": 1.5, "depth": 0.646, "root": "feet at origin, +Z forward, +Y up", "animation": "Idle: 2-second looping mesh-joint animation", "joints": ["Balance_arm", "Boulder_arm"], "source": "assets/blender/reinforcements.blend"}
+01:17:48 | INFO: Starting glTF 2.0 export
+01:17:48 | INFO: Extracting primitive: Cone.048
+01:17:48 | INFO: Primitives created: 6
+01:17:48 | INFO: Extracting primitive: Cone.057
+01:17:48 | INFO: Primitives created: 4
+01:17:48 | INFO: Finished glTF 2.0 export in 0.05548501014709473 s
+00:09.663  render           | Saved: '/Volumes/T7/ra.one the game/monsoon-kingdoms/assets/units/miner.png'
+
+ASSET_RESULT {"id": "miner", "file": "miner.glb", "portrait": "miner.png", "triangles": 11150, "materials": ["Dark leather and hair", "Forged blue iron", "Hammered brass", "Miner forest green", "Miner turmeric turban", "Warm umber skin"], "height": 1.661, "width": 1.247, "depth": 0.598, "root": "feet at origin, +Z forward, +Y up", "animation": "Idle: 2-second looping mesh-joint animation", "joints": ["Pickaxe_arm"], "source": "assets/blender/reinforcements.blend"}
+01:17:53 | INFO: Starting glTF 2.0 export
+01:17:53 | INFO: Extracting primitive: Sphere.140
+01:17:53 | INFO: Primitives created: 4
+01:17:53 | INFO: Extracting primitive: Sphere.114
+01:17:53 | INFO: Primitives created: 4
+01:17:53 | INFO: Extracting primitive: Sphere.134
+01:17:53 | INFO: Primitives created: 2
+01:17:53 | INFO: Finished glTF 2.0 export in 0.06291723251342773 s
+00:16.262  render           | Saved: '/Volumes/T7/ra.one the game/monsoon-kingdoms/assets/units/yeti.png'
+
+ASSET_RESULT {"id": "yeti", "file": "yeti.glb", "portrait": "yeti.png", "triangles": 15972, "materials": ["Dark leather and hair", "Hammered brass", "Weathered basalt", "Yeti glacial blue skin", "Yeti ivory fur"], "height": 2.352, "width": 2.051, "depth": 0.851, "root": "feet at origin, +Z forward, +Y up", "animation": "Idle: 2-second looping mesh-joint animation", "joints": ["Yeti_left_arm", "Club_arm"], "source": "assets/blender/reinforcements.blend"}
+01:17:59 | INFO: Starting glTF 2.0 export
+01:17:59 | INFO: Extracting primitive: Cone.204
+01:17:59 | INFO: Primitives created: 4
+01:17:59 | INFO: Extracting primitive: Cone.230
+01:17:59 | INFO: Primitives created: 4
+01:17:59 | INFO: Extracting primitive: Cone.232
+01:17:59 | INFO: Primitives created: 4
+01:17:59 | INFO: Finished glTF 2.0 export in 0.07330107688903809 s
+00:23.736  render           | Saved: '/Volumes/T7/ra.one the game/monsoon-kingdoms/assets/units/garuda.png'
+
+ASSET_RESULT {"id": "garuda", "file": "garuda.glb", "portrait": "garuda.png", "triangles": 10152, "materials": ["Garuda blue black feathers", "Garuda crimson lacquer", "Garuda feather highlights", "Hammered brass"], "height": 2.139, "width": 3.72, "depth": 0.73, "root": "feet at origin, +Z forward, +Y up", "animation": "Idle: 2-second looping mesh-joint animation", "joints": ["Wing_L", "Wing_R"], "source": "assets/blender/reinforcements.blend"}
+Info: Saved as "reinforcements.blend"
+REINFORCEMENTS_COMPLETE
+Blender 5.2.1 LTS (hash 9e2066aef7ef built 2026-08-25 01:35:57)
+
+Blender quit

@@ -1,0 +1,385 @@
+{
+  "format": "GLB 2.0",
+  "authoring": "Original procedural solid geometry, Blender",
+  "coordinates": "meters, +Y up, centered XZ, ground Y=0",
+  "materials": "Shared vertex colors: mineral/timber/textile + metal; no texture payload",
+  "assets": [
+    {
+      "id": "fort",
+      "file": "assets/buildings/fort.glb",
+      "preview": "assets/buildings/fort.png",
+      "triangles": 24662,
+      "meshes": 2,
+      "bytes": 1184208,
+      "size": [
+        7.6,
+        6.93,
+        7.6
+      ],
+      "footprint": [
+        4,
+        4
+      ]
+    },
+    {
+      "id": "fort_2",
+      "file": "assets/buildings/fort_2.glb",
+      "preview": "assets/buildings/fort_2.png",
+      "triangles": 25786,
+      "meshes": 2,
+      "bytes": 1240112,
+      "size": [
+        7.6,
+        6.93,
+        7.6
+      ],
+      "footprint": [
+        4,
+        4
+      ]
+    },
+    {
+      "id": "fort_3",
+      "file": "assets/buildings/fort_3.glb",
+      "preview": "assets/buildings/fort_3.png",
+      "triangles": 29370,
+      "meshes": 2,
+      "bytes": 1414840,
+      "size": [
+        7.6,
+        6.93,
+        7.6
+      ],
+      "footprint": [
+        4,
+        4
+      ]
+    },
+    {
+      "id": "farm",
+      "file": "assets/buildings/farm.glb",
+      "preview": "assets/buildings/farm.png",
+      "triangles": 15162,
+      "meshes": 2,
+      "bytes": 784404,
+      "size": [
+        5.6,
+        2.8115,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "lumber",
+      "file": "assets/buildings/lumber.glb",
+      "preview": "assets/buildings/lumber.png",
+      "triangles": 7758,
+      "meshes": 2,
+      "bytes": 411668,
+      "size": [
+        5.6,
+        3.8315,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "mine",
+      "file": "assets/buildings/mine.glb",
+      "preview": "assets/buildings/mine.png",
+      "triangles": 4812,
+      "meshes": 2,
+      "bytes": 260124,
+      "size": [
+        5.6,
+        4.6,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "granary",
+      "file": "assets/buildings/granary.glb",
+      "preview": "assets/buildings/granary.png",
+      "triangles": 10202,
+      "meshes": 2,
+      "bytes": 559392,
+      "size": [
+        5.6,
+        4.2915,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "stepwell",
+      "file": "assets/buildings/stepwell.glb",
+      "preview": "assets/buildings/stepwell.png",
+      "triangles": 9780,
+      "meshes": 2,
+      "bytes": 543472,
+      "size": [
+        5.6,
+        2.9277,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "barracks",
+      "file": "assets/buildings/barracks.glb",
+      "preview": "assets/buildings/barracks.png",
+      "triangles": 12096,
+      "meshes": 2,
+      "bytes": 621968,
+      "size": [
+        5.6,
+        5.406,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ],
+      "inspiration": "Red Fort, Delhi",
+      "source": "https://whc.unesco.org/en/list/231/",
+      "features": [
+        "red sandstone curtain walls",
+        "octagonal bastions",
+        "deep pointed iwans",
+        "crenellations",
+        "five-domed gate gallery",
+        "open parade court"
+      ],
+      "blendSource": "assets/blender/landmarks.blend"
+    },
+    {
+      "id": "camp",
+      "file": "assets/buildings/camp.glb",
+      "preview": "assets/buildings/camp.png",
+      "triangles": 2119,
+      "meshes": 2,
+      "bytes": 111888,
+      "size": [
+        5.6,
+        3.1315,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "archer_tower",
+      "file": "assets/buildings/archer_tower.glb",
+      "preview": "assets/buildings/archer_tower.png",
+      "triangles": 17467,
+      "meshes": 2,
+      "bytes": 845316,
+      "size": [
+        3.6,
+        8.63,
+        3.6
+      ],
+      "footprint": [
+        2,
+        2
+      ],
+      "inspiration": "Qutb Minar, Delhi",
+      "source": "https://whc.unesco.org/en/list/233/",
+      "features": [
+        "five tapering fluted storeys",
+        "projecting carved balconies",
+        "radial corbels",
+        "contrasting sandstone and marble bands"
+      ],
+      "projectileOrigin": [
+        0,
+        7.8,
+        0
+      ],
+      "blendSource": "assets/blender/landmarks.blend"
+    },
+    {
+      "id": "cannon",
+      "file": "assets/buildings/cannon.glb",
+      "preview": "assets/buildings/cannon.png",
+      "triangles": 1916,
+      "meshes": 2,
+      "bytes": 92976,
+      "size": [
+        3.6,
+        1.961,
+        3.6
+      ],
+      "footprint": [
+        2,
+        2
+      ]
+    },
+    {
+      "id": "wall",
+      "file": "assets/buildings/wall.glb",
+      "preview": "assets/buildings/wall.png",
+      "triangles": 1196,
+      "meshes": 2,
+      "bytes": 69460,
+      "size": [
+        1.87,
+        2.31,
+        1.86
+      ],
+      "footprint": [
+        1,
+        1
+      ]
+    },
+    {
+      "id": "market",
+      "file": "assets/buildings/market.glb",
+      "preview": "assets/buildings/market.png",
+      "triangles": 17368,
+      "meshes": 2,
+      "bytes": 866632,
+      "size": [
+        5.6,
+        5.5458,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ],
+      "inspiration": "Hawa Mahal, Jaipur",
+      "source": "https://www.tourism.rajasthan.gov.in/hawa-mahal.html",
+      "features": [
+        "five-storey stepped facade",
+        "29 projecting jharokhas",
+        "modeled lattice screens",
+        "scalloped pink crown",
+        "merchant counters"
+      ],
+      "blendSource": "assets/blender/landmarks.blend"
+    },
+    {
+      "id": "upgrade_ornament",
+      "file": "assets/buildings/upgrade_ornament.glb",
+      "preview": "assets/buildings/upgrade_ornament.png",
+      "triangles": 332,
+      "meshes": 2,
+      "bytes": 18708,
+      "size": [
+        0.9575,
+        1.7935,
+        0.56
+      ],
+      "footprint": [
+        1,
+        1
+      ]
+    },
+    {
+      "id": "laboratory",
+      "file": "assets/buildings/laboratory.glb",
+      "preview": "assets/buildings/laboratory.png",
+      "triangles": 5332,
+      "meshes": 2,
+      "bytes": 271608,
+      "size": [
+        5.6,
+        5.606,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "hero_hall",
+      "file": "assets/buildings/hero_hall.glb",
+      "preview": "assets/buildings/hero_hall.png",
+      "triangles": 9868,
+      "meshes": 2,
+      "bytes": 526148,
+      "size": [
+        5.6,
+        5.7765,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "gem_mine",
+      "file": "assets/buildings/gem_mine.glb",
+      "preview": "assets/buildings/gem_mine.png",
+      "triangles": 2333,
+      "meshes": 2,
+      "bytes": 118408,
+      "size": [
+        3.6,
+        3.83,
+        3.6
+      ],
+      "footprint": [
+        2,
+        2
+      ]
+    },
+    {
+      "id": "wall_2",
+      "file": "assets/buildings/wall_2.glb",
+      "preview": "assets/buildings/wall_2.png",
+      "triangles": 1672,
+      "meshes": 2,
+      "bytes": 95332,
+      "size": [
+        1.9,
+        2.685,
+        1.9
+      ],
+      "footprint": [
+        1,
+        1
+      ]
+    },
+    {
+      "id": "wall_3",
+      "file": "assets/buildings/wall_3.glb",
+      "preview": "assets/buildings/wall_3.png",
+      "triangles": 1514,
+      "meshes": 2,
+      "bytes": 82268,
+      "size": [
+        1.9,
+        3.4815,
+        1.9
+      ],
+      "footprint": [
+        1,
+        1
+      ]
+    }
+  ],
+  "optimization": "glTF Transform 4.5.0: quantized normals and vertex colors, exact float32 positions; no decoder dependency",
+  "capital": "Original Taj Mahal-inspired fantasy capital; editable source assets/blender/taj-and-civic.blend"
+}

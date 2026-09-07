@@ -1,0 +1,13 @@
+.git/
+.codex/
+.playwright-cli/
+**/.playwright-cli/
+node_modules/
+monsoon-kingdoms/output/
+monsoon-kingdoms/release/
+monsoon-kingdoms/assets/masters/
+monsoon-kingdoms/assets/blender/
+**/*-4096.png
+**/._*
+**/.DS_Store
+.env*

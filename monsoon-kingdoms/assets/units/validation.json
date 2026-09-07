@@ -1,0 +1,381 @@
+{
+  "method": "Native Three.js GLTFLoader round trip: normals, bounds, centering, geometry and material budgets, named root",
+  "assets": [
+    {
+      "animations": [],
+      "id": "guard",
+      "kind": "units",
+      "bytes": 296516,
+      "triangles": 10422,
+      "materials": 4,
+      "meshes": 4,
+      "bounds": {
+        "min": [
+          -0.5074999928474426,
+          4.330649971961975e-8,
+          -0.27149999141693115
+        ],
+        "max": [
+          0.5075000524520874,
+          1.9799998998641968,
+          0.27149999141693115
+        ]
+      },
+      "passed": true
+    },
+    {
+      "animations": [],
+      "id": "archer",
+      "kind": "units",
+      "bytes": 294800,
+      "triangles": 10302,
+      "materials": 4,
+      "meshes": 4,
+      "bounds": {
+        "min": [
+          -0.6411833763122559,
+          4.417961463332176e-8,
+          -0.2609434127807617
+        ],
+        "max": [
+          0.6411834955215454,
+          1.5104188919067383,
+          0.2609434425830841
+        ]
+      },
+      "passed": true
+    },
+    {
+      "animations": [],
+      "id": "engineer",
+      "kind": "units",
+      "bytes": 292316,
+      "triangles": 9712,
+      "materials": 4,
+      "meshes": 4,
+      "bounds": {
+        "min": [
+          -0.4411834478378296,
+          4.21423465013504e-8,
+          -0.26750001311302185
+        ],
+        "max": [
+          0.4411834478378296,
+          1.5099998712539673,
+          0.26750001311302185
+        ]
+      },
+      "passed": true
+    },
+    {
+      "animations": [],
+      "id": "rider",
+      "kind": "units",
+      "bytes": 356880,
+      "triangles": 11639,
+      "materials": 4,
+      "meshes": 4,
+      "bounds": {
+        "min": [
+          -0.5125836730003357,
+          0,
+          -0.9722498059272766
+        ],
+        "max": [
+          0.512499988079071,
+          2.6399996280670166,
+          0.9722498655319214
+        ]
+      },
+      "passed": true
+    },
+    {
+      "animations": [],
+      "id": "elephant",
+      "kind": "units",
+      "bytes": 701656,
+      "triangles": 24250,
+      "materials": 5,
+      "meshes": 5,
+      "bounds": {
+        "min": [
+          -0.7819339036941528,
+          0,
+          -1.3941599130630493
+        ],
+        "max": [
+          0.7820671796798706,
+          3.4149999618530273,
+          1.393913984298706
+        ]
+      },
+      "passed": true
+    },
+    {
+      "animations": [],
+      "id": "healer",
+      "kind": "units",
+      "bytes": 314832,
+      "triangles": 10931,
+      "materials": 4,
+      "meshes": 4,
+      "bounds": {
+        "min": [
+          -0.5426815748214722,
+          -1.280568540096283e-9,
+          -0.23000001907348633
+        ],
+        "max": [
+          0.5426816344261169,
+          1.9930000305175781,
+          0.23000000417232513
+        ]
+      },
+      "passed": true
+    },
+    {
+      "animations": [
+        {
+          "name": "Idle",
+          "duration": 2,
+          "tracks": 2
+        }
+      ],
+      "id": "bowler",
+      "kind": "units",
+      "bytes": 349680,
+      "triangles": 12382,
+      "materials": 6,
+      "meshes": 10,
+      "bounds": {
+        "min": [
+          -0.7501586377620697,
+          -2.8638169169425964e-8,
+          -0.3229999840259552
+        ],
+        "max": [
+          0.750158816576004,
+          2.049999952316284,
+          0.3229999542236328
+        ]
+      },
+      "passed": true
+    },
+    {
+      "animations": [
+        {
+          "name": "Idle",
+          "duration": 2,
+          "tracks": 1
+        }
+      ],
+      "id": "miner",
+      "kind": "units",
+      "bytes": 352148,
+      "triangles": 11150,
+      "materials": 6,
+      "meshes": 10,
+      "bounds": {
+        "min": [
+          -0.623469889163971,
+          -7.450580596923828e-9,
+          -0.2989250123500824
+        ],
+        "max": [
+          0.6234699338674545,
+          1.6609998941421509,
+          0.29892498254776
+        ]
+      },
+      "passed": true
+    },
+    {
+      "animations": [
+        {
+          "name": "Idle",
+          "duration": 2,
+          "tracks": 2
+        }
+      ],
+      "id": "yeti",
+      "kind": "units",
+      "bytes": 462196,
+      "triangles": 15972,
+      "materials": 5,
+      "meshes": 10,
+      "bounds": {
+        "min": [
+          -1.025443434715271,
+          5.4836274188119205e-8,
+          -0.425679087638855
+        ],
+        "max": [
+          1.0254435539245605,
+          2.3515267372131348,
+          0.42567911744117737
+        ]
+      },
+      "passed": true
+    },
+    {
+      "animations": [
+        {
+          "name": "Idle",
+          "duration": 2,
+          "tracks": 2
+        }
+      ],
+      "id": "garuda",
+      "kind": "units",
+      "bytes": 353604,
+      "triangles": 10152,
+      "materials": 4,
+      "meshes": 12,
+      "bounds": {
+        "min": [
+          -1.860000103712082,
+          -3.2974639907479286e-8,
+          -0.36500000953674316
+        ],
+        "max": [
+          1.860000103712082,
+          2.139404773712158,
+          0.3649999499320984
+        ]
+      },
+      "passed": true
+    },
+    {
+      "animations": [],
+      "id": "banyan",
+      "kind": "environment",
+      "bytes": 152820,
+      "triangles": 2932,
+      "materials": 3,
+      "meshes": 3,
+      "bounds": {
+        "min": [
+          -2.2522501945495605,
+          -1.4901161193847656e-8,
+          -2.3595540523529053
+        ],
+        "max": [
+          2.2522504329681396,
+          3.8744077682495117,
+          2.3595542907714844
+        ]
+      },
+      "passed": true
+    },
+    {
+      "animations": [],
+      "id": "palm",
+      "kind": "environment",
+      "bytes": 177868,
+      "triangles": 6240,
+      "materials": 3,
+      "meshes": 3,
+      "bounds": {
+        "min": [
+          -1.7480000257492065,
+          0,
+          -1.6624468564987183
+        ],
+        "max": [
+          1.7480000257492065,
+          3.2969934940338135,
+          1.6624468564987183
+        ]
+      },
+      "passed": true
+    },
+    {
+      "animations": [],
+      "id": "rocks",
+      "kind": "environment",
+      "bytes": 13456,
+      "triangles": 120,
+      "materials": 1,
+      "meshes": 1,
+      "bounds": {
+        "min": [
+          -0.7745456695556641,
+          0,
+          -0.578813910484314
+        ],
+        "max": [
+          0.7745456695556641,
+          0.8800000548362732,
+          0.578813910484314
+        ]
+      },
+      "passed": true
+    },
+    {
+      "animations": [],
+      "id": "bush",
+      "kind": "environment",
+      "bytes": 42964,
+      "triangles": 400,
+      "materials": 2,
+      "meshes": 2,
+      "bounds": {
+        "min": [
+          -0.5119100213050842,
+          0,
+          -0.5282535552978516
+        ],
+        "max": [
+          0.5119100213050842,
+          0.6000000238418579,
+          0.5282535552978516
+        ]
+      },
+      "passed": true
+    },
+    {
+      "animations": [],
+      "id": "cart",
+      "kind": "environment",
+      "bytes": 189980,
+      "triangles": 5188,
+      "materials": 4,
+      "meshes": 4,
+      "bounds": {
+        "min": [
+          -0.7649999856948853,
+          0,
+          -1.23336923122406
+        ],
+        "max": [
+          0.7649999856948853,
+          1.0439999103546143,
+          1.2333693504333496
+        ]
+      },
+      "passed": true
+    },
+    {
+      "animations": [],
+      "id": "jars",
+      "kind": "environment",
+      "bytes": 95876,
+      "triangles": 3408,
+      "materials": 3,
+      "meshes": 3,
+      "bounds": {
+        "min": [
+          -0.4425000548362732,
+          0,
+          -0.3712500333786011
+        ],
+        "max": [
+          0.44250011444091797,
+          0.6854856014251709,
+          0.3712500333786011
+        ]
+      },
+      "passed": true
+    }
+  ]
+}

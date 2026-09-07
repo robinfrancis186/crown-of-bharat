@@ -1,0 +1,206 @@
+{
+  "authoring": "Original procedural Blender geometry; concept-guided costumes",
+  "units": [
+    {
+      "id": "guard",
+      "file": "guard.glb",
+      "portrait": "guard.png",
+      "triangles": 10422,
+      "materials": [
+        "Dark leather and hair",
+        "Hammered brass",
+        "Indigo woven cloth",
+        "Warm umber skin"
+      ],
+      "height": 1.98,
+      "width": 1.015,
+      "depth": 0.543,
+      "root": "feet at origin, +Z forward, +Y up",
+      "animation": "static root bobbing"
+    },
+    {
+      "id": "archer",
+      "file": "archer.glb",
+      "portrait": "archer.png",
+      "triangles": 10302,
+      "materials": [
+        "Dark leather and hair",
+        "Hammered brass",
+        "Indigo woven cloth",
+        "Warm umber skin"
+      ],
+      "height": 1.51,
+      "width": 1.282,
+      "depth": 0.522,
+      "root": "feet at origin, +Z forward, +Y up",
+      "animation": "static root bobbing"
+    },
+    {
+      "id": "engineer",
+      "file": "engineer.glb",
+      "portrait": "engineer.png",
+      "triangles": 9712,
+      "materials": [
+        "Dark leather and hair",
+        "Hammered brass",
+        "Indigo woven cloth",
+        "Warm umber skin"
+      ],
+      "height": 1.51,
+      "width": 0.882,
+      "depth": 0.535,
+      "root": "feet at origin, +Z forward, +Y up",
+      "animation": "static root bobbing"
+    },
+    {
+      "id": "rider",
+      "file": "rider.glb",
+      "portrait": "rider.png",
+      "triangles": 11639,
+      "materials": [
+        "Dark leather and hair",
+        "Hammered brass",
+        "Indigo woven cloth",
+        "Warm umber skin"
+      ],
+      "height": 2.64,
+      "width": 1.025,
+      "depth": 1.944,
+      "root": "feet at origin, +Z forward, +Y up",
+      "animation": "static root bobbing"
+    },
+    {
+      "id": "elephant",
+      "file": "elephant.glb",
+      "portrait": "elephant.png",
+      "triangles": 24250,
+      "materials": [
+        "Dark leather and hair",
+        "Elephant warm slate",
+        "Hammered brass",
+        "Indigo woven cloth",
+        "Warm umber skin"
+      ],
+      "height": 3.415,
+      "width": 1.564,
+      "depth": 2.788,
+      "root": "feet at origin, +Z forward, +Y up",
+      "animation": "static root bobbing",
+      "crew": [
+        "mahout",
+        "howdah archer"
+      ],
+      "source": "assets/blender/heroes.blend",
+      "triangle_budget_reason": "Two complete crew figures and an open rear parasol; elephant body scale preserved."
+    },
+    {
+      "id": "healer",
+      "file": "healer.glb",
+      "portrait": "healer.png",
+      "triangles": 10931,
+      "materials": [
+        "Dark leather and hair",
+        "Hammered brass",
+        "Indigo woven cloth",
+        "Warm umber skin"
+      ],
+      "height": 1.993,
+      "width": 1.085,
+      "depth": 0.46,
+      "root": "feet at origin, +Z forward, +Y up",
+      "animation": "static root bobbing"
+    },
+    {
+      "id": "bowler",
+      "file": "bowler.glb",
+      "portrait": "bowler.png",
+      "triangles": 12382,
+      "materials": [
+        "Dark leather and hair",
+        "Hammered brass",
+        "Indigo woven cloth",
+        "Saffron woven cotton",
+        "Warm umber skin",
+        "Weathered basalt"
+      ],
+      "height": 2.05,
+      "width": 1.5,
+      "depth": 0.646,
+      "root": "feet at origin, +Z forward, +Y up",
+      "animation": "Idle: 2-second looping mesh-joint animation",
+      "joints": [
+        "Balance_arm",
+        "Boulder_arm"
+      ],
+      "source": "assets/blender/reinforcements.blend"
+    },
+    {
+      "id": "miner",
+      "file": "miner.glb",
+      "portrait": "miner.png",
+      "triangles": 11150,
+      "materials": [
+        "Dark leather and hair",
+        "Forged blue iron",
+        "Hammered brass",
+        "Miner forest green",
+        "Miner turmeric turban",
+        "Warm umber skin"
+      ],
+      "height": 1.661,
+      "width": 1.247,
+      "depth": 0.598,
+      "root": "feet at origin, +Z forward, +Y up",
+      "animation": "Idle: 2-second looping mesh-joint animation",
+      "joints": [
+        "Pickaxe_arm"
+      ],
+      "source": "assets/blender/reinforcements.blend"
+    },
+    {
+      "id": "yeti",
+      "file": "yeti.glb",
+      "portrait": "yeti.png",
+      "triangles": 15972,
+      "materials": [
+        "Dark leather and hair",
+        "Hammered brass",
+        "Weathered basalt",
+        "Yeti glacial blue skin",
+        "Yeti ivory fur"
+      ],
+      "height": 2.352,
+      "width": 2.051,
+      "depth": 0.851,
+      "root": "feet at origin, +Z forward, +Y up",
+      "animation": "Idle: 2-second looping mesh-joint animation",
+      "joints": [
+        "Yeti_left_arm",
+        "Club_arm"
+      ],
+      "source": "assets/blender/reinforcements.blend"
+    },
+    {
+      "id": "garuda",
+      "file": "garuda.glb",
+      "portrait": "garuda.png",
+      "triangles": 10152,
+      "materials": [
+        "Garuda blue black feathers",
+        "Garuda crimson lacquer",
+        "Garuda feather highlights",
+        "Hammered brass"
+      ],
+      "height": 2.139,
+      "width": 3.72,
+      "depth": 0.73,
+      "root": "feet at origin, +Z forward, +Y up",
+      "animation": "Idle: 2-second looping mesh-joint animation",
+      "joints": [
+        "Wing_L",
+        "Wing_R"
+      ],
+      "source": "assets/blender/reinforcements.blend"
+    }
+  ]
+}

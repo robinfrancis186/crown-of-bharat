@@ -1,0 +1,1145 @@
+{
+  "status": "PASS",
+  "entries": [
+    {
+      "family": "stepwell",
+      "level": 1,
+      "triangles": 9780,
+      "meshes": 2,
+      "geometryHash": "b2fedce35be02e0a283d92b8292cfe3b7cc89bef0395e66758f51d6dc16b27bf",
+      "size": [
+        5.599999904632568,
+        2.9277000427246094,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Stepped bathing court",
+      "result": "PASS"
+    },
+    {
+      "family": "stepwell",
+      "level": 2,
+      "triangles": 10416,
+      "meshes": 2,
+      "geometryHash": "0ba90980bc517c1e6969f1f8ba67e911c1fe3637984166225447990b22fe1eda",
+      "size": [
+        5.599999904632568,
+        2.9277000427246094,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Front colonnade",
+      "result": "PASS"
+    },
+    {
+      "family": "stepwell",
+      "level": 3,
+      "triangles": 11052,
+      "meshes": 2,
+      "geometryHash": "9d846c23e7a6cf1d23041d26fa08ce2a2b0e30d7fd0938c6cf2f7bcb9020d330",
+      "size": [
+        5.599999904632568,
+        2.9277000427246094,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Rear colonnade",
+      "result": "PASS"
+    },
+    {
+      "family": "stepwell",
+      "level": 4,
+      "triangles": 11688,
+      "meshes": 2,
+      "geometryHash": "95c4c5e367b953473be4f90a43e5c7ffc8a640a817ea7b60f82cfdae67546ece",
+      "size": [
+        5.599999904632568,
+        2.9277000427246094,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "West arcade",
+      "result": "PASS"
+    },
+    {
+      "family": "stepwell",
+      "level": 5,
+      "triangles": 12324,
+      "meshes": 2,
+      "geometryHash": "7feb66e3f5eb6df015433a9d9badce3eb85c4322c6c95727d4acfec791969954",
+      "size": [
+        5.599999904632568,
+        2.9277000427246094,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "East arcade",
+      "result": "PASS"
+    },
+    {
+      "family": "stepwell",
+      "level": 6,
+      "triangles": 12420,
+      "meshes": 2,
+      "geometryHash": "d0d850fb3e67b049e8f02bf1f7d526b838002404c4c8bc01d0c750738a01610e",
+      "size": [
+        5.599999904632568,
+        2.9277000427246094,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Four axial water channels",
+      "result": "PASS"
+    },
+    {
+      "family": "stepwell",
+      "level": 7,
+      "triangles": 12656,
+      "meshes": 2,
+      "geometryHash": "1dc4e0c3826c843d401b00b02495e2aa56ab204f5a08c4e11056438c0da7f52b",
+      "size": [
+        5.599999904632568,
+        2.9277000427246094,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Octagonal lotus fountain",
+      "result": "PASS"
+    },
+    {
+      "family": "stepwell",
+      "level": 8,
+      "triangles": 13128,
+      "meshes": 2,
+      "geometryHash": "54ef2b1a03bcb1e248befd53e703819d6050d6d64b824e616c5f4fd0a70ea713",
+      "size": [
+        5.599999904632568,
+        4.260499954223633,
+        5.678400039672852
+      ],
+      "floor": 0,
+      "structuralChange": "Gatekeeper pavilion",
+      "result": "PASS"
+    },
+    {
+      "family": "stepwell",
+      "level": 9,
+      "triangles": 14128,
+      "meshes": 2,
+      "geometryHash": "7bada701f594bfaf196ecdbfaffc3cd9eeb0ac9a7d738d450dcab63ad3daa10a",
+      "size": [
+        5.599999904632568,
+        4.260499954223633,
+        5.678400039672852
+      ],
+      "floor": 0,
+      "structuralChange": "Twin front gallery kiosks",
+      "result": "PASS"
+    },
+    {
+      "family": "stepwell",
+      "level": 10,
+      "triangles": 15128,
+      "meshes": 2,
+      "geometryHash": "19a23e895948b3f4f9ce948b186f830e86f8dd7f936237b7ae3401e88f64063f",
+      "size": [
+        5.599999904632568,
+        4.260499954223633,
+        5.678400039672852
+      ],
+      "floor": 0,
+      "structuralChange": "Twin rear gallery kiosks",
+      "result": "PASS"
+    },
+    {
+      "family": "stepwell",
+      "level": 11,
+      "triangles": 15772,
+      "meshes": 2,
+      "geometryHash": "26134168d2dbfe53eb23994a0a545eea029c8368146b20079d16f841141d2426",
+      "size": [
+        5.599999904632568,
+        4.260499954223633,
+        5.678400039672852
+      ],
+      "floor": 0,
+      "structuralChange": "Canopied side walkways",
+      "result": "PASS"
+    },
+    {
+      "family": "stepwell",
+      "level": 12,
+      "triangles": 16604,
+      "meshes": 2,
+      "geometryHash": "4d27338427d956a6c26e9f7a75bb11e4144754b5bb35220bac8c73e30a0a7613",
+      "size": [
+        5.599999904632568,
+        4.260499954223633,
+        5.678400039672852
+      ],
+      "floor": 0,
+      "structuralChange": "Elevated rear aqueduct",
+      "result": "PASS"
+    },
+    {
+      "family": "stepwell",
+      "level": 13,
+      "triangles": 16992,
+      "meshes": 2,
+      "geometryHash": "85f4216a0f59ff03d0fd2cc7ce857b1995922b037c1774a8e8f845cf9f3c91e7",
+      "size": [
+        5.599999904632568,
+        4.260499954223633,
+        5.678400039672852
+      ],
+      "floor": 0,
+      "structuralChange": "Crowned fountain cascade",
+      "result": "PASS"
+    },
+    {
+      "family": "stepwell",
+      "level": 14,
+      "triangles": 17748,
+      "meshes": 2,
+      "geometryHash": "d5b5b95151448c4eeb880b3efde4a4f6c1665c5ec54a2f8913833ad1903bea0f",
+      "size": [
+        5.599999904632568,
+        4.260499954223633,
+        5.678400039672852
+      ],
+      "floor": 0,
+      "structuralChange": "Terrace resting galleries",
+      "result": "PASS"
+    },
+    {
+      "family": "stepwell",
+      "level": 15,
+      "triangles": 19296,
+      "meshes": 2,
+      "geometryHash": "f3e8037ff08816ed5a9f880bc1e1b9b12711f9183de42132513eb1628faa8c8e",
+      "size": [
+        5.599999904632568,
+        4.260499954223633,
+        5.678400039672852
+      ],
+      "floor": 0,
+      "structuralChange": "Ceremonial arched crossing",
+      "result": "PASS"
+    },
+    {
+      "family": "camp",
+      "level": 1,
+      "triangles": 2119,
+      "meshes": 2,
+      "geometryHash": "051ee3e0c452627fb8015957d428f5d780d27056c1d749fb04e47b89eb511122",
+      "size": [
+        5.599999904632568,
+        3.131500005722046,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Single command tent",
+      "result": "PASS"
+    },
+    {
+      "family": "camp",
+      "level": 2,
+      "triangles": 1062,
+      "meshes": 2,
+      "geometryHash": "713d9cbbbd8ef8bbc5c90d4505196905edc72ab521f6d1f50d241dbe22b84b2f",
+      "size": [
+        5.599999904632568,
+        2.872999906539917,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Second company tent",
+      "result": "PASS"
+    },
+    {
+      "family": "camp",
+      "level": 3,
+      "triangles": 1549,
+      "meshes": 2,
+      "geometryHash": "5e72876d420ab95a54cd73df23841469b94a5016896e7dcd20bb38c7d14e574f",
+      "size": [
+        5.599999904632568,
+        2.872999906539917,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Third company tent",
+      "result": "PASS"
+    },
+    {
+      "family": "camp",
+      "level": 4,
+      "triangles": 2036,
+      "meshes": 2,
+      "geometryHash": "035d4f99d07fe2004c2f4eb5f8c30f05a474c19c5e250d8febabe1e2e1431c47",
+      "size": [
+        5.599999904632568,
+        2.872999906539917,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Quartermaster tent",
+      "result": "PASS"
+    },
+    {
+      "family": "camp",
+      "level": 5,
+      "triangles": 2523,
+      "meshes": 2,
+      "geometryHash": "ebec993e4ad77cfa4d2586e16c9da8fd593c1a3ee287ae31232ab8fe16082d33",
+      "size": [
+        5.599999904632568,
+        2.872999906539917,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Vanguard company tent",
+      "result": "PASS"
+    },
+    {
+      "family": "camp",
+      "level": 6,
+      "triangles": 3363,
+      "meshes": 2,
+      "geometryHash": "f55ddf24140ad7d2a6124a109f82839e13f9e49b418100f585be3797eb2a2391",
+      "size": [
+        5.599999904632568,
+        2.872999906539917,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Parade weapon stands",
+      "result": "PASS"
+    },
+    {
+      "family": "camp",
+      "level": 7,
+      "triangles": 3918,
+      "meshes": 2,
+      "geometryHash": "431502b7d728cf1d5aba41a67ca11fa1db6a748dd3a0b985a0a9fa650cd7565a",
+      "size": [
+        5.599999904632568,
+        4.18149995803833,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Permanent command pavilion",
+      "result": "PASS"
+    },
+    {
+      "family": "camp",
+      "level": 8,
+      "triangles": 4646,
+      "meshes": 2,
+      "geometryHash": "a6ac80557bd094b835b57796b341d857e73d2da4bc6fd92861ef46054480c168",
+      "size": [
+        5.599999904632568,
+        4.18149995803833,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "West defensive palisade",
+      "result": "PASS"
+    },
+    {
+      "family": "camp",
+      "level": 9,
+      "triangles": 5728,
+      "meshes": 2,
+      "geometryHash": "9a4435cd60642ffc28b205a20f2aa4c5d3022702c108b0e03e2d50073c1eb8d6",
+      "size": [
+        5.599999904632568,
+        4.3414998054504395,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Eastern watchpost",
+      "result": "PASS"
+    },
+    {
+      "family": "camp",
+      "level": 10,
+      "triangles": 6810,
+      "meshes": 2,
+      "geometryHash": "2ef30ef1f2ab283f8b515f63b1d4a61a54cad98571d4b969a79c5c39b4bc938c",
+      "size": [
+        5.599999904632568,
+        4.3414998054504395,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Western watchpost",
+      "result": "PASS"
+    },
+    {
+      "family": "camp",
+      "level": 11,
+      "triangles": 7006,
+      "meshes": 2,
+      "geometryHash": "946691ca107d957280659c810c15ecf6890f24e2583203466688bafab51af057",
+      "size": [
+        5.599999904632568,
+        4.3414998054504395,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Command balcony",
+      "result": "PASS"
+    },
+    {
+      "family": "camp",
+      "level": 12,
+      "triangles": 8218,
+      "meshes": 2,
+      "geometryHash": "aceac2660fbf2659f20eefb9ac5c450780691ed2d6e304251c49af444877377d",
+      "size": [
+        5.599999904632568,
+        4.3414998054504395,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Enclosed stockade",
+      "result": "PASS"
+    },
+    {
+      "family": "camp",
+      "level": 13,
+      "triangles": 8804,
+      "meshes": 2,
+      "geometryHash": "c4948fec27ce4c51cf9de7d77e0146e93f4006c0b833894ce7bc2568aac398e5",
+      "size": [
+        5.599999904632568,
+        4.3414998054504395,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Covered parade canopy",
+      "result": "PASS"
+    },
+    {
+      "family": "camp",
+      "level": 14,
+      "triangles": 9138,
+      "meshes": 2,
+      "geometryHash": "46270fa4b56886563d4da633c373d0eb7410f85b69e2751b34d77d3732d24af5",
+      "size": [
+        5.599999904632568,
+        4.801499843597412,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Raised rear command gallery",
+      "result": "PASS"
+    },
+    {
+      "family": "camp",
+      "level": 15,
+      "triangles": 9710,
+      "meshes": 2,
+      "geometryHash": "c07db8395269c8baddc64624ca7b1510799e3fbadcc7963312a675d23e4fc03e",
+      "size": [
+        5.599999904632568,
+        5.810500144958496,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "War council tower",
+      "result": "PASS"
+    },
+    {
+      "family": "cannon",
+      "level": 1,
+      "triangles": 1916,
+      "meshes": 2,
+      "geometryHash": "73beb75b07c72309e6ddc2d54695d9c2611d3f3bf7281950caf67b07dd10e1b5",
+      "size": [
+        3.5999999046325684,
+        1.960984706878662,
+        3.5999999046325684
+      ],
+      "floor": 0,
+      "structuralChange": "Single gun carriage",
+      "result": "PASS"
+    },
+    {
+      "family": "cannon",
+      "level": 2,
+      "triangles": 2196,
+      "meshes": 2,
+      "geometryHash": "93bdc592c84f59d26b734bc7c60842cabee37d2d14cd11cc4424f5ed8cd9dd09",
+      "size": [
+        3.5999999046325684,
+        1.9570915699005127,
+        3.5999999046325684
+      ],
+      "floor": 0,
+      "structuralChange": "Rear recoil axle",
+      "result": "PASS"
+    },
+    {
+      "family": "cannon",
+      "level": 3,
+      "triangles": 2372,
+      "meshes": 2,
+      "geometryHash": "bf7c9c91900d7b9c27cfa215299fb5131f31ff8206a76e29f799e0e0ae6966ff",
+      "size": [
+        3.5999999046325684,
+        1.9570915699005127,
+        3.5999999046325684
+      ],
+      "floor": 0,
+      "structuralChange": "Carriage cheek armor",
+      "result": "PASS"
+    },
+    {
+      "family": "cannon",
+      "level": 4,
+      "triangles": 2660,
+      "meshes": 2,
+      "geometryHash": "a06da014406e62075fbdfc2576b24455703d81e3b270b9825437c06a4e123c08",
+      "size": [
+        3.5999999046325684,
+        1.9570915699005127,
+        3.5999999046325684
+      ],
+      "floor": 0,
+      "structuralChange": "Four siege outriggers",
+      "result": "PASS"
+    },
+    {
+      "family": "cannon",
+      "level": 5,
+      "triangles": 3020,
+      "meshes": 2,
+      "geometryHash": "c60d84a020c0ff7fb7a641a63764a7ef6d6b585f51bddc2f53cff8729bc4cdb4",
+      "size": [
+        3.5999999046325684,
+        1.904675006866455,
+        3.5999999046325684
+      ],
+      "floor": 0,
+      "structuralChange": "Twin barrel battery",
+      "result": "PASS"
+    },
+    {
+      "family": "cannon",
+      "level": 6,
+      "triangles": 3864,
+      "meshes": 2,
+      "geometryHash": "aaba919a2e968bcf79f3e8e1066e8cb4f5b6c4594f8bc69f5ce2b304bdbdf583",
+      "size": [
+        3.5999999046325684,
+        2.2150001525878906,
+        3.5999999046325684
+      ],
+      "floor": 0,
+      "structuralChange": "Elevating gun frame",
+      "result": "PASS"
+    },
+    {
+      "family": "cannon",
+      "level": 7,
+      "triangles": 4680,
+      "meshes": 2,
+      "geometryHash": "48c65a684757e7f7903486464f513dd37e4c29d1ee9e5cb93caf23273e71191e",
+      "size": [
+        3.5999999046325684,
+        2.2150001525878906,
+        3.5999999046325684
+      ],
+      "floor": 0,
+      "structuralChange": "Geared traverse mechanism",
+      "result": "PASS"
+    },
+    {
+      "family": "cannon",
+      "level": 8,
+      "triangles": 5084,
+      "meshes": 2,
+      "geometryHash": "ce2e0fdd8917700901e46448dee6de6f2056824d3713d714c235d5429b628595",
+      "size": [
+        3.5999999046325684,
+        2.2150001525878906,
+        3.5999999046325684
+      ],
+      "floor": 0,
+      "structuralChange": "Rear loading conveyor",
+      "result": "PASS"
+    },
+    {
+      "family": "cannon",
+      "level": 9,
+      "triangles": 5444,
+      "meshes": 2,
+      "geometryHash": "9d9f7e274e4c6ec67934b60a101977f303b2040eaad1d98338dc48444235c435",
+      "size": [
+        3.5999999046325684,
+        2.2150001525878906,
+        3.5999999046325684
+      ],
+      "floor": 0,
+      "structuralChange": "Triple barrel battery",
+      "result": "PASS"
+    },
+    {
+      "family": "cannon",
+      "level": 10,
+      "triangles": 5796,
+      "meshes": 2,
+      "geometryHash": "299c623dd291cc7b630a12c0ac0c0c82b47696de1e3abf47a3490cf68fd24536",
+      "size": [
+        3.5999999046325684,
+        2.2150001525878906,
+        3.5999999046325684
+      ],
+      "floor": 0,
+      "structuralChange": "Segmented rotating mantlet",
+      "result": "PASS"
+    },
+    {
+      "family": "cannon",
+      "level": 11,
+      "triangles": 5956,
+      "meshes": 2,
+      "geometryHash": "eff9c9d8e7f9b2d4e694d5175c14b4248d2284fa1eac1dad5fdc5b9399e8567e",
+      "size": [
+        3.5999999046325684,
+        2.2150001525878906,
+        3.5999999046325684
+      ],
+      "floor": 0,
+      "structuralChange": "Twin recoil actuators",
+      "result": "PASS"
+    },
+    {
+      "family": "cannon",
+      "level": 12,
+      "triangles": 6264,
+      "meshes": 2,
+      "geometryHash": "b07d01766f7b90ca54c110d7745256396fc3ebb7224e5804ab931738eab933ca",
+      "size": [
+        3.5999999046325684,
+        2.2150001525878906,
+        3.5999999046325684
+      ],
+      "floor": 0,
+      "structuralChange": "Armored breech housing",
+      "result": "PASS"
+    },
+    {
+      "family": "cannon",
+      "level": 13,
+      "triangles": 6984,
+      "meshes": 2,
+      "geometryHash": "52cd45b647be024ab72481d6abfdb053956b348f9e09e895b6ee121941d3077a",
+      "size": [
+        3.5999999046325684,
+        2.2150001525878906,
+        3.5999999046325684
+      ],
+      "floor": 0,
+      "structuralChange": "Five barrel battery",
+      "result": "PASS"
+    },
+    {
+      "family": "cannon",
+      "level": 14,
+      "triangles": 7330,
+      "meshes": 2,
+      "geometryHash": "143fe222cef32c0b0a3e96601403b457709e6f2718f8bed828970a861872be4c",
+      "size": [
+        3.5999999046325684,
+        3.121500015258789,
+        3.5999999046325684
+      ],
+      "floor": 0,
+      "structuralChange": "Overhead siege canopy",
+      "result": "PASS"
+    },
+    {
+      "family": "cannon",
+      "level": 15,
+      "triangles": 7602,
+      "meshes": 2,
+      "geometryHash": "931573d39b17e5fa8dd724d4f53a76bf9d0fd6808fe3de9408c14bc32b1968f5",
+      "size": [
+        3.5999999046325684,
+        3.121500015258789,
+        3.5999999046325684
+      ],
+      "floor": 0,
+      "structuralChange": "Ranging optic and port armor",
+      "result": "PASS"
+    },
+    {
+      "family": "laboratory",
+      "level": 1,
+      "triangles": 5332,
+      "meshes": 2,
+      "geometryHash": "56f88cb0cc58129eeee7d78277f7129884bff83cf889433677b6ad7970c7c8e2",
+      "size": [
+        5.599999904632568,
+        5.605999946594238,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Astronomical pavilion",
+      "result": "PASS"
+    },
+    {
+      "family": "laboratory",
+      "level": 2,
+      "triangles": 5696,
+      "meshes": 2,
+      "geometryHash": "fb5a2234d9c9badbd1fb690b8ac71a8282f2a6f0917900e7079304d0a2479627",
+      "size": [
+        5.599999904632568,
+        5.605999946594238,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Survey telescope",
+      "result": "PASS"
+    },
+    {
+      "family": "laboratory",
+      "level": 3,
+      "triangles": 6104,
+      "meshes": 2,
+      "geometryHash": "b4f68bf1e8a5c7a2a359b224ca39f284dd5c8e960186747dedbba22120e0c9c0",
+      "size": [
+        5.599999904632568,
+        5.605999946594238,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Alchemy distillation bench",
+      "result": "PASS"
+    },
+    {
+      "family": "laboratory",
+      "level": 4,
+      "triangles": 6656,
+      "meshes": 2,
+      "geometryHash": "00234b4289f09fdb490fe0e93a40ef2c560e450662f08e8ac1bf546a0e22e12b",
+      "size": [
+        5.599999904632568,
+        5.605999946594238,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Paired declination lenses",
+      "result": "PASS"
+    },
+    {
+      "family": "laboratory",
+      "level": 5,
+      "triangles": 7060,
+      "meshes": 2,
+      "geometryHash": "2d1a58580eb68c5b5756aa534a74c316f99b92505365166dc76916fe17fdaf85",
+      "size": [
+        5.599999904632568,
+        5.605999946594238,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Rear observing dome",
+      "result": "PASS"
+    },
+    {
+      "family": "laboratory",
+      "level": 6,
+      "triangles": 7464,
+      "meshes": 2,
+      "geometryHash": "cc24966917142b3d438eb10a0965f06faa8e14af6e394687a69855f00c1bda73",
+      "size": [
+        5.599999904632568,
+        5.605999946594238,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Manuscript observatory",
+      "result": "PASS"
+    },
+    {
+      "family": "laboratory",
+      "level": 7,
+      "triangles": 7656,
+      "meshes": 2,
+      "geometryHash": "1d5da195667341fca7b3b320a11c9f9787307fbf63d047eed140f5c0d5978b2a",
+      "size": [
+        5.599999904632568,
+        5.605999946594238,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Instrument bridge",
+      "result": "PASS"
+    },
+    {
+      "family": "laboratory",
+      "level": 8,
+      "triangles": 8280,
+      "meshes": 2,
+      "geometryHash": "9245c1b02db6d4fee1d47904f96311c604fc9a7a9002a3c9773e486b077eae59",
+      "size": [
+        5.599999904632568,
+        5.605999946594238,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Six-planet lower orbit",
+      "result": "PASS"
+    },
+    {
+      "family": "laboratory",
+      "level": 9,
+      "triangles": 8612,
+      "meshes": 2,
+      "geometryHash": "78cf4f2d06fdeb1aecfe6b9794ee5b01753d0420593c80cb6a804e636032ac57",
+      "size": [
+        5.599999904632568,
+        5.605999946594238,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Great azimuth lens",
+      "result": "PASS"
+    },
+    {
+      "family": "laboratory",
+      "level": 10,
+      "triangles": 9328,
+      "meshes": 2,
+      "geometryHash": "5d1bc6e8703b88ca81e807b6db2b95846b3d3b9137e3ffb4f26427388dd020bf",
+      "size": [
+        5.599999904632568,
+        5.605999946594238,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Twin celestial collectors",
+      "result": "PASS"
+    },
+    {
+      "family": "laboratory",
+      "level": 11,
+      "triangles": 9768,
+      "meshes": 2,
+      "geometryHash": "df1e2df3db9fc26ffe6975d4a2b12ca8b9d7b8a01d64927f8a114857dfb5527b",
+      "size": [
+        5.599999904632568,
+        5.605999946594238,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Clockwork teaching facade",
+      "result": "PASS"
+    },
+    {
+      "family": "laboratory",
+      "level": 12,
+      "triangles": 10360,
+      "meshes": 2,
+      "geometryHash": "2582124d230ad37d81ee2a1eacdb635a3f2610677bcd054308b7fe05e617f784",
+      "size": [
+        5.599999904632568,
+        6.460000038146973,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "High observatory canopy",
+      "result": "PASS"
+    },
+    {
+      "family": "laboratory",
+      "level": 13,
+      "triangles": 11336,
+      "meshes": 2,
+      "geometryHash": "e592a2e707b80bda581dbc784ac02b1766dd4a0a18cb835792fdc06e314430b4",
+      "size": [
+        5.599999904632568,
+        6.460000038146973,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Secondary planetary apparatus",
+      "result": "PASS"
+    },
+    {
+      "family": "laboratory",
+      "level": 14,
+      "triangles": 13236,
+      "meshes": 2,
+      "geometryHash": "85c29e9bebf9ab955557d88637cab6990c785c1fc4fef8cae9dd0c640daa43a0",
+      "size": [
+        5.599999904632568,
+        6.460000038146973,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Projection gallery",
+      "result": "PASS"
+    },
+    {
+      "family": "laboratory",
+      "level": 15,
+      "triangles": 14508,
+      "meshes": 2,
+      "geometryHash": "943aa55039076e23c398ab75302c5f6d317951a3f8cdeb96ed4999c2ed8913ee",
+      "size": [
+        5.599999904632568,
+        8.394499778747559,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Royal celestial crown",
+      "result": "PASS"
+    },
+    {
+      "family": "hero_hall",
+      "level": 1,
+      "triangles": 9868,
+      "meshes": 2,
+      "geometryHash": "14db32e32fc1284d964c02ccb55be94fe7c45901ae6722fa1791a9e9047de61e",
+      "size": [
+        5.599999904632568,
+        5.776500225067139,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Hero pavilion",
+      "result": "PASS"
+    },
+    {
+      "family": "hero_hall",
+      "level": 2,
+      "triangles": 10900,
+      "meshes": 2,
+      "geometryHash": "92c69bbd28c768e28370744300225d5a569ac7795cb550574d1fad3bcc952351",
+      "size": [
+        5.599999904632568,
+        5.776500225067139,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Twin victory trophies",
+      "result": "PASS"
+    },
+    {
+      "family": "hero_hall",
+      "level": 3,
+      "triangles": 11432,
+      "meshes": 2,
+      "geometryHash": "66098db687af648f716b2d3d967076e0838935898d536d0a36dbc0d049e24cf6",
+      "size": [
+        5.599999904632568,
+        5.776500225067139,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Ceremonial front portico",
+      "result": "PASS"
+    },
+    {
+      "family": "hero_hall",
+      "level": 4,
+      "triangles": 11862,
+      "meshes": 2,
+      "geometryHash": "b90e5cb51c9400d02044f84d3bc0866f2fd1b558256e4ed2ebdee829d96984a1",
+      "size": [
+        5.599999904632568,
+        5.776500225067139,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "West covered gallery",
+      "result": "PASS"
+    },
+    {
+      "family": "hero_hall",
+      "level": 5,
+      "triangles": 12292,
+      "meshes": 2,
+      "geometryHash": "38fa02f03b2f7f381242e906ca9c2af51f905fc3e6421fff19a0a32b635604ae",
+      "size": [
+        5.599999904632568,
+        5.776500225067139,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "East covered gallery",
+      "result": "PASS"
+    },
+    {
+      "family": "hero_hall",
+      "level": 6,
+      "triangles": 13236,
+      "meshes": 2,
+      "geometryHash": "6998a08ac8ed43a58c794d262118113b28f1e230fc21ecbfe4088a6553b28a1c",
+      "size": [
+        5.599999904632568,
+        5.776500225067139,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Paired domed galleries",
+      "result": "PASS"
+    },
+    {
+      "family": "hero_hall",
+      "level": 7,
+      "triangles": 13746,
+      "meshes": 2,
+      "geometryHash": "33830bea5ead1851dc647de23d0f65d8675d0b25345d83730ce5c3c348878188",
+      "size": [
+        5.599999904632568,
+        6.971499919891357,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Second royal roof tier",
+      "result": "PASS"
+    },
+    {
+      "family": "hero_hall",
+      "level": 8,
+      "triangles": 14010,
+      "meshes": 2,
+      "geometryHash": "b4c04719245d5cb8a3cd8b292f603c2f7dcc222885800f1309a35f52c7a638ba",
+      "size": [
+        5.599999904632568,
+        6.971499919891357,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Forecourt relic displays",
+      "result": "PASS"
+    },
+    {
+      "family": "hero_hall",
+      "level": 9,
+      "triangles": 14512,
+      "meshes": 2,
+      "geometryHash": "ee16b178ddfb5876d761bac207763af2d4e3f23446e732822cb6f2a2d5eaa9be",
+      "size": [
+        5.599999904632568,
+        6.971499919891357,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Rear honor gallery",
+      "result": "PASS"
+    },
+    {
+      "family": "hero_hall",
+      "level": 10,
+      "triangles": 15672,
+      "meshes": 2,
+      "geometryHash": "4f331f89339555bf9d723e45edc166ef09e79bf34b4740adfb3cf30a8ac4a73e",
+      "size": [
+        5.599999904632568,
+        6.971499919891357,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Elephant gate guardians",
+      "result": "PASS"
+    },
+    {
+      "family": "hero_hall",
+      "level": 11,
+      "triangles": 16704,
+      "meshes": 2,
+      "geometryHash": "95bde0efd164054a8b211fe1ed2abf3ea5954945bf43b45641d7e239af124e90",
+      "size": [
+        5.599999904632568,
+        7.898499965667725,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Upper champion pavilions",
+      "result": "PASS"
+    },
+    {
+      "family": "hero_hall",
+      "level": 12,
+      "triangles": 17236,
+      "meshes": 2,
+      "geometryHash": "6850e81466ea42b29f749f80fea52fe0567e675877925491aa546854158f8b35",
+      "size": [
+        5.599999904632568,
+        7.898499965667725,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Upper ceremonial balcony",
+      "result": "PASS"
+    },
+    {
+      "family": "hero_hall",
+      "level": 13,
+      "triangles": 17838,
+      "meshes": 2,
+      "geometryHash": "efd6ef08d7d1227050854281c0c4862faf72f9b2e7fd4d9c4af7e19c3d703cd8",
+      "size": [
+        5.599999904632568,
+        8.201499938964844,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Grand upper pediment",
+      "result": "PASS"
+    },
+    {
+      "family": "hero_hall",
+      "level": 14,
+      "triangles": 18190,
+      "meshes": 2,
+      "geometryHash": "7ab82d162c3e6cbd8c2495717ef52f74d99a3975415ad815eb3cb23c6495698c",
+      "size": [
+        5.599999904632568,
+        8.201499938964844,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Four monumental buttresses",
+      "result": "PASS"
+    },
+    {
+      "family": "hero_hall",
+      "level": 15,
+      "triangles": 19082,
+      "meshes": 2,
+      "geometryHash": "983fc0b497f35f05d7e410a801a6f9d32af533969209771a90a9b3e186ccdbf5",
+      "size": [
+        5.599999904632568,
+        9.510000228881836,
+        5.599999904632568
+      ],
+      "floor": 0,
+      "structuralChange": "Imperial lotus crown",
+      "result": "PASS"
+    }
+  ],
+  "generatedModels": 70,
+  "preservedBases": 5,
+  "maxTriangles": 19296,
+  "maxDrawCalls": 2,
+  "checks": [
+    "native GLTFLoader import",
+    "75entries",
+    "15distinct geometry hashes per family",
+    "floor at0",
+    "centeredXZ",
+    "unchanged cell footprint",
+    "<=22000triangles",
+    "<=4draws",
+    "actual vertex colors"
+  ]
+}

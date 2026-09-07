@@ -1,0 +1,119 @@
+{
+  "type": "fort",
+  "status": "FINAL",
+  "nativeVerified": true,
+  "assets": [
+    {
+      "level": 2,
+      "file": "assets/buildings/levels/fort/2.glb",
+      "preview": "assets/buildings/levels/fort/2.png",
+      "sha256": "df991f9152908be2b0cedf3337759b662a92ee1939653eefd1c31cb78186d3eb",
+      "geometryHash": "4081597e63c7dddf4e10db6d86fcc36ac079b8fae76eaab6e2400a2b73b136fd",
+      "bytes": 1234288
+    },
+    {
+      "level": 3,
+      "file": "assets/buildings/levels/fort/3.glb",
+      "preview": "assets/buildings/levels/fort/3.png",
+      "sha256": "fefad983e7ac465d02bb9b12cc23b03bba68cbed3270f25a660c9a809ac2f626",
+      "geometryHash": "836e112b2c6356ae411a48aadb92022c74da7f34fdcd4696c636676550009b9d",
+      "bytes": 1246528
+    },
+    {
+      "level": 4,
+      "file": "assets/buildings/levels/fort/4.glb",
+      "preview": "assets/buildings/levels/fort/4.png",
+      "sha256": "50cc105d14a349ca642eb0c9801680c301e0872ec5bcc2db88ab10b69afeed29",
+      "geometryHash": "b2b346a00afcdd32f7b9500b3e0f2f333462278f73ba3d4960adfd81e332bab6",
+      "bytes": 1304756
+    },
+    {
+      "level": 5,
+      "file": "assets/buildings/levels/fort/5.glb",
+      "preview": "assets/buildings/levels/fort/5.png",
+      "sha256": "9f94b9f51afb0d0b5d9387944a82a497e72b98cf4f7362e0d97bd76805e15c70",
+      "geometryHash": "159327e4c730142569d359905fbc6d38728d0521ade34e94a80ccfcfb92f961a",
+      "bytes": 1357412
+    },
+    {
+      "level": 6,
+      "file": "assets/buildings/levels/fort/6.glb",
+      "preview": "assets/buildings/levels/fort/6.png",
+      "sha256": "74c33cc417958c7bb53b385666cc424256586375f63274974ccbd1010752eb3a",
+      "geometryHash": "e03bae93402aff587ad2ae4ae4baf688c45b405408c404a935f1bde817692ce9",
+      "bytes": 1389380
+    },
+    {
+      "level": 7,
+      "file": "assets/buildings/levels/fort/7.glb",
+      "preview": "assets/buildings/levels/fort/7.png",
+      "sha256": "0c79c43d32281415862f68da9e206802cd559368b8a28c08d56c52df4f911497",
+      "geometryHash": "7f9b0934a456c8395066552ca39ed55b6647340194ddec49c3fedb33c4835dab",
+      "bytes": 1406516
+    },
+    {
+      "level": 8,
+      "file": "assets/buildings/levels/fort/8.glb",
+      "preview": "assets/buildings/levels/fort/8.png",
+      "sha256": "7eb52feeea717292838a26c610312eece373fc1693b64defb620312f3f6cde5a",
+      "geometryHash": "f1f18fac88e7eb7c0269a63f9d08b63fb98afebe1d69e21962ef8c1f29a26dbc",
+      "bytes": 1454036
+    },
+    {
+      "level": 9,
+      "file": "assets/buildings/levels/fort/9.glb",
+      "preview": "assets/buildings/levels/fort/9.png",
+      "sha256": "330249895fc4400e7bc12c914f0fa8998f6c2495934e1a7dede147b7a5ca175b",
+      "geometryHash": "a655695f5f97576e11571d89a636e67c7677cfd23715a6fdec2b933dce55b904",
+      "bytes": 1502996
+    },
+    {
+      "level": 10,
+      "file": "assets/buildings/levels/fort/10.glb",
+      "preview": "assets/buildings/levels/fort/10.png",
+      "sha256": "272a2998501d70a4f01a869d5f5571c6ec84ae403e4df9f3a0a08563967c6472",
+      "geometryHash": "f14f0b9d2ab62c6cc2e5182b26ec4361450e8840271c91a5a83e5ec46185ae58",
+      "bytes": 1522104
+    },
+    {
+      "level": 11,
+      "file": "assets/buildings/levels/fort/11.glb",
+      "preview": "assets/buildings/levels/fort/11.png",
+      "sha256": "3b2d97b7505980b3e47f9715418374ea8d790c2dda140900454d65525b190f24",
+      "geometryHash": "8c2a77c9365f45e8e5a1ccb6a50c5bf7994c82675928601616e2ea523c155655",
+      "bytes": 1535448
+    },
+    {
+      "level": 12,
+      "file": "assets/buildings/levels/fort/12.glb",
+      "preview": "assets/buildings/levels/fort/12.png",
+      "sha256": "b1e36957e6e5a1aa165c06c2951a4738bd3fcbf19aba24dc888dc2bd0fc0b14b",
+      "geometryHash": "b7e4c75c57d088321bcdaaeacf730009982c9214540cd2fbce2cdf0d8e9a9720",
+      "bytes": 1540752
+    },
+    {
+      "level": 13,
+      "file": "assets/buildings/levels/fort/13.glb",
+      "preview": "assets/buildings/levels/fort/13.png",
+      "sha256": "878dcd6a167432f46c9ff3d1e162678532e097f828b71e76fcfaacecbacdd088",
+      "geometryHash": "448525a1ad5eba2db29f720bb916a5262bb64cea128aa10c620bd3c8e95b0776",
+      "bytes": 1567200
+    },
+    {
+      "level": 14,
+      "file": "assets/buildings/levels/fort/14.glb",
+      "preview": "assets/buildings/levels/fort/14.png",
+      "sha256": "00339468273a20fd8fb1e8de07ea30ec79ddbabcc1d2d4785736a8355c4932e5",
+      "geometryHash": "d5f1b07854549a059181c27fb848816f42ace92084e100a4cfde0268b0b4b2ba",
+      "bytes": 1608096
+    },
+    {
+      "level": 15,
+      "file": "assets/buildings/levels/fort/15.glb",
+      "preview": "assets/buildings/levels/fort/15.png",
+      "sha256": "e0769eafa50d51a43e8cec5726247f7387786b35b08ff9e811ef7a9877df6d98",
+      "geometryHash": "0d74833bda137ba6d82ced5e552197e4019b3536dc0a951e6607aa230659527f",
+      "bytes": 1634376
+    }
+  ]
+}

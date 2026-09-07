@@ -1,0 +1,1625 @@
+{
+  "coordinates": "meters; +Y up; centeredXZ; groundY=0",
+  "source": "assets/blender/levels-civic.blend",
+  "families": [
+    "stepwell",
+    "camp",
+    "cannon",
+    "laboratory",
+    "hero_hall"
+  ],
+  "levels": [
+    {
+      "family": "stepwell",
+      "level": 1,
+      "file": "assets/buildings/stepwell.glb",
+      "preview": "assets/buildings/stepwell.png",
+      "triangles": 9780,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "structuralChange": "Stepped bathing court",
+      "existingBase": true
+    },
+    {
+      "family": "stepwell",
+      "level": 2,
+      "file": "assets/buildings/levels/stepwell/2.glb",
+      "preview": "assets/buildings/levels/stepwell/2.png",
+      "triangles": 10416,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        2.9277,
+        5.6
+      ],
+      "structuralChange": "Front colonnade",
+      "geometryHash": "f176df14f9f0c92d89840a071a27ed5cb42220b78c93efd451c1ee66da846a58",
+      "sourceCollection": "stepwell__level_02",
+      "sourceParts": 7,
+      "bytes": 571548
+    },
+    {
+      "family": "stepwell",
+      "level": 3,
+      "file": "assets/buildings/levels/stepwell/3.glb",
+      "preview": "assets/buildings/levels/stepwell/3.png",
+      "triangles": 11052,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        2.9277,
+        5.6
+      ],
+      "structuralChange": "Rear colonnade",
+      "geometryHash": "433c0ec24fe11177d95a98a6f5800fdbd464c818365ca949cf0beaf18f4d28cc",
+      "sourceCollection": "stepwell__level_03",
+      "sourceParts": 8,
+      "bytes": 599556
+    },
+    {
+      "family": "stepwell",
+      "level": 4,
+      "file": "assets/buildings/levels/stepwell/4.glb",
+      "preview": "assets/buildings/levels/stepwell/4.png",
+      "triangles": 11688,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        2.9277,
+        5.6
+      ],
+      "structuralChange": "West arcade",
+      "geometryHash": "856e4f5534e4fdb97006a1bd3746757a35438d6be5713ae63f84af4303548bfd",
+      "sourceCollection": "stepwell__level_04",
+      "sourceParts": 9,
+      "bytes": 627564
+    },
+    {
+      "family": "stepwell",
+      "level": 5,
+      "file": "assets/buildings/levels/stepwell/5.glb",
+      "preview": "assets/buildings/levels/stepwell/5.png",
+      "triangles": 12324,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        2.9277,
+        5.6
+      ],
+      "structuralChange": "East arcade",
+      "geometryHash": "d6c195a753b2cde4e819588dea9303dd25152efc53d2d3ab982d6ba11179829f",
+      "sourceCollection": "stepwell__level_05",
+      "sourceParts": 10,
+      "bytes": 655572
+    },
+    {
+      "family": "stepwell",
+      "level": 6,
+      "file": "assets/buildings/levels/stepwell/6.glb",
+      "preview": "assets/buildings/levels/stepwell/6.png",
+      "triangles": 12420,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        2.9277,
+        5.6
+      ],
+      "structuralChange": "Four axial water channels",
+      "geometryHash": "e52ad2e44849d427b5cc82460f057226fedef83aca2eccf66abf55a9ec08972f",
+      "sourceCollection": "stepwell__level_06",
+      "sourceParts": 11,
+      "bytes": 660756
+    },
+    {
+      "family": "stepwell",
+      "level": 7,
+      "file": "assets/buildings/levels/stepwell/7.glb",
+      "preview": "assets/buildings/levels/stepwell/7.png",
+      "triangles": 12656,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        2.9277,
+        5.6
+      ],
+      "structuralChange": "Octagonal lotus fountain",
+      "geometryHash": "85da041c31f267659bb4a158babde3b20fa7402553bb27d76cc7bee8da825356",
+      "sourceCollection": "stepwell__level_07",
+      "sourceParts": 12,
+      "bytes": 671388
+    },
+    {
+      "family": "stepwell",
+      "level": 8,
+      "file": "assets/buildings/levels/stepwell/8.glb",
+      "preview": "assets/buildings/levels/stepwell/8.png",
+      "triangles": 13128,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        4.2605,
+        5.6784
+      ],
+      "structuralChange": "Gatekeeper pavilion",
+      "geometryHash": "e0d5c3eb21bc453d026ca56499acc1bea7ca444f077c7ef39c344ed719c36d4a",
+      "sourceCollection": "stepwell__level_08",
+      "sourceParts": 14,
+      "bytes": 695820
+    },
+    {
+      "family": "stepwell",
+      "level": 9,
+      "file": "assets/buildings/levels/stepwell/9.glb",
+      "preview": "assets/buildings/levels/stepwell/9.png",
+      "triangles": 14128,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        4.2605,
+        5.6784
+      ],
+      "structuralChange": "Twin front gallery kiosks",
+      "geometryHash": "dbb74b342baf3436630cc3fcaa109eafd42529c957bd95848ca7af0b15505665",
+      "sourceCollection": "stepwell__level_09",
+      "sourceParts": 16,
+      "bytes": 747324
+    },
+    {
+      "family": "stepwell",
+      "level": 10,
+      "file": "assets/buildings/levels/stepwell/10.glb",
+      "preview": "assets/buildings/levels/stepwell/10.png",
+      "triangles": 15128,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        4.2605,
+        5.6784
+      ],
+      "structuralChange": "Twin rear gallery kiosks",
+      "geometryHash": "2252d16739bda99fafde6fafa5fd886cfdfc561a2135af2eb6bd0db275f19614",
+      "sourceCollection": "stepwell__level_10",
+      "sourceParts": 18,
+      "bytes": 798828
+    },
+    {
+      "family": "stepwell",
+      "level": 11,
+      "file": "assets/buildings/levels/stepwell/11.glb",
+      "preview": "assets/buildings/levels/stepwell/11.png",
+      "triangles": 15772,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        4.2605,
+        5.6784
+      ],
+      "structuralChange": "Canopied side walkways",
+      "geometryHash": "2db91cae3f82f7b909dd3881e60a37a3ee66b1e1d5a49455c578947f56237b6b",
+      "sourceCollection": "stepwell__level_11",
+      "sourceParts": 20,
+      "bytes": 830632
+    },
+    {
+      "family": "stepwell",
+      "level": 12,
+      "file": "assets/buildings/levels/stepwell/12.glb",
+      "preview": "assets/buildings/levels/stepwell/12.png",
+      "triangles": 16604,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        4.2605,
+        5.6784
+      ],
+      "structuralChange": "Elevated rear aqueduct",
+      "geometryHash": "2c3787140d29246d4f0f9ae947b3e43ca954e738e528b827d63da4b15f7762c9",
+      "sourceCollection": "stepwell__level_12",
+      "sourceParts": 21,
+      "bytes": 867592
+    },
+    {
+      "family": "stepwell",
+      "level": 13,
+      "file": "assets/buildings/levels/stepwell/13.glb",
+      "preview": "assets/buildings/levels/stepwell/13.png",
+      "triangles": 16992,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        4.2605,
+        5.6784
+      ],
+      "structuralChange": "Crowned fountain cascade",
+      "geometryHash": "e7d37bb34bedfd3a7269c62483eee8c518c73614d35803cfd651ce96541cc32d",
+      "sourceCollection": "stepwell__level_13",
+      "sourceParts": 23,
+      "bytes": 886240
+    },
+    {
+      "family": "stepwell",
+      "level": 14,
+      "file": "assets/buildings/levels/stepwell/14.glb",
+      "preview": "assets/buildings/levels/stepwell/14.png",
+      "triangles": 17748,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        4.2605,
+        5.6784
+      ],
+      "structuralChange": "Terrace resting galleries",
+      "geometryHash": "52f6ed7ddee7b6cab9952f9afd6acfa6d8b3b81470f11236f917686a6c7514b7",
+      "sourceCollection": "stepwell__level_14",
+      "sourceParts": 26,
+      "bytes": 923320
+    },
+    {
+      "family": "stepwell",
+      "level": 15,
+      "file": "assets/buildings/levels/stepwell/15.glb",
+      "preview": "assets/buildings/levels/stepwell/15.png",
+      "triangles": 19296,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        4.2605,
+        5.6784
+      ],
+      "structuralChange": "Ceremonial arched crossing",
+      "geometryHash": "b1efed4b5e9f76b116f5550664cf371e7abd8d3d86f9d0330e75b6297b0af3a5",
+      "sourceCollection": "stepwell__level_15",
+      "sourceParts": 27,
+      "bytes": 994240
+    },
+    {
+      "family": "camp",
+      "level": 1,
+      "file": "assets/buildings/camp.glb",
+      "preview": "assets/buildings/camp.png",
+      "triangles": 2119,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "structuralChange": "Single command tent",
+      "existingBase": true
+    },
+    {
+      "family": "camp",
+      "level": 2,
+      "file": "assets/buildings/levels/camp/2.glb",
+      "preview": "assets/buildings/levels/camp/2.png",
+      "triangles": 1062,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        2.873,
+        5.6
+      ],
+      "structuralChange": "Second company tent",
+      "geometryHash": "4d632ff493c1b0a9e24b697213ea5774869b8d3bb47ec2d70bb39cb6bde10abb",
+      "sourceCollection": "camp__level_02",
+      "sourceParts": 5,
+      "bytes": 54248
+    },
+    {
+      "family": "camp",
+      "level": 3,
+      "file": "assets/buildings/levels/camp/3.glb",
+      "preview": "assets/buildings/levels/camp/3.png",
+      "triangles": 1549,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        2.873,
+        5.6
+      ],
+      "structuralChange": "Third company tent",
+      "geometryHash": "0fd47d643901351f092244597e8c2e9bf45f762e57fafbc3c86ea98a54fc2f16",
+      "sourceCollection": "camp__level_03",
+      "sourceParts": 7,
+      "bytes": 77740
+    },
+    {
+      "family": "camp",
+      "level": 4,
+      "file": "assets/buildings/levels/camp/4.glb",
+      "preview": "assets/buildings/levels/camp/4.png",
+      "triangles": 2036,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        2.873,
+        5.6
+      ],
+      "structuralChange": "Quartermaster tent",
+      "geometryHash": "65c76db7c9e366616f340c8f9fd230a2ba6ed80f7896b84f06c7abefeef4101f",
+      "sourceCollection": "camp__level_04",
+      "sourceParts": 9,
+      "bytes": 101232
+    },
+    {
+      "family": "camp",
+      "level": 5,
+      "file": "assets/buildings/levels/camp/5.glb",
+      "preview": "assets/buildings/levels/camp/5.png",
+      "triangles": 2523,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        2.873,
+        5.6
+      ],
+      "structuralChange": "Vanguard company tent",
+      "geometryHash": "0710e144b0d474bbe5770b22c2d1c8b2e955b2260de95e10f4c1a6a49e31f55a",
+      "sourceCollection": "camp__level_05",
+      "sourceParts": 11,
+      "bytes": 124724
+    },
+    {
+      "family": "camp",
+      "level": 6,
+      "file": "assets/buildings/levels/camp/6.glb",
+      "preview": "assets/buildings/levels/camp/6.png",
+      "triangles": 3363,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        2.873,
+        5.6
+      ],
+      "structuralChange": "Parade weapon stands",
+      "geometryHash": "8c3932595cfc810301aee1d88c906581bf63321d6775888956498574eb31e17a",
+      "sourceCollection": "camp__level_06",
+      "sourceParts": 12,
+      "bytes": 170660
+    },
+    {
+      "family": "camp",
+      "level": 7,
+      "file": "assets/buildings/levels/camp/7.glb",
+      "preview": "assets/buildings/levels/camp/7.png",
+      "triangles": 3918,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        4.1815,
+        5.6
+      ],
+      "structuralChange": "Permanent command pavilion",
+      "geometryHash": "894c63a0f661aeced8bba130e24ec991effab17ab873c2f7e61113e04f11bdec",
+      "sourceCollection": "camp__level_07",
+      "sourceParts": 13,
+      "bytes": 202836
+    },
+    {
+      "family": "camp",
+      "level": 8,
+      "file": "assets/buildings/levels/camp/8.glb",
+      "preview": "assets/buildings/levels/camp/8.png",
+      "triangles": 4646,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        4.1815,
+        5.6
+      ],
+      "structuralChange": "West defensive palisade",
+      "geometryHash": "1c27c9f4dbaacd4c1f8649e2a535121da4eed8ea7a0d0228c0ba8e244eecc071",
+      "sourceCollection": "camp__level_08",
+      "sourceParts": 14,
+      "bytes": 243204
+    },
+    {
+      "family": "camp",
+      "level": 9,
+      "file": "assets/buildings/levels/camp/9.glb",
+      "preview": "assets/buildings/levels/camp/9.png",
+      "triangles": 5728,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        4.3415,
+        5.6
+      ],
+      "structuralChange": "Eastern watchpost",
+      "geometryHash": "df35f035e09957ec67a0a131320f43decf6faa478eb592b772a712528204f12b",
+      "sourceCollection": "camp__level_09",
+      "sourceParts": 17,
+      "bytes": 301108
+    },
+    {
+      "family": "camp",
+      "level": 10,
+      "file": "assets/buildings/levels/camp/10.glb",
+      "preview": "assets/buildings/levels/camp/10.png",
+      "triangles": 6810,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        4.3415,
+        5.6
+      ],
+      "structuralChange": "Western watchpost",
+      "geometryHash": "7e191ad1965eb78b9dc828fb6acaeba97046dda30e465849099976926fab7cc9",
+      "sourceCollection": "camp__level_10",
+      "sourceParts": 20,
+      "bytes": 359012
+    },
+    {
+      "family": "camp",
+      "level": 11,
+      "file": "assets/buildings/levels/camp/11.glb",
+      "preview": "assets/buildings/levels/camp/11.png",
+      "triangles": 7006,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        4.3415,
+        5.6
+      ],
+      "structuralChange": "Command balcony",
+      "geometryHash": "237d143727f65cf2575d53a6b65f45dd27aa390f5270c34fa842d99aef1853ce",
+      "sourceCollection": "camp__level_11",
+      "sourceParts": 21,
+      "bytes": 368828
+    },
+    {
+      "family": "camp",
+      "level": 12,
+      "file": "assets/buildings/levels/camp/12.glb",
+      "preview": "assets/buildings/levels/camp/12.png",
+      "triangles": 8218,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        4.3415,
+        5.6
+      ],
+      "structuralChange": "Enclosed stockade",
+      "geometryHash": "db5af7dcbdd30e73d6a4a33802bfc3bf0a3c8e2d13c208a20a781e2e41b04831",
+      "sourceCollection": "camp__level_12",
+      "sourceParts": 22,
+      "bytes": 437444
+    },
+    {
+      "family": "camp",
+      "level": 13,
+      "file": "assets/buildings/levels/camp/13.glb",
+      "preview": "assets/buildings/levels/camp/13.png",
+      "triangles": 8804,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        4.3415,
+        5.6
+      ],
+      "structuralChange": "Covered parade canopy",
+      "geometryHash": "d5fa705bf5a906217992f224370e0b2634d66f927c2dd773b1282752ba65d235",
+      "sourceCollection": "camp__level_13",
+      "sourceParts": 25,
+      "bytes": 468752
+    },
+    {
+      "family": "camp",
+      "level": 14,
+      "file": "assets/buildings/levels/camp/14.glb",
+      "preview": "assets/buildings/levels/camp/14.png",
+      "triangles": 9138,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        4.8015,
+        5.6
+      ],
+      "structuralChange": "Raised rear command gallery",
+      "geometryHash": "d0863162515420bf43346b853e6b13251cabadde4abf596de7bcdeb57348a8e5",
+      "sourceCollection": "camp__level_14",
+      "sourceParts": 28,
+      "bytes": 485300
+    },
+    {
+      "family": "camp",
+      "level": 15,
+      "file": "assets/buildings/levels/camp/15.glb",
+      "preview": "assets/buildings/levels/camp/15.png",
+      "triangles": 9710,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        5.8105,
+        5.6
+      ],
+      "structuralChange": "War council tower",
+      "geometryHash": "80ebae25d81c536ce09e9118610307685535b6e1a2514164bf137a77211c0ee5",
+      "sourceCollection": "camp__level_15",
+      "sourceParts": 30,
+      "bytes": 514364
+    },
+    {
+      "family": "cannon",
+      "level": 1,
+      "file": "assets/buildings/cannon.glb",
+      "preview": "assets/buildings/cannon.png",
+      "triangles": 1916,
+      "meshes": 2,
+      "footprint": [
+        2,
+        2
+      ],
+      "structuralChange": "Single gun carriage",
+      "existingBase": true
+    },
+    {
+      "family": "cannon",
+      "level": 2,
+      "file": "assets/buildings/levels/cannon/2.glb",
+      "preview": "assets/buildings/levels/cannon/2.png",
+      "triangles": 2196,
+      "meshes": 2,
+      "footprint": [
+        2,
+        2
+      ],
+      "size": [
+        3.6,
+        1.9571,
+        3.6
+      ],
+      "structuralChange": "Rear recoil axle",
+      "geometryHash": "76789139e85a22d705de335bcf637f5bee7b50fa295c954efaa4441cf090e0e2",
+      "sourceCollection": "cannon__level_02",
+      "sourceParts": 7,
+      "bytes": 102864
+    },
+    {
+      "family": "cannon",
+      "level": 3,
+      "file": "assets/buildings/levels/cannon/3.glb",
+      "preview": "assets/buildings/levels/cannon/3.png",
+      "triangles": 2372,
+      "meshes": 2,
+      "footprint": [
+        2,
+        2
+      ],
+      "size": [
+        3.6,
+        1.9571,
+        3.6
+      ],
+      "structuralChange": "Carriage cheek armor",
+      "geometryHash": "6d0d53e59b60e4a86cc69a92dff65caab521bda62ace0fb1161a40dc4c8b012b",
+      "sourceCollection": "cannon__level_03",
+      "sourceParts": 9,
+      "bytes": 113136
+    },
+    {
+      "family": "cannon",
+      "level": 4,
+      "file": "assets/buildings/levels/cannon/4.glb",
+      "preview": "assets/buildings/levels/cannon/4.png",
+      "triangles": 2660,
+      "meshes": 2,
+      "footprint": [
+        2,
+        2
+      ],
+      "size": [
+        3.6,
+        1.9571,
+        3.6
+      ],
+      "structuralChange": "Four siege outriggers",
+      "geometryHash": "1460c91a2365ffe3accabd009e475c2261d3f91af6c2de1b8c5e5b82eadc2fbc",
+      "sourceCollection": "cannon__level_04",
+      "sourceParts": 11,
+      "bytes": 128708
+    },
+    {
+      "family": "cannon",
+      "level": 5,
+      "file": "assets/buildings/levels/cannon/5.glb",
+      "preview": "assets/buildings/levels/cannon/5.png",
+      "triangles": 3020,
+      "meshes": 2,
+      "footprint": [
+        2,
+        2
+      ],
+      "size": [
+        3.6,
+        1.9047,
+        3.6
+      ],
+      "structuralChange": "Twin barrel battery",
+      "geometryHash": "e5ecd5b00c93f7767783d78e5f1999fc4211aa47a18d716185b3cdbf0cbcf023",
+      "sourceCollection": "cannon__level_05",
+      "sourceParts": 11,
+      "bytes": 144692
+    },
+    {
+      "family": "cannon",
+      "level": 6,
+      "file": "assets/buildings/levels/cannon/6.glb",
+      "preview": "assets/buildings/levels/cannon/6.png",
+      "triangles": 3864,
+      "meshes": 2,
+      "footprint": [
+        2,
+        2
+      ],
+      "size": [
+        3.6,
+        2.215,
+        3.6
+      ],
+      "structuralChange": "Elevating gun frame",
+      "geometryHash": "902ff0adcd382434ad2bd4012221c3f1cb8a6808dbb2f591b1daf2bd37590288",
+      "sourceCollection": "cannon__level_06",
+      "sourceParts": 13,
+      "bytes": 189120
+    },
+    {
+      "family": "cannon",
+      "level": 7,
+      "file": "assets/buildings/levels/cannon/7.glb",
+      "preview": "assets/buildings/levels/cannon/7.png",
+      "triangles": 4680,
+      "meshes": 2,
+      "footprint": [
+        2,
+        2
+      ],
+      "size": [
+        3.6,
+        2.215,
+        3.6
+      ],
+      "structuralChange": "Geared traverse mechanism",
+      "geometryHash": "c573995140af11a1f6a147dbc25027d84820744f65381f837912fa155419b070",
+      "sourceCollection": "cannon__level_07",
+      "sourceParts": 14,
+      "bytes": 232224
+    },
+    {
+      "family": "cannon",
+      "level": 8,
+      "file": "assets/buildings/levels/cannon/8.glb",
+      "preview": "assets/buildings/levels/cannon/8.png",
+      "triangles": 5084,
+      "meshes": 2,
+      "footprint": [
+        2,
+        2
+      ],
+      "size": [
+        3.6,
+        2.215,
+        3.6
+      ],
+      "structuralChange": "Rear loading conveyor",
+      "geometryHash": "0ac946807e06d6037e1d4111e93f91a605d86376205463e0e5b4e29d9bd6c245",
+      "sourceCollection": "cannon__level_08",
+      "sourceParts": 15,
+      "bytes": 253084
+    },
+    {
+      "family": "cannon",
+      "level": 9,
+      "file": "assets/buildings/levels/cannon/9.glb",
+      "preview": "assets/buildings/levels/cannon/9.png",
+      "triangles": 5444,
+      "meshes": 2,
+      "footprint": [
+        2,
+        2
+      ],
+      "size": [
+        3.6,
+        2.215,
+        3.6
+      ],
+      "structuralChange": "Triple barrel battery",
+      "geometryHash": "49f47365ffc0b6bd3ef5ea6457d47ae2e2260dfd7ee17a41ab4ff7bdf4dc1687",
+      "sourceCollection": "cannon__level_09",
+      "sourceParts": 15,
+      "bytes": 269068
+    },
+    {
+      "family": "cannon",
+      "level": 10,
+      "file": "assets/buildings/levels/cannon/10.glb",
+      "preview": "assets/buildings/levels/cannon/10.png",
+      "triangles": 5796,
+      "meshes": 2,
+      "footprint": [
+        2,
+        2
+      ],
+      "size": [
+        3.6,
+        2.215,
+        3.6
+      ],
+      "structuralChange": "Segmented rotating mantlet",
+      "geometryHash": "9c82d59e856f02cf0d01abc2cd8ea0f62ed3a9424f677331bfd456a323f8ef7f",
+      "sourceCollection": "cannon__level_10",
+      "sourceParts": 16,
+      "bytes": 289612
+    },
+    {
+      "family": "cannon",
+      "level": 11,
+      "file": "assets/buildings/levels/cannon/11.glb",
+      "preview": "assets/buildings/levels/cannon/11.png",
+      "triangles": 5956,
+      "meshes": 2,
+      "footprint": [
+        2,
+        2
+      ],
+      "size": [
+        3.6,
+        2.215,
+        3.6
+      ],
+      "structuralChange": "Twin recoil actuators",
+      "geometryHash": "a678fc63b2ea14700b4716594e6d9e4006a7573b1509cb218b7d399063c68010",
+      "sourceCollection": "cannon__level_11",
+      "sourceParts": 18,
+      "bytes": 296908
+    },
+    {
+      "family": "cannon",
+      "level": 12,
+      "file": "assets/buildings/levels/cannon/12.glb",
+      "preview": "assets/buildings/levels/cannon/12.png",
+      "triangles": 6264,
+      "meshes": 2,
+      "footprint": [
+        2,
+        2
+      ],
+      "size": [
+        3.6,
+        2.215,
+        3.6
+      ],
+      "structuralChange": "Armored breech housing",
+      "geometryHash": "b5568a036fc5db86cc50de21c19b7dd1ce6a46f5bfd78371a3f7f7c66edee7cd",
+      "sourceCollection": "cannon__level_12",
+      "sourceParts": 20,
+      "bytes": 314884
+    },
+    {
+      "family": "cannon",
+      "level": 13,
+      "file": "assets/buildings/levels/cannon/13.glb",
+      "preview": "assets/buildings/levels/cannon/13.png",
+      "triangles": 6984,
+      "meshes": 2,
+      "footprint": [
+        2,
+        2
+      ],
+      "size": [
+        3.6,
+        2.215,
+        3.6
+      ],
+      "structuralChange": "Five barrel battery",
+      "geometryHash": "bbe2851b6544d4af9d0d2f0fabcbdb7f587c2c78e32e554a7e94b0c1b78d9f5b",
+      "sourceCollection": "cannon__level_13",
+      "sourceParts": 20,
+      "bytes": 346856
+    },
+    {
+      "family": "cannon",
+      "level": 14,
+      "file": "assets/buildings/levels/cannon/14.glb",
+      "preview": "assets/buildings/levels/cannon/14.png",
+      "triangles": 7330,
+      "meshes": 2,
+      "footprint": [
+        2,
+        2
+      ],
+      "size": [
+        3.6,
+        3.1215,
+        3.6
+      ],
+      "structuralChange": "Overhead siege canopy",
+      "geometryHash": "5c2b98dbe551e7a3bb4c35c7df8227ee7b7d84ef4bdafec1cc1f866bda479882",
+      "sourceCollection": "cannon__level_14",
+      "sourceParts": 23,
+      "bytes": 364048
+    },
+    {
+      "family": "cannon",
+      "level": 15,
+      "file": "assets/buildings/levels/cannon/15.glb",
+      "preview": "assets/buildings/levels/cannon/15.png",
+      "triangles": 7602,
+      "meshes": 2,
+      "footprint": [
+        2,
+        2
+      ],
+      "size": [
+        3.6,
+        3.1215,
+        3.6
+      ],
+      "structuralChange": "Ranging optic and port armor",
+      "geometryHash": "26438991931a8671ad836f4c5843c5812f7ef51dcf4a48b8ff98860ad60eeb7f",
+      "sourceCollection": "cannon__level_15",
+      "sourceParts": 25,
+      "bytes": 378352
+    },
+    {
+      "family": "laboratory",
+      "level": 1,
+      "file": "assets/buildings/laboratory.glb",
+      "preview": "assets/buildings/laboratory.png",
+      "triangles": 5332,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "structuralChange": "Astronomical pavilion",
+      "existingBase": true
+    },
+    {
+      "family": "laboratory",
+      "level": 2,
+      "file": "assets/buildings/levels/laboratory/2.glb",
+      "preview": "assets/buildings/levels/laboratory/2.png",
+      "triangles": 5696,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        5.606,
+        5.6
+      ],
+      "structuralChange": "Survey telescope",
+      "geometryHash": "c6f1dae1dd8c3d39c4611acaea1400b95ce8803e7d24b036ed022d95a7bbaed4",
+      "sourceCollection": "laboratory__level_02",
+      "sourceParts": 11,
+      "bytes": 290276
+    },
+    {
+      "family": "laboratory",
+      "level": 3,
+      "file": "assets/buildings/levels/laboratory/3.glb",
+      "preview": "assets/buildings/levels/laboratory/3.png",
+      "triangles": 6104,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        5.606,
+        5.6
+      ],
+      "structuralChange": "Alchemy distillation bench",
+      "geometryHash": "c2bc9ed5276b4adfddacecd84d51f1a3f9cbeded993f3b4aa90ca9e58e43b886",
+      "sourceCollection": "laboratory__level_03",
+      "sourceParts": 13,
+      "bytes": 310580
+    },
+    {
+      "family": "laboratory",
+      "level": 4,
+      "file": "assets/buildings/levels/laboratory/4.glb",
+      "preview": "assets/buildings/levels/laboratory/4.png",
+      "triangles": 6656,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        5.606,
+        5.6
+      ],
+      "structuralChange": "Paired declination lenses",
+      "geometryHash": "30f634f867da3602756abb4f21da0da4347d0e0dbb7c09199613ce46c5380a11",
+      "sourceCollection": "laboratory__level_04",
+      "sourceParts": 14,
+      "bytes": 339812
+    },
+    {
+      "family": "laboratory",
+      "level": 5,
+      "file": "assets/buildings/levels/laboratory/5.glb",
+      "preview": "assets/buildings/levels/laboratory/5.png",
+      "triangles": 7060,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        5.606,
+        5.6
+      ],
+      "structuralChange": "Rear observing dome",
+      "geometryHash": "ef8ba4abb242ff1231cb767e6c637528a8a4d025d930df44fcf92e26474946f1",
+      "sourceCollection": "laboratory__level_05",
+      "sourceParts": 16,
+      "bytes": 360380
+    },
+    {
+      "family": "laboratory",
+      "level": 6,
+      "file": "assets/buildings/levels/laboratory/6.glb",
+      "preview": "assets/buildings/levels/laboratory/6.png",
+      "triangles": 7464,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        5.606,
+        5.6
+      ],
+      "structuralChange": "Manuscript observatory",
+      "geometryHash": "58979a4aabeb30bce95b0fed8e85994123fbd458bd30eb4b82bc8eca881b81ec",
+      "sourceCollection": "laboratory__level_06",
+      "sourceParts": 18,
+      "bytes": 380948
+    },
+    {
+      "family": "laboratory",
+      "level": 7,
+      "file": "assets/buildings/levels/laboratory/7.glb",
+      "preview": "assets/buildings/levels/laboratory/7.png",
+      "triangles": 7656,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        5.606,
+        5.6
+      ],
+      "structuralChange": "Instrument bridge",
+      "geometryHash": "cb0e57f962be7c5cef6114bcbe5a980acaeef32432e799fde9b15f780ad048ab",
+      "sourceCollection": "laboratory__level_07",
+      "sourceParts": 19,
+      "bytes": 389876
+    },
+    {
+      "family": "laboratory",
+      "level": 8,
+      "file": "assets/buildings/levels/laboratory/8.glb",
+      "preview": "assets/buildings/levels/laboratory/8.png",
+      "triangles": 8280,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        5.606,
+        5.6
+      ],
+      "structuralChange": "Six-planet lower orbit",
+      "geometryHash": "4a883eb1f6dbdd08b987e4ba6ac3115a7925404e1f42e3a9bdc7f107a606fc95",
+      "sourceCollection": "laboratory__level_08",
+      "sourceParts": 21,
+      "bytes": 423572
+    },
+    {
+      "family": "laboratory",
+      "level": 9,
+      "file": "assets/buildings/levels/laboratory/9.glb",
+      "preview": "assets/buildings/levels/laboratory/9.png",
+      "triangles": 8612,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        5.606,
+        5.6
+      ],
+      "structuralChange": "Great azimuth lens",
+      "geometryHash": "d55e2e82ce8a2d03e82b171ea615926857e5e85e81a11586af4f75e2f42400ed",
+      "sourceCollection": "laboratory__level_09",
+      "sourceParts": 23,
+      "bytes": 440540
+    },
+    {
+      "family": "laboratory",
+      "level": 10,
+      "file": "assets/buildings/levels/laboratory/10.glb",
+      "preview": "assets/buildings/levels/laboratory/10.png",
+      "triangles": 9328,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        5.606,
+        5.6
+      ],
+      "structuralChange": "Twin celestial collectors",
+      "geometryHash": "be7887d121153836bf5b7c106842f4dff4a97197a74ec99aba900b478641936a",
+      "sourceCollection": "laboratory__level_10",
+      "sourceParts": 25,
+      "bytes": 478344
+    },
+    {
+      "family": "laboratory",
+      "level": 11,
+      "file": "assets/buildings/levels/laboratory/11.glb",
+      "preview": "assets/buildings/levels/laboratory/11.png",
+      "triangles": 9768,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        5.606,
+        5.6
+      ],
+      "structuralChange": "Clockwork teaching facade",
+      "geometryHash": "126e7a83e1227bf44f5c45cedfa49d7abca365b3531c3d3439a3e198ffb23cee",
+      "sourceCollection": "laboratory__level_11",
+      "sourceParts": 27,
+      "bytes": 501720
+    },
+    {
+      "family": "laboratory",
+      "level": 12,
+      "file": "assets/buildings/levels/laboratory/12.glb",
+      "preview": "assets/buildings/levels/laboratory/12.png",
+      "triangles": 10360,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        6.46,
+        5.6
+      ],
+      "structuralChange": "High observatory canopy",
+      "geometryHash": "13aa3bc9d85b07203683214782ea43b212a102fde141d7242e455ce3290e2fce",
+      "sourceCollection": "laboratory__level_12",
+      "sourceParts": 29,
+      "bytes": 532924
+    },
+    {
+      "family": "laboratory",
+      "level": 13,
+      "file": "assets/buildings/levels/laboratory/13.glb",
+      "preview": "assets/buildings/levels/laboratory/13.png",
+      "triangles": 11336,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        6.46,
+        5.6
+      ],
+      "structuralChange": "Secondary planetary apparatus",
+      "geometryHash": "dd19c339a216f741964aa1c11d5561190eb35a3e9fc82681aebd2efdf495a894",
+      "sourceCollection": "laboratory__level_13",
+      "sourceParts": 31,
+      "bytes": 584764
+    },
+    {
+      "family": "laboratory",
+      "level": 14,
+      "file": "assets/buildings/levels/laboratory/14.glb",
+      "preview": "assets/buildings/levels/laboratory/14.png",
+      "triangles": 13236,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        6.46,
+        5.6
+      ],
+      "structuralChange": "Projection gallery",
+      "geometryHash": "50f2de5db4486b277c8faad380c459b3cf4f4914c10d7d9627b52e42c90107b3",
+      "sourceCollection": "laboratory__level_14",
+      "sourceParts": 33,
+      "bytes": 677672
+    },
+    {
+      "family": "laboratory",
+      "level": 15,
+      "file": "assets/buildings/levels/laboratory/15.glb",
+      "preview": "assets/buildings/levels/laboratory/15.png",
+      "triangles": 14508,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        8.3945,
+        5.6
+      ],
+      "structuralChange": "Royal celestial crown",
+      "geometryHash": "e9520d73fa8e1d6e16d12d9ef8e6fdba105b786d091b5572e8ea6c90c0670e03",
+      "sourceCollection": "laboratory__level_15",
+      "sourceParts": 35,
+      "bytes": 742616
+    },
+    {
+      "family": "hero_hall",
+      "level": 1,
+      "file": "assets/buildings/hero_hall.glb",
+      "preview": "assets/buildings/hero_hall.png",
+      "triangles": 9868,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "structuralChange": "Hero pavilion",
+      "existingBase": true
+    },
+    {
+      "family": "hero_hall",
+      "level": 2,
+      "file": "assets/buildings/levels/hero_hall/2.glb",
+      "preview": "assets/buildings/levels/hero_hall/2.png",
+      "triangles": 10900,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        5.7765,
+        5.6
+      ],
+      "structuralChange": "Twin victory trophies",
+      "geometryHash": "58eaffff7a979507bb8c48366b56d2e919396c8e32a938a1482d0302bc88cc3d",
+      "sourceCollection": "hero_hall__level_02",
+      "sourceParts": 14,
+      "bytes": 578280
+    },
+    {
+      "family": "hero_hall",
+      "level": 3,
+      "file": "assets/buildings/levels/hero_hall/3.glb",
+      "preview": "assets/buildings/levels/hero_hall/3.png",
+      "triangles": 11432,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        5.7765,
+        5.6
+      ],
+      "structuralChange": "Ceremonial front portico",
+      "geometryHash": "d5365107379b2df8aa123b8c5712386a8f56cd2485dbe8bbf1caeb2165a1d371",
+      "sourceCollection": "hero_hall__level_03",
+      "sourceParts": 15,
+      "bytes": 602496
+    },
+    {
+      "family": "hero_hall",
+      "level": 4,
+      "file": "assets/buildings/levels/hero_hall/4.glb",
+      "preview": "assets/buildings/levels/hero_hall/4.png",
+      "triangles": 11862,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        5.7765,
+        5.6
+      ],
+      "structuralChange": "West covered gallery",
+      "geometryHash": "0b5ded72cce01accffb461bf7a4726feed1df102ea4807248e4da611aa5eeee4",
+      "sourceCollection": "hero_hall__level_04",
+      "sourceParts": 18,
+      "bytes": 623364
+    },
+    {
+      "family": "hero_hall",
+      "level": 5,
+      "file": "assets/buildings/levels/hero_hall/5.glb",
+      "preview": "assets/buildings/levels/hero_hall/5.png",
+      "triangles": 12292,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        5.7765,
+        5.6
+      ],
+      "structuralChange": "East covered gallery",
+      "geometryHash": "678eca9a7078146921065d99eb1c896e7da2e8f22dcbd05f0ab3eb2528e3da0e",
+      "sourceCollection": "hero_hall__level_05",
+      "sourceParts": 21,
+      "bytes": 644232
+    },
+    {
+      "family": "hero_hall",
+      "level": 6,
+      "file": "assets/buildings/levels/hero_hall/6.glb",
+      "preview": "assets/buildings/levels/hero_hall/6.png",
+      "triangles": 13236,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        5.7765,
+        5.6
+      ],
+      "structuralChange": "Paired domed galleries",
+      "geometryHash": "381ceaa9f1aff6e70d8f13c100d9b5d3c8010c7791e33948cba9978e125208bb",
+      "sourceCollection": "hero_hall__level_06",
+      "sourceParts": 23,
+      "bytes": 693096
+    },
+    {
+      "family": "hero_hall",
+      "level": 7,
+      "file": "assets/buildings/levels/hero_hall/7.glb",
+      "preview": "assets/buildings/levels/hero_hall/7.png",
+      "triangles": 13746,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        6.9715,
+        5.6
+      ],
+      "structuralChange": "Second royal roof tier",
+      "geometryHash": "7466c35babf726472a4883790dba244da601b52dc3c4f391a2e60521c39de1f8",
+      "sourceCollection": "hero_hall__level_07",
+      "sourceParts": 26,
+      "bytes": 718192
+    },
+    {
+      "family": "hero_hall",
+      "level": 8,
+      "file": "assets/buildings/levels/hero_hall/8.glb",
+      "preview": "assets/buildings/levels/hero_hall/8.png",
+      "triangles": 14010,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        6.9715,
+        5.6
+      ],
+      "structuralChange": "Forecourt relic displays",
+      "geometryHash": "cb0a3146474db6e6147e739cb72c9c3b2629f82590e10ae14a2ac936e66b728c",
+      "sourceCollection": "hero_hall__level_08",
+      "sourceParts": 27,
+      "bytes": 730144
+    },
+    {
+      "family": "hero_hall",
+      "level": 9,
+      "file": "assets/buildings/levels/hero_hall/9.glb",
+      "preview": "assets/buildings/levels/hero_hall/9.png",
+      "triangles": 14512,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        6.9715,
+        5.6
+      ],
+      "structuralChange": "Rear honor gallery",
+      "geometryHash": "26c0d702b87e49d3e92b584d0e8d40d5028536077f84f8e2c70898420050452f",
+      "sourceCollection": "hero_hall__level_09",
+      "sourceParts": 30,
+      "bytes": 754324
+    },
+    {
+      "family": "hero_hall",
+      "level": 10,
+      "file": "assets/buildings/levels/hero_hall/10.glb",
+      "preview": "assets/buildings/levels/hero_hall/10.png",
+      "triangles": 15672,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        6.9715,
+        5.6
+      ],
+      "structuralChange": "Elephant gate guardians",
+      "geometryHash": "33a20d1dbcf0fbc84ec8e8d8c9ebdb37c8efb610b3ea5d5985aa8a0bceb4761f",
+      "sourceCollection": "hero_hall__level_10",
+      "sourceParts": 31,
+      "bytes": 815044
+    },
+    {
+      "family": "hero_hall",
+      "level": 11,
+      "file": "assets/buildings/levels/hero_hall/11.glb",
+      "preview": "assets/buildings/levels/hero_hall/11.png",
+      "triangles": 16704,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        7.8985,
+        5.6
+      ],
+      "structuralChange": "Upper champion pavilions",
+      "geometryHash": "24d72441923c1c6c637d866ae8645934add358443c72768faf79ccf1f3ef4615",
+      "sourceCollection": "hero_hall__level_11",
+      "sourceParts": 33,
+      "bytes": 869048
+    },
+    {
+      "family": "hero_hall",
+      "level": 12,
+      "file": "assets/buildings/levels/hero_hall/12.glb",
+      "preview": "assets/buildings/levels/hero_hall/12.png",
+      "triangles": 17236,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        7.8985,
+        5.6
+      ],
+      "structuralChange": "Upper ceremonial balcony",
+      "geometryHash": "c4bc09488bc068a0d90b57fe9e8076f797d7cfb744bba9e3238f8df1694f6bbd",
+      "sourceCollection": "hero_hall__level_12",
+      "sourceParts": 34,
+      "bytes": 893264
+    },
+    {
+      "family": "hero_hall",
+      "level": 13,
+      "file": "assets/buildings/levels/hero_hall/13.glb",
+      "preview": "assets/buildings/levels/hero_hall/13.png",
+      "triangles": 17838,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        8.2015,
+        5.6
+      ],
+      "structuralChange": "Grand upper pediment",
+      "geometryHash": "c3aad03ec37bb81d363ea7993004f7240a0d285fbc3d3b3722c193ccf65f2ab7",
+      "sourceCollection": "hero_hall__level_13",
+      "sourceParts": 37,
+      "bytes": 923228
+    },
+    {
+      "family": "hero_hall",
+      "level": 14,
+      "file": "assets/buildings/levels/hero_hall/14.glb",
+      "preview": "assets/buildings/levels/hero_hall/14.png",
+      "triangles": 18190,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        8.2015,
+        5.6
+      ],
+      "structuralChange": "Four monumental buttresses",
+      "geometryHash": "9d915069bbf36f49fa8be2f67381a4373ed13bd1aa0e957aeaaed67d7d7c8169",
+      "sourceCollection": "hero_hall__level_14",
+      "sourceParts": 38,
+      "bytes": 943772
+    },
+    {
+      "family": "hero_hall",
+      "level": 15,
+      "file": "assets/buildings/levels/hero_hall/15.glb",
+      "preview": "assets/buildings/levels/hero_hall/15.png",
+      "triangles": 19082,
+      "meshes": 2,
+      "footprint": [
+        3,
+        3
+      ],
+      "size": [
+        5.6,
+        9.51,
+        5.6
+      ],
+      "structuralChange": "Imperial lotus crown",
+      "geometryHash": "2fe781877b8509998dbf4e7328437ceb18b5759d91a5324f3043f3073abd26f2",
+      "sourceCollection": "hero_hall__level_15",
+      "sourceParts": 40,
+      "bytes": 986752
+    }
+  ],
+  "elapsedSeconds": 32.989,
+  "optimization": "glTF Transform4.5.0; NORMAL and COLOR attributes quantized; exact float32 positions retained; no external decoder"
+}

@@ -1,0 +1,119 @@
+{
+  "type": "archer_tower",
+  "status": "FINAL",
+  "nativeVerified": true,
+  "assets": [
+    {
+      "level": 2,
+      "file": "assets/buildings/levels/archer_tower/2.glb",
+      "preview": "assets/buildings/levels/archer_tower/2.png",
+      "sha256": "bdc5fd9c1493b25498038d486b044058c3d48b3f359009311701315f3a6c9130",
+      "geometryHash": "b88155fdfd5bd4d38828dada171feddeb82dd8ff421960289b38585bc9643284",
+      "bytes": 874376
+    },
+    {
+      "level": 3,
+      "file": "assets/buildings/levels/archer_tower/3.glb",
+      "preview": "assets/buildings/levels/archer_tower/3.png",
+      "sha256": "0f552d580fa1c9a7ba1e61af6d606f7c496c5c38fe951d34e022451c40ee5512",
+      "geometryHash": "634c87b859b81a8ee3311d85a247bd257d0a1c7a5fb18c4c755541ea99287751",
+      "bytes": 883448
+    },
+    {
+      "level": 4,
+      "file": "assets/buildings/levels/archer_tower/4.glb",
+      "preview": "assets/buildings/levels/archer_tower/4.png",
+      "sha256": "254aa4808f79a9de2b6fbdb7d199ab46c0fa194543f7ee6e64a123497730bdd3",
+      "geometryHash": "65148030d39ff9aeb1182dca5328be2c2c6ed6d417cf91ebde24ecda413805e2",
+      "bytes": 895688
+    },
+    {
+      "level": 5,
+      "file": "assets/buildings/levels/archer_tower/5.glb",
+      "preview": "assets/buildings/levels/archer_tower/5.png",
+      "sha256": "69f8921209b71751f785905e2ebdc25e1e2864c430e5547b719c33651978c612",
+      "geometryHash": "4acfc894c9aaf5c0e80ce1ae40be2d9a2cbe37b49e0634a0489dfa7d91c6c834",
+      "bytes": 955232
+    },
+    {
+      "level": 6,
+      "file": "assets/buildings/levels/archer_tower/6.glb",
+      "preview": "assets/buildings/levels/archer_tower/6.png",
+      "sha256": "c907381152947c960b234c7c1574d5a9bbd2e0ba096aa775d790ff95e4df52fd",
+      "geometryHash": "7be892fceb1c8f18d43481ff0d2d31812581a53629af1991588bb90dbe901077",
+      "bytes": 1023600
+    },
+    {
+      "level": 7,
+      "file": "assets/buildings/levels/archer_tower/7.glb",
+      "preview": "assets/buildings/levels/archer_tower/7.png",
+      "sha256": "060b83ca7a05cb8a0159082798a5e3f3a1bce49c730e9887b92709d8c71bd781",
+      "geometryHash": "1e9d6a78c081e226c46af00876fae8addbb12961791229851860dfec0b756912",
+      "bytes": 1039440
+    },
+    {
+      "level": 8,
+      "file": "assets/buildings/levels/archer_tower/8.glb",
+      "preview": "assets/buildings/levels/archer_tower/8.png",
+      "sha256": "9bf396862226020092303199aeab477470a07e1a3da76c072e696e4b21ad0e8d",
+      "geometryHash": "cf78c30b4b5a6e2c1264e288fb07333c7317d1d8cbc8e6a93136fe4479287377",
+      "bytes": 1098984
+    },
+    {
+      "level": 9,
+      "file": "assets/buildings/levels/archer_tower/9.glb",
+      "preview": "assets/buildings/levels/archer_tower/9.png",
+      "sha256": "d23081e566fd4b42a45e73eddc426a0e970f42f64de8bc8aa9c2971c05debdaa",
+      "geometryHash": "81bbef76db694fc602736da1b5e994fe89498b53f4d739d9494accadefffbbc9",
+      "bytes": 1107408
+    },
+    {
+      "level": 10,
+      "file": "assets/buildings/levels/archer_tower/10.glb",
+      "preview": "assets/buildings/levels/archer_tower/10.png",
+      "sha256": "47e0ae2fba1ac42c2ad0cd6a2fe8e92c1e531516578148039395c9d9e4e155bf",
+      "geometryHash": "483e22c608cde0a72707e38590c81649378fe9fa4e6da9ddaeffadb5c0e194a9",
+      "bytes": 1175780
+    },
+    {
+      "level": 11,
+      "file": "assets/buildings/levels/archer_tower/11.glb",
+      "preview": "assets/buildings/levels/archer_tower/11.png",
+      "sha256": "c00e72a4be6519944d3455b4bc950f8121d6a9b34abf38f8ae865adb7d676169",
+      "geometryHash": "0fb372858ae076f52fb86fac48e0bad71d315c28d739baf20d9771d43a1453fb",
+      "bytes": 1228436
+    },
+    {
+      "level": 12,
+      "file": "assets/buildings/levels/archer_tower/12.glb",
+      "preview": "assets/buildings/levels/archer_tower/12.png",
+      "sha256": "174c620237e2f7c823e5fd856e7fc7c520da83f6f96ba187f003cf2e31a4ddce",
+      "geometryHash": "20a4597d32b969e8a45a718ade5c1df0f6e7e6a9d51a8859980a1d316d28e30b",
+      "bytes": 1287980
+    },
+    {
+      "level": 13,
+      "file": "assets/buildings/levels/archer_tower/13.glb",
+      "preview": "assets/buildings/levels/archer_tower/13.png",
+      "sha256": "fa5f4b5c8d1fcde366c79de479c5de7f1cee6ada2d89ea31a5e67f97009ee3b6",
+      "geometryHash": "3a6faf7a0a70269cbe6fd25e3ad91a2435de6597ba42f442e3d9635bcc790d21",
+      "bytes": 1323688
+    },
+    {
+      "level": 14,
+      "file": "assets/buildings/levels/archer_tower/14.glb",
+      "preview": "assets/buildings/levels/archer_tower/14.png",
+      "sha256": "e09f611f2520a979441da5b65a1cd785e032756729bfb5f7272006e692c3f232",
+      "geometryHash": "5f489c6d37a4e43e71da0eac7552ac86eb8a826478c64784351bb273a282ae55",
+      "bytes": 1334248
+    },
+    {
+      "level": 15,
+      "file": "assets/buildings/levels/archer_tower/15.glb",
+      "preview": "assets/buildings/levels/archer_tower/15.png",
+      "sha256": "3759cf1260e11221f546d5786246191e21ed5a5532554b9c0dd0298f105fb7ca",
+      "geometryHash": "d78f20dd159e1c77d6620e8b8fa7473a7cfebbdd954695d9aff3fc89f76e57a3",
+      "bytes": 1348528
+    }
+  ]
+}

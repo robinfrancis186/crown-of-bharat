@@ -1,0 +1,13 @@
+{
+  "name": "monsoon-kingdoms-workspace",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "python3 -m http.server 5191 --bind 127.0.0.1",
+    "test": "npm --prefix monsoon-kingdoms test",
+    "build": "npm --prefix monsoon-kingdoms run build"
+  },
+  "dependencies": {
+    "three": "0.169.0"
+  }
+}

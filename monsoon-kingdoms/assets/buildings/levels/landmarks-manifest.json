@@ -1,0 +1,1816 @@
+{
+  "source": "assets/blender/levels-landmarks.blend",
+  "generator": "tools/build-levels-landmarks.py",
+  "coordinates": "meters +Y up, centered XZ, floor 0",
+  "baseAssets": [
+    {
+      "type": "fort",
+      "level": 1,
+      "file": "assets/buildings/fort.glb",
+      "preview": "assets/buildings/levels/fort/1.png",
+      "triangles": 24662,
+      "meshes": 2,
+      "size": [
+        7.6,
+        6.93,
+        7.6
+      ],
+      "footprint": [
+        4,
+        4
+      ],
+      "era": "sandstone",
+      "addedFeature": "Original base architecture",
+      "sourceCollection": "fort_level_01",
+      "bytes": 1184208,
+      "geometryHash": "d6d7e149d31693f5770065ad9a34c7c17865406386a32e6068a7be9c8d7fd3bf",
+      "sha256": "1ec67e8f668615d52c377513e331e1461d4d13cec1ffccef9d7cf9f07ed0c624",
+      "verified": true
+    },
+    {
+      "type": "barracks",
+      "level": 1,
+      "file": "assets/buildings/barracks.glb",
+      "preview": "assets/buildings/levels/barracks/1.png",
+      "triangles": 12096,
+      "meshes": 2,
+      "size": [
+        5.6,
+        5.406,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ],
+      "era": "sandstone",
+      "addedFeature": "Original base architecture",
+      "sourceCollection": "barracks_level_01",
+      "bytes": 621968,
+      "geometryHash": "256bd0031c9cfcc4b7eb726b56573e7398bf115665a70da3d39b5c118d69f906",
+      "sha256": "56f83105534efe5cc141f1cb286038ceedbdedbb01e90b8859201ab35ebe70cb",
+      "verified": true
+    },
+    {
+      "type": "archer_tower",
+      "level": 1,
+      "file": "assets/buildings/archer_tower.glb",
+      "preview": "assets/buildings/levels/archer_tower/1.png",
+      "triangles": 17467,
+      "meshes": 2,
+      "size": [
+        3.6,
+        8.63,
+        3.6
+      ],
+      "footprint": [
+        2,
+        2
+      ],
+      "era": "sandstone",
+      "addedFeature": "Original base architecture",
+      "sourceCollection": "archer_tower_level_01",
+      "bytes": 845316,
+      "geometryHash": "352677f44362443bc6d46b6e21e808e48686f565459d5b99ea597aa90110a4af",
+      "sha256": "1271bd6375cc3c5317477b7a3f99354312870d52ab1d5d2ce7814c8d323b3178",
+      "verified": true
+    },
+    {
+      "type": "market",
+      "level": 1,
+      "file": "assets/buildings/market.glb",
+      "preview": "assets/buildings/levels/market/1.png",
+      "triangles": 17368,
+      "meshes": 2,
+      "size": [
+        5.6,
+        5.54575,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ],
+      "era": "sandstone",
+      "addedFeature": "Original base architecture",
+      "sourceCollection": "market_level_01",
+      "bytes": 866632,
+      "geometryHash": "b895d4d16753b8a7d3d111fd59be8ac13bec23d9bb4518add84166637b1288f0",
+      "sha256": "8b2d2ee7c894557e4607998261a687902bbaca41b0a37928af5bad045a81a118",
+      "verified": true
+    },
+    {
+      "type": "wall",
+      "level": 1,
+      "file": "assets/buildings/wall.glb",
+      "preview": "assets/buildings/levels/wall/1.png",
+      "triangles": 1196,
+      "meshes": 2,
+      "size": [
+        1.87,
+        2.31,
+        1.86
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "era": "sandstone",
+      "addedFeature": "Original base architecture",
+      "sourceCollection": "wall_level_01",
+      "bytes": 69460,
+      "geometryHash": "98c33fb8de7222ca0085007705851b308e292cca7509ab3a94fab66c0d8dadee",
+      "sha256": "af8a116335306d896138e3e7a5a8c632ce2f5e73416a3fc449c3507c8f2e2c4a",
+      "verified": true
+    }
+  ],
+  "assets": [
+    {
+      "type": "fort",
+      "level": 2,
+      "file": "assets/buildings/levels/fort/2.glb",
+      "preview": "assets/buildings/levels/fort/2.png",
+      "triangles": 25718,
+      "meshes": 2,
+      "size": [
+        7.6,
+        6.93,
+        7.6
+      ],
+      "footprint": [
+        4,
+        4
+      ],
+      "era": "sandstone",
+      "addedFeature": "Entrance pylons",
+      "sourceCollection": "fort_level_02",
+      "bytes": 1234288,
+      "sha256": "df991f9152908be2b0cedf3337759b662a92ee1939653eefd1c31cb78186d3eb",
+      "geometryHash": "4081597e63c7dddf4e10db6d86fcc36ac079b8fae76eaab6e2400a2b73b136fd",
+      "verified": true
+    },
+    {
+      "type": "fort",
+      "level": 3,
+      "file": "assets/buildings/levels/fort/3.glb",
+      "preview": "assets/buildings/levels/fort/3.png",
+      "triangles": 25982,
+      "meshes": 2,
+      "size": [
+        7.6,
+        6.93,
+        7.6
+      ],
+      "footprint": [
+        4,
+        4
+      ],
+      "era": "sandstone",
+      "addedFeature": "Grand iwan porch",
+      "sourceCollection": "fort_level_03",
+      "bytes": 1246528,
+      "sha256": "fefad983e7ac465d02bb9b12cc23b03bba68cbed3270f25a660c9a809ac2f626",
+      "geometryHash": "836e112b2c6356ae411a48aadb92022c74da7f34fdcd4696c636676550009b9d",
+      "verified": true
+    },
+    {
+      "type": "fort",
+      "level": 4,
+      "file": "assets/buildings/levels/fort/4.glb",
+      "preview": "assets/buildings/levels/fort/4.png",
+      "triangles": 27238,
+      "meshes": 2,
+      "size": [
+        7.6,
+        6.93,
+        7.6
+      ],
+      "footprint": [
+        4,
+        4
+      ],
+      "era": "marble",
+      "addedFeature": "Inlaid dome drum",
+      "sourceCollection": "fort_level_04",
+      "bytes": 1304756,
+      "sha256": "50cc105d14a349ca642eb0c9801680c301e0872ec5bcc2db88ab10b69afeed29",
+      "geometryHash": "b2b346a00afcdd32f7b9500b3e0f2f333462278f73ba3d4960adfd81e332bab6",
+      "verified": true
+    },
+    {
+      "type": "fort",
+      "level": 5,
+      "file": "assets/buildings/levels/fort/5.glb",
+      "preview": "assets/buildings/levels/fort/5.png",
+      "triangles": 28334,
+      "meshes": 2,
+      "size": [
+        7.6,
+        6.93,
+        7.6
+      ],
+      "footprint": [
+        4,
+        4
+      ],
+      "era": "marble",
+      "addedFeature": "Side garden pavilions",
+      "sourceCollection": "fort_level_05",
+      "bytes": 1357412,
+      "sha256": "9f94b9f51afb0d0b5d9387944a82a497e72b98cf4f7362e0d97bd76805e15c70",
+      "geometryHash": "159327e4c730142569d359905fbc6d38728d0521ade34e94a80ccfcfb92f961a",
+      "verified": true
+    },
+    {
+      "type": "fort",
+      "level": 6,
+      "file": "assets/buildings/levels/fort/6.glb",
+      "preview": "assets/buildings/levels/fort/6.png",
+      "triangles": 29054,
+      "meshes": 2,
+      "size": [
+        7.6,
+        6.93,
+        7.6
+      ],
+      "footprint": [
+        4,
+        4
+      ],
+      "era": "marble",
+      "addedFeature": "Expanded minaret balconies",
+      "sourceCollection": "fort_level_06",
+      "bytes": 1389380,
+      "sha256": "74c33cc417958c7bb53b385666cc424256586375f63274974ccbd1010752eb3a",
+      "geometryHash": "e03bae93402aff587ad2ae4ae4baf688c45b405408c404a935f1bde817692ce9",
+      "verified": true
+    },
+    {
+      "type": "fort",
+      "level": 7,
+      "file": "assets/buildings/levels/fort/7.glb",
+      "preview": "assets/buildings/levels/fort/7.png",
+      "triangles": 29414,
+      "meshes": 2,
+      "size": [
+        7.6,
+        6.93,
+        7.6
+      ],
+      "footprint": [
+        4,
+        4
+      ],
+      "era": "copper",
+      "addedFeature": "Side arcaded galleries",
+      "sourceCollection": "fort_level_07",
+      "bytes": 1406516,
+      "sha256": "0c79c43d32281415862f68da9e206802cd559368b8a28c08d56c52df4f911497",
+      "geometryHash": "7f9b0934a456c8395066552ca39ed55b6647340194ddec49c3fedb33c4835dab",
+      "verified": true
+    },
+    {
+      "type": "fort",
+      "level": 8,
+      "file": "assets/buildings/levels/fort/8.glb",
+      "preview": "assets/buildings/levels/fort/8.png",
+      "triangles": 30422,
+      "meshes": 2,
+      "size": [
+        7.6,
+        6.93,
+        7.6
+      ],
+      "footprint": [
+        4,
+        4
+      ],
+      "era": "copper",
+      "addedFeature": "Copper dome ribs",
+      "sourceCollection": "fort_level_08",
+      "bytes": 1454036,
+      "sha256": "7eb52feeea717292838a26c610312eece373fc1693b64defb620312f3f6cde5a",
+      "geometryHash": "f1f18fac88e7eb7c0269a63f9d08b63fb98afebe1d69e21962ef8c1f29a26dbc",
+      "verified": true
+    },
+    {
+      "type": "fort",
+      "level": 9,
+      "file": "assets/buildings/levels/fort/9.glb",
+      "preview": "assets/buildings/levels/fort/9.png",
+      "triangles": 31478,
+      "meshes": 2,
+      "size": [
+        7.6,
+        6.93,
+        7.6
+      ],
+      "footprint": [
+        4,
+        4
+      ],
+      "era": "copper",
+      "addedFeature": "Garden pergolas",
+      "sourceCollection": "fort_level_09",
+      "bytes": 1502996,
+      "sha256": "330249895fc4400e7bc12c914f0fa8998f6c2495934e1a7dede147b7a5ca175b",
+      "geometryHash": "a655695f5f97576e11571d89a636e67c7677cfd23715a6fdec2b933dce55b904",
+      "verified": true
+    },
+    {
+      "type": "fort",
+      "level": 10,
+      "file": "assets/buildings/levels/fort/10.glb",
+      "preview": "assets/buildings/levels/fort/10.png",
+      "triangles": 31878,
+      "meshes": 2,
+      "size": [
+        7.6,
+        6.93,
+        7.6
+      ],
+      "footprint": [
+        4,
+        4
+      ],
+      "era": "lapis",
+      "addedFeature": "Lapis portal towers",
+      "sourceCollection": "fort_level_10",
+      "bytes": 1522104,
+      "sha256": "272a2998501d70a4f01a869d5f5571c6ec84ae403e4df9f3a0a08563967c6472",
+      "geometryHash": "f14f0b9d2ab62c6cc2e5182b26ec4361450e8840271c91a5a83e5ec46185ae58",
+      "verified": true
+    },
+    {
+      "type": "fort",
+      "level": 11,
+      "file": "assets/buildings/levels/fort/11.glb",
+      "preview": "assets/buildings/levels/fort/11.png",
+      "triangles": 32182,
+      "meshes": 2,
+      "size": [
+        7.6,
+        6.93,
+        7.6
+      ],
+      "footprint": [
+        4,
+        4
+      ],
+      "era": "lapis",
+      "addedFeature": "Chhatri crown eaves",
+      "sourceCollection": "fort_level_11",
+      "bytes": 1535448,
+      "sha256": "3b2d97b7505980b3e47f9715418374ea8d790c2dda140900454d65525b190f24",
+      "geometryHash": "8c2a77c9365f45e8e5a1ccb6a50c5bf7994c82675928601616e2ea523c155655",
+      "verified": true
+    },
+    {
+      "type": "fort",
+      "level": 12,
+      "file": "assets/buildings/levels/fort/12.glb",
+      "preview": "assets/buildings/levels/fort/12.png",
+      "triangles": 32298,
+      "meshes": 2,
+      "size": [
+        7.6,
+        7.185,
+        7.6
+      ],
+      "footprint": [
+        4,
+        4
+      ],
+      "era": "lapis",
+      "addedFeature": "Royal central spire",
+      "sourceCollection": "fort_level_12",
+      "bytes": 1540752,
+      "sha256": "b1e36957e6e5a1aa165c06c2951a4738bd3fcbf19aba24dc888dc2bd0fc0b14b",
+      "geometryHash": "b7e4c75c57d088321bcdaaeacf730009982c9214540cd2fbce2cdf0d8e9a9720",
+      "verified": true
+    },
+    {
+      "type": "fort",
+      "level": 13,
+      "file": "assets/buildings/levels/fort/13.glb",
+      "preview": "assets/buildings/levels/fort/13.png",
+      "triangles": 32866,
+      "meshes": 2,
+      "size": [
+        7.6,
+        7.185,
+        7.6
+      ],
+      "footprint": [
+        4,
+        4
+      ],
+      "era": "royal metal",
+      "addedFeature": "Sunburst medallion balconies",
+      "sourceCollection": "fort_level_13",
+      "bytes": 1567200,
+      "sha256": "878dcd6a167432f46c9ff3d1e162678532e097f828b71e76fcfaacecbacdd088",
+      "geometryHash": "448525a1ad5eba2db29f720bb916a5262bb64cea128aa10c620bd3c8e95b0776",
+      "verified": true
+    },
+    {
+      "type": "fort",
+      "level": 14,
+      "file": "assets/buildings/levels/fort/14.glb",
+      "preview": "assets/buildings/levels/fort/14.png",
+      "triangles": 33730,
+      "meshes": 2,
+      "size": [
+        7.6,
+        7.185,
+        7.6
+      ],
+      "footprint": [
+        4,
+        4
+      ],
+      "era": "royal metal",
+      "addedFeature": "Upper side colonnades",
+      "sourceCollection": "fort_level_14",
+      "bytes": 1608096,
+      "sha256": "00339468273a20fd8fb1e8de07ea30ec79ddbabcc1d2d4785736a8355c4932e5",
+      "geometryHash": "d5f1b07854549a059181c27fb848816f42ace92084e100a4cfde0268b0b4b2ba",
+      "verified": true
+    },
+    {
+      "type": "fort",
+      "level": 15,
+      "file": "assets/buildings/levels/fort/15.glb",
+      "preview": "assets/buildings/levels/fort/15.png",
+      "triangles": 34270,
+      "meshes": 2,
+      "size": [
+        7.6,
+        7.185,
+        7.6
+      ],
+      "footprint": [
+        4,
+        4
+      ],
+      "era": "royal metal",
+      "addedFeature": "Imperial lotus crown",
+      "sourceCollection": "fort_level_15",
+      "bytes": 1634376,
+      "sha256": "e0769eafa50d51a43e8cec5726247f7387786b35b08ff9e811ef7a9877df6d98",
+      "geometryHash": "0d74833bda137ba6d82ced5e552197e4019b3536dc0a951e6607aa230659527f",
+      "verified": true
+    },
+    {
+      "type": "barracks",
+      "level": 2,
+      "file": "assets/buildings/levels/barracks/2.glb",
+      "preview": "assets/buildings/levels/barracks/2.png",
+      "triangles": 12328,
+      "meshes": 2,
+      "size": [
+        5.6,
+        5.406,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ],
+      "era": "sandstone",
+      "addedFeature": "Working portcullis",
+      "sourceCollection": "barracks_level_02",
+      "bytes": 633128,
+      "sha256": "8a2fafbd6fbed0c3677c13382767809b6da3eed1986bb3b8b225790d52b782e0",
+      "geometryHash": "eb7e41411c6fce88b4cb962efe3caa9cfc5347d5fd7f7b156d9b34807ba2f50e",
+      "verified": true
+    },
+    {
+      "type": "barracks",
+      "level": 3,
+      "file": "assets/buildings/levels/barracks/3.glb",
+      "preview": "assets/buildings/levels/barracks/3.png",
+      "triangles": 12856,
+      "meshes": 2,
+      "size": [
+        5.6,
+        5.406,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ],
+      "era": "sandstone",
+      "addedFeature": "Forward bastion pylons",
+      "sourceCollection": "barracks_level_03",
+      "bytes": 658180,
+      "sha256": "b97b6cfbc179060011b48ad35b16abf7a1e5511786e70c833b999bc7dda03cfc",
+      "geometryHash": "a1166439af4a10ee13606c447851a082258bce895d8614501d2c16988881e973",
+      "verified": true
+    },
+    {
+      "type": "barracks",
+      "level": 4,
+      "file": "assets/buildings/levels/barracks/4.glb",
+      "preview": "assets/buildings/levels/barracks/4.png",
+      "triangles": 13480,
+      "meshes": 2,
+      "size": [
+        5.6,
+        5.435,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ],
+      "era": "marble",
+      "addedFeature": "Upper gate gallery",
+      "sourceCollection": "barracks_level_04",
+      "bytes": 687844,
+      "sha256": "60936ffeb45275621ebf0e98a558fc125aeef6ff3606cac5bcb3a589a8a7d43b",
+      "geometryHash": "cca9e1081271379c26accfe40ac24a3458f40f928076ebec4764ef55911a4473",
+      "verified": true
+    },
+    {
+      "type": "barracks",
+      "level": 5,
+      "file": "assets/buildings/levels/barracks/5.glb",
+      "preview": "assets/buildings/levels/barracks/5.png",
+      "triangles": 14664,
+      "meshes": 2,
+      "size": [
+        5.6,
+        5.435,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ],
+      "era": "marble",
+      "addedFeature": "Rear corner bastions",
+      "sourceCollection": "barracks_level_05",
+      "bytes": 744484,
+      "sha256": "005e7f5752f16f6a72ee9c83f08017d74b9903867cb5ba3f4f26a1b082e574c4",
+      "geometryHash": "c9fa6c4c62e7fc0bc9d3dcebd81499c7a523699bb32781377c7566150d1b6534",
+      "verified": true
+    },
+    {
+      "type": "barracks",
+      "level": 6,
+      "file": "assets/buildings/levels/barracks/6.glb",
+      "preview": "assets/buildings/levels/barracks/6.png",
+      "triangles": 16128,
+      "meshes": 2,
+      "size": [
+        5.6,
+        5.435,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ],
+      "era": "marble",
+      "addedFeature": "Bastion ribs and armor",
+      "sourceCollection": "barracks_level_06",
+      "bytes": 813172,
+      "sha256": "45b670223d8561a97bb7f5bc059bd3e4620dd7faa5ed7aa95235f42bb72dd0fb",
+      "geometryHash": "5de2191172f9d376df858e94d290a125330c2906b91a97af64c9dd8676f7e75f",
+      "verified": true
+    },
+    {
+      "type": "barracks",
+      "level": 7,
+      "file": "assets/buildings/levels/barracks/7.glb",
+      "preview": "assets/buildings/levels/barracks/7.png",
+      "triangles": 16450,
+      "meshes": 2,
+      "size": [
+        5.6,
+        6.3815,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ],
+      "era": "copper",
+      "addedFeature": "Copper gate roof",
+      "sourceCollection": "barracks_level_07",
+      "bytes": 829072,
+      "sha256": "872a3b33f0f4f4114ca928a324fb829b5ce033d758fc8f4da5fb2bc05e0e044f",
+      "geometryHash": "6595dc29c8814e26a62a27f00fba131d896da7932019f747c816fa44eb74c485",
+      "verified": true
+    },
+    {
+      "type": "barracks",
+      "level": 8,
+      "file": "assets/buildings/levels/barracks/8.glb",
+      "preview": "assets/buildings/levels/barracks/8.png",
+      "triangles": 18690,
+      "meshes": 2,
+      "size": [
+        5.6,
+        6.3815,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ],
+      "era": "copper",
+      "addedFeature": "Side watch kiosks",
+      "sourceCollection": "barracks_level_08",
+      "bytes": 936980,
+      "sha256": "354d393b6dbb13959a26b68c65c1c9f394492a50d0bbe1bf8c032380fb6ccc72",
+      "geometryHash": "b008e5703b53e5ddf357207e381a20533434f80be771f086a0203abd93e84b3e",
+      "verified": true
+    },
+    {
+      "type": "barracks",
+      "level": 9,
+      "file": "assets/buildings/levels/barracks/9.glb",
+      "preview": "assets/buildings/levels/barracks/9.png",
+      "triangles": 19082,
+      "meshes": 2,
+      "size": [
+        5.6,
+        6.3815,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ],
+      "era": "copper",
+      "addedFeature": "Raised bridge railings",
+      "sourceCollection": "barracks_level_09",
+      "bytes": 955460,
+      "sha256": "7e1023d2fdc2c3fb7e553d976958dced7a745c0361d2ff007b57b38d002cf277",
+      "geometryHash": "b01b81c679de0235d4da06c3b7c79011a0a96007908da229749bc492abed95a5",
+      "verified": true
+    },
+    {
+      "type": "barracks",
+      "level": 10,
+      "file": "assets/buildings/levels/barracks/10.glb",
+      "preview": "assets/buildings/levels/barracks/10.png",
+      "triangles": 19682,
+      "meshes": 2,
+      "size": [
+        5.6,
+        6.3815,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ],
+      "era": "lapis",
+      "addedFeature": "Twin bastion crowns",
+      "sourceCollection": "barracks_level_10",
+      "bytes": 984408,
+      "sha256": "544a1c2498c8e95f301af00cc6cd156f0cccaea6d10d9e4cb230e5e6e6d19d3c",
+      "geometryHash": "789e2ffde04edd1b6caa69a840e7d8d8c63e1827aaf58ffb51a40d8b7cd2c27e",
+      "verified": true
+    },
+    {
+      "type": "barracks",
+      "level": 11,
+      "file": "assets/buildings/levels/barracks/11.glb",
+      "preview": "assets/buildings/levels/barracks/11.png",
+      "triangles": 20778,
+      "meshes": 2,
+      "size": [
+        5.6,
+        6.3815,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ],
+      "era": "lapis",
+      "addedFeature": "Court observation pavilions",
+      "sourceCollection": "barracks_level_11",
+      "bytes": 1037068,
+      "sha256": "456b2e2c43b16389fd6bc9c1586030ce6c62fcf74739175320090dddd9f1eba7",
+      "geometryHash": "4904d45a3550b86e7fab1b31b71c2042af8aab8f5d28e4aea6a7915bcfb38835",
+      "verified": true
+    },
+    {
+      "type": "barracks",
+      "level": 12,
+      "file": "assets/buildings/levels/barracks/12.glb",
+      "preview": "assets/buildings/levels/barracks/12.png",
+      "triangles": 21042,
+      "meshes": 2,
+      "size": [
+        5.6,
+        6.3815,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ],
+      "era": "lapis",
+      "addedFeature": "Deep outer gateway",
+      "sourceCollection": "barracks_level_12",
+      "bytes": 1049308,
+      "sha256": "02866d8083fac49d59a993e557fa5d1ce48c4b55ad44cf6cb8b63131ec6c9e33",
+      "geometryHash": "9c12a28a941e8936f6e15057ff31b0341897fc7c4b7fd26921422e76a76af227",
+      "verified": true
+    },
+    {
+      "type": "barracks",
+      "level": 13,
+      "file": "assets/buildings/levels/barracks/13.glb",
+      "preview": "assets/buildings/levels/barracks/13.png",
+      "triangles": 21594,
+      "meshes": 2,
+      "size": [
+        5.6,
+        6.3815,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ],
+      "era": "royal metal",
+      "addedFeature": "Flanking defense balconies",
+      "sourceCollection": "barracks_level_13",
+      "bytes": 1075676,
+      "sha256": "cc921320df8dd97eecdcb092699dc9f0b0fa04e160e6798d2e2b68f51011d411",
+      "geometryHash": "80c02eec1a071519d011167e0bca7e59362feb13eb15321a78b8cff4eb482e1f",
+      "verified": true
+    },
+    {
+      "type": "barracks",
+      "level": 14,
+      "file": "assets/buildings/levels/barracks/14.glb",
+      "preview": "assets/buildings/levels/barracks/14.png",
+      "triangles": 22142,
+      "meshes": 2,
+      "size": [
+        5.6,
+        7.2855,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ],
+      "era": "royal metal",
+      "addedFeature": "Royal gate watchtower",
+      "sourceCollection": "barracks_level_14",
+      "bytes": 1102004,
+      "sha256": "e7e28adac311f1026981439eb2e3fbf4589852a274f261a981597d9c245cdc2e",
+      "geometryHash": "4ca5f210bb895394586f34bbc66ed35be3a1ab9a85088b43e61d3a2984e13372",
+      "verified": true
+    },
+    {
+      "type": "barracks",
+      "level": 15,
+      "file": "assets/buildings/levels/barracks/15.glb",
+      "preview": "assets/buildings/levels/barracks/15.png",
+      "triangles": 23398,
+      "meshes": 2,
+      "size": [
+        5.6,
+        7.83,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ],
+      "era": "royal metal",
+      "addedFeature": "Imperial command dome",
+      "sourceCollection": "barracks_level_15",
+      "bytes": 1162820,
+      "sha256": "d10e40af57c593237abba1891ac64c82b654a290ca3d45eb1c53a7f53354c862",
+      "geometryHash": "be6bd562e6589f548adac9be89731c3c126fbb35104d3b74cbcc17091c8186fd",
+      "verified": true
+    },
+    {
+      "type": "archer_tower",
+      "level": 2,
+      "file": "assets/buildings/levels/archer_tower/2.glb",
+      "preview": "assets/buildings/levels/archer_tower/2.png",
+      "triangles": 18087,
+      "meshes": 2,
+      "size": [
+        3.6,
+        8.63,
+        3.6
+      ],
+      "footprint": [
+        2,
+        2
+      ],
+      "era": "sandstone",
+      "addedFeature": "Expanded base guard posts",
+      "sourceCollection": "archer_tower_level_02",
+      "bytes": 874376,
+      "sha256": "bdc5fd9c1493b25498038d486b044058c3d48b3f359009311701315f3a6c9130",
+      "geometryHash": "b88155fdfd5bd4d38828dada171feddeb82dd8ff421960289b38585bc9643284",
+      "verified": true
+    },
+    {
+      "type": "archer_tower",
+      "level": 3,
+      "file": "assets/buildings/levels/archer_tower/3.glb",
+      "preview": "assets/buildings/levels/archer_tower/3.png",
+      "triangles": 18255,
+      "meshes": 2,
+      "size": [
+        3.6,
+        8.63,
+        3.6
+      ],
+      "footprint": [
+        2,
+        2
+      ],
+      "era": "sandstone",
+      "addedFeature": "Lower spiral stairs",
+      "sourceCollection": "archer_tower_level_03",
+      "bytes": 883448,
+      "sha256": "0f552d580fa1c9a7ba1e61af6d606f7c496c5c38fe951d34e022451c40ee5512",
+      "geometryHash": "634c87b859b81a8ee3311d85a247bd257d0a1c7a5fb18c4c755541ea99287751",
+      "verified": true
+    },
+    {
+      "type": "archer_tower",
+      "level": 4,
+      "file": "assets/buildings/levels/archer_tower/4.glb",
+      "preview": "assets/buildings/levels/archer_tower/4.png",
+      "triangles": 18519,
+      "meshes": 2,
+      "size": [
+        3.6,
+        8.63,
+        3.6
+      ],
+      "footprint": [
+        2,
+        2
+      ],
+      "era": "marble",
+      "addedFeature": "Marble entrance torana",
+      "sourceCollection": "archer_tower_level_04",
+      "bytes": 895688,
+      "sha256": "254aa4808f79a9de2b6fbdb7d199ab46c0fa194543f7ee6e64a123497730bdd3",
+      "geometryHash": "65148030d39ff9aeb1182dca5328be2c2c6ed6d417cf91ebde24ecda413805e2",
+      "verified": true
+    },
+    {
+      "type": "archer_tower",
+      "level": 5,
+      "file": "assets/buildings/levels/archer_tower/5.glb",
+      "preview": "assets/buildings/levels/archer_tower/5.png",
+      "triangles": 19803,
+      "meshes": 2,
+      "size": [
+        3.6,
+        8.63,
+        3.6
+      ],
+      "footprint": [
+        2,
+        2
+      ],
+      "era": "marble",
+      "addedFeature": "Expanded lower firing gallery",
+      "sourceCollection": "archer_tower_level_05",
+      "bytes": 955232,
+      "sha256": "69f8921209b71751f785905e2ebdc25e1e2864c430e5547b719c33651978c612",
+      "geometryHash": "4acfc894c9aaf5c0e80ce1ae40be2d9a2cbe37b49e0634a0489dfa7d91c6c834",
+      "verified": true
+    },
+    {
+      "type": "archer_tower",
+      "level": 6,
+      "file": "assets/buildings/levels/archer_tower/6.glb",
+      "preview": "assets/buildings/levels/archer_tower/6.png",
+      "triangles": 21277,
+      "meshes": 2,
+      "size": [
+        3.6,
+        9.5975,
+        3.6
+      ],
+      "footprint": [
+        2,
+        2
+      ],
+      "era": "marble",
+      "addedFeature": "Sixth fluted storey",
+      "sourceCollection": "archer_tower_level_06",
+      "bytes": 1023600,
+      "sha256": "c907381152947c960b234c7c1574d5a9bbd2e0ba096aa775d790ff95e4df52fd",
+      "geometryHash": "7be892fceb1c8f18d43481ff0d2d31812581a53629af1991588bb90dbe901077",
+      "verified": true
+    },
+    {
+      "type": "archer_tower",
+      "level": 7,
+      "file": "assets/buildings/levels/archer_tower/7.glb",
+      "preview": "assets/buildings/levels/archer_tower/7.png",
+      "triangles": 21613,
+      "meshes": 2,
+      "size": [
+        3.6,
+        9.5975,
+        3.6
+      ],
+      "footprint": [
+        2,
+        2
+      ],
+      "era": "copper",
+      "addedFeature": "Copper tower ribs",
+      "sourceCollection": "archer_tower_level_07",
+      "bytes": 1039440,
+      "sha256": "060b83ca7a05cb8a0159082798a5e3f3a1bce49c730e9887b92709d8c71bd781",
+      "geometryHash": "1e9d6a78c081e226c46af00876fae8addbb12961791229851860dfec0b756912",
+      "verified": true
+    },
+    {
+      "type": "archer_tower",
+      "level": 8,
+      "file": "assets/buildings/levels/archer_tower/8.glb",
+      "preview": "assets/buildings/levels/archer_tower/8.png",
+      "triangles": 22897,
+      "meshes": 2,
+      "size": [
+        3.6,
+        9.5975,
+        3.6
+      ],
+      "footprint": [
+        2,
+        2
+      ],
+      "era": "copper",
+      "addedFeature": "Second firing terrace",
+      "sourceCollection": "archer_tower_level_08",
+      "bytes": 1098984,
+      "sha256": "9bf396862226020092303199aeab477470a07e1a3da76c072e696e4b21ad0e8d",
+      "geometryHash": "cf78c30b4b5a6e2c1264e288fb07333c7317d1d8cbc8e6a93136fe4479287377",
+      "verified": true
+    },
+    {
+      "type": "archer_tower",
+      "level": 9,
+      "file": "assets/buildings/levels/archer_tower/9.glb",
+      "preview": "assets/buildings/levels/archer_tower/9.png",
+      "triangles": 23053,
+      "meshes": 2,
+      "size": [
+        3.6,
+        9.5975,
+        3.6
+      ],
+      "footprint": [
+        2,
+        2
+      ],
+      "era": "copper",
+      "addedFeature": "Upper spiral stairs",
+      "sourceCollection": "archer_tower_level_09",
+      "bytes": 1107408,
+      "sha256": "d23081e566fd4b42a45e73eddc426a0e970f42f64de8bc8aa9c2971c05debdaa",
+      "geometryHash": "81bbef76db694fc602736da1b5e994fe89498b53f4d739d9494accadefffbbc9",
+      "verified": true
+    },
+    {
+      "type": "archer_tower",
+      "level": 10,
+      "file": "assets/buildings/levels/archer_tower/10.glb",
+      "preview": "assets/buildings/levels/archer_tower/10.png",
+      "triangles": 24527,
+      "meshes": 2,
+      "size": [
+        3.6,
+        10.5775,
+        3.6
+      ],
+      "footprint": [
+        2,
+        2
+      ],
+      "era": "lapis",
+      "addedFeature": "Seventh fluted storey",
+      "sourceCollection": "archer_tower_level_10",
+      "bytes": 1175780,
+      "sha256": "47e0ae2fba1ac42c2ad0cd6a2fe8e92c1e531516578148039395c9d9e4e155bf",
+      "geometryHash": "483e22c608cde0a72707e38590c81649378fe9fa4e6da9ddaeffadb5c0e194a9",
+      "verified": true
+    },
+    {
+      "type": "archer_tower",
+      "level": 11,
+      "file": "assets/buildings/levels/archer_tower/11.glb",
+      "preview": "assets/buildings/levels/archer_tower/11.png",
+      "triangles": 25623,
+      "meshes": 2,
+      "size": [
+        3.6,
+        10.5775,
+        3.6
+      ],
+      "footprint": [
+        2,
+        2
+      ],
+      "era": "lapis",
+      "addedFeature": "Twin entrance pavilions",
+      "sourceCollection": "archer_tower_level_11",
+      "bytes": 1228436,
+      "sha256": "c00e72a4be6519944d3455b4bc950f8121d6a9b34abf38f8ae865adb7d676169",
+      "geometryHash": "0fb372858ae076f52fb86fac48e0bad71d315c28d739baf20d9771d43a1453fb",
+      "verified": true
+    },
+    {
+      "type": "archer_tower",
+      "level": 12,
+      "file": "assets/buildings/levels/archer_tower/12.glb",
+      "preview": "assets/buildings/levels/archer_tower/12.png",
+      "triangles": 26907,
+      "meshes": 2,
+      "size": [
+        3.6,
+        10.5775,
+        3.6
+      ],
+      "footprint": [
+        2,
+        2
+      ],
+      "era": "lapis",
+      "addedFeature": "Third firing balcony",
+      "sourceCollection": "archer_tower_level_12",
+      "bytes": 1287980,
+      "sha256": "174c620237e2f7c823e5fd856e7fc7c520da83f6f96ba187f003cf2e31a4ddce",
+      "geometryHash": "20a4597d32b969e8a45a718ade5c1df0f6e7e6a9d51a8859980a1d316d28e30b",
+      "verified": true
+    },
+    {
+      "type": "archer_tower",
+      "level": 13,
+      "file": "assets/buildings/levels/archer_tower/13.glb",
+      "preview": "assets/buildings/levels/archer_tower/13.png",
+      "triangles": 27671,
+      "meshes": 2,
+      "size": [
+        3.6,
+        11.05,
+        3.6
+      ],
+      "footprint": [
+        2,
+        2
+      ],
+      "era": "royal metal",
+      "addedFeature": "Royal observation crown",
+      "sourceCollection": "archer_tower_level_13",
+      "bytes": 1323688,
+      "sha256": "fa5f4b5c8d1fcde366c79de479c5de7f1cee6ada2d89ea31a5e67f97009ee3b6",
+      "geometryHash": "3a6faf7a0a70269cbe6fd25e3ad91a2435de6597ba42f442e3d9635bcc790d21",
+      "verified": true
+    },
+    {
+      "type": "archer_tower",
+      "level": 14,
+      "file": "assets/buildings/levels/archer_tower/14.glb",
+      "preview": "assets/buildings/levels/archer_tower/14.png",
+      "triangles": 27895,
+      "meshes": 2,
+      "size": [
+        3.6,
+        11.05,
+        3.6
+      ],
+      "footprint": [
+        2,
+        2
+      ],
+      "era": "royal metal",
+      "addedFeature": "Outer upper lattice cage",
+      "sourceCollection": "archer_tower_level_14",
+      "bytes": 1334248,
+      "sha256": "e09f611f2520a979441da5b65a1cd785e032756729bfb5f7272006e692c3f232",
+      "geometryHash": "5f489c6d37a4e43e71da0eac7552ac86eb8a826478c64784351bb273a282ae55",
+      "verified": true
+    },
+    {
+      "type": "archer_tower",
+      "level": 15,
+      "file": "assets/buildings/levels/archer_tower/15.glb",
+      "preview": "assets/buildings/levels/archer_tower/15.png",
+      "triangles": 28163,
+      "meshes": 2,
+      "size": [
+        3.6,
+        12.1,
+        3.6
+      ],
+      "footprint": [
+        2,
+        2
+      ],
+      "era": "royal metal",
+      "addedFeature": "Imperial summit canopy",
+      "sourceCollection": "archer_tower_level_15",
+      "bytes": 1348528,
+      "sha256": "3759cf1260e11221f546d5786246191e21ed5a5532554b9c0dd0298f105fb7ca",
+      "geometryHash": "d78f20dd159e1c77d6620e8b8fa7473a7cfebbdd954695d9aff3fc89f76e57a3",
+      "verified": true
+    },
+    {
+      "type": "market",
+      "level": 2,
+      "file": "assets/buildings/levels/market/2.glb",
+      "preview": "assets/buildings/levels/market/2.png",
+      "triangles": 17968,
+      "meshes": 2,
+      "size": [
+        5.6,
+        5.54575,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ],
+      "era": "sandstone",
+      "addedFeature": "Public street arcade",
+      "sourceCollection": "market_level_02",
+      "bytes": 894104,
+      "sha256": "6cc9269b73f65a6933d85622fc4159b651227af85b8fae2c21091392ec701ada",
+      "geometryHash": "09a7d5879d156f048dc3afa6d3716797a9f21fc4885a97494a1d1a624956badd",
+      "verified": true
+    },
+    {
+      "type": "market",
+      "level": 3,
+      "file": "assets/buildings/levels/market/3.glb",
+      "preview": "assets/buildings/levels/market/3.png",
+      "triangles": 18520,
+      "meshes": 2,
+      "size": [
+        5.6,
+        5.54575,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ],
+      "era": "sandstone",
+      "addedFeature": "Side balcony bays",
+      "sourceCollection": "market_level_03",
+      "bytes": 920456,
+      "sha256": "757b51643184d0d50e60422c77c6030743e50631168c3397d3a453d4f874c6a9",
+      "geometryHash": "8b341623e7ebd9c1eec857a671b0cd2900a5a6e39ec96f068d667a7f26d8f3da",
+      "verified": true
+    },
+    {
+      "type": "market",
+      "level": 4,
+      "file": "assets/buildings/levels/market/4.glb",
+      "preview": "assets/buildings/levels/market/4.png",
+      "triangles": 19455,
+      "meshes": 2,
+      "size": [
+        5.6,
+        5.7892,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ],
+      "era": "marble",
+      "addedFeature": "Sixth jharokha storey",
+      "sourceCollection": "market_level_04",
+      "bytes": 967756,
+      "sha256": "9804afcd41d7ed4b8dfbdf3f926dc9590e9161cbf18cce31075292a4c2730092",
+      "geometryHash": "c6af4d34f4acd388560f40bb6936c58d0a3c6dac261e0d06b8833c9ed33f7c13",
+      "verified": true
+    },
+    {
+      "type": "market",
+      "level": 5,
+      "file": "assets/buildings/levels/market/5.glb",
+      "preview": "assets/buildings/levels/market/5.png",
+      "triangles": 20559,
+      "meshes": 2,
+      "size": [
+        5.6,
+        5.7892,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ],
+      "era": "marble",
+      "addedFeature": "Deep projecting lattice balconies",
+      "sourceCollection": "market_level_05",
+      "bytes": 1020464,
+      "sha256": "58c7594314a8a5957d9f8c846643f90c16704338f84e5cf92dc739039e73ba30",
+      "geometryHash": "24b0d1500886a09b9e53be64f7ea2182ecaac29132bfaafe7c011c453f90ed2b",
+      "verified": true
+    },
+    {
+      "type": "market",
+      "level": 6,
+      "file": "assets/buildings/levels/market/6.glb",
+      "preview": "assets/buildings/levels/market/6.png",
+      "triangles": 21655,
+      "meshes": 2,
+      "size": [
+        5.6,
+        5.7892,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ],
+      "era": "marble",
+      "addedFeature": "Corner roof pavilions",
+      "sourceCollection": "market_level_06",
+      "bytes": 1073116,
+      "sha256": "ff3b95b216b43c4cda4b029f34a5b875a259338fe77a17856844bc3e930aa8e9",
+      "geometryHash": "98b515ca63f588be305706de9ed9768a17707453593d9963c354efecd8239dd3",
+      "verified": true
+    },
+    {
+      "type": "market",
+      "level": 7,
+      "file": "assets/buildings/levels/market/7.glb",
+      "preview": "assets/buildings/levels/market/7.png",
+      "triangles": 22635,
+      "meshes": 2,
+      "size": [
+        5.6,
+        5.7892,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ],
+      "era": "copper",
+      "addedFeature": "Copper merchant canopies",
+      "sourceCollection": "market_level_07",
+      "bytes": 1120756,
+      "sha256": "e3708fa94bb47dfbcc98c128981adabb8595ae0b6d98a1d377a5f5f283cf651b",
+      "geometryHash": "93a933624d40b1c49ab87ad70ed33fe9f6e6154e433d0b984851616b98eeb08d",
+      "verified": true
+    },
+    {
+      "type": "market",
+      "level": 8,
+      "file": "assets/buildings/levels/market/8.glb",
+      "preview": "assets/buildings/levels/market/8.png",
+      "triangles": 23079,
+      "meshes": 2,
+      "size": [
+        5.6,
+        5.7892,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ],
+      "era": "copper",
+      "addedFeature": "Upper public balcony arcade",
+      "sourceCollection": "market_level_08",
+      "bytes": 1140412,
+      "sha256": "f6e1e1637b5b24f72b85a933caba87df36de5303005ea03c3b2fdcbb2760bfa5",
+      "geometryHash": "f5ae5177802cdac7dc41f0038805e4000de972aae23cef7d280fa21275be9040",
+      "verified": true
+    },
+    {
+      "type": "market",
+      "level": 9,
+      "file": "assets/buildings/levels/market/9.glb",
+      "preview": "assets/buildings/levels/market/9.png",
+      "triangles": 23721,
+      "meshes": 2,
+      "size": [
+        5.6,
+        6.6424,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ],
+      "era": "copper",
+      "addedFeature": "Seventh jharokha storey",
+      "sourceCollection": "market_level_09",
+      "bytes": 1173016,
+      "sha256": "bb7d9bc422b34a3251cb58ab201569ef9e3fa97884f471786cd55fc722d89c62",
+      "geometryHash": "7e285db8bc7891514a55ec343b8706d8caa7f528aa246733f300e1901cdf3875",
+      "verified": true
+    },
+    {
+      "type": "market",
+      "level": 10,
+      "file": "assets/buildings/levels/market/10.glb",
+      "preview": "assets/buildings/levels/market/10.png",
+      "triangles": 24273,
+      "meshes": 2,
+      "size": [
+        5.6,
+        6.6424,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ],
+      "era": "lapis",
+      "addedFeature": "Lapis side loggias",
+      "sourceCollection": "market_level_10",
+      "bytes": 1199376,
+      "sha256": "2e8b383c8b9eb17810efdbdc5418375d647f71acb4e34d27c11429795c452ae1",
+      "geometryHash": "92778d305d36f53cd395da6741723cec10c513b36345cb996ad63df7319b2875",
+      "verified": true
+    },
+    {
+      "type": "market",
+      "level": 11,
+      "file": "assets/buildings/levels/market/11.glb",
+      "preview": "assets/buildings/levels/market/11.png",
+      "triangles": 24537,
+      "meshes": 2,
+      "size": [
+        5.6,
+        6.6424,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ],
+      "era": "lapis",
+      "addedFeature": "Ceremonial bazaar gateway",
+      "sourceCollection": "market_level_11",
+      "bytes": 1211616,
+      "sha256": "b3943a5f4b33395f491972b5e0797fb1f4c8ee58be4505df9a29f80cc0f091fa",
+      "geometryHash": "83bb5e23a1ec56e6ff91c1d7436571b45a79020cdcc593a4b6f46f10187ec3e2",
+      "verified": true
+    },
+    {
+      "type": "market",
+      "level": 12,
+      "file": "assets/buildings/levels/market/12.glb",
+      "preview": "assets/buildings/levels/market/12.png",
+      "triangles": 25653,
+      "meshes": 2,
+      "size": [
+        5.6,
+        6.6424,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ],
+      "era": "lapis",
+      "addedFeature": "Covered facade balconies",
+      "sourceCollection": "market_level_12",
+      "bytes": 1266696,
+      "sha256": "dd33eeb3f469ddc05deb7d66aaaf1137c1f676ff797ee3b6f6e1d9b818f398af",
+      "geometryHash": "a3cfa61b9fab9f11557ea1351b44686c409aea1fddb1d00f6df939156c70d9be",
+      "verified": true
+    },
+    {
+      "type": "market",
+      "level": 13,
+      "file": "assets/buildings/levels/market/13.glb",
+      "preview": "assets/buildings/levels/market/13.png",
+      "triangles": 26749,
+      "meshes": 2,
+      "size": [
+        5.6,
+        7.628,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ],
+      "era": "royal metal",
+      "addedFeature": "Twin royal roof pavilions",
+      "sourceCollection": "market_level_13",
+      "bytes": 1319372,
+      "sha256": "25cfb123650cb3a32b296eb2f293fd7ee3e161706098edd09288c119dfbf8fa3",
+      "geometryHash": "482486891ce6c97f43ceb6b9eb67ee94ad9bf6f73cef3f32e9b35b98307733cf",
+      "verified": true
+    },
+    {
+      "type": "market",
+      "level": 14,
+      "file": "assets/buildings/levels/market/14.glb",
+      "preview": "assets/buildings/levels/market/14.png",
+      "triangles": 27357,
+      "meshes": 2,
+      "size": [
+        5.6,
+        7.628,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ],
+      "era": "royal metal",
+      "addedFeature": "Gilded corner turrets",
+      "sourceCollection": "market_level_14",
+      "bytes": 1348364,
+      "sha256": "b9f58118d6bfdab98359ac4a89cd4e2ab1a53068de198ba032e5bf4fac88a12f",
+      "geometryHash": "362f276cd2308ae1f4a6e7af4442423d1cd274bce5de64925a25ef364cb02585",
+      "verified": true
+    },
+    {
+      "type": "market",
+      "level": 15,
+      "file": "assets/buildings/levels/market/15.glb",
+      "preview": "assets/buildings/levels/market/15.png",
+      "triangles": 27625,
+      "meshes": 2,
+      "size": [
+        5.6,
+        8.2,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ],
+      "era": "royal metal",
+      "addedFeature": "Imperial bazaar dome",
+      "sourceCollection": "market_level_15",
+      "bytes": 1362644,
+      "sha256": "eb8c916c1970692d6c3dbff55bb09ba5c77f13ecbd0a82bc4250e05569338356",
+      "geometryHash": "fad4f381301c0a9d44089240851c7b873b36779229e5ced88367af6eeca17653",
+      "verified": true
+    },
+    {
+      "type": "wall",
+      "level": 2,
+      "file": "assets/buildings/levels/wall/2.glb",
+      "preview": "assets/buildings/levels/wall/2.png",
+      "triangles": 1356,
+      "meshes": 2,
+      "size": [
+        1.87,
+        2.31,
+        1.86
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "era": "sandstone",
+      "addedFeature": "Armored buttresses",
+      "sourceCollection": "wall_level_02",
+      "bytes": 78452,
+      "sha256": "2f8ede5b006e889ef28383256d787fc37e676404f014c1856c3797886968dd69",
+      "geometryHash": "bc1a8fd0bc676beb6f662335d3e14a42e145445a0e1177fe62ef9b79e99acb4c",
+      "verified": true
+    },
+    {
+      "type": "wall",
+      "level": 3,
+      "file": "assets/buildings/levels/wall/3.glb",
+      "preview": "assets/buildings/levels/wall/3.png",
+      "triangles": 1620,
+      "meshes": 2,
+      "size": [
+        1.87,
+        2.31,
+        1.86
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "era": "sandstone",
+      "addedFeature": "Arched outer portal",
+      "sourceCollection": "wall_level_03",
+      "bytes": 90692,
+      "sha256": "21dd39f4fcfac0a032ef40df690d1de88696b42e38da44a0a5650b9f7cf0def5",
+      "geometryHash": "05543d3b100f4cff532d1a80f394a17b5ce49946c599e969b668e36068dcf6d1",
+      "verified": true
+    },
+    {
+      "type": "wall",
+      "level": 4,
+      "file": "assets/buildings/levels/wall/4.glb",
+      "preview": "assets/buildings/levels/wall/4.png",
+      "triangles": 1676,
+      "meshes": 2,
+      "size": [
+        1.87,
+        2.645,
+        1.86
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "era": "marble",
+      "addedFeature": "Raised fighting chamber",
+      "sourceCollection": "wall_level_04",
+      "bytes": 93908,
+      "sha256": "0cc352e1b798ec86d4d7669b6b7f2af1acbd9dec561f3609dff44b509969a20c",
+      "geometryHash": "65d53deefe1f72e0038d1ff6416b438649d1faa7f372a2076f5fb3e58d3c0215",
+      "verified": true
+    },
+    {
+      "type": "wall",
+      "level": 5,
+      "file": "assets/buildings/levels/wall/5.glb",
+      "preview": "assets/buildings/levels/wall/5.png",
+      "triangles": 2572,
+      "meshes": 2,
+      "size": [
+        1.87,
+        3.465,
+        1.86
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "era": "marble",
+      "addedFeature": "Four guard pinnacles",
+      "sourceCollection": "wall_level_05",
+      "bytes": 136156,
+      "sha256": "62d33e4c63eb0920ac0973fcba3affd5e39558c68d7f41d2f2692eeb7ea7c57d",
+      "geometryHash": "8a26da1bec4a12b58521158ab0cb6e77d8412c7314a7a0c6bd77a4b0c63d4218",
+      "verified": true
+    },
+    {
+      "type": "wall",
+      "level": 6,
+      "file": "assets/buildings/levels/wall/6.glb",
+      "preview": "assets/buildings/levels/wall/6.png",
+      "triangles": 2848,
+      "meshes": 2,
+      "size": [
+        1.87,
+        3.465,
+        1.86
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "era": "marble",
+      "addedFeature": "Projecting defense balcony",
+      "sourceCollection": "wall_level_06",
+      "bytes": 149332,
+      "sha256": "45f0f188eb6bcd4e0726ae1a7d4dffd91df894d956d0719669c425b5d7348882",
+      "geometryHash": "a4a446b78e2fafed7f91d4a8471d7195b75a4fb68a02e1a48c3d1374da337e51",
+      "verified": true
+    },
+    {
+      "type": "wall",
+      "level": 7,
+      "file": "assets/buildings/levels/wall/7.glb",
+      "preview": "assets/buildings/levels/wall/7.png",
+      "triangles": 3170,
+      "meshes": 2,
+      "size": [
+        1.87,
+        3.9415,
+        1.86
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "era": "copper",
+      "addedFeature": "Copper parapet roof",
+      "sourceCollection": "wall_level_07",
+      "bytes": 165232,
+      "sha256": "baf6350109bbed1f7cfbb707374a357442a97174b521555239df32e44a8e5d55",
+      "geometryHash": "b9dff63cad7de8072a1860a11fdc7abc2f8995184d5a5ae1232c98aa11c37541",
+      "verified": true
+    },
+    {
+      "type": "wall",
+      "level": 8,
+      "file": "assets/buildings/levels/wall/8.glb",
+      "preview": "assets/buildings/levels/wall/8.png",
+      "triangles": 3282,
+      "meshes": 2,
+      "size": [
+        1.898,
+        3.9415,
+        1.86
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "era": "copper",
+      "addedFeature": "Diagonal side armor",
+      "sourceCollection": "wall_level_08",
+      "bytes": 170512,
+      "sha256": "d0047b7d857152b791c629d46334177fa608972f4a7b8c13e7f8c78dd08fd7f2",
+      "geometryHash": "f98786eaffe9f84fec60f241b2335e0930b464faae8157bc2669d83275a3672b",
+      "verified": true
+    },
+    {
+      "type": "wall",
+      "level": 9,
+      "file": "assets/buildings/levels/wall/9.glb",
+      "preview": "assets/buildings/levels/wall/9.png",
+      "triangles": 3830,
+      "meshes": 2,
+      "size": [
+        1.898,
+        4.425,
+        1.86
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "era": "copper",
+      "addedFeature": "Raised watch kiosk",
+      "sourceCollection": "wall_level_09",
+      "bytes": 196840,
+      "sha256": "0d1066ebcc80da86010777d078238db4d1ebaec5609a66889ee0caa76fa198b7",
+      "geometryHash": "71f2c225783ce09c3042b07c59963b279250623d16ea6377dfd16f378cfa226b",
+      "verified": true
+    },
+    {
+      "type": "wall",
+      "level": 10,
+      "file": "assets/buildings/levels/wall/10.glb",
+      "preview": "assets/buildings/levels/wall/10.png",
+      "triangles": 4158,
+      "meshes": 2,
+      "size": [
+        1.898,
+        4.425,
+        1.86
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "era": "lapis",
+      "addedFeature": "Lapis forward salients",
+      "sourceCollection": "wall_level_10",
+      "bytes": 213404,
+      "sha256": "c56b5302407755132931f2ec475af7ed29313176b431603aa4f2e70fff67c78e",
+      "geometryHash": "ae831627d36c9d15120b8731703d504f783947661c11468a418b9da237fec7b1",
+      "verified": true
+    },
+    {
+      "type": "wall",
+      "level": 11,
+      "file": "assets/buildings/levels/wall/11.glb",
+      "preview": "assets/buildings/levels/wall/11.png",
+      "triangles": 4326,
+      "meshes": 2,
+      "size": [
+        1.898,
+        4.425,
+        1.865
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "era": "lapis",
+      "addedFeature": "Double-arched revetment",
+      "sourceCollection": "wall_level_11",
+      "bytes": 220748,
+      "sha256": "40fb8855828c84affea8d3100b6bf1c0e4781aa91cbef3f5781b70cc9c7b0ae6",
+      "geometryHash": "887b6b92a98145b4832493ba26641707dde2e646e28039b9fae6d67eb1c27e62",
+      "verified": true
+    },
+    {
+      "type": "wall",
+      "level": 12,
+      "file": "assets/buildings/levels/wall/12.glb",
+      "preview": "assets/buildings/levels/wall/12.png",
+      "triangles": 4854,
+      "meshes": 2,
+      "size": [
+        1.898,
+        4.505,
+        1.865
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "era": "lapis",
+      "addedFeature": "Twin upper watch spires",
+      "sourceCollection": "wall_level_12",
+      "bytes": 245804,
+      "sha256": "cbf3c0beea842a4441b474fb2fb7d2ba245fb9b25af2092c7ac462abcc9abb70",
+      "geometryHash": "4432c6e7007491c1cb0d5ba43eebb4fc39a3027d876c370bc838c6572f8c4147",
+      "verified": true
+    },
+    {
+      "type": "wall",
+      "level": 13,
+      "file": "assets/buildings/levels/wall/13.glb",
+      "preview": "assets/buildings/levels/wall/13.png",
+      "triangles": 5934,
+      "meshes": 2,
+      "size": [
+        1.898,
+        4.505,
+        1.865
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "era": "royal metal",
+      "addedFeature": "Royal crown railing",
+      "sourceCollection": "wall_level_13",
+      "bytes": 297232,
+      "sha256": "8ba21e52a5bc1d061c7f7433261d8a6b11d1cb3987c2730da25702823104c18e",
+      "geometryHash": "893e8fb7f44b9586da0e2a1e4cc069f64d57c4e0df82366c2ccf7cfc74e4db9d",
+      "verified": true
+    },
+    {
+      "type": "wall",
+      "level": 14,
+      "file": "assets/buildings/levels/wall/14.glb",
+      "preview": "assets/buildings/levels/wall/14.png",
+      "triangles": 6022,
+      "meshes": 2,
+      "size": [
+        1.898,
+        4.505,
+        1.87
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "era": "royal metal",
+      "addedFeature": "Imperial embossed shield",
+      "sourceCollection": "wall_level_14",
+      "bytes": 301216,
+      "sha256": "a5a142510f22fd58961cfdb0bc7df488969de433af91a0abc88ec31a8f4721dc",
+      "geometryHash": "030d0b8980f5019c73a0a4ebdb4bd7dcaca33240d179c985a7c13b67d9aa52cb",
+      "verified": true
+    },
+    {
+      "type": "wall",
+      "level": 15,
+      "file": "assets/buildings/levels/wall/15.glb",
+      "preview": "assets/buildings/levels/wall/15.png",
+      "triangles": 6210,
+      "meshes": 2,
+      "size": [
+        1.898,
+        5.02,
+        1.87
+      ],
+      "footprint": [
+        1,
+        1
+      ],
+      "era": "royal metal",
+      "addedFeature": "Grand gilded watch canopy",
+      "sourceCollection": "wall_level_15",
+      "bytes": 311176,
+      "sha256": "e20911cda5bc51ab5c3e7f691304c44ec7aa655e796e72000f587aaec06ddb02",
+      "geometryHash": "29a7a56ebb53ce53cfebb8828e36a54486999fe67f301704e1e224ecb6145dfd",
+      "verified": true
+    }
+  ],
+  "optimization": "glTF Transform 4.5.0; quantized normals/colors; exact position buffers",
+  "validation": {
+    "nativeLoader": "Three.js GLTFLoader",
+    "newAssets": 70,
+    "uniqueGeometryCount": 75,
+    "allPassed": true
+  }
+}

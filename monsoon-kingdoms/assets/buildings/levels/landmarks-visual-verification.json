@@ -1,0 +1,422 @@
+[
+  {
+    "type": "fort",
+    "level": 2,
+    "changedVisiblePixelFraction": 0.02496,
+    "newFeature": "Entrance pylons"
+  },
+  {
+    "type": "fort",
+    "level": 3,
+    "changedVisiblePixelFraction": 0.04732,
+    "newFeature": "Grand iwan porch"
+  },
+  {
+    "type": "fort",
+    "level": 4,
+    "changedVisiblePixelFraction": 0.0519,
+    "newFeature": "Inlaid dome drum"
+  },
+  {
+    "type": "fort",
+    "level": 5,
+    "changedVisiblePixelFraction": 0.021,
+    "newFeature": "Side garden pavilions"
+  },
+  {
+    "type": "fort",
+    "level": 6,
+    "changedVisiblePixelFraction": 0.04258,
+    "newFeature": "Expanded minaret balconies"
+  },
+  {
+    "type": "fort",
+    "level": 7,
+    "changedVisiblePixelFraction": 0.19578,
+    "newFeature": "Side arcaded galleries"
+  },
+  {
+    "type": "fort",
+    "level": 8,
+    "changedVisiblePixelFraction": 0.01712,
+    "newFeature": "Copper dome ribs"
+  },
+  {
+    "type": "fort",
+    "level": 9,
+    "changedVisiblePixelFraction": 0.03928,
+    "newFeature": "Garden pergolas"
+  },
+  {
+    "type": "fort",
+    "level": 10,
+    "changedVisiblePixelFraction": 0.22194,
+    "newFeature": "Lapis portal towers"
+  },
+  {
+    "type": "fort",
+    "level": 11,
+    "changedVisiblePixelFraction": 0.03122,
+    "newFeature": "Chhatri crown eaves"
+  },
+  {
+    "type": "fort",
+    "level": 12,
+    "changedVisiblePixelFraction": 0.40326,
+    "newFeature": "Royal central spire"
+  },
+  {
+    "type": "fort",
+    "level": 13,
+    "changedVisiblePixelFraction": 0.18378,
+    "newFeature": "Sunburst medallion balconies"
+  },
+  {
+    "type": "fort",
+    "level": 14,
+    "changedVisiblePixelFraction": 0.0506,
+    "newFeature": "Upper side colonnades"
+  },
+  {
+    "type": "fort",
+    "level": 15,
+    "changedVisiblePixelFraction": 0.01774,
+    "newFeature": "Imperial lotus crown"
+  },
+  {
+    "type": "barracks",
+    "level": 2,
+    "changedVisiblePixelFraction": 0.03712,
+    "newFeature": "Working portcullis"
+  },
+  {
+    "type": "barracks",
+    "level": 3,
+    "changedVisiblePixelFraction": 0.08785,
+    "newFeature": "Forward bastion pylons"
+  },
+  {
+    "type": "barracks",
+    "level": 4,
+    "changedVisiblePixelFraction": 0.80275,
+    "newFeature": "Upper gate gallery"
+  },
+  {
+    "type": "barracks",
+    "level": 5,
+    "changedVisiblePixelFraction": 0.06918,
+    "newFeature": "Rear corner bastions"
+  },
+  {
+    "type": "barracks",
+    "level": 6,
+    "changedVisiblePixelFraction": 0.03904,
+    "newFeature": "Bastion ribs and armor"
+  },
+  {
+    "type": "barracks",
+    "level": 7,
+    "changedVisiblePixelFraction": 0.90585,
+    "newFeature": "Copper gate roof"
+  },
+  {
+    "type": "barracks",
+    "level": 8,
+    "changedVisiblePixelFraction": 0.04331,
+    "newFeature": "Side watch kiosks"
+  },
+  {
+    "type": "barracks",
+    "level": 9,
+    "changedVisiblePixelFraction": 0.0107,
+    "newFeature": "Raised bridge railings"
+  },
+  {
+    "type": "barracks",
+    "level": 10,
+    "changedVisiblePixelFraction": 0.83262,
+    "newFeature": "Twin bastion crowns"
+  },
+  {
+    "type": "barracks",
+    "level": 11,
+    "changedVisiblePixelFraction": 0.03666,
+    "newFeature": "Court observation pavilions"
+  },
+  {
+    "type": "barracks",
+    "level": 12,
+    "changedVisiblePixelFraction": 0.06939,
+    "newFeature": "Deep outer gateway"
+  },
+  {
+    "type": "barracks",
+    "level": 13,
+    "changedVisiblePixelFraction": 0.86165,
+    "newFeature": "Flanking defense balconies"
+  },
+  {
+    "type": "barracks",
+    "level": 14,
+    "changedVisiblePixelFraction": 0.80011,
+    "newFeature": "Royal gate watchtower"
+  },
+  {
+    "type": "barracks",
+    "level": 15,
+    "changedVisiblePixelFraction": 0.6887,
+    "newFeature": "Imperial command dome"
+  },
+  {
+    "type": "archer_tower",
+    "level": 2,
+    "changedVisiblePixelFraction": 0.0741,
+    "newFeature": "Expanded base guard posts"
+  },
+  {
+    "type": "archer_tower",
+    "level": 3,
+    "changedVisiblePixelFraction": 0.07858,
+    "newFeature": "Lower spiral stairs"
+  },
+  {
+    "type": "archer_tower",
+    "level": 4,
+    "changedVisiblePixelFraction": 0.75152,
+    "newFeature": "Marble entrance torana"
+  },
+  {
+    "type": "archer_tower",
+    "level": 5,
+    "changedVisiblePixelFraction": 0.12574,
+    "newFeature": "Expanded lower firing gallery"
+  },
+  {
+    "type": "archer_tower",
+    "level": 6,
+    "changedVisiblePixelFraction": 0.60868,
+    "newFeature": "Sixth fluted storey"
+  },
+  {
+    "type": "archer_tower",
+    "level": 7,
+    "changedVisiblePixelFraction": 0.86923,
+    "newFeature": "Copper tower ribs"
+  },
+  {
+    "type": "archer_tower",
+    "level": 8,
+    "changedVisiblePixelFraction": 0.11191,
+    "newFeature": "Second firing terrace"
+  },
+  {
+    "type": "archer_tower",
+    "level": 9,
+    "changedVisiblePixelFraction": 0.04913,
+    "newFeature": "Upper spiral stairs"
+  },
+  {
+    "type": "archer_tower",
+    "level": 10,
+    "changedVisiblePixelFraction": 0.97184,
+    "newFeature": "Seventh fluted storey"
+  },
+  {
+    "type": "archer_tower",
+    "level": 11,
+    "changedVisiblePixelFraction": 0.03614,
+    "newFeature": "Twin entrance pavilions"
+  },
+  {
+    "type": "archer_tower",
+    "level": 12,
+    "changedVisiblePixelFraction": 0.08647,
+    "newFeature": "Third firing balcony"
+  },
+  {
+    "type": "archer_tower",
+    "level": 13,
+    "changedVisiblePixelFraction": 0.92583,
+    "newFeature": "Royal observation crown"
+  },
+  {
+    "type": "archer_tower",
+    "level": 14,
+    "changedVisiblePixelFraction": 0.01016,
+    "newFeature": "Outer upper lattice cage"
+  },
+  {
+    "type": "archer_tower",
+    "level": 15,
+    "changedVisiblePixelFraction": 0.69991,
+    "newFeature": "Imperial summit canopy"
+  },
+  {
+    "type": "market",
+    "level": 2,
+    "changedVisiblePixelFraction": 0.13801,
+    "newFeature": "Public street arcade"
+  },
+  {
+    "type": "market",
+    "level": 3,
+    "changedVisiblePixelFraction": 0.02758,
+    "newFeature": "Side balcony bays"
+  },
+  {
+    "type": "market",
+    "level": 4,
+    "changedVisiblePixelFraction": 0.87139,
+    "newFeature": "Sixth jharokha storey"
+  },
+  {
+    "type": "market",
+    "level": 5,
+    "changedVisiblePixelFraction": 0.03922,
+    "newFeature": "Deep projecting lattice balconies"
+  },
+  {
+    "type": "market",
+    "level": 6,
+    "changedVisiblePixelFraction": 0.03125,
+    "newFeature": "Corner roof pavilions"
+  },
+  {
+    "type": "market",
+    "level": 7,
+    "changedVisiblePixelFraction": 0.86616,
+    "newFeature": "Copper merchant canopies"
+  },
+  {
+    "type": "market",
+    "level": 8,
+    "changedVisiblePixelFraction": 0.15743,
+    "newFeature": "Upper public balcony arcade"
+  },
+  {
+    "type": "market",
+    "level": 9,
+    "changedVisiblePixelFraction": 0.77958,
+    "newFeature": "Seventh jharokha storey"
+  },
+  {
+    "type": "market",
+    "level": 10,
+    "changedVisiblePixelFraction": 0.86337,
+    "newFeature": "Lapis side loggias"
+  },
+  {
+    "type": "market",
+    "level": 11,
+    "changedVisiblePixelFraction": 0.06674,
+    "newFeature": "Ceremonial bazaar gateway"
+  },
+  {
+    "type": "market",
+    "level": 12,
+    "changedVisiblePixelFraction": 0.0918,
+    "newFeature": "Covered facade balconies"
+  },
+  {
+    "type": "market",
+    "level": 13,
+    "changedVisiblePixelFraction": 0.98334,
+    "newFeature": "Twin royal roof pavilions"
+  },
+  {
+    "type": "market",
+    "level": 14,
+    "changedVisiblePixelFraction": 0.02179,
+    "newFeature": "Gilded corner turrets"
+  },
+  {
+    "type": "market",
+    "level": 15,
+    "changedVisiblePixelFraction": 0.70513,
+    "newFeature": "Imperial bazaar dome"
+  },
+  {
+    "type": "wall",
+    "level": 2,
+    "changedVisiblePixelFraction": 0.1496,
+    "newFeature": "Armored buttresses"
+  },
+  {
+    "type": "wall",
+    "level": 3,
+    "changedVisiblePixelFraction": 0.1558,
+    "newFeature": "Arched outer portal"
+  },
+  {
+    "type": "wall",
+    "level": 4,
+    "changedVisiblePixelFraction": 0.87274,
+    "newFeature": "Raised fighting chamber"
+  },
+  {
+    "type": "wall",
+    "level": 5,
+    "changedVisiblePixelFraction": 0.80446,
+    "newFeature": "Four guard pinnacles"
+  },
+  {
+    "type": "wall",
+    "level": 6,
+    "changedVisiblePixelFraction": 0.09686,
+    "newFeature": "Projecting defense balcony"
+  },
+  {
+    "type": "wall",
+    "level": 7,
+    "changedVisiblePixelFraction": 0.88975,
+    "newFeature": "Copper parapet roof"
+  },
+  {
+    "type": "wall",
+    "level": 8,
+    "changedVisiblePixelFraction": 0.02171,
+    "newFeature": "Diagonal side armor"
+  },
+  {
+    "type": "wall",
+    "level": 9,
+    "changedVisiblePixelFraction": 0.70331,
+    "newFeature": "Raised watch kiosk"
+  },
+  {
+    "type": "wall",
+    "level": 10,
+    "changedVisiblePixelFraction": 0.77529,
+    "newFeature": "Lapis forward salients"
+  },
+  {
+    "type": "wall",
+    "level": 11,
+    "changedVisiblePixelFraction": 0.06065,
+    "newFeature": "Double-arched revetment"
+  },
+  {
+    "type": "wall",
+    "level": 12,
+    "changedVisiblePixelFraction": 0.26676,
+    "newFeature": "Twin upper watch spires"
+  },
+  {
+    "type": "wall",
+    "level": 13,
+    "changedVisiblePixelFraction": 0.77275,
+    "newFeature": "Royal crown railing"
+  },
+  {
+    "type": "wall",
+    "level": 14,
+    "changedVisiblePixelFraction": 0.05438,
+    "newFeature": "Imperial embossed shield"
+  },
+  {
+    "type": "wall",
+    "level": 15,
+    "changedVisiblePixelFraction": 0.76287,
+    "newFeature": "Grand gilded watch canopy"
+  }
+]

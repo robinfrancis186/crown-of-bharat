@@ -1,0 +1,12 @@
+{
+  "name": "monsoon-kingdoms",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "python3 -m http.server 5191 --bind 127.0.0.1 --directory ..",
+    "test": "node tools/verify-rules.mjs && node tools/verify-layouts.mjs && node tools/verify-progression.mjs && node tools/verify-online.mjs && node tools/verify-levels.mjs && node tools/verify-units.mjs && node tools/verify-heroes.mjs && node tools/verify-storage.mjs && node tools/verify-view-cache.mjs",
+    "build": "node tools/build-release.mjs --zip",
+    "test:levels": "node tools/verify-levels.mjs",
+    "test:fast": "node tools/verify-rules.mjs && node tools/verify-layouts.mjs && node tools/verify-progression.mjs && node tools/verify-online.mjs && node tools/verify-storage.mjs"
+  }
+}

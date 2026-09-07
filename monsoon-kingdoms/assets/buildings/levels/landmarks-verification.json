@@ -1,0 +1,1127 @@
+[
+  {
+    "type": "fort",
+    "level": 1,
+    "triangles": 24662,
+    "vertices": 43088,
+    "meshes": 2,
+    "size": [
+      7.6,
+      6.93,
+      7.6
+    ],
+    "addedTriangles": 0,
+    "geometryHash": "d6d7e149d31693f5770065ad9a34c7c17865406386a32e6068a7be9c8d7fd3bf",
+    "result": "PASS"
+  },
+  {
+    "type": "barracks",
+    "level": 1,
+    "triangles": 12096,
+    "vertices": 22804,
+    "meshes": 2,
+    "size": [
+      5.6,
+      5.406,
+      5.6
+    ],
+    "addedTriangles": 0,
+    "geometryHash": "256bd0031c9cfcc4b7eb726b56573e7398bf115665a70da3d39b5c118d69f906",
+    "result": "PASS"
+  },
+  {
+    "type": "archer_tower",
+    "level": 1,
+    "triangles": 17467,
+    "vertices": 30767,
+    "meshes": 2,
+    "size": [
+      3.6,
+      8.63,
+      3.6
+    ],
+    "addedTriangles": 0,
+    "geometryHash": "352677f44362443bc6d46b6e21e808e48686f565459d5b99ea597aa90110a4af",
+    "result": "PASS"
+  },
+  {
+    "type": "market",
+    "level": 1,
+    "triangles": 17368,
+    "vertices": 31680,
+    "meshes": 2,
+    "size": [
+      5.6,
+      5.54575,
+      5.6
+    ],
+    "addedTriangles": 0,
+    "geometryHash": "b895d4d16753b8a7d3d111fd59be8ac13bec23d9bb4518add84166637b1288f0",
+    "result": "PASS"
+  },
+  {
+    "type": "wall",
+    "level": 1,
+    "triangles": 1196,
+    "vertices": 2508,
+    "meshes": 2,
+    "size": [
+      1.87,
+      2.31,
+      1.86
+    ],
+    "addedTriangles": 0,
+    "geometryHash": "98c33fb8de7222ca0085007705851b308e292cca7509ab3a94fab66c0d8dadee",
+    "result": "PASS"
+  },
+  {
+    "type": "fort",
+    "level": 2,
+    "triangles": 25718,
+    "vertices": 44912,
+    "meshes": 2,
+    "size": [
+      7.6,
+      6.93,
+      7.6
+    ],
+    "addedTriangles": 1056,
+    "geometryHash": "4081597e63c7dddf4e10db6d86fcc36ac079b8fae76eaab6e2400a2b73b136fd",
+    "result": "PASS"
+  },
+  {
+    "type": "fort",
+    "level": 3,
+    "triangles": 25982,
+    "vertices": 45356,
+    "meshes": 2,
+    "size": [
+      7.6,
+      6.93,
+      7.6
+    ],
+    "addedTriangles": 264,
+    "geometryHash": "836e112b2c6356ae411a48aadb92022c74da7f34fdcd4696c636676550009b9d",
+    "result": "PASS"
+  },
+  {
+    "type": "fort",
+    "level": 4,
+    "triangles": 27238,
+    "vertices": 47468,
+    "meshes": 2,
+    "size": [
+      7.6,
+      6.93,
+      7.6
+    ],
+    "addedTriangles": 1256,
+    "geometryHash": "b2b346a00afcdd32f7b9500b3e0f2f333462278f73ba3d4960adfd81e332bab6",
+    "result": "PASS"
+  },
+  {
+    "type": "fort",
+    "level": 5,
+    "triangles": 28334,
+    "vertices": 49388,
+    "meshes": 2,
+    "size": [
+      7.6,
+      6.93,
+      7.6
+    ],
+    "addedTriangles": 1096,
+    "geometryHash": "159327e4c730142569d359905fbc6d38728d0521ade34e94a80ccfcfb92f961a",
+    "result": "PASS"
+  },
+  {
+    "type": "fort",
+    "level": 6,
+    "triangles": 29054,
+    "vertices": 50540,
+    "meshes": 2,
+    "size": [
+      7.6,
+      6.93,
+      7.6
+    ],
+    "addedTriangles": 720,
+    "geometryHash": "e03bae93402aff587ad2ae4ae4baf688c45b405408c404a935f1bde817692ce9",
+    "result": "PASS"
+  },
+  {
+    "type": "fort",
+    "level": 7,
+    "triangles": 29414,
+    "vertices": 51164,
+    "meshes": 2,
+    "size": [
+      7.6,
+      6.93,
+      7.6
+    ],
+    "addedTriangles": 360,
+    "geometryHash": "7f9b0934a456c8395066552ca39ed55b6647340194ddec49c3fedb33c4835dab",
+    "result": "PASS"
+  },
+  {
+    "type": "fort",
+    "level": 8,
+    "triangles": 30422,
+    "vertices": 52892,
+    "meshes": 2,
+    "size": [
+      7.6,
+      6.93,
+      7.6
+    ],
+    "addedTriangles": 1008,
+    "geometryHash": "f1f18fac88e7eb7c0269a63f9d08b63fb98afebe1d69e21962ef8c1f29a26dbc",
+    "result": "PASS"
+  },
+  {
+    "type": "fort",
+    "level": 9,
+    "triangles": 31478,
+    "vertices": 54668,
+    "meshes": 2,
+    "size": [
+      7.6,
+      6.93,
+      7.6
+    ],
+    "addedTriangles": 1056,
+    "geometryHash": "a655695f5f97576e11571d89a636e67c7677cfd23715a6fdec2b933dce55b904",
+    "result": "PASS"
+  },
+  {
+    "type": "fort",
+    "level": 10,
+    "triangles": 31878,
+    "vertices": 55364,
+    "meshes": 2,
+    "size": [
+      7.6,
+      6.93,
+      7.6
+    ],
+    "addedTriangles": 400,
+    "geometryHash": "f14f0b9d2ab62c6cc2e5182b26ec4361450e8840271c91a5a83e5ec46185ae58",
+    "result": "PASS"
+  },
+  {
+    "type": "fort",
+    "level": 11,
+    "triangles": 32182,
+    "vertices": 55844,
+    "meshes": 2,
+    "size": [
+      7.6,
+      6.93,
+      7.6
+    ],
+    "addedTriangles": 304,
+    "geometryHash": "8c2a77c9365f45e8e5a1ccb6a50c5bf7994c82675928601616e2ea523c155655",
+    "result": "PASS"
+  },
+  {
+    "type": "fort",
+    "level": 12,
+    "triangles": 32298,
+    "vertices": 56036,
+    "meshes": 2,
+    "size": [
+      7.6,
+      7.185,
+      7.6
+    ],
+    "addedTriangles": 116,
+    "geometryHash": "b7e4c75c57d088321bcdaaeacf730009982c9214540cd2fbce2cdf0d8e9a9720",
+    "result": "PASS"
+  },
+  {
+    "type": "fort",
+    "level": 13,
+    "triangles": 32866,
+    "vertices": 56996,
+    "meshes": 2,
+    "size": [
+      7.6,
+      7.185,
+      7.6
+    ],
+    "addedTriangles": 568,
+    "geometryHash": "448525a1ad5eba2db29f720bb916a5262bb64cea128aa10c620bd3c8e95b0776",
+    "result": "PASS"
+  },
+  {
+    "type": "fort",
+    "level": 14,
+    "triangles": 33730,
+    "vertices": 58484,
+    "meshes": 2,
+    "size": [
+      7.6,
+      7.185,
+      7.6
+    ],
+    "addedTriangles": 864,
+    "geometryHash": "d5f1b07854549a059181c27fb848816f42ace92084e100a4cfde0268b0b4b2ba",
+    "result": "PASS"
+  },
+  {
+    "type": "fort",
+    "level": 15,
+    "triangles": 34270,
+    "vertices": 59444,
+    "meshes": 2,
+    "size": [
+      7.6,
+      7.185,
+      7.6
+    ],
+    "addedTriangles": 540,
+    "geometryHash": "0d74833bda137ba6d82ced5e552197e4019b3536dc0a951e6607aa230659527f",
+    "result": "PASS"
+  },
+  {
+    "type": "barracks",
+    "level": 2,
+    "triangles": 12328,
+    "vertices": 23212,
+    "meshes": 2,
+    "size": [
+      5.6,
+      5.406,
+      5.6
+    ],
+    "addedTriangles": 232,
+    "geometryHash": "eb7e41411c6fce88b4cb962efe3caa9cfc5347d5fd7f7b156d9b34807ba2f50e",
+    "result": "PASS"
+  },
+  {
+    "type": "barracks",
+    "level": 3,
+    "triangles": 12856,
+    "vertices": 24124,
+    "meshes": 2,
+    "size": [
+      5.6,
+      5.406,
+      5.6
+    ],
+    "addedTriangles": 528,
+    "geometryHash": "a1166439af4a10ee13606c447851a082258bce895d8614501d2c16988881e973",
+    "result": "PASS"
+  },
+  {
+    "type": "barracks",
+    "level": 4,
+    "triangles": 13480,
+    "vertices": 25204,
+    "meshes": 2,
+    "size": [
+      5.6,
+      5.435,
+      5.6
+    ],
+    "addedTriangles": 624,
+    "geometryHash": "cca9e1081271379c26accfe40ac24a3458f40f928076ebec4764ef55911a4473",
+    "result": "PASS"
+  },
+  {
+    "type": "barracks",
+    "level": 5,
+    "triangles": 14664,
+    "vertices": 27268,
+    "meshes": 2,
+    "size": [
+      5.6,
+      5.435,
+      5.6
+    ],
+    "addedTriangles": 1184,
+    "geometryHash": "c9fa6c4c62e7fc0bc9d3dcebd81499c7a523699bb32781377c7566150d1b6534",
+    "result": "PASS"
+  },
+  {
+    "type": "barracks",
+    "level": 6,
+    "triangles": 16128,
+    "vertices": 29764,
+    "meshes": 2,
+    "size": [
+      5.6,
+      5.435,
+      5.6
+    ],
+    "addedTriangles": 1464,
+    "geometryHash": "5de2191172f9d376df858e94d290a125330c2906b91a97af64c9dd8676f7e75f",
+    "result": "PASS"
+  },
+  {
+    "type": "barracks",
+    "level": 7,
+    "triangles": 16450,
+    "vertices": 30346,
+    "meshes": 2,
+    "size": [
+      5.6,
+      6.3815,
+      5.6
+    ],
+    "addedTriangles": 322,
+    "geometryHash": "6595dc29c8814e26a62a27f00fba131d896da7932019f747c816fa44eb74c485",
+    "result": "PASS"
+  },
+  {
+    "type": "barracks",
+    "level": 8,
+    "triangles": 18690,
+    "vertices": 34282,
+    "meshes": 2,
+    "size": [
+      5.6,
+      6.3815,
+      5.6
+    ],
+    "addedTriangles": 2240,
+    "geometryHash": "b008e5703b53e5ddf357207e381a20533434f80be771f086a0203abd93e84b3e",
+    "result": "PASS"
+  },
+  {
+    "type": "barracks",
+    "level": 9,
+    "triangles": 19082,
+    "vertices": 34954,
+    "meshes": 2,
+    "size": [
+      5.6,
+      6.3815,
+      5.6
+    ],
+    "addedTriangles": 392,
+    "geometryHash": "b01b81c679de0235d4da06c3b7c79011a0a96007908da229749bc492abed95a5",
+    "result": "PASS"
+  },
+  {
+    "type": "barracks",
+    "level": 10,
+    "triangles": 19682,
+    "vertices": 36010,
+    "meshes": 2,
+    "size": [
+      5.6,
+      6.3815,
+      5.6
+    ],
+    "addedTriangles": 600,
+    "geometryHash": "789e2ffde04edd1b6caa69a840e7d8d8c63e1827aaf58ffb51a40d8b7cd2c27e",
+    "result": "PASS"
+  },
+  {
+    "type": "barracks",
+    "level": 11,
+    "triangles": 20778,
+    "vertices": 37930,
+    "meshes": 2,
+    "size": [
+      5.6,
+      6.3815,
+      5.6
+    ],
+    "addedTriangles": 1096,
+    "geometryHash": "4904d45a3550b86e7fab1b31b71c2042af8aab8f5d28e4aea6a7915bcfb38835",
+    "result": "PASS"
+  },
+  {
+    "type": "barracks",
+    "level": 12,
+    "triangles": 21042,
+    "vertices": 38374,
+    "meshes": 2,
+    "size": [
+      5.6,
+      6.3815,
+      5.6
+    ],
+    "addedTriangles": 264,
+    "geometryHash": "9c12a28a941e8936f6e15057ff31b0341897fc7c4b7fd26921422e76a76af227",
+    "result": "PASS"
+  },
+  {
+    "type": "barracks",
+    "level": 13,
+    "triangles": 21594,
+    "vertices": 39334,
+    "meshes": 2,
+    "size": [
+      5.6,
+      6.3815,
+      5.6
+    ],
+    "addedTriangles": 552,
+    "geometryHash": "80c02eec1a071519d011167e0bca7e59362feb13eb15321a78b8cff4eb482e1f",
+    "result": "PASS"
+  },
+  {
+    "type": "barracks",
+    "level": 14,
+    "triangles": 22142,
+    "vertices": 40294,
+    "meshes": 2,
+    "size": [
+      5.6,
+      7.2855,
+      5.6
+    ],
+    "addedTriangles": 548,
+    "geometryHash": "4ca5f210bb895394586f34bbc66ed35be3a1ab9a85088b43e61d3a2984e13372",
+    "result": "PASS"
+  },
+  {
+    "type": "barracks",
+    "level": 15,
+    "triangles": 23398,
+    "vertices": 42514,
+    "meshes": 2,
+    "size": [
+      5.6,
+      7.83,
+      5.6
+    ],
+    "addedTriangles": 1256,
+    "geometryHash": "be6bd562e6589f548adac9be89731c3c126fbb35104d3b74cbcc17091c8186fd",
+    "result": "PASS"
+  },
+  {
+    "type": "archer_tower",
+    "level": 2,
+    "triangles": 18087,
+    "vertices": 31823,
+    "meshes": 2,
+    "size": [
+      3.6,
+      8.63,
+      3.6
+    ],
+    "addedTriangles": 620,
+    "geometryHash": "b88155fdfd5bd4d38828dada171feddeb82dd8ff421960289b38585bc9643284",
+    "result": "PASS"
+  },
+  {
+    "type": "archer_tower",
+    "level": 3,
+    "triangles": 18255,
+    "vertices": 32159,
+    "meshes": 2,
+    "size": [
+      3.6,
+      8.63,
+      3.6
+    ],
+    "addedTriangles": 168,
+    "geometryHash": "634c87b859b81a8ee3311d85a247bd257d0a1c7a5fb18c4c755541ea99287751",
+    "result": "PASS"
+  },
+  {
+    "type": "archer_tower",
+    "level": 4,
+    "triangles": 18519,
+    "vertices": 32603,
+    "meshes": 2,
+    "size": [
+      3.6,
+      8.63,
+      3.6
+    ],
+    "addedTriangles": 264,
+    "geometryHash": "65148030d39ff9aeb1182dca5328be2c2c6ed6d417cf91ebde24ecda413805e2",
+    "result": "PASS"
+  },
+  {
+    "type": "archer_tower",
+    "level": 5,
+    "triangles": 19803,
+    "vertices": 34763,
+    "meshes": 2,
+    "size": [
+      3.6,
+      8.63,
+      3.6
+    ],
+    "addedTriangles": 1284,
+    "geometryHash": "4acfc894c9aaf5c0e80ce1ae40be2d9a2cbe37b49e0634a0489dfa7d91c6c834",
+    "result": "PASS"
+  },
+  {
+    "type": "archer_tower",
+    "level": 6,
+    "triangles": 21277,
+    "vertices": 37243,
+    "meshes": 2,
+    "size": [
+      3.6,
+      9.5975,
+      3.6
+    ],
+    "addedTriangles": 1474,
+    "geometryHash": "7be892fceb1c8f18d43481ff0d2d31812581a53629af1991588bb90dbe901077",
+    "result": "PASS"
+  },
+  {
+    "type": "archer_tower",
+    "level": 7,
+    "triangles": 21613,
+    "vertices": 37819,
+    "meshes": 2,
+    "size": [
+      3.6,
+      9.5975,
+      3.6
+    ],
+    "addedTriangles": 336,
+    "geometryHash": "1e9d6a78c081e226c46af00876fae8addbb12961791229851860dfec0b756912",
+    "result": "PASS"
+  },
+  {
+    "type": "archer_tower",
+    "level": 8,
+    "triangles": 22897,
+    "vertices": 39979,
+    "meshes": 2,
+    "size": [
+      3.6,
+      9.5975,
+      3.6
+    ],
+    "addedTriangles": 1284,
+    "geometryHash": "cf78c30b4b5a6e2c1264e288fb07333c7317d1d8cbc8e6a93136fe4479287377",
+    "result": "PASS"
+  },
+  {
+    "type": "archer_tower",
+    "level": 9,
+    "triangles": 23053,
+    "vertices": 40291,
+    "meshes": 2,
+    "size": [
+      3.6,
+      9.5975,
+      3.6
+    ],
+    "addedTriangles": 156,
+    "geometryHash": "81bbef76db694fc602736da1b5e994fe89498b53f4d739d9494accadefffbbc9",
+    "result": "PASS"
+  },
+  {
+    "type": "archer_tower",
+    "level": 10,
+    "triangles": 24527,
+    "vertices": 42771,
+    "meshes": 2,
+    "size": [
+      3.6,
+      10.5775,
+      3.6
+    ],
+    "addedTriangles": 1474,
+    "geometryHash": "483e22c608cde0a72707e38590c81649378fe9fa4e6da9ddaeffadb5c0e194a9",
+    "result": "PASS"
+  },
+  {
+    "type": "archer_tower",
+    "level": 11,
+    "triangles": 25623,
+    "vertices": 44691,
+    "meshes": 2,
+    "size": [
+      3.6,
+      10.5775,
+      3.6
+    ],
+    "addedTriangles": 1096,
+    "geometryHash": "0fb372858ae076f52fb86fac48e0bad71d315c28d739baf20d9771d43a1453fb",
+    "result": "PASS"
+  },
+  {
+    "type": "archer_tower",
+    "level": 12,
+    "triangles": 26907,
+    "vertices": 46851,
+    "meshes": 2,
+    "size": [
+      3.6,
+      10.5775,
+      3.6
+    ],
+    "addedTriangles": 1284,
+    "geometryHash": "20a4597d32b969e8a45a718ade5c1df0f6e7e6a9d51a8859980a1d316d28e30b",
+    "result": "PASS"
+  },
+  {
+    "type": "archer_tower",
+    "level": 13,
+    "triangles": 27671,
+    "vertices": 48147,
+    "meshes": 2,
+    "size": [
+      3.6,
+      11.05,
+      3.6
+    ],
+    "addedTriangles": 764,
+    "geometryHash": "3a6faf7a0a70269cbe6fd25e3ad91a2435de6597ba42f442e3d9635bcc790d21",
+    "result": "PASS"
+  },
+  {
+    "type": "archer_tower",
+    "level": 14,
+    "triangles": 27895,
+    "vertices": 48531,
+    "meshes": 2,
+    "size": [
+      3.6,
+      11.05,
+      3.6
+    ],
+    "addedTriangles": 224,
+    "geometryHash": "5f489c6d37a4e43e71da0eac7552ac86eb8a826478c64784351bb273a282ae55",
+    "result": "PASS"
+  },
+  {
+    "type": "archer_tower",
+    "level": 15,
+    "triangles": 28163,
+    "vertices": 49059,
+    "meshes": 2,
+    "size": [
+      3.6,
+      12.1,
+      3.6
+    ],
+    "addedTriangles": 268,
+    "geometryHash": "d78f20dd159e1c77d6620e8b8fa7473a7cfebbdd954695d9aff3fc89f76e57a3",
+    "result": "PASS"
+  },
+  {
+    "type": "market",
+    "level": 2,
+    "triangles": 17968,
+    "vertices": 32676,
+    "meshes": 2,
+    "size": [
+      5.6,
+      5.54575,
+      5.6
+    ],
+    "addedTriangles": 600,
+    "geometryHash": "09a7d5879d156f048dc3afa6d3716797a9f21fc4885a97494a1d1a624956badd",
+    "result": "PASS"
+  },
+  {
+    "type": "market",
+    "level": 3,
+    "triangles": 18520,
+    "vertices": 33636,
+    "meshes": 2,
+    "size": [
+      5.6,
+      5.54575,
+      5.6
+    ],
+    "addedTriangles": 552,
+    "geometryHash": "8b341623e7ebd9c1eec857a671b0cd2900a5a6e39ec96f068d667a7f26d8f3da",
+    "result": "PASS"
+  },
+  {
+    "type": "market",
+    "level": 4,
+    "triangles": 19455,
+    "vertices": 35373,
+    "meshes": 2,
+    "size": [
+      5.6,
+      5.7892,
+      5.6
+    ],
+    "addedTriangles": 935,
+    "geometryHash": "c6af4d34f4acd388560f40bb6936c58d0a3c6dac261e0d06b8833c9ed33f7c13",
+    "result": "PASS"
+  },
+  {
+    "type": "market",
+    "level": 5,
+    "triangles": 20559,
+    "vertices": 37293,
+    "meshes": 2,
+    "size": [
+      5.6,
+      5.7892,
+      5.6
+    ],
+    "addedTriangles": 1104,
+    "geometryHash": "24b0d1500886a09b9e53be64f7ea2182ecaac29132bfaafe7c011c453f90ed2b",
+    "result": "PASS"
+  },
+  {
+    "type": "market",
+    "level": 6,
+    "triangles": 21655,
+    "vertices": 39213,
+    "meshes": 2,
+    "size": [
+      5.6,
+      5.7892,
+      5.6
+    ],
+    "addedTriangles": 1096,
+    "geometryHash": "98b515ca63f588be305706de9ed9768a17707453593d9963c354efecd8239dd3",
+    "result": "PASS"
+  },
+  {
+    "type": "market",
+    "level": 7,
+    "triangles": 22635,
+    "vertices": 40953,
+    "meshes": 2,
+    "size": [
+      5.6,
+      5.7892,
+      5.6
+    ],
+    "addedTriangles": 980,
+    "geometryHash": "93a933624d40b1c49ab87ad70ed33fe9f6e6154e433d0b984851616b98eeb08d",
+    "result": "PASS"
+  },
+  {
+    "type": "market",
+    "level": 8,
+    "triangles": 23079,
+    "vertices": 41661,
+    "meshes": 2,
+    "size": [
+      5.6,
+      5.7892,
+      5.6
+    ],
+    "addedTriangles": 444,
+    "geometryHash": "f5ae5177802cdac7dc41f0038805e4000de972aae23cef7d280fa21275be9040",
+    "result": "PASS"
+  },
+  {
+    "type": "market",
+    "level": 9,
+    "triangles": 23721,
+    "vertices": 42859,
+    "meshes": 2,
+    "size": [
+      5.6,
+      6.6424,
+      5.6
+    ],
+    "addedTriangles": 642,
+    "geometryHash": "7e285db8bc7891514a55ec343b8706d8caa7f528aa246733f300e1901cdf3875",
+    "result": "PASS"
+  },
+  {
+    "type": "market",
+    "level": 10,
+    "triangles": 24273,
+    "vertices": 43819,
+    "meshes": 2,
+    "size": [
+      5.6,
+      6.6424,
+      5.6
+    ],
+    "addedTriangles": 552,
+    "geometryHash": "92778d305d36f53cd395da6741723cec10c513b36345cb996ad63df7319b2875",
+    "result": "PASS"
+  },
+  {
+    "type": "market",
+    "level": 11,
+    "triangles": 24537,
+    "vertices": 44263,
+    "meshes": 2,
+    "size": [
+      5.6,
+      6.6424,
+      5.6
+    ],
+    "addedTriangles": 264,
+    "geometryHash": "83bb5e23a1ec56e6ff91c1d7436571b45a79020cdcc593a4b6f46f10187ec3e2",
+    "result": "PASS"
+  },
+  {
+    "type": "market",
+    "level": 12,
+    "triangles": 25653,
+    "vertices": 46279,
+    "meshes": 2,
+    "size": [
+      5.6,
+      6.6424,
+      5.6
+    ],
+    "addedTriangles": 1116,
+    "geometryHash": "a3cfa61b9fab9f11557ea1351b44686c409aea1fddb1d00f6df939156c70d9be",
+    "result": "PASS"
+  },
+  {
+    "type": "market",
+    "level": 13,
+    "triangles": 26749,
+    "vertices": 48199,
+    "meshes": 2,
+    "size": [
+      5.6,
+      7.628,
+      5.6
+    ],
+    "addedTriangles": 1096,
+    "geometryHash": "482486891ce6c97f43ceb6b9eb67ee94ad9bf6f73cef3f32e9b35b98307733cf",
+    "result": "PASS"
+  },
+  {
+    "type": "market",
+    "level": 14,
+    "triangles": 27357,
+    "vertices": 49255,
+    "meshes": 2,
+    "size": [
+      5.6,
+      7.628,
+      5.6
+    ],
+    "addedTriangles": 608,
+    "geometryHash": "362f276cd2308ae1f4a6e7af4442423d1cd274bce5de64925a25ef364cb02585",
+    "result": "PASS"
+  },
+  {
+    "type": "market",
+    "level": 15,
+    "triangles": 27625,
+    "vertices": 49783,
+    "meshes": 2,
+    "size": [
+      5.6,
+      8.2,
+      5.6
+    ],
+    "addedTriangles": 268,
+    "geometryHash": "fad4f381301c0a9d44089240851c7b873b36779229e5ced88367af6eeca17653",
+    "result": "PASS"
+  },
+  {
+    "type": "wall",
+    "level": 2,
+    "triangles": 1356,
+    "vertices": 2844,
+    "meshes": 2,
+    "size": [
+      1.87,
+      2.31,
+      1.86
+    ],
+    "addedTriangles": 160,
+    "geometryHash": "bc1a8fd0bc676beb6f662335d3e14a42e145445a0e1177fe62ef9b79e99acb4c",
+    "result": "PASS"
+  },
+  {
+    "type": "wall",
+    "level": 3,
+    "triangles": 1620,
+    "vertices": 3288,
+    "meshes": 2,
+    "size": [
+      1.87,
+      2.31,
+      1.86
+    ],
+    "addedTriangles": 264,
+    "geometryHash": "05543d3b100f4cff532d1a80f394a17b5ce49946c599e969b668e36068dcf6d1",
+    "result": "PASS"
+  },
+  {
+    "type": "wall",
+    "level": 4,
+    "triangles": 1676,
+    "vertices": 3408,
+    "meshes": 2,
+    "size": [
+      1.87,
+      2.645,
+      1.86
+    ],
+    "addedTriangles": 56,
+    "geometryHash": "65d53deefe1f72e0038d1ff6416b438649d1faa7f372a2076f5fb3e58d3c0215",
+    "result": "PASS"
+  },
+  {
+    "type": "wall",
+    "level": 5,
+    "triangles": 2572,
+    "vertices": 4944,
+    "meshes": 2,
+    "size": [
+      1.87,
+      3.465,
+      1.86
+    ],
+    "addedTriangles": 896,
+    "geometryHash": "8a26da1bec4a12b58521158ab0cb6e77d8412c7314a7a0c6bd77a4b0c63d4218",
+    "result": "PASS"
+  },
+  {
+    "type": "wall",
+    "level": 6,
+    "triangles": 2848,
+    "vertices": 5424,
+    "meshes": 2,
+    "size": [
+      1.87,
+      3.465,
+      1.86
+    ],
+    "addedTriangles": 276,
+    "geometryHash": "a4a446b78e2fafed7f91d4a8471d7195b75a4fb68a02e1a48c3d1374da337e51",
+    "result": "PASS"
+  },
+  {
+    "type": "wall",
+    "level": 7,
+    "triangles": 3170,
+    "vertices": 6006,
+    "meshes": 2,
+    "size": [
+      1.87,
+      3.9415,
+      1.86
+    ],
+    "addedTriangles": 322,
+    "geometryHash": "b9dff63cad7de8072a1860a11fdc7abc2f8995184d5a5ae1232c98aa11c37541",
+    "result": "PASS"
+  },
+  {
+    "type": "wall",
+    "level": 8,
+    "triangles": 3282,
+    "vertices": 6198,
+    "meshes": 2,
+    "size": [
+      1.898,
+      3.9415,
+      1.86
+    ],
+    "addedTriangles": 112,
+    "geometryHash": "f98786eaffe9f84fec60f241b2335e0930b464faae8157bc2669d83275a3672b",
+    "result": "PASS"
+  },
+  {
+    "type": "wall",
+    "level": 9,
+    "triangles": 3830,
+    "vertices": 7158,
+    "meshes": 2,
+    "size": [
+      1.898,
+      4.425,
+      1.86
+    ],
+    "addedTriangles": 548,
+    "geometryHash": "71f2c225783ce09c3042b07c59963b279250623d16ea6377dfd16f378cfa226b",
+    "result": "PASS"
+  },
+  {
+    "type": "wall",
+    "level": 10,
+    "triangles": 4158,
+    "vertices": 7766,
+    "meshes": 2,
+    "size": [
+      1.898,
+      4.425,
+      1.86
+    ],
+    "addedTriangles": 328,
+    "geometryHash": "ae831627d36c9d15120b8731703d504f783947661c11468a418b9da237fec7b1",
+    "result": "PASS"
+  },
+  {
+    "type": "wall",
+    "level": 11,
+    "triangles": 4326,
+    "vertices": 8030,
+    "meshes": 2,
+    "size": [
+      1.898,
+      4.425,
+      1.865
+    ],
+    "addedTriangles": 168,
+    "geometryHash": "887b6b92a98145b4832493ba26641707dde2e646e28039b9fae6d67eb1c27e62",
+    "result": "PASS"
+  },
+  {
+    "type": "wall",
+    "level": 12,
+    "triangles": 4854,
+    "vertices": 8942,
+    "meshes": 2,
+    "size": [
+      1.898,
+      4.505,
+      1.865
+    ],
+    "addedTriangles": 528,
+    "geometryHash": "4432c6e7007491c1cb0d5ba43eebb4fc39a3027d876c370bc838c6572f8c4147",
+    "result": "PASS"
+  },
+  {
+    "type": "wall",
+    "level": 13,
+    "triangles": 5934,
+    "vertices": 10814,
+    "meshes": 2,
+    "size": [
+      1.898,
+      4.505,
+      1.865
+    ],
+    "addedTriangles": 1080,
+    "geometryHash": "893e8fb7f44b9586da0e2a1e4cc069f64d57c4e0df82366c2ccf7cfc74e4db9d",
+    "result": "PASS"
+  },
+  {
+    "type": "wall",
+    "level": 14,
+    "triangles": 6022,
+    "vertices": 10958,
+    "meshes": 2,
+    "size": [
+      1.898,
+      4.505,
+      1.87
+    ],
+    "addedTriangles": 88,
+    "geometryHash": "030d0b8980f5019c73a0a4ebdb4bd7dcaca33240d179c985a7c13b67d9aa52cb",
+    "result": "PASS"
+  },
+  {
+    "type": "wall",
+    "level": 15,
+    "triangles": 6210,
+    "vertices": 11326,
+    "meshes": 2,
+    "size": [
+      1.898,
+      5.02,
+      1.87
+    ],
+    "addedTriangles": 188,
+    "geometryHash": "29a7a56ebb53ce53cfebb8828e36a54486999fe67f301704e1e224ecb6145dfd",
+    "result": "PASS"
+  }
+]

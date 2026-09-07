@@ -1,0 +1,1130 @@
+{
+  "method": "Native Three.js GLTFLoader; normals/vertex colors, floor, centered XZ, footprint, 20k triangle budget, 2–4 materials, adjacent position/index geometry hashes (not color/file hashes)",
+  "levels": [
+    {
+      "type": "farm",
+      "level": 1,
+      "triangles": 15162,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 784404,
+      "geometrySha256": "43d21887393453efa2d87581c23e77ca5de334f19e62ad412647ed88f84fe68e",
+      "size": [
+        5.599999904632568,
+        2.811500072479248,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "farm",
+      "level": 2,
+      "triangles": 4962,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 383400,
+      "geometrySha256": "7a16db88b74803bb3146ddef1786322a2602bf542aa7deda73783f4da1fe26d7",
+      "size": [
+        5.599999904632568,
+        2.7214999198913574,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "farm",
+      "level": 3,
+      "triangles": 5138,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 396548,
+      "geometrySha256": "f82c92731f7fd308059c71a1542e33b95febf2ed76f9ea5552cee29ae8d7822d",
+      "size": [
+        5.599999904632568,
+        2.7214999198913574,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "farm",
+      "level": 4,
+      "triangles": 7598,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 592752,
+      "geometrySha256": "c0c457702b16ea2a5ef6bb3c665f5e4560ea4b9c83141acd4ab09a45dd462775",
+      "size": [
+        5.599999904632568,
+        2.654428243637085,
+        5.461987495422363
+      ],
+      "passed": true
+    },
+    {
+      "type": "farm",
+      "level": 5,
+      "triangles": 8194,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 634344,
+      "geometrySha256": "93e98af4ebf44c95fadda1dda60baa7c7b668591e054fbd57a0cb3f7eff262b7",
+      "size": [
+        5.599999904632568,
+        2.654428243637085,
+        5.461987495422363
+      ],
+      "passed": true
+    },
+    {
+      "type": "farm",
+      "level": 6,
+      "triangles": 8846,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 688800,
+      "geometrySha256": "f4585832b7418a162e0fff799b67d1930dc6ac837596664baecd96a0f5317d72",
+      "size": [
+        5.599999904632568,
+        2.654428243637085,
+        5.461987495422363
+      ],
+      "passed": true
+    },
+    {
+      "type": "farm",
+      "level": 7,
+      "triangles": 9206,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 712560,
+      "geometrySha256": "8217c180aecdda0040cd87ef84fbbb5be560ac15663ce1ca201171437bc56cf3",
+      "size": [
+        5.599999904632568,
+        2.654428243637085,
+        5.461987495422363
+      ],
+      "passed": true
+    },
+    {
+      "type": "farm",
+      "level": 8,
+      "triangles": 9446,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 729552,
+      "geometrySha256": "a5ab43bd38415d7bfc61d1de2b1ad54cbbd9895543a6e17380ff6a4011188941",
+      "size": [
+        5.599999904632568,
+        3.2884089946746826,
+        5.461987495422363
+      ],
+      "passed": true
+    },
+    {
+      "type": "farm",
+      "level": 9,
+      "triangles": 11878,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 935088,
+      "geometrySha256": "81ed208c9a3958ecf414441114d6806671228b5254e839c394a4fa2c6c91bc12",
+      "size": [
+        5.599999904632568,
+        3.2884089946746826,
+        5.461987495422363
+      ],
+      "passed": true
+    },
+    {
+      "type": "farm",
+      "level": 10,
+      "triangles": 12010,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 946252,
+      "geometrySha256": "775ab305a2353fe46846b31e53a142095ea99f6040778fb9bd13c1b8456b4650",
+      "size": [
+        5.599999904632568,
+        3.2884089946746826,
+        5.461987495422363
+      ],
+      "passed": true
+    },
+    {
+      "type": "farm",
+      "level": 11,
+      "triangles": 12450,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 974812,
+      "geometrySha256": "516cda9961ab2f80c9dc5a4c01bfc1a716639d481d9ad02a1d9260d90fd07dc6",
+      "size": [
+        5.599999904632568,
+        3.2884089946746826,
+        5.461987495422363
+      ],
+      "passed": true
+    },
+    {
+      "type": "farm",
+      "level": 12,
+      "triangles": 13060,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 1020308,
+      "geometrySha256": "8727a32b1122ce0665bd6355a7aca25a11508344e56d5b3e14615ef0bb5e523c",
+      "size": [
+        5.599999904632568,
+        4.371053218841553,
+        5.461987495422363
+      ],
+      "passed": true
+    },
+    {
+      "type": "farm",
+      "level": 13,
+      "triangles": 13756,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 1077620,
+      "geometrySha256": "d0324aea3cd1c21ef6c60a954963239af7fc946a8842e47998e8b6a1b1cd1bd3",
+      "size": [
+        5.599999904632568,
+        4.371053218841553,
+        5.461987495422363
+      ],
+      "passed": true
+    },
+    {
+      "type": "farm",
+      "level": 14,
+      "triangles": 14032,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 1096272,
+      "geometrySha256": "78a978448e468992b363631b68e0db0674a7292faeea8582d192b95ae81f61e9",
+      "size": [
+        5.599999904632568,
+        4.371053218841553,
+        5.461987495422363
+      ],
+      "passed": true
+    },
+    {
+      "type": "farm",
+      "level": 15,
+      "triangles": 15486,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 1209612,
+      "geometrySha256": "af6a74740c367810b87c6d78870bc015fd452634c20b62b04186ef3ad1e81188",
+      "size": [
+        5.599999904632568,
+        5.149580955505371,
+        5.461987495422363
+      ],
+      "passed": true
+    },
+    {
+      "type": "lumber",
+      "level": 1,
+      "triangles": 7758,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 411668,
+      "geometrySha256": "7121868990c740394554d7d018c8a629317db62f9f23e310068f7a34b386ed4e",
+      "size": [
+        5.599999904632568,
+        3.8315000534057617,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "lumber",
+      "level": 2,
+      "triangles": 5890,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 466288,
+      "geometrySha256": "858972dbba71e54b3a729e85bdb557b6ee3780eec88601abb7d5b2d001ccf259",
+      "size": [
+        5.599999904632568,
+        3.68149995803833,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "lumber",
+      "level": 3,
+      "triangles": 6486,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 516520,
+      "geometrySha256": "340db0f3d0f0058d2f1f89e804ccc0e29e92e18750cdef3cbc7eb15f633d9417",
+      "size": [
+        5.599999904632568,
+        3.68149995803833,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "lumber",
+      "level": 4,
+      "triangles": 6952,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 548912,
+      "geometrySha256": "09a47f8f0df63f58d73b1f1c2b2c3d3c7cd81d2df4500bd60075e7257fba87af",
+      "size": [
+        5.599999904632568,
+        3.68149995803833,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "lumber",
+      "level": 5,
+      "triangles": 7776,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 616064,
+      "geometrySha256": "44b2d41b3e2a126f2fe86472b201211401fbed4dfbe870134140bba659ad5440",
+      "size": [
+        5.599999904632568,
+        3.68149995803833,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "lumber",
+      "level": 6,
+      "triangles": 7860,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 621752,
+      "geometrySha256": "0cfac37c1883cd509b84b23571fb200c4bf3cd54707eec9d5b27c4d06fb48671",
+      "size": [
+        5.599999904632568,
+        3.68149995803833,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "lumber",
+      "level": 7,
+      "triangles": 8300,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 650312,
+      "geometrySha256": "8993de1e04b4ab790cd6105f64bc438cca5940ae7166f642254bd298e4e0fdcf",
+      "size": [
+        5.599999904632568,
+        3.68149995803833,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "lumber",
+      "level": 8,
+      "triangles": 8392,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 657776,
+      "geometrySha256": "8831e88bd1515da8891a2d6739295ae13e19297f4ec670c2b0774f91fb606a1d",
+      "size": [
+        5.599999904632568,
+        4.261499881744385,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "lumber",
+      "level": 9,
+      "triangles": 8488,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 665264,
+      "geometrySha256": "e2c5bef15c2c9e89500c867595168897653de2d568c2d080bbfd23579dc4208c",
+      "size": [
+        5.599999904632568,
+        4.261499881744385,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "lumber",
+      "level": 10,
+      "triangles": 9440,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 739668,
+      "geometrySha256": "2f3ee5c49ab834da72158d91264d533a2920e3d61e9f105c72e02e5d35e6605d",
+      "size": [
+        5.599999904632568,
+        4.261499881744385,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "lumber",
+      "level": 11,
+      "triangles": 9628,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 754620,
+      "geometrySha256": "400422b61ecc256a640d3a9f28f3c4cbe8b7446de8a3f7069ea2677a259b68d1",
+      "size": [
+        5.599999904632568,
+        4.261499881744385,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "lumber",
+      "level": 12,
+      "triangles": 9672,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 758340,
+      "geometrySha256": "2f60055ce3edab0f4f26690727361f991bae07ebebeeecd0d9eef1b6737c491e",
+      "size": [
+        5.599999904632568,
+        4.621500015258789,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "lumber",
+      "level": 13,
+      "triangles": 9948,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 776988,
+      "geometrySha256": "1bec38196d30758d06603896202739fb5794abe742ee485242a4d6a4d4538f4c",
+      "size": [
+        5.599999904632568,
+        4.747938632965088,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "lumber",
+      "level": 14,
+      "triangles": 10908,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 856192,
+      "geometrySha256": "1e348b88ccb529f755f71988c52fda1c7b24bbd928d435b991218e4ab795b367",
+      "size": [
+        5.599999904632568,
+        4.747938632965088,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "lumber",
+      "level": 15,
+      "triangles": 13244,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 1039844,
+      "geometrySha256": "029cba1e2ddc8ce96d8c79b77638e4c606a4b280ceff2dfdfed43c4257c352fc",
+      "size": [
+        5.599999904632568,
+        5.491499900817871,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "mine",
+      "level": 1,
+      "triangles": 4812,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 260124,
+      "geometrySha256": "3162e75d3ffaf09e37b9fc60289e4384e38f807027b12c4de05dc798ff0ab934",
+      "size": [
+        5.599999904632568,
+        4.599999904632568,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "mine",
+      "level": 2,
+      "triangles": 2432,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 187836,
+      "geometrySha256": "0a01baff73b3a21f91f1964180dc6b04168ddc40223a21e26e6496504fe6c2a1",
+      "size": [
+        5.599999904632568,
+        3.7799999713897705,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "mine",
+      "level": 3,
+      "triangles": 2516,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 194388,
+      "geometrySha256": "d0a5210a141c4c3fe07dfb830a6d400992bf94cd576afe277669568c00298882",
+      "size": [
+        5.599999904632568,
+        3.7799999713897705,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "mine",
+      "level": 4,
+      "triangles": 3144,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 247404,
+      "geometrySha256": "15ab6ec898daeb60ac5b14a10133d4f54cc57b2211e4f2825afebe9783fd788c",
+      "size": [
+        5.599999904632568,
+        3.7799999713897705,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "mine",
+      "level": 5,
+      "triangles": 3968,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 314556,
+      "geometrySha256": "d0b1a45ba8d7e03831bd45758450a77ae1f362e8bc831ed92b63211d798128c5",
+      "size": [
+        5.599999904632568,
+        3.7799999713897705,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "mine",
+      "level": 6,
+      "triangles": 4020,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 318324,
+      "geometrySha256": "aab0275f180a895781686c61f9ec89d0e29801a1ba18540b299a60a14aaab3f6",
+      "size": [
+        5.599999904632568,
+        3.7799999713897705,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "mine",
+      "level": 7,
+      "triangles": 4800,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 381760,
+      "geometrySha256": "48012a2a77d29e0c8ae74deff2342ccdd57564e1d945ecb92645b7de55f953fa",
+      "size": [
+        5.599999904632568,
+        3.7799999713897705,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "mine",
+      "level": 8,
+      "triangles": 5240,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 411188,
+      "geometrySha256": "1627f4deb92ef0b1191717fffda297bbc25bc9dd5b84fc5afc35c8a0c5d93ad5",
+      "size": [
+        5.599999904632568,
+        4.295000076293945,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "mine",
+      "level": 9,
+      "triangles": 7014,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 551648,
+      "geometrySha256": "3365612d396df06242f5384bc258f16a4c70b7d2ffc5a0da62344d5585352b59",
+      "size": [
+        5.599999904632568,
+        4.295000076293945,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "mine",
+      "level": 10,
+      "triangles": 8230,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 637572,
+      "geometrySha256": "09dddd43a2cca8183f718330782bc7fb35d7933283135c46897e708d025394c6",
+      "size": [
+        5.599999904632568,
+        4.295000076293945,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "mine",
+      "level": 11,
+      "triangles": 8270,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 640404,
+      "geometrySha256": "59cff660e84a025959a7c040313976835621f10c157779cd031923ef815c6dc9",
+      "size": [
+        5.599999904632568,
+        4.295000076293945,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "mine",
+      "level": 12,
+      "triangles": 8646,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 672036,
+      "geometrySha256": "915dbf1f611b02ee32e31269682c73413f7bb98eb562bfecf34ad32403f58f66",
+      "size": [
+        5.599999904632568,
+        4.295000076293945,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "mine",
+      "level": 13,
+      "triangles": 9306,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 727836,
+      "geometrySha256": "2decd18cd5dd390ea3cd2cb1f6b881f5d207d947822ac446f01aaa280012dab6",
+      "size": [
+        5.599999904632568,
+        4.914999961853027,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "mine",
+      "level": 14,
+      "triangles": 9418,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 737148,
+      "geometrySha256": "0e6835ddd000294a9cf78dfa6c4080907b143c215b60e5f5c8b2c1e12000d3c6",
+      "size": [
+        5.599999904632568,
+        4.914999961853027,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "mine",
+      "level": 15,
+      "triangles": 11710,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 917080,
+      "geometrySha256": "b3192e156fe94747f147bb50d21b9fa5608d33a79fb4bb729cf6293cd379e1b6",
+      "size": [
+        5.599999904632568,
+        5.871500015258789,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "granary",
+      "level": 1,
+      "triangles": 10202,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 559392,
+      "geometrySha256": "fe387911590847de46dc115ff5b71066c603836a60fc0cbba977673f7956d71f",
+      "size": [
+        5.599999904632568,
+        4.291500091552734,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "granary",
+      "level": 2,
+      "triangles": 7682,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 610100,
+      "geometrySha256": "c7f203de5d3fe6adb33f7b6832eb891829c3ffe2a16220818f3d4f62779eacf6",
+      "size": [
+        5.599999904632568,
+        3.68149995803833,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "granary",
+      "level": 3,
+      "triangles": 8010,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 636260,
+      "geometrySha256": "c2ec326ee095742e18066a5381488b20a6e9ad0aa96d3622947a0bf9b2483160",
+      "size": [
+        5.599999904632568,
+        3.68149995803833,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "granary",
+      "level": 4,
+      "triangles": 8730,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 683780,
+      "geometrySha256": "67ae24495c707e1351bc138c9b6981e07bf4047fc7ccfaddef6860b52bba11ab",
+      "size": [
+        5.599999904632568,
+        3.68149995803833,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "granary",
+      "level": 5,
+      "triangles": 9668,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 758744,
+      "geometrySha256": "4587c0e232e4503300c9dfc029398aa70fb48756d49a21275e1e64926ad1853d",
+      "size": [
+        5.599999904632568,
+        3.68149995803833,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "granary",
+      "level": 6,
+      "triangles": 9680,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 759684,
+      "geometrySha256": "e5a72b138102b52510dccfda8142048bd7172566bbab9228c24f459951658675",
+      "size": [
+        5.599999904632568,
+        3.8415000438690186,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "granary",
+      "level": 7,
+      "triangles": 10520,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 830388,
+      "geometrySha256": "91b31e3343d84048426a07931664bfd159de872a35a0b15877c29c0c798851c7",
+      "size": [
+        5.599999904632568,
+        4.46150016784668,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "granary",
+      "level": 8,
+      "triangles": 11252,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 883604,
+      "geometrySha256": "f8ae23422caea68f7b129d172dd0c92cc3f086c433fec791a80c0a482aa5c7b9",
+      "size": [
+        5.599999904632568,
+        4.46150016784668,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "granary",
+      "level": 9,
+      "triangles": 11972,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 931124,
+      "geometrySha256": "84da3205080fc05601fa37a921d6af6951e1bd96e69dbc2caa9fcaa35f37532f",
+      "size": [
+        5.599999904632568,
+        4.46150016784668,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "granary",
+      "level": 10,
+      "triangles": 12052,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 936788,
+      "geometrySha256": "ac759247c9a7959a2fe6b7f6d3462251210f6070d90981122524ed96f12fe3e7",
+      "size": [
+        5.599999904632568,
+        4.46150016784668,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "granary",
+      "level": 11,
+      "triangles": 12888,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 1004876,
+      "geometrySha256": "b933d50e8529a8ee36fb426909bfe17600b426bd50563bf28de563ea06d71c34",
+      "size": [
+        5.599999904632568,
+        4.46150016784668,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "granary",
+      "level": 12,
+      "triangles": 13620,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 1058088,
+      "geometrySha256": "889258ba2a36ac1595c9552990bb6c4294ed271bb329e13babc9a46d7d06f09d",
+      "size": [
+        5.599999904632568,
+        4.781499862670898,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "granary",
+      "level": 13,
+      "triangles": 13692,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 1062840,
+      "geometrySha256": "5253d7964bacf513b58143470a6e7185262a413b48c6b20c9eb1d73206c148f4",
+      "size": [
+        5.599999904632568,
+        4.781499862670898,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "granary",
+      "level": 14,
+      "triangles": 14724,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 1141032,
+      "geometrySha256": "53cf9ad809165b99842ce27e3774f817a0fa80b099ec6ecef546e4d308562967",
+      "size": [
+        5.599999904632568,
+        4.781499862670898,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "granary",
+      "level": 15,
+      "triangles": 16122,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 1249716,
+      "geometrySha256": "b99b1200cd0f6a55b3a5e8bef9c980693046c5ca07470f2aafb1e6c7ece048f8",
+      "size": [
+        5.599999904632568,
+        6.06689977645874,
+        5.599999904632568
+      ],
+      "passed": true
+    },
+    {
+      "type": "gem_mine",
+      "level": 1,
+      "triangles": 2333,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 118408,
+      "geometrySha256": "efdf7b9d12dc03af4c6ec04495e48b5498fc20d8a19559d1433625f6fa22700e",
+      "size": [
+        3.5999999046325684,
+        3.8299999237060547,
+        3.5999999046325684
+      ],
+      "passed": true
+    },
+    {
+      "type": "gem_mine",
+      "level": 2,
+      "triangles": 2620,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 202780,
+      "geometrySha256": "684d86a2cfcf962c0a0378b25b6df6573625e648174a6d6fe372e0eac90e55f6",
+      "size": [
+        3.5999999046325684,
+        2.5,
+        3.5999999046325684
+      ],
+      "passed": true
+    },
+    {
+      "type": "gem_mine",
+      "level": 3,
+      "triangles": 3236,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 254860,
+      "geometrySha256": "5658345cafaa4ca8f65e8769d9a5ddaf739b1ce092a19a9ea05dd08f11232ac2",
+      "size": [
+        3.5999999046325684,
+        2.5,
+        3.5999999046325684
+      ],
+      "passed": true
+    },
+    {
+      "type": "gem_mine",
+      "level": 4,
+      "triangles": 4004,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 319088,
+      "geometrySha256": "2d501c4b49ea3c8acce51e025fccce6f4acfa85b420f03b439f85e12727d3941",
+      "size": [
+        3.5999999046325684,
+        2.5,
+        3.5999999046325684
+      ],
+      "passed": true
+    },
+    {
+      "type": "gem_mine",
+      "level": 5,
+      "triangles": 4828,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 386256,
+      "geometrySha256": "da120db2c0540b6ac103129e8489c12a8dc080e4d6db6808f51f66b1aecfb7e0",
+      "size": [
+        3.5999999046325684,
+        2.615000009536743,
+        3.5999999046325684
+      ],
+      "passed": true
+    },
+    {
+      "type": "gem_mine",
+      "level": 6,
+      "triangles": 4908,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 392784,
+      "geometrySha256": "1e629cc22adceb3ac9b80f5ac490ac84607279209e076e4b200443a35c44e055",
+      "size": [
+        3.5999999046325684,
+        2.615000009536743,
+        3.5999999046325684
+      ],
+      "passed": true
+    },
+    {
+      "type": "gem_mine",
+      "level": 7,
+      "triangles": 5348,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 422216,
+      "geometrySha256": "41af61987c07fa1fc8ca82a41053cab9c1ead9c2057a4addefae6d253ba8e463",
+      "size": [
+        3.5999999046325684,
+        2.615000009536743,
+        3.5999999046325684
+      ],
+      "passed": true
+    },
+    {
+      "type": "gem_mine",
+      "level": 8,
+      "triangles": 5788,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 451640,
+      "geometrySha256": "9f7eec7b1f0e18465555996ebbd0ef05c72e62b0a4d91e86c6b535f9e3891cb3",
+      "size": [
+        3.5999999046325684,
+        3.2899999618530273,
+        3.5999999046325684
+      ],
+      "passed": true
+    },
+    {
+      "type": "gem_mine",
+      "level": 9,
+      "triangles": 5964,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 466520,
+      "geometrySha256": "1d520a1c942b5693972cfbba880b44ef84d371b37fac7ccc22996be753a901a8",
+      "size": [
+        3.5999999046325684,
+        3.2899999618530273,
+        3.5999999046325684
+      ],
+      "passed": true
+    },
+    {
+      "type": "gem_mine",
+      "level": 10,
+      "triangles": 7240,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 574404,
+      "geometrySha256": "94ab9c78ff7c8d98b7c182d5ba127c88c5f341d715032abc495ca6485c2c1486",
+      "size": [
+        3.5999999046325684,
+        3.2899999618530273,
+        3.5999999046325684
+      ],
+      "passed": true
+    },
+    {
+      "type": "gem_mine",
+      "level": 11,
+      "triangles": 7900,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 629340,
+      "geometrySha256": "fcda406d3844568619107f381482fbd2e12675f587fcd840d8a36aca8fda84a7",
+      "size": [
+        3.5999999046325684,
+        3.2899999618530273,
+        3.5999999046325684
+      ],
+      "passed": true
+    },
+    {
+      "type": "gem_mine",
+      "level": 12,
+      "triangles": 8000,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 636852,
+      "geometrySha256": "fbc5fdc992183922379f6fccef3f52d2f613b86b36791f99e0538c563b1b436a",
+      "size": [
+        3.5999999046325684,
+        3.4850001335144043,
+        3.5999999046325684
+      ],
+      "passed": true
+    },
+    {
+      "type": "gem_mine",
+      "level": 13,
+      "triangles": 8322,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 659736,
+      "geometrySha256": "76dee958939c12d5498b52ac51307023ace4ac783f85afdb6b78932b5bab8042",
+      "size": [
+        3.5999999046325684,
+        3.4850001335144043,
+        3.5999999046325684
+      ],
+      "passed": true
+    },
+    {
+      "type": "gem_mine",
+      "level": 14,
+      "triangles": 8358,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 662544,
+      "geometrySha256": "7e8bcb82ff7661e6559b99a2e1f09347d3342dab4467193a36bb1ee18ec4b445",
+      "size": [
+        3.5999999046325684,
+        3.8299999237060547,
+        3.5999999046325684
+      ],
+      "passed": true
+    },
+    {
+      "type": "gem_mine",
+      "level": 15,
+      "triangles": 9074,
+      "materials": 2,
+      "meshes": 2,
+      "bytes": 713072,
+      "geometrySha256": "6e8732281fd9c7a0c62b5e62f39e4156d7251f19bb5df914aa8ccfa5d00db04d",
+      "size": [
+        3.5999999046325684,
+        4.441500186920166,
+        3.5999999046325684
+      ],
+      "passed": true
+    }
+  ]
+}

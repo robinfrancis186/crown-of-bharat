@@ -1,0 +1,108 @@
+{
+  "assets": [
+    {
+      "id": "fort",
+      "file": "assets/buildings/fort.glb",
+      "preview": "assets/buildings/fort.png",
+      "triangles": 24662,
+      "meshes": 2,
+      "bytes": 1184208,
+      "size": [
+        7.6,
+        6.93,
+        7.6
+      ],
+      "footprint": [
+        4,
+        4
+      ]
+    },
+    {
+      "id": "fort_2",
+      "file": "assets/buildings/fort_2.glb",
+      "preview": "assets/buildings/fort_2.png",
+      "triangles": 25786,
+      "meshes": 2,
+      "bytes": 1240112,
+      "size": [
+        7.6,
+        6.93,
+        7.6
+      ],
+      "footprint": [
+        4,
+        4
+      ]
+    },
+    {
+      "id": "fort_3",
+      "file": "assets/buildings/fort_3.glb",
+      "preview": "assets/buildings/fort_3.png",
+      "triangles": 29370,
+      "meshes": 2,
+      "bytes": 1414840,
+      "size": [
+        7.6,
+        6.93,
+        7.6
+      ],
+      "footprint": [
+        4,
+        4
+      ]
+    },
+    {
+      "id": "laboratory",
+      "file": "assets/buildings/laboratory.glb",
+      "preview": "assets/buildings/laboratory.png",
+      "triangles": 5332,
+      "meshes": 2,
+      "bytes": 271608,
+      "size": [
+        5.6,
+        5.606,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "hero_hall",
+      "file": "assets/buildings/hero_hall.glb",
+      "preview": "assets/buildings/hero_hall.png",
+      "triangles": 9868,
+      "meshes": 2,
+      "bytes": 526148,
+      "size": [
+        5.6,
+        5.7765,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "gem_mine",
+      "file": "assets/buildings/gem_mine.glb",
+      "preview": "assets/buildings/gem_mine.png",
+      "triangles": 2333,
+      "meshes": 2,
+      "bytes": 118408,
+      "size": [
+        3.6,
+        3.83,
+        3.6
+      ],
+      "footprint": [
+        2,
+        2
+      ]
+    }
+  ],
+  "source": "assets/blender/taj-and-civic.blend",
+  "optimization": "glTF Transform 4.5.0: quantized normals and colors; exact positions"
+}

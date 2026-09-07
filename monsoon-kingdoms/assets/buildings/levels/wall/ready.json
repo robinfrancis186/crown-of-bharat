@@ -1,0 +1,119 @@
+{
+  "type": "wall",
+  "status": "FINAL",
+  "nativeVerified": true,
+  "assets": [
+    {
+      "level": 2,
+      "file": "assets/buildings/levels/wall/2.glb",
+      "preview": "assets/buildings/levels/wall/2.png",
+      "sha256": "2f8ede5b006e889ef28383256d787fc37e676404f014c1856c3797886968dd69",
+      "geometryHash": "bc1a8fd0bc676beb6f662335d3e14a42e145445a0e1177fe62ef9b79e99acb4c",
+      "bytes": 78452
+    },
+    {
+      "level": 3,
+      "file": "assets/buildings/levels/wall/3.glb",
+      "preview": "assets/buildings/levels/wall/3.png",
+      "sha256": "21dd39f4fcfac0a032ef40df690d1de88696b42e38da44a0a5650b9f7cf0def5",
+      "geometryHash": "05543d3b100f4cff532d1a80f394a17b5ce49946c599e969b668e36068dcf6d1",
+      "bytes": 90692
+    },
+    {
+      "level": 4,
+      "file": "assets/buildings/levels/wall/4.glb",
+      "preview": "assets/buildings/levels/wall/4.png",
+      "sha256": "0cc352e1b798ec86d4d7669b6b7f2af1acbd9dec561f3609dff44b509969a20c",
+      "geometryHash": "65d53deefe1f72e0038d1ff6416b438649d1faa7f372a2076f5fb3e58d3c0215",
+      "bytes": 93908
+    },
+    {
+      "level": 5,
+      "file": "assets/buildings/levels/wall/5.glb",
+      "preview": "assets/buildings/levels/wall/5.png",
+      "sha256": "62d33e4c63eb0920ac0973fcba3affd5e39558c68d7f41d2f2692eeb7ea7c57d",
+      "geometryHash": "8a26da1bec4a12b58521158ab0cb6e77d8412c7314a7a0c6bd77a4b0c63d4218",
+      "bytes": 136156
+    },
+    {
+      "level": 6,
+      "file": "assets/buildings/levels/wall/6.glb",
+      "preview": "assets/buildings/levels/wall/6.png",
+      "sha256": "45f0f188eb6bcd4e0726ae1a7d4dffd91df894d956d0719669c425b5d7348882",
+      "geometryHash": "a4a446b78e2fafed7f91d4a8471d7195b75a4fb68a02e1a48c3d1374da337e51",
+      "bytes": 149332
+    },
+    {
+      "level": 7,
+      "file": "assets/buildings/levels/wall/7.glb",
+      "preview": "assets/buildings/levels/wall/7.png",
+      "sha256": "baf6350109bbed1f7cfbb707374a357442a97174b521555239df32e44a8e5d55",
+      "geometryHash": "b9dff63cad7de8072a1860a11fdc7abc2f8995184d5a5ae1232c98aa11c37541",
+      "bytes": 165232
+    },
+    {
+      "level": 8,
+      "file": "assets/buildings/levels/wall/8.glb",
+      "preview": "assets/buildings/levels/wall/8.png",
+      "sha256": "d0047b7d857152b791c629d46334177fa608972f4a7b8c13e7f8c78dd08fd7f2",
+      "geometryHash": "f98786eaffe9f84fec60f241b2335e0930b464faae8157bc2669d83275a3672b",
+      "bytes": 170512
+    },
+    {
+      "level": 9,
+      "file": "assets/buildings/levels/wall/9.glb",
+      "preview": "assets/buildings/levels/wall/9.png",
+      "sha256": "0d1066ebcc80da86010777d078238db4d1ebaec5609a66889ee0caa76fa198b7",
+      "geometryHash": "71f2c225783ce09c3042b07c59963b279250623d16ea6377dfd16f378cfa226b",
+      "bytes": 196840
+    },
+    {
+      "level": 10,
+      "file": "assets/buildings/levels/wall/10.glb",
+      "preview": "assets/buildings/levels/wall/10.png",
+      "sha256": "c56b5302407755132931f2ec475af7ed29313176b431603aa4f2e70fff67c78e",
+      "geometryHash": "ae831627d36c9d15120b8731703d504f783947661c11468a418b9da237fec7b1",
+      "bytes": 213404
+    },
+    {
+      "level": 11,
+      "file": "assets/buildings/levels/wall/11.glb",
+      "preview": "assets/buildings/levels/wall/11.png",
+      "sha256": "40fb8855828c84affea8d3100b6bf1c0e4781aa91cbef3f5781b70cc9c7b0ae6",
+      "geometryHash": "887b6b92a98145b4832493ba26641707dde2e646e28039b9fae6d67eb1c27e62",
+      "bytes": 220748
+    },
+    {
+      "level": 12,
+      "file": "assets/buildings/levels/wall/12.glb",
+      "preview": "assets/buildings/levels/wall/12.png",
+      "sha256": "cbf3c0beea842a4441b474fb2fb7d2ba245fb9b25af2092c7ac462abcc9abb70",
+      "geometryHash": "4432c6e7007491c1cb0d5ba43eebb4fc39a3027d876c370bc838c6572f8c4147",
+      "bytes": 245804
+    },
+    {
+      "level": 13,
+      "file": "assets/buildings/levels/wall/13.glb",
+      "preview": "assets/buildings/levels/wall/13.png",
+      "sha256": "8ba21e52a5bc1d061c7f7433261d8a6b11d1cb3987c2730da25702823104c18e",
+      "geometryHash": "893e8fb7f44b9586da0e2a1e4cc069f64d57c4e0df82366c2ccf7cfc74e4db9d",
+      "bytes": 297232
+    },
+    {
+      "level": 14,
+      "file": "assets/buildings/levels/wall/14.glb",
+      "preview": "assets/buildings/levels/wall/14.png",
+      "sha256": "a5a142510f22fd58961cfdb0bc7df488969de433af91a0abc88ec31a8f4721dc",
+      "geometryHash": "030d0b8980f5019c73a0a4ebdb4bd7dcaca33240d179c985a7c13b67d9aa52cb",
+      "bytes": 301216
+    },
+    {
+      "level": 15,
+      "file": "assets/buildings/levels/wall/15.glb",
+      "preview": "assets/buildings/levels/wall/15.png",
+      "sha256": "e20911cda5bc51ab5c3e7f691304c44ec7aa655e796e72000f587aaec06ddb02",
+      "geometryHash": "29a7a56ebb53ce53cfebb8828e36a54486999fe67f301704e1e224ecb6145dfd",
+      "bytes": 311176
+    }
+  ]
+}

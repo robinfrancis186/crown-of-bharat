@@ -1,0 +1,93 @@
+{
+  "source": "assets/blender/landmarks.blend",
+  "interpretation": "Original fictional strategy-game scale interpretations, not surveys or accurate reconstructions",
+  "assets": [
+    {
+      "id": "barracks",
+      "file": "assets/buildings/barracks.glb",
+      "preview": "assets/buildings/barracks.png",
+      "triangles": 12096,
+      "meshes": 2,
+      "bytes": 621968,
+      "size": [
+        5.6,
+        5.406,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ],
+      "inspiration": "Red Fort, Delhi",
+      "source": "https://whc.unesco.org/en/list/231/",
+      "features": [
+        "red sandstone curtain walls",
+        "octagonal bastions",
+        "deep pointed iwans",
+        "crenellations",
+        "five-domed gate gallery",
+        "open parade court"
+      ],
+      "blendSource": "assets/blender/landmarks.blend"
+    },
+    {
+      "id": "archer_tower",
+      "file": "assets/buildings/archer_tower.glb",
+      "preview": "assets/buildings/archer_tower.png",
+      "triangles": 17467,
+      "meshes": 2,
+      "bytes": 845316,
+      "size": [
+        3.6,
+        8.63,
+        3.6
+      ],
+      "footprint": [
+        2,
+        2
+      ],
+      "inspiration": "Qutb Minar, Delhi",
+      "source": "https://whc.unesco.org/en/list/233/",
+      "features": [
+        "five tapering fluted storeys",
+        "projecting carved balconies",
+        "radial corbels",
+        "contrasting sandstone and marble bands"
+      ],
+      "projectileOrigin": [
+        0,
+        7.8,
+        0
+      ],
+      "blendSource": "assets/blender/landmarks.blend"
+    },
+    {
+      "id": "market",
+      "file": "assets/buildings/market.glb",
+      "preview": "assets/buildings/market.png",
+      "triangles": 17368,
+      "meshes": 2,
+      "bytes": 866632,
+      "size": [
+        5.6,
+        5.5458,
+        5.6
+      ],
+      "footprint": [
+        3,
+        3
+      ],
+      "inspiration": "Hawa Mahal, Jaipur",
+      "source": "https://www.tourism.rajasthan.gov.in/hawa-mahal.html",
+      "features": [
+        "five-storey stepped facade",
+        "29 projecting jharokhas",
+        "modeled lattice screens",
+        "scalloped pink crown",
+        "merchant counters"
+      ],
+      "blendSource": "assets/blender/landmarks.blend"
+    }
+  ],
+  "optimization": "Quantized normal/color buffers; exact positions; no decoder dependency"
+}

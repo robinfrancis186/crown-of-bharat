@@ -1,0 +1,42 @@
+{
+  "authoring": "Original fictional Blender heroes; no likeness or imported character assets",
+  "heroes": [
+    {
+      "id": "veer",
+      "file": "veer.glb",
+      "portrait": "veer.png",
+      "triangles": 14531,
+      "materials": [
+        "Dark leather and hair",
+        "Hammered brass",
+        "Indigo woven cloth",
+        "Royal saffron silk",
+        "Warm umber skin"
+      ],
+      "height": 1.985,
+      "width": 1.493,
+      "depth": 0.928,
+      "root": "feet at origin, +Z forward, +Y up",
+      "animation": "static root bobbing"
+    },
+    {
+      "id": "tara",
+      "file": "tara.glb",
+      "portrait": "tara.png",
+      "triangles": 12473,
+      "materials": [
+        "Dark leather and hair",
+        "Hammered brass",
+        "Monsoon teal scarf",
+        "Ranger emerald textile",
+        "Warm umber skin"
+      ],
+      "height": 1.987,
+      "width": 1.481,
+      "depth": 0.827,
+      "root": "feet at origin, +Z forward, +Y up",
+      "animation": "static root bobbing"
+    }
+  ],
+  "elephant": "New crewed elephant retained in this Blender source; 25000-triangle ceiling includes two complete crew figures."
+}

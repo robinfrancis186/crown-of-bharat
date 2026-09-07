@@ -1,0 +1,282 @@
+[
+  {
+    "id": "fort",
+    "triangles": 24662,
+    "meshes": 2,
+    "materials": 2,
+    "bytes": 1184208,
+    "size": [
+      7.6,
+      6.93,
+      7.6
+    ],
+    "floor": 0,
+    "result": "PASS"
+  },
+  {
+    "id": "fort_2",
+    "triangles": 25786,
+    "meshes": 2,
+    "materials": 2,
+    "bytes": 1240112,
+    "size": [
+      7.6,
+      6.93,
+      7.6
+    ],
+    "floor": 0,
+    "result": "PASS"
+  },
+  {
+    "id": "fort_3",
+    "triangles": 29370,
+    "meshes": 2,
+    "materials": 2,
+    "bytes": 1414840,
+    "size": [
+      7.6,
+      6.93,
+      7.6
+    ],
+    "floor": 0,
+    "result": "PASS"
+  },
+  {
+    "id": "farm",
+    "triangles": 15162,
+    "meshes": 2,
+    "materials": 2,
+    "bytes": 784404,
+    "size": [
+      5.6,
+      2.812,
+      5.6
+    ],
+    "floor": 0,
+    "result": "PASS"
+  },
+  {
+    "id": "lumber",
+    "triangles": 7758,
+    "meshes": 2,
+    "materials": 2,
+    "bytes": 411668,
+    "size": [
+      5.6,
+      3.832,
+      5.6
+    ],
+    "floor": 0,
+    "result": "PASS"
+  },
+  {
+    "id": "mine",
+    "triangles": 4812,
+    "meshes": 2,
+    "materials": 2,
+    "bytes": 260124,
+    "size": [
+      5.6,
+      4.6,
+      5.6
+    ],
+    "floor": 0,
+    "result": "PASS"
+  },
+  {
+    "id": "granary",
+    "triangles": 10202,
+    "meshes": 2,
+    "materials": 2,
+    "bytes": 559392,
+    "size": [
+      5.6,
+      4.292,
+      5.6
+    ],
+    "floor": 0,
+    "result": "PASS"
+  },
+  {
+    "id": "stepwell",
+    "triangles": 9780,
+    "meshes": 2,
+    "materials": 2,
+    "bytes": 543472,
+    "size": [
+      5.6,
+      2.928,
+      5.6
+    ],
+    "floor": 0,
+    "result": "PASS"
+  },
+  {
+    "id": "barracks",
+    "triangles": 12096,
+    "meshes": 2,
+    "materials": 2,
+    "bytes": 621968,
+    "size": [
+      5.6,
+      5.406,
+      5.6
+    ],
+    "floor": 0,
+    "result": "PASS"
+  },
+  {
+    "id": "camp",
+    "triangles": 2119,
+    "meshes": 2,
+    "materials": 2,
+    "bytes": 111888,
+    "size": [
+      5.6,
+      3.132,
+      5.6
+    ],
+    "floor": 0,
+    "result": "PASS"
+  },
+  {
+    "id": "archer_tower",
+    "triangles": 17467,
+    "meshes": 2,
+    "materials": 2,
+    "bytes": 845316,
+    "size": [
+      3.6,
+      8.63,
+      3.6
+    ],
+    "floor": 0,
+    "result": "PASS"
+  },
+  {
+    "id": "cannon",
+    "triangles": 1916,
+    "meshes": 2,
+    "materials": 2,
+    "bytes": 92976,
+    "size": [
+      3.6,
+      1.961,
+      3.6
+    ],
+    "floor": 0,
+    "result": "PASS"
+  },
+  {
+    "id": "wall",
+    "triangles": 1196,
+    "meshes": 2,
+    "materials": 2,
+    "bytes": 69460,
+    "size": [
+      1.87,
+      2.31,
+      1.86
+    ],
+    "floor": 0,
+    "result": "PASS"
+  },
+  {
+    "id": "market",
+    "triangles": 17368,
+    "meshes": 2,
+    "materials": 2,
+    "bytes": 866632,
+    "size": [
+      5.6,
+      5.546,
+      5.6
+    ],
+    "floor": 0,
+    "result": "PASS"
+  },
+  {
+    "id": "upgrade_ornament",
+    "triangles": 332,
+    "meshes": 2,
+    "materials": 2,
+    "bytes": 18708,
+    "size": [
+      0.957,
+      1.793,
+      0.56
+    ],
+    "floor": 0,
+    "result": "PASS"
+  },
+  {
+    "id": "laboratory",
+    "triangles": 5332,
+    "meshes": 2,
+    "materials": 2,
+    "bytes": 271608,
+    "size": [
+      5.6,
+      5.606,
+      5.6
+    ],
+    "floor": 0,
+    "result": "PASS"
+  },
+  {
+    "id": "hero_hall",
+    "triangles": 9868,
+    "meshes": 2,
+    "materials": 2,
+    "bytes": 526148,
+    "size": [
+      5.6,
+      5.777,
+      5.6
+    ],
+    "floor": 0,
+    "result": "PASS"
+  },
+  {
+    "id": "gem_mine",
+    "triangles": 2333,
+    "meshes": 2,
+    "materials": 2,
+    "bytes": 118408,
+    "size": [
+      3.6,
+      3.83,
+      3.6
+    ],
+    "floor": 0,
+    "result": "PASS"
+  },
+  {
+    "id": "wall_2",
+    "triangles": 1672,
+    "meshes": 2,
+    "materials": 2,
+    "bytes": 95332,
+    "size": [
+      1.9,
+      2.685,
+      1.9
+    ],
+    "floor": 0,
+    "result": "PASS"
+  },
+  {
+    "id": "wall_3",
+    "triangles": 1514,
+    "meshes": 2,
+    "materials": 2,
+    "bytes": 82268,
+    "size": [
+      1.9,
+      3.481,
+      1.9
+    ],
+    "floor": 0,
+    "result": "PASS"
+  }
+]

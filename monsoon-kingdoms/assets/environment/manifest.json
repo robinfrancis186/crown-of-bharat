@@ -1,0 +1,99 @@
+{
+  "authoring": "Original Blender prop kit",
+  "props": [
+    {
+      "id": "banyan",
+      "file": "banyan.glb",
+      "portrait": "banyan.png",
+      "triangles": 2932,
+      "materials": [
+        "Banyan jade foliage",
+        "Carved teak and bark",
+        "Sunlit new foliage"
+      ],
+      "height": 3.874,
+      "width": 4.504,
+      "depth": 4.719,
+      "root": "feet at origin, +Z forward, +Y up",
+      "animation": "static"
+    },
+    {
+      "id": "palm",
+      "file": "palm.glb",
+      "portrait": "palm.png",
+      "triangles": 6240,
+      "materials": [
+        "Banyan jade foliage",
+        "Carved teak and bark",
+        "Sunlit new foliage"
+      ],
+      "height": 3.297,
+      "width": 3.496,
+      "depth": 3.325,
+      "root": "feet at origin, +Z forward, +Y up",
+      "animation": "static"
+    },
+    {
+      "id": "rocks",
+      "file": "rocks.glb",
+      "portrait": "rocks.png",
+      "triangles": 120,
+      "materials": [
+        "Weathered basalt"
+      ],
+      "height": 0.88,
+      "width": 1.549,
+      "depth": 1.158,
+      "root": "feet at origin, +Z forward, +Y up",
+      "animation": "static"
+    },
+    {
+      "id": "bush",
+      "file": "bush.glb",
+      "portrait": "bush.png",
+      "triangles": 400,
+      "materials": [
+        "Banyan jade foliage",
+        "Sunlit new foliage"
+      ],
+      "height": 0.6,
+      "width": 1.024,
+      "depth": 1.057,
+      "root": "feet at origin, +Z forward, +Y up",
+      "animation": "static"
+    },
+    {
+      "id": "cart",
+      "file": "cart.glb",
+      "portrait": "cart.png",
+      "triangles": 5188,
+      "materials": [
+        "Carved teak and bark",
+        "Dark leather and hair",
+        "Fired terracotta",
+        "Sunlit new foliage"
+      ],
+      "height": 1.044,
+      "width": 1.53,
+      "depth": 2.467,
+      "root": "feet at origin, +Z forward, +Y up",
+      "animation": "static"
+    },
+    {
+      "id": "jars",
+      "file": "jars.glb",
+      "portrait": "jars.png",
+      "triangles": 3408,
+      "materials": [
+        "Carved teak and bark",
+        "Dark leather and hair",
+        "Fired terracotta"
+      ],
+      "height": 0.685,
+      "width": 0.885,
+      "depth": 0.743,
+      "root": "feet at origin, +Z forward, +Y up",
+      "animation": "static"
+    }
+  ]
+}

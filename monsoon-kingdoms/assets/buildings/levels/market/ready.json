@@ -1,0 +1,119 @@
+{
+  "type": "market",
+  "status": "FINAL",
+  "nativeVerified": true,
+  "assets": [
+    {
+      "level": 2,
+      "file": "assets/buildings/levels/market/2.glb",
+      "preview": "assets/buildings/levels/market/2.png",
+      "sha256": "6cc9269b73f65a6933d85622fc4159b651227af85b8fae2c21091392ec701ada",
+      "geometryHash": "09a7d5879d156f048dc3afa6d3716797a9f21fc4885a97494a1d1a624956badd",
+      "bytes": 894104
+    },
+    {
+      "level": 3,
+      "file": "assets/buildings/levels/market/3.glb",
+      "preview": "assets/buildings/levels/market/3.png",
+      "sha256": "757b51643184d0d50e60422c77c6030743e50631168c3397d3a453d4f874c6a9",
+      "geometryHash": "8b341623e7ebd9c1eec857a671b0cd2900a5a6e39ec96f068d667a7f26d8f3da",
+      "bytes": 920456
+    },
+    {
+      "level": 4,
+      "file": "assets/buildings/levels/market/4.glb",
+      "preview": "assets/buildings/levels/market/4.png",
+      "sha256": "9804afcd41d7ed4b8dfbdf3f926dc9590e9161cbf18cce31075292a4c2730092",
+      "geometryHash": "c6af4d34f4acd388560f40bb6936c58d0a3c6dac261e0d06b8833c9ed33f7c13",
+      "bytes": 967756
+    },
+    {
+      "level": 5,
+      "file": "assets/buildings/levels/market/5.glb",
+      "preview": "assets/buildings/levels/market/5.png",
+      "sha256": "58c7594314a8a5957d9f8c846643f90c16704338f84e5cf92dc739039e73ba30",
+      "geometryHash": "24b0d1500886a09b9e53be64f7ea2182ecaac29132bfaafe7c011c453f90ed2b",
+      "bytes": 1020464
+    },
+    {
+      "level": 6,
+      "file": "assets/buildings/levels/market/6.glb",
+      "preview": "assets/buildings/levels/market/6.png",
+      "sha256": "ff3b95b216b43c4cda4b029f34a5b875a259338fe77a17856844bc3e930aa8e9",
+      "geometryHash": "98b515ca63f588be305706de9ed9768a17707453593d9963c354efecd8239dd3",
+      "bytes": 1073116
+    },
+    {
+      "level": 7,
+      "file": "assets/buildings/levels/market/7.glb",
+      "preview": "assets/buildings/levels/market/7.png",
+      "sha256": "e3708fa94bb47dfbcc98c128981adabb8595ae0b6d98a1d377a5f5f283cf651b",
+      "geometryHash": "93a933624d40b1c49ab87ad70ed33fe9f6e6154e433d0b984851616b98eeb08d",
+      "bytes": 1120756
+    },
+    {
+      "level": 8,
+      "file": "assets/buildings/levels/market/8.glb",
+      "preview": "assets/buildings/levels/market/8.png",
+      "sha256": "f6e1e1637b5b24f72b85a933caba87df36de5303005ea03c3b2fdcbb2760bfa5",
+      "geometryHash": "f5ae5177802cdac7dc41f0038805e4000de972aae23cef7d280fa21275be9040",
+      "bytes": 1140412
+    },
+    {
+      "level": 9,
+      "file": "assets/buildings/levels/market/9.glb",
+      "preview": "assets/buildings/levels/market/9.png",
+      "sha256": "bb7d9bc422b34a3251cb58ab201569ef9e3fa97884f471786cd55fc722d89c62",
+      "geometryHash": "7e285db8bc7891514a55ec343b8706d8caa7f528aa246733f300e1901cdf3875",
+      "bytes": 1173016
+    },
+    {
+      "level": 10,
+      "file": "assets/buildings/levels/market/10.glb",
+      "preview": "assets/buildings/levels/market/10.png",
+      "sha256": "2e8b383c8b9eb17810efdbdc5418375d647f71acb4e34d27c11429795c452ae1",
+      "geometryHash": "92778d305d36f53cd395da6741723cec10c513b36345cb996ad63df7319b2875",
+      "bytes": 1199376
+    },
+    {
+      "level": 11,
+      "file": "assets/buildings/levels/market/11.glb",
+      "preview": "assets/buildings/levels/market/11.png",
+      "sha256": "b3943a5f4b33395f491972b5e0797fb1f4c8ee58be4505df9a29f80cc0f091fa",
+      "geometryHash": "83bb5e23a1ec56e6ff91c1d7436571b45a79020cdcc593a4b6f46f10187ec3e2",
+      "bytes": 1211616
+    },
+    {
+      "level": 12,
+      "file": "assets/buildings/levels/market/12.glb",
+      "preview": "assets/buildings/levels/market/12.png",
+      "sha256": "dd33eeb3f469ddc05deb7d66aaaf1137c1f676ff797ee3b6f6e1d9b818f398af",
+      "geometryHash": "a3cfa61b9fab9f11557ea1351b44686c409aea1fddb1d00f6df939156c70d9be",
+      "bytes": 1266696
+    },
+    {
+      "level": 13,
+      "file": "assets/buildings/levels/market/13.glb",
+      "preview": "assets/buildings/levels/market/13.png",
+      "sha256": "25cfb123650cb3a32b296eb2f293fd7ee3e161706098edd09288c119dfbf8fa3",
+      "geometryHash": "482486891ce6c97f43ceb6b9eb67ee94ad9bf6f73cef3f32e9b35b98307733cf",
+      "bytes": 1319372
+    },
+    {
+      "level": 14,
+      "file": "assets/buildings/levels/market/14.glb",
+      "preview": "assets/buildings/levels/market/14.png",
+      "sha256": "b9f58118d6bfdab98359ac4a89cd4e2ab1a53068de198ba032e5bf4fac88a12f",
+      "geometryHash": "362f276cd2308ae1f4a6e7af4442423d1cd274bce5de64925a25ef364cb02585",
+      "bytes": 1348364
+    },
+    {
+      "level": 15,
+      "file": "assets/buildings/levels/market/15.glb",
+      "preview": "assets/buildings/levels/market/15.png",
+      "sha256": "eb8c916c1970692d6c3dbff55bb09ba5c77f13ecbd0a82bc4250e05569338356",
+      "geometryHash": "fad4f381301c0a9d44089240851c7b873b36779229e5ced88367af6eeca17653",
+      "bytes": 1362644
+    }
+  ]
+}

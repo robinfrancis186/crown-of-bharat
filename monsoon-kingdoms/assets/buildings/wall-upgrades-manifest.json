@@ -1,0 +1,40 @@
+{
+  "assets": [
+    {
+      "id": "wall_2",
+      "file": "assets/buildings/wall_2.glb",
+      "preview": "assets/buildings/wall_2.png",
+      "triangles": 1672,
+      "meshes": 2,
+      "bytes": 95332,
+      "size": [
+        1.9,
+        2.685,
+        1.9
+      ],
+      "footprint": [
+        1,
+        1
+      ]
+    },
+    {
+      "id": "wall_3",
+      "file": "assets/buildings/wall_3.glb",
+      "preview": "assets/buildings/wall_3.png",
+      "triangles": 1514,
+      "meshes": 2,
+      "bytes": 82268,
+      "size": [
+        1.9,
+        3.4815,
+        1.9
+      ],
+      "footprint": [
+        1,
+        1
+      ]
+    }
+  ],
+  "source": "assets/blender/wall-upgrades.blend",
+  "optimization": "quantized normals/colors, exact positions"
+}

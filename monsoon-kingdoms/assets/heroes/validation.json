@@ -1,0 +1,65 @@
+{
+  "method": "Native Three.js GLTFLoader round trip; static geometry, normals, identity, bounds, material and triangle budgets",
+  "assets": [
+    {
+      "id": "veer",
+      "name": "Veer the Lion Commander",
+      "triangles": 14531,
+      "materials": 5,
+      "bytes": 404960,
+      "bounds": {
+        "min": [
+          -0.7463999390602112,
+          3.585591912269592e-8,
+          -0.46380001306533813
+        ],
+        "max": [
+          0.746399998664856,
+          1.984607458114624,
+          0.4638000428676605
+        ]
+      },
+      "passed": true
+    },
+    {
+      "id": "tara",
+      "name": "Tara the Monsoon Ranger",
+      "triangles": 12473,
+      "materials": 5,
+      "bytes": 356268,
+      "bounds": {
+        "min": [
+          -0.7404500246047974,
+          1.792795956134796e-8,
+          -0.4132792055606842
+        ],
+        "max": [
+          0.7404500246047974,
+          1.9865518808364868,
+          0.4132791757583618
+        ]
+      },
+      "passed": true
+    },
+    {
+      "id": "elephant",
+      "name": "Guardian elephant with mahout and howdah archer",
+      "triangles": 24250,
+      "materials": 5,
+      "bytes": 701656,
+      "bounds": {
+        "min": [
+          -0.7819339036941528,
+          0,
+          -1.3941599130630493
+        ],
+        "max": [
+          0.7820671796798706,
+          3.4149999618530273,
+          1.393913984298706
+        ]
+      },
+      "passed": true
+    }
+  ]
+}

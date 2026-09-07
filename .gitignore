@@ -17,3 +17,5 @@ monsoon-kingdoms/assets/masters/
 **/*.blend1
 **/__pycache__/
 .vercel
+
+*.log

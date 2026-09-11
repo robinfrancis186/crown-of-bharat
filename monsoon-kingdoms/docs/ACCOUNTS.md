@@ -3,8 +3,10 @@
 Firebase project: monsoon-kingdoms-186. Firestore location: asia-south1.
 Google authentication is mandatory before game initialization. The public Firebase web configuration is bundled; no administrative credentials ship to browsers.
 
-## Activation blocker
-Standard Firebase Authentication must be initialized in the Firebase console and Google enabled with a support email. Add monsoon-kingdoms.vercel.app and localhost to Authentication authorized domains. The public initializeAuth API requires billing; billing has not been enabled. Do not deploy this mandatory gate to production until a real Google login and subsequent logout/relogin have been verified.
+## Activation and verification
+Standard Firebase Authentication and Google sign-in are enabled. Public app name: Monsoon Kingdoms. The production domain monsoon-kingdoms.vercel.app is authorized alongside Firebase defaults and localhost. No billing upgrade was needed.
+
+A real Google sign-in opened the local game on 2026-09-11. A separate authenticated Firestore API read confirmed a kingdom document at revision 4. Simulated logout, account switching, failed-write recovery and ownership tests passed earlier. A real logout/relogin and production-device check remain to be completed; these are not implied by the simulated tests.
 
 ## Save behavior
 Each UID has its own local storage namespace and private kingdoms/{uid} Firestore document. Existing guest saves are not automatically assigned to an account. The storage adapter synchronizes kingdom, preferences and private existing Supabase identity together. Revision transactions reject simultaneous-session overwrites. Conflicts stop play and retain a local recovery archive; download recovery backup before reloading and import through Settings if needed. A server read is required to enter; offline login is not supported. Local writes survive cloud failures, and sign-out refuses to continue until pending cloud writes succeed. Browser clearing can still remove unsynced progress.

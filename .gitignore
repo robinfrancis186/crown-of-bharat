@@ -19,3 +19,8 @@ monsoon-kingdoms/assets/masters/
 .vercel
 
 *.log
+
+monsoon-kingdoms/src/firebase-sdk.js
+firebase-debug.log
+
+/output/

@@ -1,0 +1,37 @@
+/* Account gate sits above every game surface, including portrait hints. */
+#account-gate{position:fixed;inset:0;z-index:2147483647;isolation:isolate;display:grid;place-items:center;overflow:auto;overscroll-behavior:contain;padding:32px max(24px,env(safe-area-inset-right)) 32px max(24px,env(safe-area-inset-left));background:radial-gradient(ellipse at 18% 28%,#436852 0,transparent 55%),linear-gradient(145deg,#203c36,#112b2c);color:#fbf3da;font:400 14px/1.6 Manrope,sans-serif;touch-action:pan-y}
+#account-gate *{box-sizing:border-box}
+#account-gate .account-shell{width:min(980px,100%);display:grid;grid-template-columns:1.15fr 1fr;align-items:center;gap:64px;margin:auto}
+#account-gate .account-world{text-align:center;position:relative;min-width:0}
+#account-gate .account-wordmark{font:700 clamp(24px,3.4vw,42px)/1.05 Space,sans-serif;letter-spacing:5px;color:#f1d698;text-shadow:0 3px 0 #112e29}
+#account-gate .account-wordmark span{display:block}
+#account-gate .account-wordmark span+span{font-size:.61em;letter-spacing:8px;margin-top:8px}
+#account-gate .account-art{position:relative;display:grid;place-items:center;margin:22px -10px 6px;min-height:220px}
+#account-gate .account-halo{position:absolute;width:80%;aspect-ratio:1;border:1px solid #dbc88a30;border-radius:50%;background:radial-gradient(circle,#cfbc7940,transparent 68%);box-shadow:0 0 0 20px #dac58a07,0 0 0 21px #dac58a15}
+#account-gate .account-art img{display:block;position:relative;width:100%;max-width:420px;height:auto;filter:drop-shadow(0 25px 20px #071c2b66);object-fit:contain}
+#account-gate .account-world-caption{font:400 14px/1.5 Manrope,sans-serif;color:#d2d8bd;margin:10px 0 0;letter-spacing:.3px}
+#account-gate .account-panel{position:relative;background:linear-gradient(145deg,#fff8e7,#eee2c4);border:1px solid #dcc38b;border-radius:22px;padding:36px;color:#253e34;box-shadow:0 20px 60px #071f2666,inset 0 0 0 5px #fff9e750;min-width:0}
+#account-gate .account-crest{width:44px;height:44px;display:grid;place-items:center;border:1px solid #bd9856;border-radius:50%;color:#98702c;font-size:27px;margin:0 0 20px}
+#account-gate .account-eyebrow{font:700 10px/1.6 Space,sans-serif;letter-spacing:2px;color:#75603e;margin:0 0 10px}
+#account-gate h1{font:700 clamp(27px,3vw,36px)/1.13 Space,sans-serif;letter-spacing:-1.2px;color:#253e34;margin:0;outline:none}
+#account-gate .account-description{font:400 13px/1.7 Manrope,sans-serif;color:#53604b;margin:18px 0 0}
+#account-gate .account-status{font:500 12px/1.5 Manrope,sans-serif;margin:22px 0 12px;min-height:18px;color:#5a644e}
+#account-gate .account-error{font:500 12px/1.6 Manrope,sans-serif;padding:12px 14px;margin:14px 0;background:#fce9da;border:1px solid #d8a181;border-radius:9px;color:#7b3529;overflow-wrap:anywhere}
+#account-gate button{font:600 13px/1.4 Manrope,sans-serif;position:relative;width:100%;min-height:48px;padding:12px 14px;border-radius:9px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:12px;transition:background .15s,box-shadow .15s;transform:none;filter:none;touch-action:manipulation}
+#account-gate .account-google{background:#fff;color:#26332b;border:1px solid #babfae;box-shadow:0 2px 2px #243e3410}
+#account-gate .account-google svg{width:20px;height:20px;flex:0 0 20px}
+#account-gate .account-google:hover:not(:disabled){background:#f3f7f1;box-shadow:0 2px 6px #243e3420}
+#account-gate .account-retry,#account-gate .account-continue{background:#2d5d48;color:#fff8e7;border:1px solid #204b38}
+#account-gate .account-retry:hover,#account-gate .account-continue:hover{background:#234c3b}
+#account-gate .account-signout{background:transparent;color:#47614c;font-size:11px;text-decoration:underline;text-underline-offset:3px;margin-top:6px;border:1px solid transparent}
+#account-gate button:focus-visible{outline:3px solid #ad7127;outline-offset:4px}
+#account-gate button:disabled{cursor:wait;opacity:.65}
+#account-gate .account-footnote{font:400 10px/1.6 Manrope,sans-serif;text-align:center;color:#69705a;margin:18px 0 0}
+#account-gate .account-identity{display:flex;align-items:center;gap:10px;padding:12px;background:#e0e5cf;border:1px solid #ccd3b9;border-radius:10px;margin-top:18px}
+#account-gate .account-avatar{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:#355844;color:#fff4d6;font-weight:700;flex:0 0 34px}
+#account-gate .account-identity>div{min-width:0}
+#account-gate .account-name,#account-gate .account-email{display:block;font:600 12px/1.5 Manrope,sans-serif;overflow-wrap:anywhere}
+#account-gate .account-email{font-size:10px;font-weight:400;color:#59654e}
+@media(max-width:650px) and (orientation:portrait){#account-gate{padding:28px 22px max(28px,env(safe-area-inset-bottom))}#account-gate .account-shell{grid-template-columns:1fr;gap:24px;max-width:400px}#account-gate .account-wordmark{font-size:26px}#account-gate .account-art{min-height:0;margin:12px 0 -2px}#account-gate .account-art img{width:185px}#account-gate .account-halo{width:160px}#account-gate .account-world-caption{display:none}#account-gate .account-panel{padding:25px}#account-gate .account-crest{display:none}#account-gate h1{font-size:29px}#account-gate .account-status{margin-top:16px}}
+@media(orientation:landscape) and (max-height:620px){#account-gate{padding:18px max(22px,env(safe-area-inset-right)) 18px max(22px,env(safe-area-inset-left))}#account-gate .account-shell{gap:30px;max-width:860px;grid-template-columns:1fr 1.1fr}#account-gate .account-wordmark{font-size:28px}#account-gate .account-art{min-height:0;margin:15px 0 0}#account-gate .account-art img{width:clamp(140px,38vh,250px)}#account-gate .account-halo{width:180px}#account-gate .account-world-caption{font-size:11px}#account-gate .account-panel{padding:22px}#account-gate .account-crest{display:none}#account-gate h1{font-size:27px}#account-gate .account-description{margin-top:10px;font-size:12px}#account-gate .account-status{margin:12px 0 8px}#account-gate .account-footnote{margin-top:10px}#account-gate .account-identity{margin-top:10px;padding:8px}}
+@media(prefers-reduced-motion:reduce){#account-gate button{transition:none}}

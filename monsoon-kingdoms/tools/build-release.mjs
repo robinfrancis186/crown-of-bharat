@@ -163,6 +163,7 @@ release-manifest.json lists every packaged file with its SHA-256 checksum and th
 `;
 
 if (!args.has('--verify')) {
+  execFileSync(process.execPath, [path.join(project, 'tools/build-firebase.mjs')], {stdio:'inherit'});
   // Replace only the generated package; never recurse through project/release.
   await rm(output, { recursive: true, force: true });
   await mkdir(output, { recursive: true });

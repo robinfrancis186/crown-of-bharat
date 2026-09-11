@@ -5,7 +5,9 @@ import { loadSave,storeSave,decodeSave,encodeSave } from './storage.js';
 import { GameAudio } from './audio.js';
 import { OnlineClient } from './net.js';
 
-let storage;try{storage=localStorage;}catch{storage=null;}
+import { requireAccount } from './account.js';
+const account=await requireAccount();
+const storage=account.storage;
 const loaded=loadSave(storage);
 let state=loaded.state,storageAvailable=loaded.available;
 let preferences={};try{preferences=JSON.parse(storage?.getItem('monsoon.preferences')||'{}')||{};}catch{}
@@ -89,7 +91,7 @@ function requestBattle(kind,id){
 }
 function refresh(){
   const check=placementCheck(),cap=Rules.capacity(state);
-  if(view){view.inputEnabled=!panel&&!settled&&!portraitBlocked;view.setSpellAim?.(!panel&&!settled&&!portraitBlocked?Rules.SPELLS[selectedSpell]:null);}
+  if(view){view.inputEnabled=!panel&&!settled&&!portraitBlocked&&!account.blocked;view.setSpellAim?.(!panel&&!settled&&!portraitBlocked&&!account.blocked?Rules.SPELLS[selectedSpell]:null);}
   const collectable=state.buildings.some(b=>{const resource=Rules.CATALOG[b.type].production?.resource;return b.stored>=1&&resource&&(resource==='gems'?state.gems<999999:state.resources[resource]<cap.storage[resource]);});
   ui.render({mode,state,preview,online,tutorial:mode==='home'?Rules.tutorialState(state):null,objective:objective(),collectable,hasArmyRecipe:!!preferences.armyRecipe,catalog:Rules.CATALOG,units:Rules.UNITS,heroes:Rules.HEROES,raids:Rules.RAIDS,ranked:Rules.getRanked(state),capacity:Rules.capacity(state),selectedBuilding:state.buildings.find(b=>b.id===selectedId),placing,placementValid:check.ok,placementReason:check.reason,battle,selectedTroop,selectedSpell,spells:Rules.SPELLS,quality,panel,soundEnabled,upgradeTarget,finishTarget,attackTab,wallStart,stats:{fps:Math.round(fps)}});
 }
@@ -149,7 +151,7 @@ const actions={
   followObjective(){const goal=objective();if(goal)actions[goal.action]?.(goal.value);},
   dismissObjective(){preferences.hideObjective=true;savePreferences();refresh();},
   collectAll(){const before=new Map(state.buildings.map(b=>[b.id,b.stored]));const result=Rules.collectAll(state);if(attempt(result)){for(const b of state.buildings){const resource=Rules.CATALOG[b.type].production?.resource,amount=(before.get(b.id)||0)-b.stored;if(resource&&amount>0)view.collectionFeedback(b,{[resource]:amount});}ui.toast(Object.entries(result.amounts).filter(([,n])=>n>0).map(([k,n])=>`${n} ${k}`).join(' · ')+' collected.');sound('collect');}},
-  saveArmyRecipe(){preferences.armyRecipe=Rules.armyRecipe(state);savePreferences();refresh();ui.toast('Army composition saved on this device.');},
+  saveArmyRecipe(){preferences.armyRecipe=Rules.armyRecipe(state);savePreferences();refresh();ui.toast('Army composition saved to your account.');},
   loadArmyRecipe(){attempt(Rules.applyArmyRecipe(state,preferences.armyRecipe),'Saved army restored.');},
   clearArmy(){attempt(Rules.applyArmyRecipe(state,{}),'Army cleared. Camp space is available.');},
   collect(id){const result=Rules.collect(state,id);if(attempt(result)){view.collectionFeedback(state.buildings.find(b=>b.id===id),{[result.resource]:result.amount});ui.toast(`${result.amount} ${result.resource} collected.`);sound('collect');}},
@@ -226,6 +228,7 @@ const actions={
   castRain(){if(battle)attempt(Rules.castRain(battle),'The monsoon restores your warriors.');},
   setCamera(action){view.cameraAction(action);},
   saveName(name){if(!name.trim()){ui.toast('Give your kingdom a name.');return;}state.name=name.trim().slice(0,28);save();refresh();ui.toast('Your kingdom has a new name.');if(net.registered)actions.publishVillage(true).catch(()=>{});},
+  openAccount(){account.show();},
   toggleSound(){soundEnabled=!soundEnabled;audio.setEnabled(soundEnabled);savePreferences();sound('select');refresh();},
   setQuality(value){if(!['low','balanced','ultra'].includes(value))return;quality=value;view.setQuality(quality);savePreferences();refresh();},
   exportSave(){downloadSave(state);ui.toast('Kingdom backup downloaded.');},
@@ -237,7 +240,7 @@ const actions={
 };
 const ui=new GameUI(actions);let view,loadFailed=false;
 function tapWorld(hit){
-  if(!ready||panel||settled||portraitBlocked)return;
+  if(!ready||panel||settled||portraitBlocked||account.blocked)return;
   if(mode==='battle'){
     if(selectedSpell){const result=Rules.castSpell(battle,selectedSpell,hit.x+.5,hit.z+.5);if(attempt(result,'Spell cast.'))selectedSpell=null;refresh();return;}
     const result=selectedTroop==='hero'?Rules.deployHero(battle,hit.x+.5,hit.z+.5):Rules.deploy(battle,selectedTroop,hit.x+.5,hit.z+.5);
@@ -255,21 +258,22 @@ try{
   if(loaded.corrupt)ui.toast('The saved data was damaged. Import an exported backup in Settings.');
   if(!storageAvailable)ui.toast('Browser storage is disabled. Progress will last for this session only.');
 }catch(error){loadFailed=true;console.error(error);const label=document.getElementById('loading-label');label.textContent='The valley could not load. Your saved kingdom is safe.';const retry=document.createElement('button');retry.textContent='Retry loading';retry.className='button primary loading-retry';retry.onclick=()=>location.reload();label.after(retry);throw error;}
-document.getElementById('world').addEventListener('pointermove',event=>{if(portraitBlocked)return;if(selectedSpell&&!panel&&!event.buttons){const hit=view.pick(event.clientX,event.clientY);view.setSpellAim?.(Rules.SPELLS[selectedSpell],hit.x+.5,hit.z+.5);}if(placing?.line&&wallStart&&!placing.line.locked&&!event.buttons&&event.pointerType==='mouse'){const hit=view.pick(event.clientX,event.clientY);const end=placing.line;if(hit.x!==end.x2||hit.z!==end.z2){updateWall(hit.x,hit.z);view.setGhost(placing,placementCheck().ok);refresh();}}});
-document.addEventListener('keydown',event=>{if(!ready||panel||portraitBlocked||/INPUT|TEXTAREA|BUTTON/.test(document.activeElement?.tagName))return;if(placing&&['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Enter'].includes(event.key)){event.preventDefault();if(event.key==='Enter'){actions.confirmPlacement();return;}const p=placing.line?{x:placing.line.x2,z:placing.line.z2}:placing;const dx=Number(event.key==='ArrowRight')-Number(event.key==='ArrowLeft'),dz=Number(event.key==='ArrowDown')-Number(event.key==='ArrowUp');if(placing.line)updateWall(p.x+dx,p.z+dz);else{placing.x+=dx;placing.z+=dz;}view.setGhost(placing,placementCheck().ok);refresh();}});
+document.getElementById('world').addEventListener('pointermove',event=>{if(portraitBlocked||account.blocked)return;if(selectedSpell&&!panel&&!event.buttons){const hit=view.pick(event.clientX,event.clientY);view.setSpellAim?.(Rules.SPELLS[selectedSpell],hit.x+.5,hit.z+.5);}if(placing?.line&&wallStart&&!placing.line.locked&&!event.buttons&&event.pointerType==='mouse'){const hit=view.pick(event.clientX,event.clientY);const end=placing.line;if(hit.x!==end.x2||hit.z!==end.z2){updateWall(hit.x,hit.z);view.setGhost(placing,placementCheck().ok);refresh();}}});
+document.addEventListener('keydown',event=>{if(!ready||panel||portraitBlocked||account.blocked||/INPUT|TEXTAREA|BUTTON/.test(document.activeElement?.tagName))return;if(placing&&['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Enter'].includes(event.key)){event.preventDefault();if(event.key==='Enter'){actions.confirmPlacement();return;}const p=placing.line?{x:placing.line.x2,z:placing.line.z2}:placing;const dx=Number(event.key==='ArrowRight')-Number(event.key==='ArrowLeft'),dz=Number(event.key==='ArrowDown')-Number(event.key==='ArrowUp');if(placing.line)updateWall(p.x+dx,p.z+dz);else{placing.x+=dx;placing.z+=dz;}view.setGhost(placing,placementCheck().ok);refresh();}});
 let last=performance.now(),accumulator=0,uiTimer=0,homeTimer=0,saveTimer=0;
 function frame(now){
   const elapsed=(now-last)/1000,dt=Math.min(elapsed,.1);last=now;frameCount++;fpsTime+=elapsed;
   if(fpsTime>=1){fps=frameCount/fpsTime;frameCount=0;fpsTime=0;}
-  if(mode==='battle'&&!settled&&panel!=='retreat'&&!portraitBlocked&&!document.hidden){accumulator+=dt;while(accumulator>=1/30){Rules.tickBattle(battle,1/30);accumulator-=1/30;if(battle.status!=='active'){settle();accumulator=0;break;}}view.updateBattle(battle,dt);hearBattle(battle);}else accumulator=0;
+  if(mode==='battle'&&!settled&&panel!=='retreat'&&!portraitBlocked&&!account.blocked&&!document.hidden){accumulator+=dt;while(accumulator>=1/30){Rules.tickBattle(battle,1/30);accumulator-=1/30;if(battle.status!=='active'){settle();accumulator=0;break;}}view.updateBattle(battle,dt);hearBattle(battle);}else accumulator=0;
   homeTimer+=dt;saveTimer+=dt;uiTimer+=dt;
-  if(homeTimer>=.5){Rules.tickHome(state,Date.now());homeTimer=0;if(mode==='home'){view.syncBuildings(state.buildings);view.setHomeHero(state.activeHero);}}
-  if(saveTimer>=5){save();saveTimer=0;}if(uiTimer>=.15){refresh();uiTimer=0;}if(!portraitBlocked&&!document.hidden)view.render(dt);requestAnimationFrame(frame);
+  if(homeTimer>=.5&&!account.blocked){Rules.tickHome(state,Date.now());homeTimer=0;if(mode==='home'){view.syncBuildings(state.buildings);view.setHomeHero(state.activeHero);}}
+  if(saveTimer>=5&&!account.blocked){save();saveTimer=0;}if(uiTimer>=.15){refresh();uiTimer=0;}if(!portraitBlocked&&!document.hidden)view.render(dt);requestAnimationFrame(frame);
 }
 for(const type of ['pointerdown','keydown'])addEventListener(type,()=>audio.resume(),{passive:true});
 document.getElementById('world').addEventListener('webglcontextlost',event=>{event.preventDefault();save();ready=false;const overlay=document.getElementById('loading');overlay.hidden=false;overlay.classList.remove('loaded');document.getElementById('loading-label').textContent='Graphics paused. Your kingdom is saved; restoring the scene…';});
 document.getElementById('world').addEventListener('webglcontextrestored',()=>location.reload());
 portraitQuery.addEventListener('change',e=>{portraitBlocked=e.matches;last=performance.now();accumulator=0;save();refresh();});
+addEventListener('kingdom-sync-error',event=>ui.toast(event.detail.message));
 addEventListener('kingdom-asset-error',()=>ui.toast('An upgraded building could not load. Retrying shortly; your progress is safe.'));
 requestAnimationFrame(frame);addEventListener('pagehide',save);document.addEventListener('visibilitychange',()=>{save();last=performance.now();});
 window.kingdom={get state(){return structuredClone(state);},get battle(){return battle?structuredClone(battle):null;},get stats(){return {fps:Math.round(fps),calls:view.renderer.info.render.calls,triangles:view.renderer.info.render.triangles,mode,loaded:ready,portraitBlocked,buildingModels:Object.keys(view.models).filter(k=>Object.keys(Rules.CATALOG).some(type=>k===type||k.startsWith(type+'_'))),pendingModels:view.modelLoads.size};},screenForCell:(x,z)=>view.screenForCell(x,z)};

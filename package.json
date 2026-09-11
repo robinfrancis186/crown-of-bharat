@@ -8,6 +8,10 @@
     "build": "npm --prefix monsoon-kingdoms run build"
   },
   "dependencies": {
+    "firebase": "^12.19.0",
     "three": "0.169.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2"
   }
 }

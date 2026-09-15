@@ -2,11 +2,11 @@
 
 Play: https://monsoon-kingdoms.vercel.app/
 
-- GitHub: https://github.com/robinfrancis186/monsoon-kingdoms (private).
+- GitHub: https://github.com/robinfrancis186/monsoon-kingdoms (public).
 - Vercel project: https://vercel.com/robin-francis-projects/monsoon-kingdoms
 - Supabase project: https://supabase.com/dashboard/project/wcihordgjxybhndvlnak
 
-The browser uses the existing Supabase publishable key in `monsoon-kingdoms/src/net.js`. It is intentionally public; no database password, service-role key or account access token is shipped. Online progress uses the existing RPC functions. Ordinary village saves remain in browser local storage; use Settings export/import when changing URLs.
+The browser uses the existing Supabase publishable key in `monsoon-kingdoms/src/net.js`. It is intentionally public; no database password, service-role key or account access token is shipped. Online progress uses the existing RPC functions. Google sign-in is required. Account village saves use Firestore through `src/account.js` and `src/account-store.js`, with per-user local recovery state. Configure Firebase authorized domains and deploy `firestore.rules` for a separate deployment. Supabase RPCs continue to support online village and battle features.
 
 Vercel installs with `npm ci`, runs the fast rules suite, and builds the self-contained release using `vercel.json`. The deployment root is `monsoon-kingdoms/release/monsoon-kingdoms`. Pushes to the connected main branch deploy production; other branches create previews. Vercel's native Git connection handles this without GitHub Actions secrets. Standard Protection keeps preview and deployment-specific URLs authenticated; the production game domain is public.
 

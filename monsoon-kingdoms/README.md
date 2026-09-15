@@ -4,11 +4,11 @@ An original Indian-themed 3D village strategy game: build a Taj Mahal-inspired c
 
 ## Play
 
-For the self-contained package, unzip `release/monsoon-kingdoms.zip` and double-click `Start.command` (Python3 required), or run `python3 server.py` inside that package. The complete local release is also running at **http://127.0.0.1:5192/**.
+For the self-contained package, unzip `release/monsoon-kingdoms.zip` and double-click `Start.command` (Python3 required), or run `python3 server.py` inside that package. A release started on its default port is available at **http://127.0.0.1:5192/** while that server is running.
 
 For a phone on the same Wi-Fi, run `python3 server.py --lan` inside the release folder and open the printed phone URL. Keep the computer and server running. Use `--port 5193` if the default port is occupied. LAN mode is optional; the default launcher stays bound to this computer.
 
-For development, from this directory run `npm start`, then open **http://localhost:5191/monsoon-kingdoms/**. The local server uses the existing Three.js installation in the parent directory. No API key or build step is needed.
+For development, from this directory run `npm start`, then open **http://localhost:5191/monsoon-kingdoms/**. The local server uses the existing Three.js installation in the parent directory. The account gate requires configured Google authentication and Firestore access; see the [root setup guide](../README.md).
 
 **Mobile play is landscape-only.** Rotate a phone or tablet sideways to play; portrait orientation shows a rotation guide. Desktop play uses the available window.
 
@@ -66,7 +66,7 @@ Build a standalone package with `npm run build`; verify with `node tools/build-r
 
 `tools/playtest-landscape.js` is the current Playwright CLI run-code function for a disposable named browser session. It resets the test browser's kingdom; do not run it against a save you want to keep. Run it from the parent repository directory while the server is active.
 
-This delivery has local campaign, practice and AI league play, plus asynchronous online play against other real players' published villages, and hero equipment. It does not include a clan service, live synchronous PvP, verified or replayed battles, server-authoritative saves, paid gems or a Unity build. Buildings have fifteen progression tiers; troop research and heroes retain three tiers; it does not reproduce every live-service feature or level in Clash of Clans.
+This delivery has local campaign, practice and AI league play, plus asynchronous online play against other real players' published villages, and hero equipment. It does not include a clan service, live synchronous PvP, verified or replayed battles, server-validated battle outcomes, paid gems or a Unity build. Buildings have fifteen progression tiers; troop research and heroes retain three tiers; it does not reproduce every live-service feature or level in Clash of Clans.
 
 ## UX refresh and audit
 

@@ -2,7 +2,7 @@
 
 Indian-inspired 3D strategy game: build a kingdom, upgrade buildings, prepare troops and heroes, and play campaign, practice, or asynchronous online battles. The deployed entry screen is branded **Crown of Bharat**.
 
-[Play the game](https://monsoon-kingdoms.vercel.app/) · [Deployment setup](DEPLOYMENT.md) · [Game systems](monsoon-kingdoms/README.md)
+[Play the game](https://crown-of-bharat.vercel.app/) · [Deployment setup](DEPLOYMENT.md) · [Game systems](monsoon-kingdoms/README.md)
 
 ![Public desktop sign-in screen](docs/screenshots/desktop.png)
 
@@ -13,8 +13,8 @@ Indian-inspired 3D strategy game: build a kingdom, upgrade buildings, prepare tr
 Requirements: Node.js, npm, Python 3, a browser with WebGL, and working Firebase configuration for the authorized local origin.
 
 ```sh
-git clone https://github.com/robinfrancis186/monsoon-kingdoms.git
-cd monsoon-kingdoms
+git clone https://github.com/robinfrancis186/crown-of-bharat.git
+cd crown-of-bharat
 npm ci
 npm start
 ```
@@ -45,7 +45,7 @@ The September 2026 documentation review captured desktop and narrow-screen entry
 
 ## Contribution history
 
-[Commit history](https://github.com/robinfrancis186/monsoon-kingdoms/commits/main/) records the game, account integration, and asset-authoring work. Existing contributor and asset attribution is preserved.
+[Commit history](https://github.com/robinfrancis186/crown-of-bharat/commits/main/) records the game, account integration, and asset-authoring work. Existing contributor and asset attribution is preserved.
 
 ## Licensing
 

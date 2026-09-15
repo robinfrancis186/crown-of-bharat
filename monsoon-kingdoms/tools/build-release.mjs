@@ -133,7 +133,7 @@ Alternatively, from this folder run **python3 server.py** (Windows: **python ser
 
 To play on a phone on the same Wi-Fi, run **python3 server.py --lan** and open the printed phone URL in the phone's browser. Keep this computer and server running, and rotate the phone sideways. This optional mode serves only this release folder to your local network. The ordinary launcher remains computer-only.
 
-All runtime assets and Three.js are included. No npm install, API key, Blender installation, account, internet connection or paid gem purchase is required to play. Python is the only launcher prerequisite. Any ordinary static HTTP server can serve this folder instead.
+All runtime assets and Three.js are included. No npm install, API key, Blender installation or paid gem purchase is required to play. Google sign-in and an internet connection are required to load and sync your account. Python is the only launcher prerequisite. Any ordinary static HTTP server can serve this folder instead.
 
 ## Controls and play
 
@@ -183,6 +183,7 @@ if (!args.has('--verify')) {
   for (const [folder, id] of models) for (const extension of ['glb', 'png']) {
     const asset = `assets/${folder}/${id}.${extension}`; await copy(path.join(project, asset), path.join(output, asset));
   }
+  await copy(path.join(project,'assets/branding/crown-of-bharat-title.webp'),path.join(output,'assets/branding/crown-of-bharat-title.webp'));
   for (const asset of texturePaths) await copy(path.join(project, asset), path.join(output, asset));
   for (const file of await filesIn(path.join(project, 'assets/fonts'))) {
     assert.ok(/\.(?:ttf|txt)$/.test(file), `Review unexpected font asset: ${file}`);
@@ -231,6 +232,7 @@ async function verify() {
     assert.equal(png.subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
     assert.equal(png.readUInt32BE(16), 512, `Portrait width: ${folder}/${id}`); assert.equal(png.readUInt32BE(20), 512, `Portrait height: ${folder}/${id}`);
   }
+  await copy(path.join(project,'assets/branding/crown-of-bharat-title.webp'),path.join(output,'assets/branding/crown-of-bharat-title.webp'));
   for (const asset of texturePaths) { const png = await readFile(path.join(output, asset)); assert.equal(png.readUInt32BE(16), 1024); assert.equal(png.readUInt32BE(20), 1024); }
   assert.equal(actual.filter(file => file.endsWith('.glb')).length, models.length);
   assert.equal(actual.filter(file => file.startsWith('assets/buildings/') && file.endsWith('.glb')).length, Object.keys(CATALOG).length * MAX_BUILDING_LEVEL);

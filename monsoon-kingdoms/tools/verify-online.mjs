@@ -1,9 +1,10 @@
+import { developedVillage } from './developed-village.mjs';
 // Online play: what leaves the device, and what a downloaded base is allowed to do.
 import assert from 'node:assert/strict';
 import * as R from '../src/rules.js';
 
 const now = Date.UTC(2026, 0, 5);
-const fresh = () => R.newGame(now);
+const fresh = () => developedVillage(now);
 
 // --- What is published ------------------------------------------------------------
 const home = fresh();

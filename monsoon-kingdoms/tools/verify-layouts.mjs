@@ -1,3 +1,4 @@
+import { developedVillage } from './developed-village.mjs';
 // Every campaign road must be a distinct, well-formed, winnable base.
 import assert from 'node:assert/strict';
 import * as R from '../src/rules.js';
@@ -10,7 +11,7 @@ assert.equal(Object.keys(R.LAYOUTS).length, 6, 'one authored layout per campaign
 const seen = new Map();
 for (const raid of R.RAIDS) {
   assert.ok(R.LAYOUTS[raid.layout], `${raid.id} has an authored layout`);
-  const battle = R.createBattle(Object.assign(R.newGame(now), { raidStars: Object.fromEntries(R.RAIDS.map(r => [r.id, 3])) }), raid.id).battle;
+  const battle = R.createBattle(Object.assign(developedVillage(now), { raidStars: Object.fromEntries(R.RAIDS.map(r => [r.id, 3])) }), raid.id).battle;
   const buildings = battle.buildings;
 
   // Bounds, overlap and a reachable capital.
@@ -46,7 +47,7 @@ for (const raid of R.RAIDS) {
 // Difficulty must actually rise along the road, measured by how long a fixed army takes.
 const times = [];
 for (const raid of R.RAIDS) {
-  const home = R.newGame(now);
+  const home = developedVillage(now);
   for (const b of home.buildings) if (b.type === 'camp') b.level = 3;
   home.raidStars = Object.fromEntries(R.RAIDS.map(r => [r.id, 3]));
   home.army = { ...home.army, guard: 20, archer: 18, engineer: 6, rider: 4, elephant: 4, healer: 3 };

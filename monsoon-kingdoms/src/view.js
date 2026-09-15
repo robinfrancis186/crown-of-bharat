@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { CATALOG, UNITS, HEROES, SPELLS } from './rules.js';
+import { cameraLimits, villageFocus } from './camera-framing.js';
 
 const cell = v => (v - 12) * 2;
 const rand = (() => { let seed=8123; return () => ((seed = Math.imul(1664525,seed)+1013904223|0)>>>0)/4294967296; })();
@@ -37,10 +38,10 @@ export class KingdomView {
     canvas.addEventListener('pointermove',e=>{
       if(!this.inputEnabled){this.cancelGesture();return;}if(!pointers.has(e.pointerId))return;
       const prev=pointers.get(e.pointerId);pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
-      if(pointers.size>=2){const p=[...pointers.values()],dist=Math.hypot(p[0].x-p[1].x,p[0].y-p[1].y);this.span=THREE.MathUtils.clamp(this.span*pinch/Math.max(10,dist),22,160);pinch=dist;drag.total=100;this.updateCamera();return;}
+      if(pointers.size>=2){const p=[...pointers.values()],dist=Math.hypot(p[0].x-p[1].x,p[0].y-p[1].y);this.span*=pinch/Math.max(10,dist);pinch=dist;drag.total=100;this.updateCamera();return;}
       if(!drag)return;const dx=e.clientX-prev.x,dy=e.clientY-prev.y;drag.total+=Math.abs(dx)+Math.abs(dy);const scale=this.span/innerHeight;
       this.target.x+=(-dx*Math.cos(this.angle)-dy*Math.sin(this.angle)*1.3)*scale;this.target.z+=(dx*Math.sin(this.angle)-dy*Math.cos(this.angle)*1.3)*scale;
-      this.target.x=THREE.MathUtils.clamp(this.target.x,-27,27);this.target.z=THREE.MathUtils.clamp(this.target.z,-27,27);this.updateCamera();
+      this.updateCamera();
     });
     canvas.addEventListener('pointerup',e=>{
       if(!this.inputEnabled){this.cancelGesture();return;}
@@ -51,12 +52,28 @@ export class KingdomView {
     canvas.addEventListener('pointercancel',this.cancelGesture);
     canvas.addEventListener('lostpointercapture',e=>{if(pointers.has(e.pointerId))this.cancelGesture();});
     canvas.addEventListener('contextmenu',e=>e.preventDefault());
-    canvas.addEventListener('wheel',e=>{if(!this.inputEnabled)return;e.preventDefault();this.span=THREE.MathUtils.clamp(this.span*Math.exp(e.deltaY*.001),22,160);this.updateCamera();},{passive:false});
+    canvas.addEventListener('wheel',e=>{if(!this.inputEnabled)return;e.preventDefault();this.span*=Math.exp(e.deltaY*.001);this.updateCamera();},{passive:false});
   }
   get inputEnabled(){return this._inputEnabled;}
   set inputEnabled(enabled){this._inputEnabled=!!enabled;if(!this._inputEnabled)this.cancelGesture?.();}
-  updateCamera(){const aspect=innerWidth/innerHeight,span=this.span,offset=aspect>1?Math.min(3,span*.065):0;this.camera.left=-span*aspect/2+offset;this.camera.right=span*aspect/2+offset;this.camera.top=span/2;this.camera.bottom=-span/2;this.camera.position.copy(this.target).add(new THREE.Vector3(Math.sin(this.angle)*62,78,Math.cos(this.angle)*62));this.camera.lookAt(this.target);this.camera.updateProjectionMatrix();}
-  cameraAction(action){if(action==='zoomIn')this.span=Math.max(22,this.span*.83);if(action==='zoomOut')this.span=Math.min(160,this.span*1.2);if(action==='rotate')this.angle+=Math.PI/2;if(action==='reset'){this.span=this.mode==='battle'?(innerHeight<=500?57:60):(innerWidth>innerHeight?43:59);this.angle=Math.PI/4;this.target.set(0,0,0);}this.updateCamera();}
+  updateCamera(){
+    const aspect=innerWidth/innerHeight,limits=cameraLimits(this.mode,aspect);
+    this.span=THREE.MathUtils.clamp(this.span,limits.min,limits.max);
+    this.target.x=THREE.MathUtils.clamp(this.target.x,-limits.pan,limits.pan);this.target.z=THREE.MathUtils.clamp(this.target.z,-limits.pan,limits.pan);
+    const span=this.span,offset=aspect>1?Math.min(3,span*.065):0;
+    this.camera.left=-span*aspect/2+offset;this.camera.right=span*aspect/2+offset;this.camera.top=span/2;this.camera.bottom=-span/2;
+    this.camera.position.copy(this.target).add(new THREE.Vector3(Math.sin(this.angle)*62,78,Math.cos(this.angle)*62));this.camera.lookAt(this.target);this.camera.updateProjectionMatrix();this.camera.updateMatrixWorld();
+  }
+  cameraAction(action){
+    if(action==='zoomIn')this.span*=.83;if(action==='zoomOut')this.span*=1.2;
+    if(action==='rotate')this.angle+=Math.PI/2;
+    if(action==='reset'){
+      this.span=cameraLimits(this.mode,innerWidth/innerHeight).start;this.angle=Math.PI/4;
+      const focus=this.mode==='home'?villageFocus([...this.buildings.values()].map(o=>o.userData.building)):{x:0,z:0};
+      this.target.set(focus.x,0,focus.z);
+    }
+    this.updateCamera();
+  }
   mesh(geometry,material,x=0,y=0,z=0,parent=this.scene){const m=new THREE.Mesh(geometry,material);m.position.set(x,y,z);m.receiveShadow=true;parent.add(m);return m;}
   setQuality(value){
     const quality=['low','balanced','ultra'].includes(value)?value:'balanced';if(this.quality===quality)return;
@@ -289,7 +306,7 @@ export class KingdomView {
   setHomeHero(id){
     if(this.homeHeroId===id&&this.homeHero){this.homeHero.visible=this.mode==='home';return;}
     if(this.homeHero){this.releaseMixer(this.homeHero);this.scene.remove(this.homeHero);}
-    this.homeHeroId=id;this.homeHero=this.clone(id);this.homeHero.visible=this.mode==='home';this.homeHero.position.set(-1,0,5.5);this.homeHero.rotation.y=Math.PI/4;
+    this.homeHero=null;this.homeHeroId=id;if(!id||!this.models[id])return;this.homeHero=this.clone(id);this.homeHero.visible=this.mode==='home';this.homeHero.position.set(-1,0,5.5);this.homeHero.rotation.y=Math.PI/4;
     this.homeHero.traverse(o=>{if(o.isMesh)o.castShadow=false;});
   }
   healthBar(unit){

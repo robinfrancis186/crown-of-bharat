@@ -110,7 +110,7 @@ function updateWall(x,z){
   placing.x=first.x;placing.z=first.z;placing.line={locked:placing.line?.locked??false,x1:first.x,z1:first.z,x2:x,z2:z,cells,cost:Object.fromEntries(Object.entries(Rules.CATALOG.wall.cost).map(([k,v])=>[k,v*cells.length]))};
 }
 function clearPlacement(){placing=null;wallStart=null;view.setGhost(null);}
-function returnHome(){preview=null;selectedSpell=null;mode='home';battle=null;settled=false;selectedId=null;panel=null;view.setBoard(state.buildings,'home');view.setHomeHero(state.activeHero);refresh();}
+function returnHome(){preview=null;selectedSpell=null;mode='home';battle=null;settled=false;selectedId=null;panel=null;view.setBoard(state.buildings,'home');view.setHomeHero(Rules.heroInfo(state,state.activeHero)?.unlocked?state.activeHero:null);refresh();}
 function enterBattle(result){
   if(!result.ok){ui.toast(result.reason);return;}
   preview=null;battle=result.battle;selectedSpell=null;save();mode='battle';settled=false;panel=null;clearPlacement();selectedId=null;
@@ -252,7 +252,7 @@ function tapWorld(hit){
 }
 try{
   view=new KingdomView(document.getElementById('world'),tapWorld);view.setQuality(quality);
-  await view.load((p,t)=>{if(!loadFailed)ui.setLoading(p,t);},state.buildings);view.setBoard(state.buildings,'home');view.setHomeHero(state.activeHero);ready=true;ui.setLoading(1,'Welcome to your kingdom');save();refresh();
+  await view.load((p,t)=>{if(!loadFailed)ui.setLoading(p,t);},state.buildings);view.setBoard(state.buildings,'home');view.setHomeHero(Rules.heroInfo(state,state.activeHero)?.unlocked?state.activeHero:null);ready=true;ui.setLoading(1,'Welcome to your kingdom');save();refresh();
   if(net.registered)refreshOnline().then(refresh).catch(()=>{});
   if(loaded.recovered)ui.toast('Recovered your kingdom from the last valid backup.');
   if(loaded.corrupt)ui.toast('The saved data was damaged. Import an exported backup in Settings.');
@@ -266,7 +266,7 @@ function frame(now){
   if(fpsTime>=1){fps=frameCount/fpsTime;frameCount=0;fpsTime=0;}
   if(mode==='battle'&&!settled&&panel!=='retreat'&&!portraitBlocked&&!account.blocked&&!document.hidden){accumulator+=dt;while(accumulator>=1/30){Rules.tickBattle(battle,1/30);accumulator-=1/30;if(battle.status!=='active'){settle();accumulator=0;break;}}view.updateBattle(battle,dt);hearBattle(battle);}else accumulator=0;
   homeTimer+=dt;saveTimer+=dt;uiTimer+=dt;
-  if(homeTimer>=.5&&!account.blocked){Rules.tickHome(state,Date.now());homeTimer=0;if(mode==='home'){view.syncBuildings(state.buildings);view.setHomeHero(state.activeHero);}}
+  if(homeTimer>=.5&&!account.blocked){Rules.tickHome(state,Date.now());homeTimer=0;if(mode==='home'){view.syncBuildings(state.buildings);view.setHomeHero(Rules.heroInfo(state,state.activeHero)?.unlocked?state.activeHero:null);}}
   if(saveTimer>=5&&!account.blocked){save();saveTimer=0;}if(uiTimer>=.15){refresh();uiTimer=0;}if(!portraitBlocked&&!document.hidden)view.render(dt);requestAnimationFrame(frame);
 }
 for(const type of ['pointerdown','keydown'])addEventListener(type,()=>audio.resume(),{passive:true});

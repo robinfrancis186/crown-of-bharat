@@ -1,3 +1,4 @@
+import { developedVillage } from './developed-village.mjs';
 // Guided onboarding and hero equipment: sequencing, costs, combat effect and migration.
 import assert from 'node:assert/strict';
 import * as R from '../src/rules.js';
@@ -15,13 +16,13 @@ for (let i = 0; i < 40; i++) {
   assert.ok(step.cta && step.title && step.body, `${step.id} has readable guidance`);
   seen.push(step.id);
   if (step.acknowledge) { assert.equal(R.acknowledgeTutorial(rookie, step.id).ok, true); continue; }
-  if (step.id === 'build') rookie.buildings.push({ id: 'bx', type: 'farm', x: 19, z: 19, w: 3, h: 3, level: 1, builtAt: now, readyAt: 0, upgradingTo: 0, stored: 0 });
+  if (['build','market','mine','hero'].includes(step.id)) rookie.buildings.push({ id: `b${100+i}`, type: ({build:'lumber',market:'market',mine:'mine',hero:'hero_hall'})[step.id], x: 19, z: 19, w: 3, h: 3, level: 1, builtAt: now, readyAt: 0, upgradingTo: 0, stored: 0 });
   if (step.id === 'capital') rookie.buildings.find(b => b.type === 'fort').level = 2;
   if (step.id === 'army') R.quickTrain(rookie, now);
   if (step.id === 'attack') rookie.totalRaids = 1;
   if (step.id === 'defend') rookie.buildings.push({ id: 'by', type: 'archer_tower', x: 1, z: 1, w: 2, h: 2, level: 1, builtAt: now, readyAt: 0, upgradingTo: 0, stored: 0 });
 }
-assert.deepEqual(seen, ['welcome', 'collect', 'build', 'capital', 'army', 'attack', 'hero', 'defend'], 'every step is reached, in order');
+assert.deepEqual(seen, R.tutorialIds(), 'every step is reached, in order');
 assert.equal(R.tutorialState(rookie), null, 'the guide finishes');
 assert.equal(R.acknowledgeTutorial(fresh(), 'defend').ok, false, 'steps cannot be acknowledged out of order');
 const skipped = fresh(); R.skipTutorial(skipped);
@@ -35,7 +36,7 @@ const partial = fresh(); R.acknowledgeTutorial(partial, 'welcome');
 assert.equal(R.tutorialState(R.hydrate(JSON.stringify(partial), now)).id, 'collect', 'progress survives a save');
 
 // --- Hero equipment ---------------------------------------------------------------
-const hall = level => { const s = fresh(); s.buildings.find(b => b.type === 'fort').level = 15; s.buildings.find(b => b.type === 'hero_hall').level = level; s.heroes.tara.level = 1; s.ore = 5000; return s; };
+const hall = level => { const s = developedVillage(now); s.buildings.find(b => b.type === 'fort').level = 15; s.buildings.find(b => b.type === 'hero_hall').level = level; s.heroes.tara.level = 1; s.ore = 5000; return s; };
 const locked = hall(1);
 assert.equal(R.equipmentInfo(locked, 'drum').canUpgrade, false, 'high-tier equipment is gated by the hall');
 assert.match(R.equipmentInfo(locked, 'drum').reason, /Hall of Heroes level 3/);
@@ -114,4 +115,4 @@ assert.equal(tampered.equipment.talwar.level, R.MAX_EQUIPMENT_LEVEL, 'equipment 
 assert.equal(tampered.equipment.ghost, undefined, 'unknown equipment is dropped');
 assert.deepEqual(tampered.heroes.veer.slots, [null, null], 'invalid slots are emptied');
 
-console.log('PASS: eight-step onboarding sequences, migrates and skips correctly; equipment gates, costs, combat effect, ability changes, ore economy and save migration all hold.');
+console.log('PASS: ten-step onboarding sequences, migrates and skips correctly; equipment gates, costs, combat effect, ability changes, ore economy and save migration all hold.');

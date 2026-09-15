@@ -10,7 +10,7 @@ export function mountAccountGate({ onSignIn, onRetry, onSignOut, onContinue, onB
   host.innerHTML = `
     <div class="account-shell">
       <div class="account-world" aria-hidden="true">
-        <div class="account-wordmark"><span>MONSOON</span><span>KINGDOMS</span></div>
+        <div class="account-wordmark"><span>CROWN OF</span><span>BHARAT</span></div>
         <div class="account-art"><div class="account-halo"></div><img src="./assets/buildings/fort.png" alt="" draggable="false"></div>
         <p class="account-world-caption">A kingdom worth returning to.</p>
       </div>

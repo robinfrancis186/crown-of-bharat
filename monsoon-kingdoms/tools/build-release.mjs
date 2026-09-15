@@ -75,7 +75,7 @@ import socket
 import threading
 import webbrowser
 
-parser = argparse.ArgumentParser(description="Play Monsoon Kingdoms locally")
+parser = argparse.ArgumentParser(description="Play Crown of Bharat locally")
 parser.add_argument("--port", type=int, default=5192)
 parser.add_argument("--no-browser", action="store_true")
 parser.add_argument("--lan", action="store_true", help="Allow phones and other devices on the same network")
@@ -94,7 +94,7 @@ try:
 except OSError as error:
     parser.exit(1, "Could not start server: " + str(error) + "\\nTry another port: python3 server.py --port 5193\\n")
 url = "http://127.0.0.1:" + str(args.port) + "/"
-print("Monsoon Kingdoms: " + url + "\\nPress Ctrl+C to stop.", flush=True)
+print("Crown of Bharat: " + url + "\\nPress Ctrl+C to stop.", flush=True)
 if args.lan:
     address = None
     try:
@@ -121,7 +121,7 @@ except KeyboardInterrupt:
 finally:
     server.server_close()
 `;
-const readme = `# Monsoon Kingdoms — local release
+const readme = `# Crown of Bharat — local release
 
 An original Indian-inspired strategy game with fifteen building types and fifteen modeled levels per type, a Taj Mahal-inspired capital, ten troop types, two permanent heroes, four spells, six campaign destinations and local AI league play.
 
@@ -194,7 +194,7 @@ if (!args.has('--verify')) {
   await writeFile(path.join(output, 'README.md'), readme);
   const entries = [];
   for (const file of await filesIn(output)) { const data = await readFile(file); entries.push({ path: path.relative(output, file).split(path.sep).join('/'), bytes: data.length, sha256: hash(data) }); }
-  await writeFile(path.join(output, 'release-manifest.json'), JSON.stringify({ name: 'Monsoon Kingdoms', builtAt: new Date().toISOString(), models: models.length, portraits: models.length, pbrMaps: texturePaths.length, sourceHashes: sources, files: entries }, null, 2) + '\n');
+  await writeFile(path.join(output, 'release-manifest.json'), JSON.stringify({ name: 'Crown of Bharat', builtAt: new Date().toISOString(), models: models.length, portraits: models.length, pbrMaps: texturePaths.length, sourceHashes: sources, files: entries }, null, 2) + '\n');
 }
 
 async function verify() {

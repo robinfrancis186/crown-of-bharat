@@ -1,4 +1,4 @@
-// Monsoon Kingdoms: deterministic, renderer-independent game rules.
+// Crown of Bharat: deterministic, renderer-independent game rules.
 export const GRID = 24;
 export const MAX_BUILDING_LEVEL = 15;
 export const MAX_ARMY_SPACE = 240;

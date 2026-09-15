@@ -1,4 +1,4 @@
-# Monsoon Kingdoms rules contract
+# Crown of Bharat rules contract
 
 The simulation in `src/rules.js` is independent of Three.js, DOM, network and storage. State contains JSON-compatible data. Action functions mutate only the supplied game objects and return `{ok:true,...}` or `{ok:false,reason}`. `newGame`/`hydrate` return state; query functions return their documented information. Home timestamps use milliseconds; durations and battle deltas use seconds. The renderer must persist successful economic actions immediately.
 

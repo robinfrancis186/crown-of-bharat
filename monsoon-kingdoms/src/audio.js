@@ -1,4 +1,4 @@
-// Monsoon Kingdoms audio. Every sound is synthesised at runtime from oscillators and
+// Crown of Bharat audio. Every sound is synthesised at runtime from oscillators and
 // filtered noise: no audio files ship with the game, so this adds no download weight.
 // One AudioContext is created lazily on the first sound the player actually asks for.
 const CUE_INTERVAL = { hit: 70, arrow: 55, cannon: 130, destroy: 110, heal: 180, tap: 40, deploy: 70 };

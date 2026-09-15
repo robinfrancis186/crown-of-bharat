@@ -1,4 +1,4 @@
-# Monsoon Kingdoms
+# Crown of Bharat
 
 [Play the game](https://monsoon-kingdoms.vercel.app/) · [Deployment setup](DEPLOYMENT.md)
 

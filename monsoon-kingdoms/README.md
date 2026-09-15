@@ -1,4 +1,4 @@
-# Monsoon Kingdoms
+# Crown of Bharat
 
 An original Indian-themed 3D village strategy game: build a Taj Mahal-inspired capital, improve your economy, research your army, lead permanent heroes, and attack defended bases. Three.js runtime with editable Blender assets.
 

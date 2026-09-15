@@ -14,6 +14,8 @@ let preferences={};try{preferences=JSON.parse(storage?.getItem('monsoon.preferen
 let quality=['low','balanced','ultra'].includes(preferences.quality)?preferences.quality:'balanced';
 let mode='home',battle=null,selectedId=null,placing=null,panel=null,selectedTroop='guard',selectedSpell=null,ready=false,settled=false,soundEnabled=preferences.sound===true;
 let upgradeTarget=null,finishTarget=null,attackTab='campaign',wallStart=null,preview=null;
+const panelHistory=[];
+function rememberPanel(){if(panel)panelHistory.push({panel,upgradeTarget,finishTarget,preview});}
 const portraitQuery=matchMedia('(orientation: portrait) and (max-width: 1024px)');
 let portraitBlocked=portraitQuery.matches;
 let fps=60,frameCount=0,fpsTime=0;
@@ -87,16 +89,16 @@ function requestBattle(kind,id){
   if(mode!=='home')return;
   const result=Rules.previewAttack(state,kind,id);
   if(!result.ok){ui.toast(result.reason);return;}
-  view.ensureBuildingModels(result.battle.buildings).catch(()=>{});preview={kind,id,battle:result.battle};clearPlacement();selectedId=null;view.setSelection(null);panel='briefing';refresh();
+  rememberPanel();view.ensureBuildingModels(result.battle.buildings).catch(()=>{});preview={kind,id,battle:result.battle};clearPlacement();selectedId=null;view.setSelection(null);panel='briefing';refresh();
 }
 function refresh(){
   const check=placementCheck(),cap=Rules.capacity(state);
   if(view){view.inputEnabled=!panel&&!settled&&!portraitBlocked&&!account.blocked;view.setSpellAim?.(!panel&&!settled&&!portraitBlocked&&!account.blocked?Rules.SPELLS[selectedSpell]:null);}
   const collectable=state.buildings.some(b=>{const resource=Rules.CATALOG[b.type].production?.resource;return b.stored>=1&&resource&&(resource==='gems'?state.gems<999999:state.resources[resource]<cap.storage[resource]);});
-  ui.render({mode,state,preview,online,tutorial:mode==='home'?Rules.tutorialState(state):null,objective:objective(),collectable,hasArmyRecipe:!!preferences.armyRecipe,catalog:Rules.CATALOG,units:Rules.UNITS,heroes:Rules.HEROES,raids:Rules.RAIDS,ranked:Rules.getRanked(state),capacity:Rules.capacity(state),selectedBuilding:state.buildings.find(b=>b.id===selectedId),placing,placementValid:check.ok,placementReason:check.reason,battle,selectedTroop,selectedSpell,spells:Rules.SPELLS,quality,panel,soundEnabled,upgradeTarget,finishTarget,attackTab,wallStart,stats:{fps:Math.round(fps)}});
+  ui.render({mode,state,preview,online,tutorial:mode==='home'?Rules.tutorialState(state):null,objective:objective(),collectable,hasArmyRecipe:!!preferences.armyRecipe,catalog:Rules.CATALOG,units:Rules.UNITS,heroes:Rules.HEROES,raids:Rules.RAIDS,ranked:Rules.getRanked(state),capacity:Rules.capacity(state),selectedBuilding:state.buildings.find(b=>b.id===selectedId),placing,placementValid:check.ok,placementReason:check.reason,battle,selectedTroop,selectedSpell,spells:Rules.SPELLS,quality,panel,parentPanel:panelHistory.at(-1)?.panel,soundEnabled,upgradeTarget,finishTarget,attackTab,wallStart,stats:{fps:Math.round(fps)}});
 }
 function startPlacing(type,id){
-  preview=null;panel=null;selectedId=null;wallStart=null;
+  preview=null;panel=null;panelHistory.length=0;selectedId=null;wallStart=null;
   const old=state.buildings.find(b=>b.id===id);
   placing={type,x:old?.x??2,z:old?.z??2,...(id?{id}:{})};
   if(!old){outer:for(let z=4;z<23;z++)for(let x=3;x<23;x++)if(Rules.canPlace(state,type,x,z).ok){placing.x=x;placing.z=z;break outer;}}
@@ -110,10 +112,10 @@ function updateWall(x,z){
   placing.x=first.x;placing.z=first.z;placing.line={locked:placing.line?.locked??false,x1:first.x,z1:first.z,x2:x,z2:z,cells,cost:Object.fromEntries(Object.entries(Rules.CATALOG.wall.cost).map(([k,v])=>[k,v*cells.length]))};
 }
 function clearPlacement(){placing=null;wallStart=null;view.setGhost(null);}
-function returnHome(){preview=null;selectedSpell=null;mode='home';battle=null;settled=false;selectedId=null;panel=null;view.setBoard(state.buildings,'home');view.setHomeHero(Rules.heroInfo(state,state.activeHero)?.unlocked?state.activeHero:null);refresh();}
+function returnHome(){panelHistory.length=0;preview=null;selectedSpell=null;mode='home';battle=null;settled=false;selectedId=null;panel=null;view.setBoard(state.buildings,'home');view.setHomeHero(Rules.heroInfo(state,state.activeHero)?.unlocked?state.activeHero:null);refresh();}
 function enterBattle(result){
   if(!result.ok){ui.toast(result.reason);return;}
-  preview=null;battle=result.battle;selectedSpell=null;save();mode='battle';settled=false;panel=null;clearPlacement();selectedId=null;
+  panelHistory.length=0;preview=null;battle=result.battle;selectedSpell=null;save();mode='battle';settled=false;panel=null;clearPlacement();selectedId=null;
   selectedTroop=Object.keys(battle.reserve).find(k=>battle.reserve[k])||(battle.hero?'hero':'guard');
   lastHeardEvent=0;view.setBoard(battle.buildings,'battle');refresh();sound('hero');ui.toast('Select a warrior or hero, then tap the gold outer band to deploy.');
 }
@@ -142,11 +144,11 @@ const actions={
     const result=p.line?Rules.placeWallLine(state,p.line.x1,p.line.z1,p.line.x2,p.line.z2):p.id?Rules.moveBuilding(state,p.id,p.x,p.z):Rules.placeBuilding(state,p.type,p.x,p.z);
     if(attempt(result,p.line?`${p.line.cells.length} ramparts raised.`:p.id?'Building moved.':'Construction started.')){clearPlacement();selectedId=p.id??result.building?.id;view.setSelection(state.buildings.find(b=>b.id===selectedId));refresh();}
   },
-  openUpgrade(id){const b=state.buildings.find(b=>b.id===id);if(b)view.preloadBuilding(b.type,b.level+1).catch(()=>{});upgradeTarget=id;panel='upgrade';refresh();},
+  openUpgrade(id){if(panel!=='upgrade')rememberPanel();const b=state.buildings.find(b=>b.id===id);if(b)view.preloadBuilding(b.type,b.level+1).catch(()=>{});upgradeTarget=id;panel='upgrade';refresh();},
   upgrade(id){actions.openUpgrade(id);},
-  confirmUpgrade(id){if(attempt(Rules.upgradeBuilding(state,id),'Upgrade started.')){panel=null;refresh();}},
-  finish(kind,id){finishTarget={kind,id};panel='finish';refresh();},
-  confirmFinish(kind,id){if(!finishTarget||finishTarget.kind!==kind||finishTarget.id!==id)return;if(attempt(Rules.finishWithGems(state,kind,id),'Work completed.')){finishTarget=null;panel=kind==='research'?'research':kind==='hero'?'heroes':null;refresh();}},
+  confirmUpgrade(id){if(attempt(Rules.upgradeBuilding(state,id),'Upgrade started.')){panel=null;panelHistory.length=0;refresh();}},
+  finish(kind,id){rememberPanel();finishTarget={kind,id};panel='finish';refresh();},
+  confirmFinish(kind,id){if(!finishTarget||finishTarget.kind!==kind||finishTarget.id!==id)return;if(attempt(Rules.finishWithGems(state,kind,id),'Work completed.')){panelHistory.length=0;finishTarget=null;panel=kind==='research'?'research':kind==='hero'?'heroes':null;refresh();}},
   move(id){const b=state.buildings.find(b=>b.id===id);if(b)startPlacing(b.type,id);},
   followObjective(){const goal=objective();if(goal)actions[goal.action]?.(goal.value);},
   dismissObjective(){preferences.hideObjective=true;savePreferences();refresh();},
@@ -179,8 +181,9 @@ const actions={
   },
   skipTutorial(){if(attempt(Rules.skipTutorial(state)))ui.toast('Guide dismissed. Reopen it any time from the field guide.');},
   restartTutorial(){state.tutorial={acknowledged:[],skipped:false};save();panel=null;refresh();ui.toast('The guide will walk you through the next steps.');},
-  openPanel(name){if(mode!=='home')return;preview=null;clearPlacement();selectedId=null;view.setSelection(null);panel=name==='map'?'attack':name;sound();refresh();},
-  closePanel(){preview=null;panel=null;upgradeTarget=null;finishTarget=null;if(settled)returnHome();else refresh();},
+  openPanel(name){if(mode!=='home')return;if(panel&&!['build','army','heroes','attack','map','settings'].includes(name))rememberPanel();else panelHistory.length=0;preview=null;clearPlacement();selectedId=null;view.setSelection(null);panel=name==='map'?'attack':name;sound();refresh();},
+  backPanel(){const previous=panelHistory.pop();if(!previous){actions.closePanel();return;}({panel,upgradeTarget,finishTarget,preview}=previous);sound();refresh();},
+  closePanel(){panelHistory.length=0;preview=null;panel=null;upgradeTarget=null;finishTarget=null;if(settled)returnHome();else refresh();},
   setAttackTab(tab){attackTab=['ranked','online'].includes(tab)?tab:'campaign';panel='attack';refresh();if(tab==='online'&&net.registered&&!online.leaderboard.length)onlineTask('Loading standings…',async()=>{await refreshOnline();return {ok:true};});},
   startRaid(id){requestBattle('campaign',id);},
   startRanked(){requestBattle('ranked');},

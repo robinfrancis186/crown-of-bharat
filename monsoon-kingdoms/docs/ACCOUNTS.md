@@ -4,7 +4,7 @@ Firebase project: monsoon-kingdoms-186. Firestore location: asia-south1.
 Google authentication is mandatory before game initialization. The public Firebase web configuration is bundled; no administrative credentials ship to browsers.
 
 ## Activation and verification
-Standard Firebase Authentication and Google sign-in are enabled. Firebase project and web app display names: Crown of Bharat / Crown of Bharat Web. The existing Firebase project ID remains stable to preserve accounts and saves. Google OAuth consent branding was originally configured as Monsoon Kingdoms and still needs a console rename. The production domain crown-of-bharat.vercel.app is authorized alongside Firebase defaults and localhost. No billing upgrade was needed.
+Standard Firebase Authentication and Google sign-in are enabled. Firebase project and web app display names: Crown of Bharat / Crown of Bharat Web. The existing Firebase project ID remains stable to preserve accounts and saves. Firebase public-facing name was changed to Crown of Bharat and verified in the console on 2026-09-15. The production domain crown-of-bharat.vercel.app is authorized alongside Firebase defaults and localhost. No billing upgrade was needed.
 
 A real Google sign-in opened the local game on 2026-09-11. A separate authenticated Firestore API read confirmed a kingdom document at revision 4. Simulated logout, account switching, failed-write recovery and ownership tests passed earlier. A real logout/relogin and production-device check remain to be completed; these are not implied by the simulated tests.
 

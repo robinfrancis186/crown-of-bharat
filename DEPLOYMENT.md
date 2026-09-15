@@ -1,9 +1,9 @@
 # Connected services
 
-Play: https://monsoon-kingdoms.vercel.app/
+Play: https://crown-of-bharat.vercel.app/
 
-- GitHub: https://github.com/robinfrancis186/monsoon-kingdoms (public).
-- Vercel project: https://vercel.com/robin-francis-projects/monsoon-kingdoms
+- GitHub: https://github.com/robinfrancis186/crown-of-bharat (public).
+- Vercel project: https://vercel.com/robin-francis-projects/crown-of-bharat
 - Supabase project: https://supabase.com/dashboard/project/wcihordgjxybhndvlnak
 
 The browser uses the existing Supabase publishable key in `monsoon-kingdoms/src/net.js`. It is intentionally public; no database password, service-role key or account access token is shipped. Online progress uses the existing RPC functions. Google sign-in is required. Account village saves use Firestore through `src/account.js` and `src/account-store.js`, with per-user local recovery state. Configure Firebase authorized domains and deploy `firestore.rules` for a separate deployment. Supabase RPCs continue to support online village and battle features.

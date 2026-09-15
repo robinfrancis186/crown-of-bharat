@@ -1,0 +1,26 @@
+{
+  "name": "Crown of Bharat",
+  "short_name": "Crown of Bharat",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#073e29",
+  "theme_color": "#073e29",
+  "description": "Build your kingdom and command your army in an Indian-inspired strategy adventure.",
+  "icons": [
+    {
+      "src": "./assets/branding/crown-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./assets/branding/crown-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

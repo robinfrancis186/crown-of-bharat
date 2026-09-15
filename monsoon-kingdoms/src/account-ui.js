@@ -15,7 +15,7 @@ export function mountAccountGate({ onSignIn, onRetry, onSignOut, onContinue, onB
         <p class="account-world-caption">A kingdom worth returning to.</p>
       </div>
       <div class="account-panel">
-        <div class="account-crest" aria-hidden="true">✦</div>
+        <div class="account-crest" aria-hidden="true"><img src="./assets/branding/crown-icon-192.png" alt="" width="48" height="48"></div>
         <p class="account-eyebrow">YOUR STORY STARTS HERE</p>
         <h1 id="account-heading" tabindex="-1">Build your kingdom.<br>Make it yours.</h1>
         <p class="account-description">Sign in with Google to play and save your kingdom to your account.</p>

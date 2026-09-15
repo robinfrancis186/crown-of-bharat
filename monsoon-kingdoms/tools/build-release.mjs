@@ -184,6 +184,8 @@ if (!args.has('--verify')) {
     const asset = `assets/${folder}/${id}.${extension}`; await copy(path.join(project, asset), path.join(output, asset));
   }
   await copy(path.join(project,'assets/branding/crown-of-bharat-title.webp'),path.join(output,'assets/branding/crown-of-bharat-title.webp'));
+  await copy(path.join(project,'manifest.webmanifest'),path.join(output,'manifest.webmanifest'));
+  for(const name of ['favicon.ico',... [32,48,180,192,512].map(size=>`crown-icon-${size}.png`)])await copy(path.join(project,'assets/branding',name),path.join(output,'assets/branding',name));
   for (const asset of texturePaths) await copy(path.join(project, asset), path.join(output, asset));
   for (const file of await filesIn(path.join(project, 'assets/fonts'))) {
     assert.ok(/\.(?:ttf|txt)$/.test(file), `Review unexpected font asset: ${file}`);
@@ -232,12 +234,15 @@ async function verify() {
     assert.equal(png.subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
     assert.equal(png.readUInt32BE(16), 512, `Portrait width: ${folder}/${id}`); assert.equal(png.readUInt32BE(20), 512, `Portrait height: ${folder}/${id}`);
   }
-  await copy(path.join(project,'assets/branding/crown-of-bharat-title.webp'),path.join(output,'assets/branding/crown-of-bharat-title.webp'));
   for (const asset of texturePaths) { const png = await readFile(path.join(output, asset)); assert.equal(png.readUInt32BE(16), 1024); assert.equal(png.readUInt32BE(20), 1024); }
   assert.equal(actual.filter(file => file.endsWith('.glb')).length, models.length);
   assert.equal(actual.filter(file => file.startsWith('assets/buildings/') && file.endsWith('.glb')).length, Object.keys(CATALOG).length * MAX_BUILDING_LEVEL);
   for (const obsolete of ['fort_2', 'fort_3', 'wall_2', 'wall_3', 'upgrade_ornament']) assert.ok(!actual.includes(`assets/buildings/${obsolete}.glb`), `Obsolete runtime model shipped: ${obsolete}`);
-  assert.equal(actual.filter(file => file.endsWith('.png')).length, models.length + texturePaths.length);
+  assert.equal(actual.filter(file => file.endsWith('.png')).length, models.length + texturePaths.length + 5);
+  const appManifest=JSON.parse(await readFile(path.join(output,'manifest.webmanifest'),'utf8'));
+  assert.equal(appManifest.name,'Crown of Bharat');
+  for(const size of [32,48,180,192,512]){const png=await readFile(path.join(output,`assets/branding/crown-icon-${size}.png`));assert.equal(png.readUInt32BE(16),size);assert.equal(png.readUInt32BE(20),size);}
+  for(const icon of appManifest.icons)assert.ok(actual.includes(icon.src.replace(/^\.\//,'')));
   assert.equal(actual.filter(file => file.endsWith('.ttf')).length, 2);
   const bytes = manifest.files.reduce((n, entry) => n + entry.bytes, 0);
   console.log(`Verified ${manifest.files.length} files · ${models.length} GLBs · ${models.length} portraits · ${texturePaths.length} PBR maps · ${closure.length} JS modules · ${(bytes / 1048576).toFixed(2)} MiB`);

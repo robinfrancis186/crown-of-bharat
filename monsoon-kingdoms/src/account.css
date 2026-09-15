@@ -40,3 +40,5 @@
 #loading h1 .game-title{display:block;width:min(360px,65vw);height:auto;margin:auto}
 @media(orientation:landscape) and (max-height:500px){#account-gate .account-wordmark .game-title{max-width:260px}#account-gate .account-art{margin:0}#account-gate .account-art img{width:clamp(100px,30vh,170px)}#account-gate .account-world-caption{display:none}}
 @media(orientation:landscape) and (max-height:360px){#account-gate{padding-top:10px;padding-bottom:10px}#account-gate .account-shell{gap:20px}#account-gate .account-panel{padding:16px}#account-gate h1{font-size:22px;line-height:1.16}#account-gate .account-description{font-size:11px;margin-top:8px}#account-gate .account-status{font-size:11px;margin:8px 0}#account-gate .account-footnote{margin-top:8px;font-size:9px}}
+
+#account-gate .account-crest img{display:block;width:48px;height:48px;border-radius:12px;margin:auto}#loading .brand-emblem{display:block;width:64px;height:64px;border-radius:16px}#loading .loading-mark{overflow:hidden}

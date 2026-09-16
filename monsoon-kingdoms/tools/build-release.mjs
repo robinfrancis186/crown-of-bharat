@@ -123,7 +123,7 @@ finally:
 `;
 const readme = `# Crown of Bharat — local release
 
-An original Indian-inspired strategy game with fifteen building types and fifteen modeled levels per type, a Taj Mahal-inspired capital, ten troop types, two permanent heroes, four spells, six campaign destinations and local AI league play.
+An original Indian-inspired strategy game with fifteen building types and fifteen modeled levels per type, a Taj Mahal-inspired capital, ten troop types, six permanent heroes, four spells, six campaign destinations and local AI league play.
 
 ## Start
 
@@ -223,6 +223,7 @@ async function verify() {
       const resolved = path.resolve(output, path.dirname(file), match[1]); assert.ok(inside(output, resolved)); assert.ok((await stat(resolved)).isFile());
     }
   }
+  const heroManifest = JSON.parse(await readFile(path.join(project, 'assets/heroes/manifest.json'), 'utf8'));
   for (const [folder, id] of models) {
     const file = `assets/${folder}/${id}.glb`, glb = await readFile(path.join(output, file));
     assert.equal(glb.toString('ascii', 0, 4), 'glTF', file); assert.equal(glb.readUInt32LE(4), 2); assert.equal(glb.readUInt32LE(8), glb.length);
@@ -232,7 +233,9 @@ async function verify() {
     for (const item of [...(json.buffers || []), ...(json.images || [])]) assert.ok(!item.uri || item.uri.startsWith('data:'), `Unpackaged external GLB resource: ${file}: ${item.uri}`);
     const png = await readFile(path.join(output, `assets/${folder}/${id}.png`));
     assert.equal(png.subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
-    assert.equal(png.readUInt32BE(16), 512, `Portrait width: ${folder}/${id}`); assert.equal(png.readUInt32BE(20), 512, `Portrait height: ${folder}/${id}`);
+    const dimensions = folder === 'heroes' ? heroManifest.heroes.find(hero => hero.id === id)?.portraitDimensions || [512, 512] : [512, 512];
+    assert.ok(dimensions.length === 2 && dimensions.every(size => [512, 768].includes(size)), `Runtime portrait budget: ${folder}/${id}`);
+    assert.equal(png.readUInt32BE(16), dimensions[0], `Portrait width: ${folder}/${id}`); assert.equal(png.readUInt32BE(20), dimensions[1], `Portrait height: ${folder}/${id}`);
   }
   for (const asset of texturePaths) { const png = await readFile(path.join(output, asset)); assert.equal(png.readUInt32BE(16), 1024); assert.equal(png.readUInt32BE(20), 1024); }
   assert.equal(actual.filter(file => file.endsWith('.glb')).length, models.length);

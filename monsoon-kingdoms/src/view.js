@@ -25,7 +25,7 @@ export class KingdomView {
     this.scene.add(new THREE.HemisphereLight('#e9f3ff','#6f8140',1.55));
     this.sun=new THREE.DirectionalLight('#fff0ca',3.1);this.sun.position.set(-24,50,24);
     this.sun.castShadow=true;this.sun.shadow.mapSize.set(2048,2048);Object.assign(this.sun.shadow.camera,{left:-46,right:46,top:46,bottom:-46,near:1,far:130});this.sun.shadow.bias=-.00035;this.sun.shadow.normalBias=.035; this.scene.add(this.sun);
-    this.groundMotion=new Map();this.labelCamera=new THREE.OrthographicCamera();this.quality='balanced';this.animations={};this.modelTops={};this.mixers=new Map();this.spellAreas=new Map();this.textures={};
+    this.groundMotion=new Map();this.labelCamera=new THREE.OrthographicCamera();this.quality='balanced';this.animations={};this.modelTops={};this.mixers=new Map();this.spellAreas=new Map();this.heroEffects=new Map();this.textures={};
     this.board=new THREE.Group();this.scene.add(this.board);this.models={};this.modelLoads=new Map();this.modelFailures=new Map();this.variantCache=new Map();this.buildings=new Map();this.troops=new Map();this.unitBars=new Map();this.effects=[];this.lastEvent=0;this.time=0;this.shake=0;this.shaking=false;this.hitShakes=new Map();this.deaths=new Map();this.unitDeaths=new Map();
     this.ray=new THREE.Raycaster();this.plane=new THREE.Plane(new THREE.Vector3(0,1,0),0);
     this.selection=new THREE.Group();this.scene.add(this.selection); this.ghost=new THREE.Group();this.scene.add(this.ghost);
@@ -106,8 +106,15 @@ export class KingdomView {
   async load(progress,buildings=[]){
     const paths=[...Object.keys(CATALOG).map(x=>['buildings',x]),...Object.keys(HEROES).map(x=>['heroes',x]),...Object.keys(UNITS).map(x=>['units',x]),...['banyan','palm','rocks','bush','cart','jars'].map(x=>['environment',x])];let done=0;const loader=new GLTFLoader();
     await Promise.all([this.loadTextures(),...paths.map(async([folder,name])=>{const gltf=await loader.loadAsync(`./assets/${folder}/${name}.glb`);this.models[name]=gltf.scene;this.animations[name]=gltf.animations;this.modelTops[name]=new THREE.Box3().setFromObject(gltf.scene).max.y;progress(++done/paths.length*.85,`Carving the valley · ${done}/${paths.length}`);})]);
-    for(const[folder,name]of paths){this.detailModel(this.models[name],name,folder);if(folder==='units'||folder==='heroes')prepareGroundedModel(this.models[name],name);}
+    for(const[folder,name]of paths){this.detailModel(this.models[name],name,folder);if(folder==='units'||folder==='heroes')this.prepareCharacterModel(this.models[name],name);}
     await this.ensureBuildingModels(buildings);this.makeLandscape();progress(.95,'Opening the gates of Surajgarh');
+  }
+  prepareCharacterModel(root,name){
+    // New Blender heroes ship real skins and this solver's neutral bone layout.
+    // Keep that rig; only legacy merged models need a generated runtime skin.
+    if(!root.userData.groundGait)root.traverse(node=>{if(node.userData.groundGait)root.userData.groundGait=node.userData.groundGait;});
+    if(!root.userData.groundGait)prepareGroundedModel(root,name);
+    else if(!root.userData.gaitBoundsPrepared){root.updateMatrixWorld(true);root.traverse(mesh=>{if(mesh.isSkinnedMesh){mesh.computeBoundingSphere();mesh.boundingSphere.radius+=root.userData.groundGait.hip*.8;}});root.userData.gaitBoundsPrepared=true;}
   }
   buildingAsset(type,level){return level>1?`${type}_${level}`:type;}
   async preloadBuilding(type,level){
@@ -141,11 +148,17 @@ export class KingdomView {
       let skeleton;obj.traverse(mesh=>{if(mesh.isSkinnedMesh){if(!skeleton)skeleton=mesh.skeleton;else mesh.skeleton=skeleton;}});
       this.groundMotion.set(obj,{x,z});
     }
-    if(this.animations[name]?.length){const mixer=new THREE.AnimationMixer(obj);mixer.clipAction(this.animations[name][0]).play();mixer.setTime(rand()*2);this.mixers.set(obj,mixer);}return obj;
+    if(this.animations[name]?.length){
+      const authored=this.animations[name].find(clip=>/idle/i.test(clip.name))||this.animations[name][0];
+      // Native export clips remain available to other engines. Runtime locomotion
+      // owns these leg bones, so an idle clip must never overwrite planted feet.
+      const tracks=authored.tracks.filter(track=>!source.userData.groundGait||!/(?:^|[/.])Ground(?:Body|Hip\d+|Knee\d+|Foot\d+)\./.test(track.name));
+      if(tracks.length){const clip=new THREE.AnimationClip(authored.name,authored.duration,tracks,authored.blendMode),mixer=new THREE.AnimationMixer(obj);mixer.clipAction(clip).play();mixer.setTime(rand()*2);this.mixers.set(obj,mixer);}
+    }return obj;
   }
   releaseMixer(obj){
     const mixer=this.mixers.get(obj);if(mixer){mixer.stopAllAction();mixer.uncacheRoot(obj);this.mixers.delete(obj);}
-    this.groundMotion?.delete(obj);const skeletons=new Set();obj.traverse(o=>{if(o.isSkinnedMesh)skeletons.add(o.skeleton);});for(const skeleton of skeletons)skeleton.dispose();
+    this.groundMotion?.delete(obj);const skeletons=new Set();obj.traverse(o=>{if(o.isSkinnedMesh)skeletons.add(o.skeleton);});for(const skeleton of skeletons)skeleton.dispose();if(obj.userData.decoy)this.clearOverlay(obj);
   }
   makeLandscape(){
     const grassCanvas=document.createElement('canvas');grassCanvas.width=grassCanvas.height=1024;const ctx=grassCanvas.getContext('2d');ctx.fillStyle='#82ac49';ctx.fillRect(0,0,1024,1024);
@@ -182,7 +195,7 @@ export class KingdomView {
     this.troopContactShadows=new THREE.InstancedMesh(this.contactShadows.geometry,this.contactShadows.material,256);this.troopContactShadows.count=0;this.troopContactShadows.frustumCulled=false;this.scene.add(this.troopContactShadows);
     this.renderer.shadowMap.needsUpdate=true;
   }
-  setBoard(buildings,mode){this.mode=mode;this.setSpellAim(null);for(const obj of this.buildings.values())this.board.remove(obj);this.buildings.clear();for(const obj of this.troops.values()){this.releaseMixer(obj);this.scene.remove(obj);}this.troops.clear();for(const area of this.spellAreas.values()){this.scene.remove(area);this.clearOverlay(area);}this.spellAreas.clear();for(const effect of this.effects){this.scene.remove(effect.mesh);this.clearOverlay(effect.mesh);}this.effects=[];for(const bar of this.unitBars.values()){this.scene.remove(bar);this.clearOverlay(bar);}this.unitBars.clear();this.hitShakes.clear();this.deaths.clear();this.unitDeaths.clear();this.shake=0;if(this.homeHero)this.homeHero.visible=mode==='home';for(const el of this.labels.values())el.remove();this.labels.clear();this.lastEvent=0;this.deployment.visible=mode==='battle';this.ambientPeople.forEach(p=>p.obj.visible=mode==='home');this.setSelection(null);this.setGhost(null);this.syncBuildings(buildings);this.cameraAction('reset');}
+  setBoard(buildings,mode){this.mode=mode;this.setSpellAim(null);for(const obj of this.buildings.values())this.board.remove(obj);this.buildings.clear();for(const obj of this.troops.values()){this.releaseMixer(obj);this.scene.remove(obj);}this.troops.clear();for(const area of this.spellAreas.values()){this.scene.remove(area);this.clearOverlay(area);}this.spellAreas.clear();for(const field of this.heroEffects.values()){this.scene.remove(field);this.clearOverlay(field);}this.heroEffects.clear();for(const effect of this.effects){this.scene.remove(effect.mesh);this.clearOverlay(effect.mesh);}this.effects=[];for(const bar of this.unitBars.values()){this.scene.remove(bar);this.clearOverlay(bar);}this.unitBars.clear();this.hitShakes.clear();this.deaths.clear();this.unitDeaths.clear();this.shake=0;if(this.homeHero)this.homeHero.visible=mode==='home';for(const el of this.labels.values())el.remove();this.labels.clear();this.lastEvent=0;this.deployment.visible=mode==='battle';this.ambientPeople.forEach(p=>p.obj.visible=mode==='home');this.setSelection(null);this.setGhost(null);this.syncBuildings(buildings);this.cameraAction('reset');}
   syncBuildings(buildings){for(const b of buildings){let obj=this.buildings.get(b.id);const wanted=this.buildingAsset(b.type,b.level);if(!this.models[wanted])this.preloadBuilding(b.type,b.level).catch(()=>{});const asset=this.models[wanted]?wanted:(obj?.userData.asset||b.type);const signature=`${asset}/${b.level}/${b.x}/${b.z}/${!!b.readyAt}`;if(obj?.userData.signature!==signature){if(obj)this.board.remove(obj);obj=new THREE.Group();obj.userData={id:b.id,signature,asset,wanted};this.board.add(obj);const body=this.clone(asset,obj);if(b.type==='wall')body.scale.set(wallVisualScale.x,wallVisualScale.y,wallVisualScale.z);if(!b.level)body.scale.y*=.42;obj.userData.body=body;this.buildings.set(b.id,obj);obj.position.set(cell(b.x+b.w/2),0,cell(b.z+b.h/2));obj.userData.home=obj.position.clone();this.renderer.shadowMap.needsUpdate=true;}
       const dead=b.hp===0;if(dead&&!obj.userData.ruin){obj.userData.body.visible=false;const ruins=this.clone('rocks',obj,0,0,b.w*.6);ruins.scale.y*=.25;obj.userData.ruin=true;this.renderer.shadowMap.needsUpdate=true;}obj.userData.building=b;
       if(!dead&&!this.labels.has(b.id)){const el=document.createElement('button');el.className='building-bubble';el.tabIndex=-1;el.style.pointerEvents='none';this.labelHost.append(el);this.labels.set(b.id,el);}
@@ -227,6 +240,59 @@ export class KingdomView {
         for(const[geometry,opacity]of [[new THREE.CircleGeometry(radius,64),.15],[new THREE.RingGeometry(radius-.12,radius,64),.8]]){const m=new THREE.Mesh(geometry,new THREE.MeshBasicMaterial({color,transparent:true,opacity,depthWrite:false,side:THREE.DoubleSide}));m.rotation.x=-Math.PI/2;m.userData.opacity=opacity;group.add(m);}this.scene.add(group);this.spellAreas.set(area.id,group);
       }const fade=Math.min(1,(area.expiresAt-battle.elapsed)*2);group.children.forEach(m=>m.material.opacity=m.userData.opacity*fade*(this.reducedMotion?1:.9+Math.sin(this.time*4)*.1));
     }for(const[id,group]of this.spellAreas)if(!active.has(id)){this.scene.remove(group);this.clearOverlay(group);this.spellAreas.delete(id);}
+  }
+  makeHeroField(effect){
+    const group=new THREE.Group(),canopy=effect.type==='canopy',radius=Math.max(.5,Math.min(8,effect.radius||1.5))*2,color=canopy?'#72dfcf':'#f8ca69';
+    group.userData={type:effect.type,radius};
+    const material=opacity=>new THREE.MeshBasicMaterial({color,transparent:true,opacity,depthWrite:false,side:THREE.DoubleSide,toneMapped:false});
+    const rim=new THREE.Mesh(new THREE.RingGeometry(radius-.10,radius,48),material(.72));rim.rotation.x=-Math.PI/2;rim.position.y=.13;rim.userData.baseOpacity=.72;group.add(rim);
+    if(canopy){
+      const dome=new THREE.Mesh(new THREE.SphereGeometry(1,this.quality==='low'?16:24,8,0,Math.PI*2,0,Math.PI/2),material(.065));dome.scale.set(radius,2.6,radius);dome.position.y=.06;dome.userData.baseOpacity=.065;group.add(dome);
+      const points=[];for(let arm=0;arm<4;arm++)for(let i=0;i<24;i++)for(const t of [i/24,(i+1)/24]){const angle=arm*Math.PI/4,across=Math.cos(t*Math.PI)*radius;points.push(new THREE.Vector3(across*Math.cos(angle),.06+Math.sin(t*Math.PI)*2.6,across*Math.sin(angle)));}
+      const ribs=new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(points),new THREE.LineBasicMaterial({color,transparent:true,opacity:.35,depthWrite:false}));ribs.userData.baseOpacity=.35;group.add(ribs);
+      const center=new THREE.Mesh(new THREE.RingGeometry(.27,.34,6),material(.8));center.rotation.x=-Math.PI/2;center.position.y=.15;center.userData.baseOpacity=.8;group.add(center);
+    }else{
+      const falcon=new THREE.Group(),gold=material(.98),body=new THREE.Mesh(new THREE.ConeGeometry(.10,.46,5),gold);body.rotation.x=Math.PI/2;falcon.add(body);
+      for(const side of [-1,1]){const geometry=new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(side*.04,0,.04),new THREE.Vector3(side*.85,0,-.18),new THREE.Vector3(side*.42,0,.23)]);geometry.setIndex([0,1,2]);geometry.computeVertexNormals();const wing=new THREE.Mesh(geometry,gold);wing.userData.wing=side;falcon.add(wing);}
+      falcon.userData.falcon=true;group.add(falcon);group.userData.falcon=falcon;
+      const points=[];for(let i=0;i<4;i++){const angle=i*Math.PI/2;points.push(new THREE.Vector3(Math.sin(angle)*radius,.16,Math.cos(angle)*radius),new THREE.Vector3(Math.sin(angle)*radius,.9,Math.cos(angle)*radius));}
+      const reticle=new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(points),new THREE.LineBasicMaterial({color,transparent:true,opacity:.85,depthWrite:false}));reticle.userData.baseOpacity=.85;group.add(reticle);
+    }
+    this.scene.add(group);return group;
+  }
+  syncHeroEffects(battle){
+    const active=new Set();for(const effect of battle.heroEffects||[]){
+      if(!['sky_mark','canopy'].includes(effect.type)||effect.expiresAt<=battle.elapsed||effect.remaining===0)continue;
+      const target=effect.targetId?battle.buildings.find(b=>b.id===effect.targetId):null;if(effect.type==='sky_mark'&&(!target||target.hp<=0))continue;
+      active.add(effect.id);let group=this.heroEffects.get(effect.id);if(!group){group=this.makeHeroField(effect);this.heroEffects.set(effect.id,group);}
+      group.position.set(cell(effect.x),0,cell(effect.z));
+      const fade=Math.min(1,(effect.expiresAt-battle.elapsed)/.6),strength=effect.maxAbsorb>0&&Number.isFinite(effect.remaining)?THREE.MathUtils.clamp(effect.remaining/effect.maxAbsorb,0,1):1;
+      group.traverse(mesh=>{if(mesh.material){const base=mesh.userData.baseOpacity??.98;mesh.material.opacity=base*fade*(effect.type==='canopy'?.55+.45*strength:1);}});
+      group.userData.falconHeight=target?(this.modelTops[this.buildingAsset(target.type,target.level)]||3)+1.2:3;
+    }
+    for(const[id,group]of this.heroEffects)if(!active.has(id)){this.scene.remove(group);this.clearOverlay(group);this.heroEffects.delete(id);}
+  }
+  stepHeroFields(){
+    for(const group of this.heroEffects.values()){
+      const falcon=group.userData.falcon;if(!falcon)continue;
+      const phase=this.reducedMotion?0:this.time*1.6,radius=Math.min(group.userData.radius*.58,1.4);
+      falcon.position.set(Math.cos(phase)*radius,group.userData.falconHeight,Math.sin(phase)*radius);falcon.rotation.y=-phase;
+      for(const wing of falcon.children)if(wing.userData.wing)wing.rotation.z=this.reducedMotion?0:wing.userData.wing*Math.sin(this.time*9)*.28;
+    }
+  }
+  makeShieldDecoy(){
+    const group=new THREE.Group(),wood=mat('#5e3e2a'),brass=mat('#c59642',{metalness:.65,roughness:.4}),indigo=mat('#294c67'),rubber=mat('#29302f');
+    group.userData={decoy:true,visualHeight:1.13,wheels:[]};
+    this.mesh(new THREE.BoxGeometry(.70,.12,.61),wood,0,.31,0,group);
+    const shield=this.mesh(new THREE.CylinderGeometry(.43,.40,.13,12),indigo,0,.70,.20,group);shield.rotation.x=Math.PI/2;
+    this.mesh(new THREE.TorusGeometry(.415,.027,6,20),brass,0,.70,.28,group);
+    const boss=this.mesh(new THREE.SphereGeometry(.12,10,6),brass,0,.70,.30,group);boss.scale.z=.45;
+    for(const x of [-.37,.37])for(const z of [-.23,.23]){
+      const wheel=new THREE.Group();wheel.position.set(x,.16,z);group.add(wheel);group.userData.wheels.push(wheel);
+      const tire=this.mesh(new THREE.CylinderGeometry(.16,.16,.075,12),rubber,0,0,0,wheel);tire.rotation.z=Math.PI/2;
+      this.mesh(new THREE.BoxGeometry(.09,.22,.025),brass,0,0,0,wheel);this.mesh(new THREE.BoxGeometry(.09,.025,.22),brass,0,0,0,wheel);
+    }
+    group.traverse(mesh=>{if(mesh.isMesh){mesh.castShadow=false;mesh.receiveShadow=true;}});this.scene.add(group);return group;
   }
   // A short, decaying shake. Buildings shake individually; the camera only for heavy blows.
   jolt(id,amount,duration){
@@ -274,6 +340,37 @@ export class KingdomView {
   }
   effect(event){
     if(event.type==='freeze'||event.type==='rage')return;
+    if(event.type==='canopy'||event.type==='sky_mark'){
+      const mesh=this.overlay(new THREE.RingGeometry(.35,.47,32),event.type==='canopy'?'#91f1d8':'#ffda85',cell(event.x),.17,cell(event.z),{opacity:.8,side:THREE.DoubleSide});mesh.rotation.x=-Math.PI/2;
+      this.addEffect({mesh,age:0,duration:this.reducedMotion?.3:.65,kind:'ring',from:1,to:this.reducedMotion?1:3.5,peak:.8});return;
+    }
+    if(event.type==='chakram'){
+      const start=new THREE.Vector3(cell(event.fromX??event.x),1.3,cell(event.fromZ??event.z)),end=new THREE.Vector3(cell(event.x),.95,cell(event.z));
+      const mesh=this.mesh(new THREE.TorusGeometry(.25,.035,6,20),new THREE.MeshStandardMaterial({color:'#f6d46e',metalness:.7,roughness:.28,emissive:'#2a7582',emissiveIntensity:.5,transparent:true}),start.x,start.y,start.z);mesh.castShadow=false;
+      this.addEffect({mesh,age:0,duration:Math.max(.18,Math.min(.5,start.distanceTo(end)*.035)),kind:'chakram',start,end,arc:.65,heavy:false});if(event.targetId)this.jolt(event.targetId,.09,.2);return;
+    }
+    if(event.type==='falcon_strike'||event.type==='water_bolt'){
+      const water=event.type==='water_bolt',start=new THREE.Vector3(cell(event.fromX??event.x),1.3,cell(event.fromZ??event.z)),end=new THREE.Vector3(cell(event.x),.95,cell(event.z));
+      let geometry;
+      if(water){
+        geometry=new THREE.LatheGeometry([[0,-.38],[.15,-.3],[.22,-.13],[.2,.05],[.12,.27],[0,.55]].map(([x,y])=>new THREE.Vector2(x,y)),10);
+      }else{
+        // One low-poly bird silhouette, with warm wing tips and a gold centre.
+        geometry=new THREE.BufferGeometry();
+        geometry.setAttribute('position',new THREE.Float32BufferAttribute([
+          0,.55,0,-.13,-.23,.1,.13,-.23,.1,
+          0,-.12,.06,-.16,-.45,0,.16,-.45,0,
+          0,.15,.03,-.6,-.08,-.06,-.2,-.3,.06,
+          0,.15,.03,.2,-.3,.06,.6,-.08,-.06
+        ],3));
+        const colors=[],gold=new THREE.Color('#f4cf6b'),brown=new THREE.Color('#80502d');
+        for(let i=0;i<12;i++){const color=[7,11].includes(i)?brown:gold;colors.push(color.r,color.g,color.b);}
+        geometry.setAttribute('color',new THREE.Float32BufferAttribute(colors,3));geometry.computeVertexNormals();
+      }
+      const mesh=this.mesh(geometry,new THREE.MeshStandardMaterial({color:water?'#65eadb':'#ffffff',vertexColors:!water,roughness:water?.23:.5,metalness:water?0:.35,emissive:water?'#147d80':'#6b4414',emissiveIntensity:.35,side:THREE.DoubleSide,transparent:true}),start.x,start.y,start.z);mesh.castShadow=false;
+      this.addEffect({mesh,age:0,duration:Math.max(.2,Math.min(.55,start.distanceTo(end)*.04)),kind:'shot',heavy:false,start,end,arc:water?.5:1.1,impactColor:water?'#8bf5e6':'#f3d285'});
+      if(event.targetId)this.jolt(event.targetId,.075,.22);return;
+    }
     if(event.type==='lightning'){
       const points=[new THREE.Vector3(0,13,0),new THREE.Vector3(.8,10,.3),new THREE.Vector3(-.6,8,-.2),new THREE.Vector3(.5,5,.4),new THREE.Vector3(-.4,3,0),new THREE.Vector3(0,.2,0)],path=new THREE.CurvePath();for(let i=1;i<points.length;i++)path.add(new THREE.LineCurve3(points[i-1],points[i]));
       const mesh=this.mesh(new THREE.TubeGeometry(path,32,.12,5,false),new THREE.MeshBasicMaterial({color:'#edfbff',transparent:true,depthTest:false}),cell(event.x),0,cell(event.z));mesh.renderOrder=12;this.addEffect({mesh,age:0,duration:.65,kind:'lightning'});
@@ -309,15 +406,15 @@ export class KingdomView {
   }
   // A landed shot: sparks plus a flat ring, so hits read even when the model is tall.
   impact(effect){
-    const {end,heavy}=effect;
-    const ring=this.overlay(new THREE.RingGeometry(.12,heavy?.55:.3,24),heavy?'#ffcf8b':'#ffe9b4',end.x,.14,end.z,{opacity:.75,side:THREE.DoubleSide});
+    const {end,heavy,impactColor}=effect;
+    const ring=this.overlay(new THREE.RingGeometry(.12,heavy?.55:.3,24),impactColor||(heavy?'#ffcf8b':'#ffe9b4'),end.x,.14,end.z,{opacity:.75,side:THREE.DoubleSide});
     ring.rotation.x=-Math.PI/2;
     this.addEffect({mesh:ring,age:0,duration:heavy?.42:.26,kind:'ring',from:.6,to:heavy?3:1.7,peak:.75});
     if(this.quality==='low'||this.reducedMotion)return;
     const sparks=heavy?7:3;
     for(let i=0;i<sparks;i++){
       const angle=rand()*Math.PI*2,speed=1.5+rand()*(heavy?4:2.2);
-      const spark=this.overlay(new THREE.SphereGeometry(heavy?.1:.065,5,4),heavy?'#ffbe63':'#ffe6a8',end.x,end.y,end.z,{opacity:1});
+      const spark=this.overlay(new THREE.SphereGeometry(heavy?.1:.065,5,4),impactColor||(heavy?'#ffbe63':'#ffe6a8'),end.x,end.y,end.z,{opacity:1});
       this.addEffect({mesh:spark,age:0,duration:.24+rand()*.2,kind:'debris',
         velocity:new THREE.Vector3(Math.sin(angle)*speed,2+rand()*3,Math.cos(angle)*speed),spin:new THREE.Vector3()});
     }
@@ -337,7 +434,7 @@ export class KingdomView {
     this.syncBuildings(battle.buildings);
     for(const unit of battle.units){
       let obj=this.troops.get(unit.id);
-      if(!obj){obj=this.clone(unit.heroId||unit.type);obj.scale.setScalar(unit.heroId?1.25:1.16);obj.traverse(o=>{if(o.isMesh)o.castShadow=false;});this.troops.set(unit.id,obj);this.healthBar(unit);}
+      if(!obj){obj=unit.decoy?this.makeShieldDecoy():this.clone(unit.heroId||unit.type);obj.scale.setScalar(unit.heroId?1.25:1.16);obj.traverse(o=>{if(o.isMesh)o.castShadow=false;});this.troops.set(unit.id,obj);this.healthBar(unit);}
       const flying=!!UNITS[unit.type]?.flying;
       if(unit.hp<=0){
         // Models share materials with every other troop of their type, so a fall is
@@ -350,13 +447,18 @@ export class KingdomView {
       }
       obj.visible=true;obj.userData.groundWalking=unit.action==='walk';
       const x=cell(unit.x),z=cell(unit.z),follow=obj.userData.renderPlaced?1-Math.exp(-dt*25):1;
+      const travel=obj.userData.renderPlaced?Math.hypot(x-obj.position.x,z-obj.position.z)*follow:0;
       obj.position.x+=(x-obj.position.x)*follow;obj.position.z+=(z-obj.position.z)*follow;obj.userData.renderPlaced=true;
+      if(unit.decoy)for(const wheel of obj.userData.wheels)wheel.rotation.x+=travel/(.16*obj.scale.x);
       obj.position.y=flying?2.2+(this.reducedMotion?0:Math.sin(this.time*3+unit.id.length)*.12):TROOP_GROUND_Y;
       const mixer=this.mixers.get(obj);if(mixer)mixer.timeScale=unit.action==='attack'?1.2:unit.action==='walk'?1:.7;
       const turn=Math.atan2(Math.sin(unit.facing-obj.rotation.y),Math.cos(unit.facing-obj.rotation.y));obj.rotation.y+=turn*(1-Math.exp(-dt*18));obj.rotation.z=0;
-      const bar=this.unitBars.get(unit.id);bar.visible=unit.hp>0&&(unit.hp<unit.maxHp||!!unit.heroId);bar.position.set(obj.position.x,obj.position.y+(this.modelTops[unit.heroId||unit.type]||1.8)*obj.scale.y+.28,obj.position.z);bar.quaternion.copy(this.camera.quaternion);bar.userData.fill.scale.x=unit.hp/unit.maxHp;
+      const bar=this.unitBars.get(unit.id);bar.visible=unit.hp>0&&(unit.hp<unit.maxHp||!!unit.heroId);bar.position.set(obj.position.x,obj.position.y+(obj.userData.visualHeight??this.modelTops[unit.heroId||unit.type]??1.8)*obj.scale.y+.28,obj.position.z);bar.quaternion.copy(this.camera.quaternion);bar.userData.fill.scale.x=unit.hp/unit.maxHp;
     }
-    this.syncSpellAreas(battle);
+    const aliveIds=new Set(battle.units.map(unit=>unit.id));for(const[id,obj]of this.troops)if(!aliveIds.has(id)){
+      this.releaseMixer(obj);this.scene.remove(obj);this.troops.delete(id);const bar=this.unitBars.get(id);if(bar){this.scene.remove(bar);this.clearOverlay(bar);this.unitBars.delete(id);}this.unitDeaths.delete(id);
+    }
+    this.syncSpellAreas(battle);this.syncHeroEffects(battle);
     for(const event of battle.events)if(event.id>this.lastEvent){this.effect(event);this.lastEvent=event.id;}
   }
   positionWorldLabels(){
@@ -388,7 +490,7 @@ export class KingdomView {
       if(obj.visible)stepGroundedMotion(obj,distance,dt,obj.userData.groundWalking!==false);
     }
     for(const[obj,mixer]of this.mixers)if(obj.visible&&(!this.reducedMotion||this.mode==='battle'))mixer.update(dt);
-    this.updateTroopContactShadows();this.stepEffects(dt);this.stepImpacts(dt);
+    this.updateTroopContactShadows();this.stepEffects(dt);this.stepHeroFields();this.stepImpacts(dt);
     if(this.shake>0.001||this.shaking){
       this.shake=Math.max(0,this.shake-dt*2.6);this.updateCamera();
       if(this.shake>0.001){const power=this.shake*this.shake*1.7;this.camera.position.x+=Math.sin(this.time*61)*power;this.camera.position.y+=Math.sin(this.time*47+1.7)*power*.7;this.camera.position.z+=Math.cos(this.time*53+.6)*power;this.camera.updateMatrixWorld();this.shaking=true;}else this.shaking=false;
@@ -399,13 +501,14 @@ export class KingdomView {
     for(let i=this.effects.length-1;i>=0;i--){
       const f=this.effects[i];f.age+=dt;const t=Math.min(1,f.age/f.duration);
       if(f.age>=f.duration){
-        if(f.kind==='shot')this.impact(f);
+        if(f.kind==='shot'||f.kind==='chakram')this.impact(f);
         this.scene.remove(f.mesh);f.mesh.geometry.dispose();f.mesh.material.dispose();this.effects.splice(i,1);continue;
       }
-      if(f.kind==='shot'){
+      if(f.kind==='shot'||f.kind==='chakram'){
         f.mesh.position.lerpVectors(f.start,f.end,t);
         f.mesh.position.y+=Math.sin(t*Math.PI)*f.arc;
-        if(!f.heavy){
+        if(f.kind==='chakram'){f.mesh.rotation.set(Math.PI*.35,this.reducedMotion?0:t*Math.PI*8,0);}
+        else if(!f.heavy){
           // Point the shaft along its own flight path rather than spinning freely.
           const ahead=Math.min(1,t+.06),next=new THREE.Vector3().lerpVectors(f.start,f.end,ahead);
           next.y+=Math.sin(ahead*Math.PI)*f.arc;

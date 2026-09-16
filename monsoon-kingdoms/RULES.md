@@ -10,13 +10,13 @@ Fifteen structure types: fort, farm, lumber, mine, granary, stepwell, barracks, 
 
 The 24×24 grid uses cells as simulation units. Buildings occupy `[x,x+w) × [z,z+h)`. Render a building at `((x+w/2-12)*2, 0, (z+h/2-12)*2)` and a unit at `((x-12)*2,0,(z-12)*2)`. Unit facing is radians about +Y; zero faces +Z. Home entities are `{id,type,x,z,w,h,level,builtAt,readyAt,upgradingTo,stored}`. Enemy entities add hp, maxHp and attackTimer. New construction has level 0; upgrades keep the old completed level until done.
 
-A new village contains 13 buildings plus 19 free level-1 ramparts, with a courtyard and gates. The original ten building positions are preserved. New buildings sit at laboratory(1,5), hero_hall(1,10), gem_mine(18,1). Initial army: 16 guards, 12 archers and 2 engineers, consuming 32 of 48 housing spaces. Higher barracks troops start locked.
+A new village contains only a level-1 Taj Mahal, Rice Fields and Warrior Akhara, with six guards and four archers in 24 housing spaces. The Hall and new heroes must be earned through construction and upgrades. Existing kingdoms retain their layouts and progress.
 
 `CATALOG[type]`: name, description, w, h, cost, time, hp, maxLevel, limit, unlock (capital level), optional production `{resource,rate,cap}` and defense range/damage/cooldown. `UNITS[type]`: name, description, cost, time, space, hp, damage, range, speed, cooldown, unlock (barracks level), optional heal. All preparation costs and times are zero.
 
 ## Runtime art and orientation
 
-Each of the fifteen building types has fifteen distinct runtime model/portrait pairs: level 1 at `assets/buildings/<type>.glb` and levels 2–15 at `assets/buildings/levels/<type>/<level>.glb`, with sibling 512×512 PNGs. The standalone package contains all 225 building tiers plus ten troop, two hero and six environment models, totaling 243 GLBs. The five obsolete fort_2/fort_3/wall_2/wall_3/upgrade_ornament exports are excluded. Runtime loading fetches higher tiers only when needed by the visible village or battle; packaging all tiers does not mean loading every tier at startup.
+Each of the fifteen building types has fifteen distinct runtime model/portrait pairs: level 1 at `assets/buildings/<type>.glb` and levels 2–15 at `assets/buildings/levels/<type>/<level>.glb`, with sibling 512×512 PNGs. The standalone package contains all 225 building tiers plus ten troop, six hero and six environment models, totaling 247 GLBs. The five obsolete fort_2/fort_3/wall_2/wall_3/upgrade_ornament exports are excluded. Runtime loading fetches higher tiers only when needed by the visible village or battle; packaging all tiers does not mean loading every tier at startup.
 
 Phone/tablet play is landscape-only. Portrait mode displays a rotation guide and blocks game interaction. The simulation keeps the 240-space army limit regardless of viewport. `tools/verify-levels.mjs` loads every building through the native GLTFLoader, requires a unique world-space geometry fingerprint for every tier in a family, and validates adjacent differences, footprint/ground alignment, normals, PBR materials, geometry/draw-call budgets and exact portrait dimensions. Its detailed report is `output/verification-levels.json`.
 
@@ -68,14 +68,20 @@ Gems are earned in this local game; there is no payment system. Initial grant: 1
 
 ## Permanent heroes
 
-`HEROES` describes two original fictional heroes:
+`HEROES` describes six original fictional heroes:
 
 - Veer the Gatekeeper: melee frontline commander, Hall level 1. Battle Cry heals him for 40% maximum health and gives 1.8× damage for eight seconds.
 - Captain Tara: ranged captain, Hall level 2. Arrowstorm hits up to four structures within eight cells for 3.5× her normal damage.
+- Nila: Hall 3. Twin Arc begins within seven cells, then chains across up to three unique non-wall structures within four cells per hop: 2.6× damage with0.82 attenuation per bounce.
+- Ayaan: Hall 4. Sky Mark targets the nearest defense within eight cells; troop/hero attacks against it gain35% damage for ten seconds.
+- Ira: Hall 5. A fixed four-cell canopy shares650 absorption (scaled with hero level/power) across allies for eight seconds. Damage beyond the shield budget still lands.
+- Kabir: Hall 6. Two temporary260HP decoys (scaled with level/power) spawn in distinct free nearby cells, seek defenses, draw fire ahead of regular units and expire after ten seconds. They cannot attack or keep an otherwise finished battle alive.
 
-`heroInfo(state,id)` returns `{ok,id,level,readyAt,upgradingTo,nextLevel,cost,duration,spec,current:{hp,damage},next:{hp,damage},canUpgrade,reason,unlocked,available}`. `selectHero(state,id)` selects an unlocked hero for the next attack. `upgradeHero(state,id,now?)` starts a resource-paid builder job, capped by Hall level and level 3. Upgrading heroes are unavailable during raids. Hall level 2 completion automatically unlocks level-1 Tara. Each hero level adds 25% of base health/damage.
+`battle.heroEffects` contains simulation-timed `{id,type,x,z,radius,expiresAt}` fields with `targetId/bonus` for marks or `remaining/maxAbsorb` for shields. Decoys are ordinary units with `decoy:true`, `heroOwner` and `expiresAt`; they never become persistent army inventory. Timed hero badges use `abilityUntil`, cleared on depletion, target destruction or decoy removal.
 
-`battle.hero` is null or `{id,name,level,deployed,abilityUsed,unitId}`. `deployHero(battle,x,z)` follows edge-deployment rules and deploys once. It does not consume army reserve or housing. Hero units use ordinary guard/archer base types for models/pathfinding plus `heroId` and a `spec` with actual stats. `heroAbility(battle)` validates a living deployed hero and unused charge. Tara retains her charge if nothing is in range. Hero units remain permanent when defeated, retreating or refreshing; the next raid has fresh hero health and ability. An undeployed hero keeps an otherwise-spent attack open until the player deploys, retreats or times out.
+`heroInfo(state,id)` returns `{ok,id,level,readyAt,upgradingTo,nextLevel,cost,duration,spec,current:{hp,damage},next:{hp,damage},canUpgrade,reason,unlocked,available}`. `selectHero(state,id)` selects an unlocked hero for the next attack. `upgradeHero(state,id,now?)` starts a resource-paid builder job, capped by Hall level and level 3. Upgrading heroes are unavailable during raids. Hall levels 1–6 unlock Veer/Tara/Nila/Ayaan/Ira/Kabir at hero level 1. Timer completion, gem completion and legacy-save hydration use the same unlock mapping. Each hero level adds 25% of base health/damage.
+
+`battle.hero` is null or `{id,name,level,deployed,abilityUsed,unitId}`. `deployHero(battle,x,z)` follows edge-deployment rules and deploys once. It does not consume army reserve or housing. Hero units use ordinary guard/archer/engineer base types for models/pathfinding plus `heroId` and a `spec` with actual stats. `heroAbility(battle)` validates a living deployed hero and unused charge. Tara, Nila and Ayaan retain their charge when no valid target is in range; Kabir retains his charge without two open spawn cells. Hero units remain permanent when defeated, retreating or refreshing; the next raid has fresh hero health and ability. An undeployed hero keeps an otherwise-spent attack open until the player deploys, retreats or times out.
 
 ## Battle lifecycle and combat
 
@@ -89,7 +95,7 @@ Cardinal BFS blocks all intact footprints. Melee units route to reachable attack
 
 Battle adds `spells`, `spellAreas`, `kind:'campaign'|'ranked'|'practice'`, `raid`, `hero`, `unitStats` to the original `{id,raidId,buildings,units,reserve,elapsed,duration,status,stars,destruction,events,eventId,deployed,revision,nextUnit,rainUsed,rainAvailable,difficulty,result}` fields. Units have hp/maxHp, spec, targetId, path, pathRevision, facing and action (`walk`,`attack`,`heal`,`idle`). Hero Veer also has rushUntil in elapsed battle seconds.
 
-Events retain the last 128 `{id,type,x,z,fromX,fromZ}` records. Types: hit, arrow, cannon, heal, destroy, lightning, freeze, rage. Coordinates are cell centers; IDs increase monotonically. The renderer may drain the array or track consumed IDs.
+Events retain the last 128 `{id,type,x,z,fromX,fromZ}` records. Types: hit, arrow, cannon, heal, destroy, lightning, freeze, rage, chakram, sky_mark, canopy, deploy. Coordinates are cell centers; IDs increase monotonically. The renderer may drain the array or track consumed IDs.
 
 `finishRaid(state,battle,now?)` settles completion or retreat exactly once. It returns undeployed troops, clears activeRaid, preserves heroes and grants earned rewards. **Persist immediately.** Refresh hydration acts as retreat: undeployed troops return, deployed troops stay consumed, no battle loot is awarded. Ranked attempts remain spent.
 
@@ -131,7 +137,7 @@ Original tiers: Copper, Bronze, Silver, Gold, Peacock, Maharaja. Weeks start Mon
 ## Hero equipment and ore
 
 - `state.ore` is a fifth, battle-only currency, capped at 999,999. `finishRaid` awards `stars × (2 + difficulty)`, doubled on a first campaign victory and multiplied by 1.5 online. Practice and defeats award none. Ore is never bought, produced or granted by achievements.
-- `EQUIPMENT` holds six pieces, three per hero, each with a Hall of Heroes unlock level, a forge price and per-level effects. `MAX_EQUIPMENT_LEVEL` is 5. Forging and upgrading are instant, cost only ore and never consume a builder.
+- `EQUIPMENT` holds fourteen pieces: three each for Veer/Tara and two each for Nila/Ayaan/Ira/Kabir, each with a Hall of Heroes unlock level, a forge price and per-level effects. `MAX_EQUIPMENT_LEVEL` is 5. Forging and upgrading are instant, cost only ore and never consume a builder.
 - Each hero has two slots. Slot 1 needs Hall level 1, slot 2 needs Hall level 3. `heroSlots(state, id)` returns the effective contents, treating equipment that is unowned, locked or belonging to the other hero as empty.
 - `heroBonus(state, id)` sums the equipped effects: `hp`, `damage` and `range` multipliers plus `abilityPower`, `abilityDuration`, `abilityTargets` and `abilityRange`. `heroInfo` exposes `base` (without equipment) and `current` (with it); `beginBattle` freezes the bonus onto `battle.hero.bonus`, and `deployHero` builds the unit from that same bonus, so the panel and the fielded hero can never disagree.
 - Equipment changes abilities, not only statistics: the War Drum raises Battle Cry's healing and extends its duration, and the Hunting Hawk widens Arrowstorm's reach and target count.

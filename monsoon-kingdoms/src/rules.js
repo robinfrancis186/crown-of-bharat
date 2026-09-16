@@ -20,7 +20,7 @@ export const CATALOG = {
   cannon: { name: 'Thunder Cannon', description: 'Heavy cannonballs damage clustered attackers.', w: 2, h: 2, cost: money(280, 0, 120, 100), time: 25, hp: 700, maxLevel: MAX_BUILDING_LEVEL, limit: 4, unlock: 2, range: 6, damage: 35, cooldown: 1.8 },
   wall: { name: 'Rampart', description: 'Blocks movement. Siege engineers breach it quickly.', w: 1, h: 1, cost: money(20, 0, 15, 5), time: 0, hp: 380, maxLevel: MAX_BUILDING_LEVEL, limit: 100, unlock: 1 },
   laboratory: { name: 'Royal Workshop', description: 'Research permanent troop improvements.', w: 3, h: 3, cost: money(260, 120, 160, 40), time: 25, hp: 550, maxLevel: MAX_BUILDING_LEVEL, limit: 1, unlock: 1 },
-  hero_hall: { name: 'Hall of Heroes', description: 'Home of Veer and Captain Tara. Level two unlocks Tara.', w: 3, h: 3, cost: money(320, 160, 180, 60), time: 30, hp: 700, maxLevel: MAX_BUILDING_LEVEL, limit: 1, unlock: 1 },
+  hero_hall: { name: 'Hall of Heroes', description: 'Recruit six champions as your hall grows: Veer, Tara, Nila, Ayaan, Ira and Kabir at levels 1–6. Choose one to lead each battle.', w: 3, h: 3, cost: money(320, 160, 180, 60), time: 30, hp: 700, maxLevel: MAX_BUILDING_LEVEL, limit: 1, unlock: 1 },
   gem_mine: { name: 'Gem Garden', description: 'Produces one gem every 30 minutes per level; stores up to 20.', w: 2, h: 2, cost: money(350, 0, 160, 100), time: 30, hp: 450, maxLevel: MAX_BUILDING_LEVEL, limit: 1, unlock: 1, production: { resource: 'gems', rate: 1 / 1800, cap: 20 } },
   market: { name: 'Spice Bazaar', description: 'Caravans bring coin to your growing settlement.', w: 3, h: 3, cost: money(200, 0, 140), time: 18, hp: 440, maxLevel: MAX_BUILDING_LEVEL, limit: 2, unlock: 1, production: { resource: 'coin', rate: 1.15, cap: 550 } },
 };
@@ -52,7 +52,7 @@ export function newGame(now = Date.now()) {
   if (!Number.isFinite(now)) now = Date.now();
   // A small, playable settlement: food production and troop recruitment are ready.
   const positions = [['fort', 10, 9], ['farm', 5, 15], ['barracks', 10, 16]];
-  return { version: 1, name: 'Surajgarh', resources: money(850, 650, 700, 180), buildings: positions.map(([t, x, z], i) => createBuilding(`b${i + 1}`, t, x, z, 1, now)), army: { ...emptyArmy(), guard: 6, archer: 4 }, training: [], lastTick: now, raidStars: {}, raidWins: {}, activeRaid: null, nextId: positions.length + 1, totalRaids: 0, gems: 150, builders: 2, unitLevels: Object.fromEntries(Object.keys(UNITS).map(t => [t, 1])), research: null, heroes: { veer: { level: 1, readyAt: 0, upgradingTo: 0, slots: [null, null] }, tara: { level: 0, readyAt: 0, upgradingTo: 0, slots: [null, null] } }, activeHero: 'veer', ore: 0, equipment: {}, achievements: {}, ranked: freshRanked(now), tutorial: { acknowledged: [], skipped: false } };
+  return { version: 1, name: 'Surajgarh', resources: money(850, 650, 700, 180), buildings: positions.map(([t, x, z], i) => createBuilding(`b${i + 1}`, t, x, z, 1, now)), army: { ...emptyArmy(), guard: 6, archer: 4 }, training: [], lastTick: now, raidStars: {}, raidWins: {}, activeRaid: null, nextId: positions.length + 1, totalRaids: 0, gems: 150, builders: 2, unitLevels: Object.fromEntries(Object.keys(UNITS).map(t => [t, 1])), research: null, heroes: Object.fromEntries(Object.keys(HEROES).map(id => [id, { level: id === 'veer' ? 1 : 0, readyAt: 0, upgradingTo: 0, slots: [null, null] }])), activeHero: 'veer', ore: 0, equipment: {}, achievements: {}, ranked: freshRanked(now), tutorial: { acknowledged: [], skipped: false } };
 }
 export function capacity(state) {
   if (!validState(state)) return { army: 0, used: 0, queued: 0, builders: 2, busy: 0, storage: money() };
@@ -199,7 +199,8 @@ export function tickHome(state, now = Date.now()) {
   const previous = Number.isFinite(state.lastTick) ? state.lastTick : now;
   if (now < previous) return { ok: true, changed: false };
   const due = state.buildings.some(b => b.readyAt && b.readyAt <= now) || state.training.some(q => q.readyAt <= now) || (state.research && state.research.readyAt <= now) || Object.values(state.heroes || {}).some(h => h.readyAt && h.readyAt <= now);
-  if (now === previous && !due) return { ok: true, changed: false };
+  const unlocked = unlockHeroes(state);
+  if (now === previous && !due) return { ok: true, changed: unlocked };
   const start = Math.max(previous, now - OFFLINE_LIMIT);
   for (const b of state.buildings) {
     const p = CATALOG[b.type].production;
@@ -214,7 +215,7 @@ export function tickHome(state, now = Date.now()) {
   while (state.training.length && state.training[0].readyAt <= now) { const q = state.training.shift(); state.army[q.type]++; }
   if (state.research && state.research.readyAt <= now) { state.unitLevels[state.research.type] = state.research.level; state.research = null; award(state, 'first_research', 15); }
   for (const hero of Object.values(state.heroes || {})) if (hero.readyAt && hero.readyAt <= now) { hero.level = hero.upgradingTo; hero.readyAt = 0; hero.upgradingTo = 0; }
-  if (levelOf(state, 'hero_hall') >= 2 && state.heroes.tara.level === 0) state.heroes.tara.level = 1;
+  unlockHeroes(state);
   getRanked(state, now);
   state.lastTick = now;
   return { ok: true, changed: true };
@@ -273,7 +274,8 @@ export function hydrate(raw, now = Date.now()) {
     clean.buildings.filter(b => b.readyAt).slice(clean.builders).forEach(b => { b.readyAt = 0; b.upgradingTo = 0; b.level = Math.max(1, b.level); });
     let heroSlots = Math.max(0, clean.builders - clean.buildings.filter(b => b.readyAt).length);
     for (const h of Object.values(clean.heroes)) if (h.readyAt) { if (heroSlots-- <= 0 || h.level >= 3) { h.readyAt = 0; h.upgradingTo = 0; } else h.upgradingTo = h.level + 1; }
-    if (levelOf(clean, 'hero_hall') >= 2 && !clean.heroes.tara.level) clean.heroes.tara.level = 1;
+    unlockHeroes(clean);
+    if (!clean.heroes[clean.activeHero].level || levelOf(clean, 'hero_hall') < HEROES[clean.activeHero].unlock) clean.activeHero = 'veer';
     const cap = capacity(clean);
     for (const k of currencies) clean.resources[k] = Math.floor(finite(r.resources?.[k], 0, 0, cap.storage[k]));
     const practiceRefund = practiceArmy(r.activeRaid, cap.army);
@@ -375,7 +377,7 @@ function beginBattle(state, raid, kind) {
   if (!Object.entries(state.army).some(([t, n]) => t !== 'healer' && n > 0) && !hero) return fail('Prepare an attacking army or ready a hero first.');
   const id = `raid${state.nextId++}`, reserve = { ...state.army };
   state.army = emptyArmy(); state.activeRaid = { id, raidId: raid.id, kind, reserve, weekStart: state.ranked.weekStart };
-  const battle = { id, raidId: raid.id, raid, kind, hero, unitStats: Object.fromEntries(Object.keys(UNITS).map(t => [t, effectiveUnit(state, t)])), buildings: enemyBuildings(raid), units: [], reserve, elapsed: 0, duration: 180, status: 'active', stars: 0, destruction: 0, events: [], eventId: 0, deployed: emptyArmy(), revision: 0, nextUnit: 1, spells: Object.fromEntries(Object.keys(SPELLS).map(id => [id, levelOf(state, 'stepwell') > 0 ? 1 : 0])), spellAreas: [], rainUsed: false, rainAvailable: levelOf(state, 'stepwell') > 0, difficulty: raid.difficulty, result: null };
+  const battle = { id, raidId: raid.id, raid, kind, hero, unitStats: Object.fromEntries(Object.keys(UNITS).map(t => [t, effectiveUnit(state, t)])), buildings: enemyBuildings(raid), units: [], reserve, elapsed: 0, duration: 180, status: 'active', stars: 0, destruction: 0, events: [], eventId: 0, deployed: emptyArmy(), revision: 0, nextUnit: 1, spells: Object.fromEntries(Object.keys(SPELLS).map(id => [id, levelOf(state, 'stepwell') > 0 ? 1 : 0])), spellAreas: [], heroEffects: [], rainUsed: false, rainAvailable: levelOf(state, 'stepwell') > 0, difficulty: raid.difficulty, result: null };
   return { ok: true, battle };
 }
 function practiceArmy(active, armyCapacity) {
@@ -426,6 +428,16 @@ function event(b, type, target, from) {
 }
 function damage(battle, entity, amount, source) {
   if (entity.hp <= 0) return;
+  const effects = (battle.heroEffects || []).filter(effect => effect.expiresAt > battle.elapsed);
+  if (entity.w && source?.spec) {
+    const mark = effects.find(effect => effect.type === 'sky_mark' && effect.targetId === entity.id);
+    if (mark) amount *= 1 + mark.bonus;
+  }
+  if (!entity.w) for (const canopy of effects.filter(effect => effect.type === 'canopy' && effect.remaining > 0 && Math.hypot(entity.x - effect.x, entity.z - effect.z) <= effect.radius)) {
+    const absorbed = Math.min(amount, canopy.remaining);
+    canopy.remaining -= absorbed; amount -= absorbed;
+    if (amount <= 0) break;
+  }
   entity.hp = Math.max(0, entity.hp - amount);
   if (entity.hp === 0) { event(battle, 'destroy', entity, source); if (entity.w) battle.revision++; }
 }
@@ -451,7 +463,7 @@ function pathTo(battle, unit, target, range) {
 }
 function chooseTarget(battle, unit) {
   let candidates = aliveBuildings(battle);
-  const favored = unit.type === 'engineer' ? candidates.filter(b => b.type === 'wall' || CATALOG[b.type].damage) : unit.type === 'rider' ? candidates.filter(b => CATALOG[b.type].damage) : candidates.filter(b => b.type !== 'wall');
+  const favored = unit.decoy || unit.heroId === 'ayaan' ? candidates.filter(b => CATALOG[b.type].damage) : unit.type === 'engineer' ? candidates.filter(b => b.type === 'wall' || CATALOG[b.type].damage) : unit.type === 'rider' ? candidates.filter(b => CATALOG[b.type].damage) : candidates.filter(b => b.type !== 'wall');
   if (favored.length) candidates = favored;
   candidates.sort((a, b) => distanceTo(unit, a) - distanceTo(unit, b));
   const range = (unit.spec || UNITS[unit.type]).range;
@@ -479,7 +491,7 @@ function updateProgress(battle) {
   battle.destruction = Math.round(destroyed / targets.length * 100);
   battle.stars = Number(battle.buildings.some(b => b.type === 'fort' && b.hp <= 0)) + Number(destroyed >= targets.length / 2) + Number(destroyed === targets.length);
   const reserveAttackers = (battle.hero && !battle.hero.deployed) || Object.entries(battle.reserve).some(([type, n]) => type !== 'healer' && n > 0);
-  const liveAttackers = battle.units.some(u => u.hp > 0 && u.type !== 'healer');
+  const liveAttackers = battle.units.some(u => u.hp > 0 && u.type !== 'healer' && !u.decoy);
   if (destroyed === targets.length || battle.elapsed >= battle.duration || (!reserveAttackers && !liveAttackers)) battle.status = battle.stars > 0 ? 'victory' : 'defeat';
 }
 export function tickBattle(battle, dt) {
@@ -487,13 +499,15 @@ export function tickBattle(battle, dt) {
   if (!Number.isFinite(dt) || dt < 0) return fail('Invalid battle time.');
   dt = Math.min(dt, 0.2); battle.elapsed = Math.min(battle.duration, battle.elapsed + dt);
   battle.spellAreas = (battle.spellAreas || []).filter(area => area.expiresAt > battle.elapsed);
+  battle.heroEffects = (battle.heroEffects || []).filter(effect => effect.expiresAt > battle.elapsed && (effect.type !== 'canopy' || effect.remaining > 0) && (effect.type !== 'sky_mark' || battle.buildings.some(b => b.id === effect.targetId && b.hp > 0)));
+  for (const unit of battle.units) if (unit.decoy && unit.expiresAt <= battle.elapsed) { unit.hp = 0; unit.action = 'idle'; }
   const live = battle.units.filter(u => u.hp > 0);
   for (const unit of live) {
     const spec = unit.spec || UNITS[unit.type]; unit.attackTimer -= dt;
     const raged = battle.spellAreas.some(area => area.type === 'rage' && Math.hypot(unit.x - area.x, unit.z - area.z) <= area.radius);
     const speed = spec.speed * (raged ? 1.3 : 1);
     if (unit.type === 'healer') {
-      const ally = live.filter(u => u.id !== unit.id && u.hp > 0 && u.hp < u.maxHp).sort((a, b) => distanceTo(unit, a) - distanceTo(unit, b))[0];
+      const ally = live.filter(u => !u.decoy && u.id !== unit.id && u.hp > 0 && u.hp < u.maxHp).sort((a, b) => distanceTo(unit, a) - distanceTo(unit, b))[0];
       if (!ally) { unit.action = 'idle'; continue; }
       if (distanceTo(unit, ally) <= spec.range) {
         unit.action = 'heal'; if (unit.attackTimer <= 0) { ally.hp = Math.min(ally.maxHp, ally.hp + spec.heal); unit.attackTimer = spec.cooldown; event(battle, 'heal', ally, unit); }
@@ -508,8 +522,8 @@ export function tickBattle(battle, dt) {
     }
     if (distanceTo(unit, target) <= spec.range + 0.01) {
       unit.action = 'attack'; const c = center(target); unit.facing = Math.atan2(c.x - unit.x, c.z - unit.z);
-      if (unit.attackTimer <= 0) {
-        event(battle, spec.splashRadius ? 'cannon' : spec.range > 2 ? 'arrow' : 'hit', target, unit);
+      if (unit.attackTimer <= 0 && spec.damage > 0) {
+        event(battle, unit.heroId === 'nila' ? 'chakram' : unit.heroId === 'ayaan' ? 'falcon_strike' : unit.heroId === 'ira' ? 'water_bolt' : spec.splashRadius ? 'cannon' : spec.range > 2 ? 'arrow' : 'hit', target, unit);
         const amount = spec.damage * (raged ? 1.5 : 1) * (unit.rushUntil > battle.elapsed ? 1.8 : 1) * (unit.type === 'engineer' && target.type === 'wall' ? 3 : 1);
         const impact = { x: Math.max(target.x, Math.min(unit.x, target.x + target.w)), z: Math.max(target.z, Math.min(unit.z, target.z + target.h)) };
         const targets = spec.splashRadius ? aliveBuildings(battle).filter(b => b.id === target.id || distanceTo(impact, b) <= spec.splashRadius) : [target];
@@ -521,12 +535,17 @@ export function tickBattle(battle, dt) {
   for (const b of aliveBuildings(battle)) {
     const spec = CATALOG[b.type]; if (!spec.damage || b.frozenUntil > battle.elapsed) continue;
     b.attackTimer -= dt; if (b.attackTimer > 0) continue;
-    const p = center(b), victim = live.filter(u => u.hp > 0 && (b.type !== 'cannon' || !u.spec?.flying) && Math.hypot(u.x - p.x, u.z - p.z) <= spec.range).sort((a, c) => Math.hypot(a.x - p.x, a.z - p.z) - Math.hypot(c.x - p.x, c.z - p.z))[0];
+    const p = center(b), victim = live.filter(u => u.hp > 0 && (b.type !== 'cannon' || !u.spec?.flying) && Math.hypot(u.x - p.x, u.z - p.z) <= spec.range).sort((a, c) => Number(!!c.decoy) - Number(!!a.decoy) || Math.hypot(a.x - p.x, a.z - p.z) - Math.hypot(c.x - p.x, c.z - p.z))[0];
     if (!victim) continue;
     const dealt = b.damage ?? spec.damage * (0.9 + battle.difficulty * 0.16);
     event(battle, b.type === 'cannon' ? 'cannon' : 'arrow', victim, p);
     for (const u of live) if (!((b.type === 'cannon') && u.spec?.flying) && (u.id === victim.id || (b.type === 'cannon' && Math.hypot(u.x - victim.x, u.z - victim.z) < 1.5))) damage(battle, u, dealt, p);
     b.attackTimer = spec.cooldown;
+  }
+  const heroUnit = battle.units.find(u => u.id === battle.hero?.unitId);
+  if (heroUnit?.abilityUntil) {
+    const active = heroUnit.heroId === 'kabir' ? battle.units.some(u => u.decoy && u.hp > 0 && u.expiresAt > battle.elapsed) : (battle.heroEffects || []).some(e => e.expiresAt > battle.elapsed && (e.type === 'canopy' ? e.remaining > 0 : battle.buildings.some(b => b.id === e.targetId && b.hp > 0)));
+    if (!active || heroUnit.hp <= 0) heroUnit.abilityUntil = 0;
   }
   updateProgress(battle);
   return { ok: true, status: battle.status };
@@ -615,9 +634,22 @@ export function skipTutorial(state) {
 // Preparing troops is free and instant; permanent improvements are researched.
 for (const unit of Object.values(UNITS)) { unit.cost = money(); unit.time = 0; }
 export const HEROES = {
-  veer: { name: 'Veer the Gatekeeper', description: 'A permanent frontline commander. Battle Cry heals Veer and boosts his damage for eight seconds.', type: 'guard', unlock: 1, hp: 1000, damage: 65, range: 1.1, speed: 2.2, cooldown: 0.95, ability: 'Battle Cry' },
-  tara: { name: 'Captain Tara', description: 'A permanent ranged captain. Arrowstorm strikes up to four structures within eight cells.', type: 'archer', unlock: 2, hp: 520, damage: 76, range: 5.5, speed: 2.8, cooldown: 0.85, ability: 'Arrowstorm' },
+  veer: { name: 'Veer the Gatekeeper', shortName: 'Veer', title: 'Gatekeeper', role: 'Frontline', description: 'Battle Cry restores 40% health and boosts Veer’s damage for eight seconds.', type: 'guard', unlock: 1, hp: 1000, damage: 65, range: 1.1, speed: 2.2, cooldown: 0.95, ability: 'Battle Cry' },
+  tara: { name: 'Captain Tara', shortName: 'Tara', title: 'Monsoon Ranger', role: 'Ranged burst', description: 'Arrowstorm strikes up to four structures within eight cells.', type: 'archer', unlock: 2, hp: 520, damage: 76, range: 5.5, speed: 2.8, cooldown: 0.85, ability: 'Arrowstorm' },
+  nila: { name: 'Nila the Chakram Duelist', shortName: 'Nila', title: 'Chakram Duelist', role: 'Precision', description: 'Twin Arc ricochets between three nearby structures. Each bounce travels up to four cells and deals slightly less damage. Get within seven cells to strike.', type: 'archer', unlock: 3, hp: 650, damage: 68, range: 2.8, speed: 3.3, cooldown: 0.8, ability: 'Twin Arc' },
+  ayaan: { name: 'Ayaan the Falcon Warden', shortName: 'Ayaan', title: 'Falcon Warden', role: 'Defense hunter', description: 'Sky Mark tags the nearest defense within eight cells. Your entire army deals 35% extra damage to that defense for ten seconds.', type: 'archer', unlock: 4, hp: 720, damage: 58, range: 4.6, speed: 2.8, cooldown: 1, ability: 'Sky Mark' },
+  ira: { name: 'Ira the Rainkeeper', shortName: 'Ira', title: 'Rainkeeper', role: 'Protection', description: 'Monsoon Canopy shelters allies within four cells of its casting point for eight seconds. Its shared shield absorbs 650 damage at hero level one; upgrades strengthen it.', type: 'archer', unlock: 5, hp: 800, damage: 28, range: 3.6, speed: 2.3, cooldown: 1.15, ability: 'Monsoon Canopy' },
+  kabir: { name: 'Kabir the Siege Artisan', shortName: 'Kabir', title: 'Siege Artisan', role: 'Deception', description: 'Clockwork Decoys releases two wheeled shields that draw defense fire for ten seconds. Decoys deal no damage and can be destroyed. Kabir deals triple damage to walls.', type: 'engineer', unlock: 6, hp: 920, damage: 42, range: 1.3, speed: 2.1, cooldown: 1, ability: 'Clockwork Decoys' },
 };
+function unlockHeroes(state) {
+  const hall = levelOf(state, 'hero_hall'); let changed = false;
+  state.heroes ||= {};
+  for (const [id, spec] of Object.entries(HEROES)) {
+    if (!state.heroes[id]) { state.heroes[id] = { level: 0, readyAt: 0, upgradingTo: 0, slots: [null, null] }; changed = true; }
+    if (hall >= spec.unlock && !state.heroes[id].level) { state.heroes[id].level = 1; changed = true; }
+  }
+  return changed;
+}
 export const MAX_EQUIPMENT_LEVEL = 5;
 // Hero equipment. Forged and improved with Ancient Ore, which is only won in battle.
 // Upgrades are instant and never occupy a builder; two slots per hero, the second
@@ -629,6 +661,14 @@ export const EQUIPMENT = {
   longbow: { name: 'Kalinga Longbow', hero: 'tara', description: 'A tall bow that reaches further and strikes harder.', unlock: 1, forge: 40, effects: { damage: 0.11, range: 0.2 } },
   quiver: { name: 'Monsoon Quiver', hero: 'tara', description: 'Oiled leather and a lighter guard keep Tara standing under fire.', unlock: 2, forge: 60, effects: { hp: 0.15 } },
   hawk: { name: 'Hunting Hawk', hero: 'tara', description: 'Arrowstorm marks additional structures across a wider sweep.', unlock: 3, forge: 90, effects: { abilityTargets: 0.5, abilityRange: 0.8 } },
+  chakrams: { name: 'Sunedge Chakrams', hero: 'nila', description: 'Honed ring blades strengthen every throw.', unlock: 3, forge: 45, effects: { damage: 0.1 } },
+  silkstep: { name: 'Silkstep Bracers', hero: 'nila', description: 'Twin Arc gains one additional ricochet per forging level.', unlock: 3, forge: 70, effects: { abilityTargets: 1, hp: 0.05 } },
+  falcon_crest: { name: 'Falcon Crest', hero: 'ayaan', description: 'A trained falcon keeps its target marked longer.', unlock: 4, forge: 50, effects: { abilityDuration: 1.2, damage: 0.06 } },
+  scout_lens: { name: 'Amber Scout Lens', hero: 'ayaan', description: 'Spot distant defenses and strengthen the army’s damage bonus.', unlock: 4, forge: 75, effects: { abilityRange: 0.5, abilityPower: 0.12 } },
+  rain_vessel: { name: 'Copper Rain Vessel', hero: 'ira', description: 'Stores more protective water for the canopy.', unlock: 5, forge: 50, effects: { abilityPower: 0.15, hp: 0.05 } },
+  canopy_silk: { name: 'Monsoon Silk', hero: 'ira', description: 'A broader, longer-lasting protective canopy.', unlock: 5, forge: 75, effects: { abilityDuration: 1, abilityRange: 0.25 } },
+  winding_key: { name: 'Master Winding Key', hero: 'kabir', description: 'Stronger springs give both decoys more endurance.', unlock: 6, forge: 55, effects: { abilityPower: 0.15, abilityDuration: 0.8 } },
+  siege_mallet: { name: 'Siege Mallet', hero: 'kabir', description: 'A reinforced mallet for opening stubborn ramparts.', unlock: 6, forge: 75, effects: { damage: 0.12, hp: 0.06 } },
 };
 const SLOT_UNLOCK = [1, 3];
 const EQUIPMENT_BASE = 26;
@@ -734,7 +774,7 @@ export function upgradeInfo(state, id) {
   }
   const requires = (b.type === 'fort' ? 'A free builder and the displayed resources.' : `Taj Mahal level ${nextLevel} and a free builder.`) + (capacityNote ? ` ${capacityNote}` : '');
   const reason = state.activeRaid ? 'Finish your raid first.' : b.readyAt ? 'This building is already under construction.' : b.level >= MAX_BUILDING_LEVEL ? 'Maximum building level 15 reached.' : b.type !== 'fort' && b.level >= levelOf(state, 'fort') ? `Upgrade Taj Mahal to level ${nextLevel} first.` : cap.busy >= cap.builders ? 'All builders are busy.' : !affordable(state, cost) ? `Missing resources: ${currencies.filter(k => state.resources[k] < cost[k]).map(k => `${cost[k] - state.resources[k]} ${k}`).join(', ')}.` : '';
-  const unlocks = b.type === 'fort' ? nextLevel === 2 ? 'Thunder Cannon; building level 2' : `Building level ${nextLevel}` : b.type === 'barracks' ? nextLevel === 2 ? 'Maratha Rider, Stone Bowler and Tunnel Miner' : nextLevel === 3 ? 'Elephant Rider, Himalayan Yeti, Garuda Rider and Monsoon Healer' : 'Improved building durability; all troop types already unlocked' : b.type === 'hero_hall' ? nextLevel === 2 ? 'Captain Tara' : nextLevel === 3 ? 'Hero level 3' : 'Improved building durability; heroes remain capped at level 3' : b.type === 'laboratory' && nextLevel > 3 ? 'Improved building durability; troop research remains capped at level 3' : '';
+  const unlocks = b.type === 'fort' ? nextLevel === 2 ? 'Thunder Cannon; building level 2' : `Building level ${nextLevel}` : b.type === 'barracks' ? nextLevel === 2 ? 'Maratha Rider, Stone Bowler and Tunnel Miner' : nextLevel === 3 ? 'Elephant Rider, Himalayan Yeti, Garuda Rider and Monsoon Healer' : 'Improved building durability; all troop types already unlocked' : b.type === 'hero_hall' ? Object.values(HEROES).filter(hero => hero.unlock === nextLevel).map(hero => hero.name).join(', ') || 'Improved building durability; heroes remain capped at level 3' : b.type === 'laboratory' && nextLevel > 3 ? 'Improved building durability; troop research remains capped at level 3' : '';
   return { ok: true, id, type: b.type, level: b.level, nextLevel, current, next, cost, duration: b.type === 'wall' ? 0 : c.time * (b.level + 1), requires, canUpgrade: !reason, reason, freeBuilders: cap.builders - cap.busy, unlocks, capacityNote, capacityLabel: b.type === 'camp' ? 'Total army capacity' : 'Capacity' };
 }
 export function placeWallLine(state, x1, z1, x2, z2, now = Date.now()) {
@@ -812,7 +852,7 @@ export function finishWithGems(state, kind, id, now = Date.now()) {
   const info = finishCost(state, kind, id, now); if (!info.ok) return info;
   if (state.gems < info.cost) return fail(`You need ${info.cost} gems to finish this timer.`);
   state.gems -= info.cost;
-  if (kind === 'building') { const b = state.buildings.find(b => b.id === id); const wasUpgrade = b.level > 0; b.level = b.upgradingTo; b.readyAt = 0; b.upgradingTo = 0; if (wasUpgrade) award(state, 'first_upgrade', 10); if (b.type === 'hero_hall' && b.level >= 2 && !state.heroes.tara.level) state.heroes.tara.level = 1; }
+  if (kind === 'building') { const b = state.buildings.find(b => b.id === id); const wasUpgrade = b.level > 0; b.level = b.upgradingTo; b.readyAt = 0; b.upgradingTo = 0; if (wasUpgrade) award(state, 'first_upgrade', 10); if (b.type === 'hero_hall') unlockHeroes(state); }
   if (kind === 'research') { state.unitLevels[id] = state.research.level; state.research = null; award(state, 'first_research', 15); }
   if (kind === 'hero') { const h = state.heroes[id]; h.level = h.upgradingTo; h.readyAt = 0; h.upgradingTo = 0; }
   return { ok: true, spent: info.cost, cost: info.cost };
@@ -841,12 +881,53 @@ export function heroAbility(battle) {
   if (!unit) return fail('Your hero has been defeated.');
   const bonus = battle.hero.bonus || NO_BONUS, power = 1 + (bonus.abilityPower || 0);
   if (unit.heroId === 'veer') { unit.hp = Math.min(unit.maxHp, unit.hp + unit.maxHp * 0.4 * power); unit.rushUntil = battle.elapsed + 8 + (bonus.abilityDuration || 0); event(battle, 'heal', unit); }
-  else {
+  else if (unit.heroId === 'tara') {
     const reach = 8 + (bonus.abilityRange || 0), count = 4 + Math.floor(bonus.abilityTargets || 0);
     const targets = aliveBuildings(battle).filter(b => distanceTo(unit, b) <= reach).sort((a, b) => distanceTo(unit, a) - distanceTo(unit, b)).slice(0, count);
     if (!targets.length) return fail(`Move Tara within ${Math.round(reach)} cells of a structure.`);
     for (const target of targets) { event(battle, 'arrow', target, unit); damage(battle, target, unit.spec.damage * 3.5 * power, unit); }
   }
+  else if (unit.heroId === 'nila') {
+    const reach = 7 + (bonus.abilityRange || 0), count = 3 + Math.floor(bonus.abilityTargets || 0);
+    const candidates = aliveBuildings(battle).filter(b => b.type !== 'wall');
+    let from = unit, radius = reach; const targets = [];
+    for (let i = 0; i < count; i++) {
+      const target = candidates.filter(b => !targets.includes(b) && distanceTo(from, b) <= radius).sort((a, b) => distanceTo(from, a) - distanceTo(from, b))[0];
+      if (!target) break;
+      targets.push(target); from = center(target); radius = 4;
+    }
+    if (!targets.length) return fail(`Move Nila within ${Math.round(reach)} cells of a structure.`);
+    from = unit;
+    targets.forEach((target, i) => { event(battle, 'chakram', target, from); damage(battle, target, unit.spec.damage * 2.6 * power * Math.pow(0.82, i), unit); from = center(target); });
+  }
+  else if (unit.heroId === 'ayaan') {
+    const reach = 8 + (bonus.abilityRange || 0);
+    const target = aliveBuildings(battle).filter(b => CATALOG[b.type].damage && distanceTo(unit, b) <= reach).sort((a, b) => distanceTo(unit, a) - distanceTo(unit, b))[0];
+    if (!target) return fail(`Move Ayaan within ${Math.round(reach)} cells of an enemy defense.`);
+    const expiresAt = battle.elapsed + 10 + (bonus.abilityDuration || 0);
+    (battle.heroEffects ||= []).push({ id: ++battle.eventId, type: 'sky_mark', ...center(target), radius: 1.5, targetId: target.id, bonus: 0.35 * power, expiresAt });
+    unit.abilityUntil = expiresAt; event(battle, 'sky_mark', target, unit);
+  }
+  else if (unit.heroId === 'ira') {
+    const expiresAt = battle.elapsed + 8 + (bonus.abilityDuration || 0), absorption = Math.round(650 * (1 + (unit.level - 1) * 0.25) * power);
+    (battle.heroEffects ||= []).push({ id: ++battle.eventId, type: 'canopy', x: unit.x, z: unit.z, radius: 4 + (bonus.abilityRange || 0), remaining: absorption, maxAbsorb: absorption, expiresAt });
+    unit.abilityUntil = expiresAt; event(battle, 'canopy', unit);
+  }
+  else if (unit.heroId === 'kabir') {
+    const cells = [];
+    for (let dz = -2; dz <= 2; dz++) for (let dx = -2; dx <= 2; dx++) {
+      const x = Math.floor(unit.x) + dx, z = Math.floor(unit.z) + dz;
+      if ((dx || dz) && x >= 0 && z >= 0 && x < GRID && z < GRID && !occupied(battle, x, z) && !battle.units.some(u => u.hp > 0 && Math.hypot(u.x - x - 0.5, u.z - z - 0.5) < 0.6)) cells.push({ x: x + 0.5, z: z + 0.5 });
+    }
+    const defenses = aliveBuildings(battle).filter(b => CATALOG[b.type].damage);
+    const nearest = defenses.sort((a, b) => distanceTo(unit, a) - distanceTo(unit, b))[0];
+    cells.sort((a, b) => nearest ? distanceTo(a, nearest) - distanceTo(b, nearest) : Math.hypot(a.x - unit.x, a.z - unit.z) - Math.hypot(b.x - unit.x, b.z - unit.z));
+    if (cells.length < 2) return fail('Move Kabir to an open space to release both decoys.');
+    const expiresAt = battle.elapsed + 10 + (bonus.abilityDuration || 0), hp = Math.round(260 * (1 + (unit.level - 1) * 0.25) * power);
+    for (const cell of cells.slice(0, 2)) battle.units.push({ id: `decoy${battle.nextUnit++}`, type: 'guard', decoy: true, heroOwner: 'kabir', ...cell, expiresAt, level: unit.level, hp, maxHp: hp, spec: { ...UNITS.guard, hp, damage: 0, speed: 2.5, range: 0.85 }, attackTimer: 0, targetId: null, path: [], pathRevision: -1, facing: unit.facing, action: 'walk' });
+    unit.abilityUntil = expiresAt; event(battle, 'deploy', unit);
+  }
+  else return fail('This hero has no battle ability.');
   battle.hero.abilityUsed = true; updateProgress(battle);
   return { ok: true, ability: HEROES[unit.heroId].ability };
 }

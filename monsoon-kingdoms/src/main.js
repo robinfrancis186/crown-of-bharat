@@ -45,7 +45,7 @@ function downloadSave(value,name='kingdom-backup'){
 }
 const sound=(kind='tap',options)=>audio.play(kind,options);
 // Battle events already carry a battlefield position, so combat is heard left to right.
-const eventCue={hit:'hit',arrow:'arrow',cannon:'cannon',destroy:'destroy',heal:'heal',lightning:'lightning',freeze:'freeze',rage:'rage'};
+const eventCue={hit:'hit',arrow:'arrow',cannon:'cannon',destroy:'destroy',heal:'heal',lightning:'lightning',freeze:'freeze',rage:'rage',chakram:'arrow',falcon_strike:'arrow',water_bolt:'heal',sky_mark:'hero',canopy:'heal'};
 function hearBattle(b){
   if(!soundEnabled||!b?.events?.length)return;
   for(const event of b.events){
@@ -164,7 +164,7 @@ const actions={
   upgradeHero(id){attempt(Rules.upgradeHero(state,id),'Hero training started.');},
   selectHero(id){if(attempt(Rules.selectHero(state,id))){view.setHomeHero(id);ui.toast(`${Rules.HEROES[id].name} leads your next attack.`);}},
   selectHeroDeploy(){if(battle?.hero&&!battle.hero.deployed){selectedTroop='hero';refresh();}},
-  heroAbility(){if(!battle)return;if(attempt(Rules.heroAbility(battle),'Hero ability activated.'))sound('hero');},
+  heroAbility(){if(!battle)return;const result=Rules.heroAbility(battle);if(attempt(result,result.ok?`${result.ability} activated.`:null))sound('hero');},
   buyBuilder(){attempt(Rules.buyBuilder(state),'A new builder has joined your kingdom.');},
   forgeEquipment(id){
     const before=Rules.equipmentInfo(state,id);

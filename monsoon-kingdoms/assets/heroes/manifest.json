@@ -36,6 +36,338 @@
       "depth": 0.827,
       "root": "feet at origin, +Z forward, +Y up",
       "animation": "static root bobbing"
+    },
+    {
+      "id": "nila",
+      "file": "nila.glb",
+      "portrait": "nila.png",
+      "triangles": 18252,
+      "materials": [
+        "Dark leather and hair",
+        "Duelist plum silk",
+        "Hammered brass",
+        "Indigo woven cloth",
+        "Matte rose lips",
+        "Saffron silk",
+        "Warm ivory eyes",
+        "Warm umber skin"
+      ],
+      "height": 1.511,
+      "width": 1.684,
+      "depth": 0.469,
+      "root": "feet at origin, +Z forward, +Y up",
+      "animation": "7-bone grounded skin; baked Idle and Walk; runtime distance-driven groundGait",
+      "clips": [
+        "nila_Idle",
+        "nila_Walk"
+      ],
+      "bones": 7,
+      "source": "assets/blender/new-heroes.blend",
+      "groundGait": {
+        "id": "nila",
+        "hip": 0.66,
+        "quadruped": false,
+        "legs": [
+          {
+            "hip": [
+              -0.105,
+              0.66,
+              0
+            ],
+            "knee": [
+              -0.105,
+              0.37,
+              0.015
+            ],
+            "ankle": [
+              -0.105,
+              0.095,
+              -0.015
+            ],
+            "phase": 0.0
+          },
+          {
+            "hip": [
+              0.105,
+              0.66,
+              0
+            ],
+            "knee": [
+              0.105,
+              0.37,
+              0.015
+            ],
+            "ankle": [
+              0.105,
+              0.095,
+              -0.015
+            ],
+            "phase": 0.5
+          }
+        ],
+        "assigned": 9612
+      },
+      "portraitDimensions": [
+        768,
+        768
+      ],
+      "master": "assets/masters/heroes/nila-4096.png",
+      "masterDimensions": [
+        4096,
+        4096
+      ],
+      "masterSha256": "339e4e3da30507a61d364755bc0ac704cfd412ca3992f2e9e3afe4258621cf88",
+      "portraitSha256": "07ff118c1e8a2b888ffd47cc3480d1cb66caa35911894b57bf2c962f330c96a9",
+      "sourceSha256": "84a3f82ad2be34743bd9cadaddd055af053950caefed29ab064e7b28ed2fa32f"
+    },
+    {
+      "id": "ayaan",
+      "file": "ayaan.glb",
+      "portrait": "ayaan.png",
+      "triangles": 15752,
+      "materials": [
+        "Dark leather and hair",
+        "Hammered brass",
+        "Indigo woven cloth",
+        "Ivory cotton",
+        "Warden green",
+        "Warm ivory eyes",
+        "Warm umber skin"
+      ],
+      "height": 1.594,
+      "width": 1.234,
+      "depth": 0.548,
+      "root": "feet at origin, +Z forward, +Y up",
+      "animation": "7-bone grounded skin; baked Idle and Walk; runtime distance-driven groundGait",
+      "clips": [
+        "ayaan_Idle",
+        "ayaan_Walk"
+      ],
+      "bones": 7,
+      "source": "assets/blender/new-heroes.blend",
+      "groundGait": {
+        "id": "ayaan",
+        "hip": 0.66,
+        "quadruped": false,
+        "legs": [
+          {
+            "hip": [
+              -0.105,
+              0.66,
+              0
+            ],
+            "knee": [
+              -0.105,
+              0.37,
+              0.015
+            ],
+            "ankle": [
+              -0.105,
+              0.095,
+              -0.015
+            ],
+            "phase": 0.0
+          },
+          {
+            "hip": [
+              0.105,
+              0.66,
+              0
+            ],
+            "knee": [
+              0.105,
+              0.37,
+              0.015
+            ],
+            "ankle": [
+              0.105,
+              0.095,
+              -0.015
+            ],
+            "phase": 0.5
+          }
+        ],
+        "assigned": 8452
+      },
+      "portraitDimensions": [
+        768,
+        768
+      ],
+      "master": "assets/masters/heroes/ayaan-4096.png",
+      "masterDimensions": [
+        4096,
+        4096
+      ],
+      "masterSha256": "7fe4dd09df22b3e145ff964a99a728d3ace83aeb4147633544f355e14666c90b",
+      "portraitSha256": "4b4462f1fa8e3d11338f8704c663daf503654893959cb2ff71589ddf6c2ab1fd",
+      "sourceSha256": "84a3f82ad2be34743bd9cadaddd055af053950caefed29ab064e7b28ed2fa32f"
+    },
+    {
+      "id": "ira",
+      "file": "ira.glb",
+      "portrait": "ira.png",
+      "triangles": 19000,
+      "materials": [
+        "Dark leather and hair",
+        "Hammered brass",
+        "Indigo woven cloth",
+        "Ivory cotton",
+        "Matte rose lips",
+        "Rainkeeper teal",
+        "Warm ivory eyes",
+        "Warm umber skin",
+        "Worked copper"
+      ],
+      "height": 2.187,
+      "width": 1.356,
+      "depth": 1.206,
+      "root": "feet at origin, +Z forward, +Y up",
+      "animation": "7-bone grounded skin; baked Idle and Walk; runtime distance-driven groundGait",
+      "clips": [
+        "ira_Idle",
+        "ira_Walk"
+      ],
+      "bones": 7,
+      "source": "assets/blender/new-heroes.blend",
+      "groundGait": {
+        "id": "ira",
+        "hip": 0.66,
+        "quadruped": false,
+        "legs": [
+          {
+            "hip": [
+              -0.105,
+              0.66,
+              0
+            ],
+            "knee": [
+              -0.105,
+              0.37,
+              0.015
+            ],
+            "ankle": [
+              -0.105,
+              0.095,
+              -0.015
+            ],
+            "phase": 0.0
+          },
+          {
+            "hip": [
+              0.105,
+              0.66,
+              0
+            ],
+            "knee": [
+              0.105,
+              0.37,
+              0.015
+            ],
+            "ankle": [
+              0.105,
+              0.095,
+              -0.015
+            ],
+            "phase": 0.5
+          }
+        ],
+        "assigned": 10420
+      },
+      "portraitDimensions": [
+        768,
+        768
+      ],
+      "master": "assets/masters/heroes/ira-4096.png",
+      "masterDimensions": [
+        4096,
+        4096
+      ],
+      "masterSha256": "faa7f60ce39fef68bb8df5fa98c90d7a410ddba100670d2e96e98220938f486d",
+      "portraitSha256": "715c3a23ace1a31b1945e3e3add6b7ba3af9c3ad9d7487fc19c0a94d622250a9",
+      "sourceSha256": "84a3f82ad2be34743bd9cadaddd055af053950caefed29ab064e7b28ed2fa32f"
+    },
+    {
+      "id": "kabir",
+      "file": "kabir.glb",
+      "portrait": "kabir.png",
+      "triangles": 19072,
+      "materials": [
+        "Artisan burnt orange",
+        "Dark leather and hair",
+        "Hammered brass",
+        "Indigo woven cloth",
+        "Smoked goggle glass",
+        "Warm ivory eyes",
+        "Warm umber skin",
+        "Worked copper"
+      ],
+      "height": 1.564,
+      "width": 1.0,
+      "depth": 0.66,
+      "root": "feet at origin, +Z forward, +Y up",
+      "animation": "7-bone grounded skin; baked Idle and Walk; runtime distance-driven groundGait",
+      "clips": [
+        "kabir_Idle",
+        "kabir_Walk"
+      ],
+      "bones": 7,
+      "source": "assets/blender/new-heroes.blend",
+      "groundGait": {
+        "id": "kabir",
+        "hip": 0.66,
+        "quadruped": false,
+        "legs": [
+          {
+            "hip": [
+              -0.11760000000000001,
+              0.66,
+              0
+            ],
+            "knee": [
+              -0.11760000000000001,
+              0.37,
+              0.015
+            ],
+            "ankle": [
+              -0.11760000000000001,
+              0.095,
+              -0.015
+            ],
+            "phase": 0.0
+          },
+          {
+            "hip": [
+              0.11760000000000001,
+              0.66,
+              0
+            ],
+            "knee": [
+              0.11760000000000001,
+              0.37,
+              0.015
+            ],
+            "ankle": [
+              0.11760000000000001,
+              0.095,
+              -0.015
+            ],
+            "phase": 0.5
+          }
+        ],
+        "assigned": 10084
+      },
+      "portraitDimensions": [
+        768,
+        768
+      ],
+      "master": "assets/masters/heroes/kabir-4096.png",
+      "masterDimensions": [
+        4096,
+        4096
+      ],
+      "masterSha256": "8fb0abb9a9be8cce75863b9c412d75bad5174b17a0dada4d124d09bd81bf212d",
+      "portraitSha256": "ec6d0ddf2c8c0f95551be6c7f0d28ac42e4115d8969bf6aa686cae33cc7529e6",
+      "sourceSha256": "84a3f82ad2be34743bd9cadaddd055af053950caefed29ab064e7b28ed2fa32f"
     }
   ],
   "elephant": "New crewed elephant retained in this Blender source; 25000-triangle ceiling includes two complete crew figures."

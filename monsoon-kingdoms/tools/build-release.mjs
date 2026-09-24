@@ -20,6 +20,8 @@ const models = [
   ...Object.keys(HEROES).map(id => ['heroes', id]),
   ...['banyan', 'palm', 'rocks', 'bush', 'cart', 'jars'].map(id => ['environment', id]),
 ];
+// Realistic character sources dressed at runtime by src/humans.js (see assets/characters/CREDITS.md).
+const characterFiles = ['human_male', 'human_female', 'horse', 'war_elephant'].map(id => `assets/characters/${id}.glb`);
 const texturePaths = ['marble', 'sandstone', 'cloth', 'grass'].flatMap(material => ['basecolor', 'normal', 'roughness'].map(channel => `assets/textures/${material}/${channel}-1024.png`));
 const hash = data => createHash('sha256').update(data).digest('hex');
 const relative = file => path.relative(project, file).split(path.sep).join('/');
@@ -155,9 +157,9 @@ Progress is saved in browser local storage for the exact server address. Changin
 
 ## Included files and licenses
 
-This folder contains ${models.length} runtime GLB models and matching PNG portraits, twelve optimized 1024-pixel PBR maps, two local fonts, the application and its required Three.js module dependency closure. It includes all 225 building tiers plus ten troop, two hero and six environment models. Obsolete fort_2/fort_3/wall_2/wall_3/upgrade_ornament exports, native Blender files, 4096-pixel masters, authoring tools, tests, browser traces and unrelated projects are intentionally excluded.
+This folder contains ${models.length} runtime GLB models and matching PNG portraits, twelve optimized 1024-pixel PBR maps, two local fonts, the application and its required Three.js module dependency closure. It includes all 225 building tiers plus ten troop, two hero and six environment models, and four rigged character sources (two sculpted human bodies with 34 motion-captured clips, a horse and a war elephant) that dress every troop and hero at runtime. Obsolete fort_2/fort_3/wall_2/wall_3/upgrade_ornament exports, native Blender files, 4096-pixel masters, authoring tools, tests, browser traces and unrelated projects are intentionally excluded.
 
-Three.js copyright/license is in vendor/three/LICENSE. Font licenses are assets/fonts/Manrope-OFL.txt and assets/fonts/SpaceGrotesk-OFL.txt. The game's architecture and characters are original fictional Indian-inspired work; no Supercell game art is included.
+Three.js copyright/license is in vendor/three/LICENSE. Font licenses are assets/fonts/Manrope-OFL.txt and assets/fonts/SpaceGrotesk-OFL.txt. The game's architecture and costumes are original fictional Indian-inspired work; no Supercell game art is included. Character sources are credited in assets/characters/CREDITS.md: the human bodies and animations are Quaternius (CC0), and the horse and war elephant are adapted from 0 A.D. by Wildfire Games (CC BY-SA 3.0).
 
 release-manifest.json lists every packaged file with its SHA-256 checksum and the source hashes used for this build. The development workspace can rebuild and verify with **node tools/build-release.mjs** and **node tools/build-release.mjs --verify**.
 `;
@@ -183,6 +185,7 @@ if (!args.has('--verify')) {
   for (const [folder, id] of models) for (const extension of ['glb', 'png']) {
     const asset = `assets/${folder}/${id}.${extension}`; await copy(path.join(project, asset), path.join(output, asset));
   }
+  for (const asset of [...characterFiles, 'assets/characters/CREDITS.md']) await copy(path.join(project, asset), path.join(output, asset));
   await copy(path.join(project,'assets/branding/crown-of-bharat-title.webp'),path.join(output,'assets/branding/crown-of-bharat-title.webp'));
   await copy(path.join(project,'manifest.webmanifest'),path.join(output,'manifest.webmanifest'));
   for(const name of ['favicon.ico',... [32,48,180,192,512].map(size=>`crown-icon-${size}.png`)])await copy(path.join(project,'assets/branding',name),path.join(output,'assets/branding',name));
@@ -238,7 +241,13 @@ async function verify() {
     assert.equal(png.readUInt32BE(16), dimensions[0], `Portrait width: ${folder}/${id}`); assert.equal(png.readUInt32BE(20), dimensions[1], `Portrait height: ${folder}/${id}`);
   }
   for (const asset of texturePaths) { const png = await readFile(path.join(output, asset)); assert.equal(png.readUInt32BE(16), 1024); assert.equal(png.readUInt32BE(20), 1024); }
-  assert.equal(actual.filter(file => file.endsWith('.glb')).length, models.length);
+  for (const file of characterFiles) {
+    const glb = await readFile(path.join(output, file)); assert.equal(glb.toString('ascii', 0, 4), 'glTF', file); assert.equal(glb.readUInt32LE(8), glb.length);
+    const json = JSON.parse(glb.toString('utf8', 20, 20 + glb.readUInt32LE(12)));
+    assert.ok(json.skins?.length && json.animations?.length && json.animations.every(a => a.channels.length > 0), `Rigged, animated character: ${file}`);
+  }
+  assert.ok(actual.includes('assets/characters/CREDITS.md'), 'Character licenses ship with the models');
+  assert.equal(actual.filter(file => file.endsWith('.glb')).length, models.length + characterFiles.length);
   assert.equal(actual.filter(file => file.startsWith('assets/buildings/') && file.endsWith('.glb')).length, Object.keys(CATALOG).length * MAX_BUILDING_LEVEL);
   for (const obsolete of ['fort_2', 'fort_3', 'wall_2', 'wall_3', 'upgrade_ornament']) assert.ok(!actual.includes(`assets/buildings/${obsolete}.glb`), `Obsolete runtime model shipped: ${obsolete}`);
   assert.equal(actual.filter(file => file.endsWith('.png')).length, models.length + texturePaths.length + 5);

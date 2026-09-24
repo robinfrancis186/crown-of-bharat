@@ -269,3 +269,34 @@ body { background: radial-gradient(ellipse at 50% 40%, #2d6a52, #0b2c26); }
 @media (max-width: 700px) { .durbar-days { grid-template-columns: repeat(4, minmax(0, 1fr)); } .decree-grid { grid-template-columns: 1fr; } }
 /* The court stays reachable on compact phone layouts, where other side tools fold away. */
 #side-tools .court-button { display: inline-flex !important; min-height: 44px; }
+
+/* ---------------------------------------------------------------- friends & invites */
+.social-card { margin: 12px 0; padding: 16px; border-radius: 18px; background: radial-gradient(ellipse at 10% 0, #1d8a8066, transparent 55%), linear-gradient(160deg, var(--royal-700), var(--royal-900)); color: var(--parchment-hi); box-shadow: inset 0 0 0 1px #f7d27a55, 0 10px 24px #02110f40; }
+.social-card header { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.social-card h3 { font: 700 18px Space; color: var(--gold-hi); display: flex; align-items: center; gap: 8px; margin: 2px 0 0; }
+.social-card h4 { font: 700 13px Space; letter-spacing: .5px; color: var(--gold-1); margin: 14px 0 6px; display: flex; gap: 8px; align-items: baseline; }
+.social-card h4 small { color: #9fe3c5; font-weight: 600; }
+.social-card .eyebrow { color: var(--gold-1); }
+.presence { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #7d8a86; box-shadow: 0 0 0 2px #0a2f2b; flex: 0 0 auto; }
+.presence.on { background: #3ddc84; box-shadow: 0 0 0 2px #0a2f2b, 0 0 10px #3ddc84; animation: cob-live 1.8s ease-in-out infinite; }
+@keyframes cob-live { 50% { box-shadow: 0 0 0 2px #0a2f2b, 0 0 2px #3ddc84; } }
+.invite-row { display: flex; gap: 12px; align-items: center; justify-content: space-between; flex-wrap: wrap; margin-top: 12px; padding: 12px; border-radius: 14px; background: #ffffff10; border: 1px dashed #f7d27a88; }
+.invite-code small { display: block; font: 700 10px Space; letter-spacing: 1.5px; color: var(--gold-1); }
+.invite-code strong { display: block; font: 800 30px/1.1 Space; letter-spacing: 8px; color: #fff6d6; text-shadow: 0 2px 0 #7a3a0c, 0 0 14px #ffb34788; }
+.invite-code span { font-size: 12px; color: #cfe1d6; display: inline-flex; gap: 4px; align-items: center; }
+.invite-code .icon { width: 14px; height: 14px; }
+.invite-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.claim-glow { animation: cob-attack-glow 1.8s ease-in-out infinite; }
+.redeem-row { margin-top: 12px; }
+.redeem-row label { display: block; font-size: 12px; color: #cfe1d6; margin-bottom: 6px; }
+.redeem-row input { text-transform: uppercase; letter-spacing: 4px; font: 700 18px Space; }
+.friend-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.friend-list li { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 12px; background: #ffffff0d; border: 1px solid #f7d27a22; }
+.friend-list li > span { flex: 1; min-width: 0; }
+.friend-list strong { display: block; font: 700 14px Space; color: #fff6d6; }
+.friend-list small { display: block; font-size: 11px; color: #b9cfc6; }
+.friend-list em { font-size: 11px; color: #9fb5ad; }
+.friend-list.compact li { padding: 6px 10px; }
+.social-card .empty-state { color: #cfe1d6; font-size: 13px; }
+.invite-banner { display: flex; gap: 10px; align-items: center; padding: 12px; border-radius: 14px; background: linear-gradient(90deg, #fff1c9, #f7e3ae); border: 1px solid var(--gold-2); margin: 10px 0; }
+.social-card .icon-button { background: #ffffff14 !important; color: var(--gold-hi) !important; border-color: #f7d27a66 !important; box-shadow: none !important; }

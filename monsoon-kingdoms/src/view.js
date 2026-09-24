@@ -8,6 +8,7 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { ParticleField, waterMaterial, addWindSway, addCloudShade, addRimLight, rangoliTexture, Flock, Butterflies } from './atmosphere.js';
 import { PostFX } from './postfx.js';
 import { CharacterForge } from './characters.js';
+import { HumanForge } from './humans.js';
 import { PhysicsWorld, RigidBody, Spring, Spring3 } from './physics.js';
 // Stone, plaster, timber and tile colours each structure breaks into.
 const RUBBLE={fort:['#f1ede4','#e4ddd0','#c9b48a'],wall:['#c9ab7c','#b89868','#a88a5c'],barracks:['#b5533a','#d98b5f','#e9dcc0'],archer_tower:['#c77a4a','#e9dcc0','#b5533a'],cannon:['#6d6a64','#8b5a2b','#4a4540'],farm:['#8b5a2b','#d7b56d','#4c8a3a'],lumber:['#8b5a2b','#6d4a2c','#c8553d'],market:['#e8a0a0','#e9dcc0','#c8553d'],stepwell:['#d9b98a','#c9a877','#3f979c'],hero_hall:['#f1ede4','#d9a93f','#c9b48a']};
@@ -48,7 +49,8 @@ export class KingdomView {
     this.labelHost=document.createElement('div');this.labelHost.className='world-labels';document.body.append(this.labelHost);
     this.postfx=new PostFX(this.renderer,this.scene,this.camera);this.postfx.configure(this.quality);
     // Procedurally modelled, fully rigged characters and a visual physics world.
-    this.forge=new CharacterForge();this.actors=new Set();this.corpses=new Set();this.lastHit=new Map();
+    // Realistic sculpted bodies with motion-captured clips (HumanForge); the procedural forge is the fallback.
+    this.forge=new CharacterForge();this.humans=new HumanForge();this.actors=new Set();this.corpses=new Set();this.lastHit=new Map();
     this.physics=new PhysicsWorld({maxBodies:170});this.physics.onRemove=body=>{if(body.object){this.scene.remove(body.object);if(body.object.userData.actor){this.actors.delete(body.object.userData.actor);body.object.userData.actor.dispose();}if(body.object.userData.ownMaterial)body.object.material.dispose?.();}if(body.corpse)this.corpses.delete(body);};
     this.rubbleGeometry=new THREE.BoxGeometry(1,1,1);this.rubbleMaterials=new Map();this.ballGeometry=new THREE.SphereGeometry(.26,12,9);this.ballMaterial=new THREE.MeshStandardMaterial({color:'#3f3d39',roughness:.55,metalness:.4});this.heroAuras=new Map();this.ruinSmoke=new Map();this.emitClock=0;this.celebration=null;this.footfalls=new Map();
     this.labels=new Map();this.resize=()=>{this.renderer.setSize(innerWidth,innerHeight);this.postfx?.resize();this.updateCamera();};addEventListener('resize',this.resize);this.resize();
@@ -126,10 +128,11 @@ export class KingdomView {
   async load(progress,buildings=[]){
     const people=this.forge?[]:[...Object.keys(HEROES).map(x=>['heroes',x]),...Object.keys(UNITS).map(x=>['units',x])];
     const paths=[...Object.keys(CATALOG).map(x=>['buildings',x]),...people,...['banyan','palm','rocks','bush','cart','jars'].map(x=>['environment',x])];let done=0;const loader=new GLTFLoader();
-    await Promise.all([this.loadTextures(),...paths.map(async([folder,name])=>{const gltf=await loader.loadAsync(`./assets/${folder}/${name}.glb`);this.models[name]=gltf.scene;this.animations[name]=gltf.animations;this.modelTops[name]=new THREE.Box3().setFromObject(gltf.scene).max.y;progress(++done/paths.length*.85,`Carving the valley · ${done}/${paths.length}`);})]);
+    const humans=this.humans.load('./assets/characters/').then(()=>true,error=>{console.warn('Realistic characters unavailable; using stylised rigs.',error);this.humans=null;return false;});
+    await Promise.all([this.loadTextures(),humans,...paths.map(async([folder,name])=>{const gltf=await loader.loadAsync(`./assets/${folder}/${name}.glb`);this.models[name]=gltf.scene;this.animations[name]=gltf.animations;this.modelTops[name]=new THREE.Box3().setFromObject(gltf.scene).max.y;progress(++done/paths.length*.85,`Carving the valley · ${done}/${paths.length}`);})]);
     for(const[folder,name]of paths){this.detailModel(this.models[name],name,folder);if(folder==='units'||folder==='heroes')this.prepareCharacterModel(this.models[name],name);}
-    if(this.forge){for(const id of [...Object.keys(UNITS),...Object.keys(HEROES)])if(this.forge.has(id)){this.forge.blueprint(id);this.modelTops[id]=this.forge.blueprint(id).height;}progress(.9,'Dressing the royal army');}
-    await this.ensureBuildingModels(buildings);this.makeLandscape();progress(.95,'Opening the gates of Surajgarh');
+    if(this.forge){const ids=[...Object.keys(UNITS),...Object.keys(HEROES)];for(const[i,id]of ids.entries()){if(this.humans?.has(id)){try{this.modelTops[id]=this.humans.template(id).height;}catch(error){console.warn(`Realistic ${id} failed; using the stylised rig.`,error);this.humans.skip(id);}await new Promise(r=>setTimeout(r));progress(.85+.1*(i+1)/ids.length,'Dressing the royal army');}if(!this.humans?.has(id)&&this.forge.has(id)){this.forge.blueprint(id);this.modelTops[id]=this.forge.blueprint(id).height;}}}
+    await this.ensureBuildingModels(buildings);this.makeLandscape();progress(.97,'Opening the gates of Surajgarh');
   }
   prepareCharacterModel(root,name){
     // New Blender heroes ship real skins and this solver's neutral bone layout.
@@ -182,8 +185,9 @@ export class KingdomView {
   }
   // A rigged character from the forge (or the legacy Blender clone when no forge exists).
   makeActor(id,{hero=false,scale=1}={}){
-    if(!this.forge?.has(id))return this.clone(id,this.scene,0,0,scale);
-    const actor=this.forge.spawn(id,{hero});actor.root.scale.setScalar(scale);this.scene.add(actor.root);this.actors.add(actor);
+    const forge=this.humans?.has(id)?this.humans:this.forge;
+    if(!forge?.has(id))return this.clone(id,this.scene,0,0,scale);
+    const actor=forge.spawn(id,{hero});actor.root.scale.setScalar(scale);this.scene.add(actor.root);this.actors.add(actor);
     if(actor.cape)this.scene.add(actor.cape.mesh);
     return actor.root;
   }
@@ -595,7 +599,10 @@ export class KingdomView {
     const from=this.lastHit.get(unit.id),away=from?new THREE.Vector3(corpse.position.x-from.x,0,corpse.position.z-from.z):new THREE.Vector3(-Math.sin(unit.facing||0),0,-Math.cos(unit.facing||0));
     if(away.lengthSq()<1e-4)away.set(rand()-.5,0,rand()-.5);away.normalize();
     const shove=(heavy?1.4:2.6)*(from?.heavy?1.6:1),side=new THREE.Vector3(-away.z,0,away.x);
-    const body=new RigidBody({half,mass:heavy?6:1,position:corpse.position,quaternion:corpse.quaternion,velocity:away.clone().multiplyScalar(shove).setY(heavy?1:2.4+rand()),angularVelocity:side.multiplyScalar((heavy?2:5)*(.8+rand()*.4)),restitution:.1,friction:.8,object:corpse,life:3.2,sink:.8,collide:false});
+    // Sculpted characters fall with their motion-captured death clip, so their body only slides from the blow;
+    // stylised rigs tumble as a whole.
+    const real=!!actor.realistic;if(real)half.set(half.x*1.8,half.y,half.z*(heavy?1:2.2));
+    const body=new RigidBody({half,mass:heavy?6:1,position:corpse.position,quaternion:corpse.quaternion,velocity:real?away.clone().multiplyScalar(shove*.45).setY(heavy?.4:1.1):away.clone().multiplyScalar(shove).setY(heavy?1:2.4+rand()),angularVelocity:real?new THREE.Vector3():side.multiplyScalar((heavy?2:5)*(.8+rand()*.4)),restitution:.1,friction:.8,object:corpse,life:real?3.8:3.2,sink:.8,collide:false});
     body.corpse=true;actor.die();this.physics.add(body);this.corpses.add(body);this.lastHit.delete(unit.id);
   }
   landEffect(obj){

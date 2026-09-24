@@ -26,7 +26,9 @@ let lastStars=0,lastTick=0,buildingWork=new Map();
 let lastHeardEvent=0;
 const net=new OnlineClient(storage);
 // Everything the Online panel shows. Nothing here is written into the saved kingdom.
-const online={registered:net.registered,playerId:net.playerId,name:null,trophies:0,publishedAt:null,opponent:null,leaderboard:[],log:[],busy:null,error:null};
+const online={registered:net.registered,playerId:net.playerId,name:null,trophies:0,publishedAt:null,opponent:null,leaderboard:[],log:[],busy:null,error:null,profile:null,friends:[],players:[],onlineNow:0,friendBase:null,pendingInvite:null};
+// A shared link like ?invite=AB12CD pre-fills a friend's code for the reward.
+try{const code=new URLSearchParams(location.search).get('invite');if(code&&/^[A-Za-z0-9]{6}$/.test(code))online.pendingInvite=code.toUpperCase();}catch{}
 async function onlineTask(label,run){
   if(online.busy)return {ok:false,reason:'Another online request is still running.'};
   online.busy=label;online.error=null;refresh();
@@ -35,9 +37,12 @@ async function onlineTask(label,run){
 }
 async function refreshOnline(){
   if(!net.registered)return;
-  const [board,log]=await Promise.all([net.leaderboard(20),net.defenseLog()]);
+  const [board,log,profile,friends,players]=await Promise.all([net.leaderboard(20),net.defenseLog(),net.profile(),net.friends(),net.onlinePlayers(12)]);
   if(board.ok)online.leaderboard=board.entries;
   if(log.ok)online.log=log.entries;
+  if(profile.ok){online.profile=profile;online.onlineNow=profile.online_now||0;}
+  if(friends.ok)online.friends=friends.entries;
+  if(players.ok)online.players=players.entries.filter(p=>p.player_id!==net.playerId);
   const me=online.leaderboard.find(e=>e.player_id===net.playerId);
   if(me){online.trophies=me.trophies;online.name=me.name;}
 }
@@ -144,7 +149,7 @@ function enterBattle(result){
 }
 function settle(){
   if(settled)return;settled=true;
-  const result=Rules.finishRaid(state,battle);save();refresh();ui.showResult(result);audio.setScene('none');sound(result.victory?'victory':'defeat');view.celebrate(result.victory);
+  const result=Rules.finishRaid(state,battle);if(battle.friendly&&result.ok){result.title=result.victory?`You stormed ${battle.opponent?.name||'your friend'}'s village`:`${battle.opponent?.name||'Your friend'}'s walls held`;result.story='A friendly challenge: your whole army returns and no trophies change. Share tactics and try again.';}save();refresh();ui.showResult(result);audio.setScene('none');sound(result.victory?'victory':'defeat');view.celebrate(result.victory);
   if(result.online&&result.opponentId&&net.registered)reportOnline(result);
 }
 // The defender is offline, so the server moves both sides' trophies from this report.
@@ -217,6 +222,38 @@ const actions={
     online.registered=true;online.playerId=net.playerId;online.trophies=result.trophies;online.name=state.name;
     await onlineTask('Publishing your village…',async()=>{const published=await actions.publishVillage(true);await refreshOnline();return published;});
     ui.toast('You are online. Your village is published for other players to attack.');
+    if(online.pendingInvite)actions.redeemInvite(online.pendingInvite);
+  },
+  async redeemInvite(value){
+    const code=(value||document.getElementById('invite-code')?.value||'').trim();
+    const result=await onlineTask('Checking the invite…',()=>net.redeemInvite(code));
+    if(!result.ok){ui.toast(result.reason);return;}
+    online.pendingInvite=null;
+    if(result.rewarded){const reward=Rules.grantInviteReward(state,'joined');if(reward.ok){save();sound('complete');ui.rewardBurst(reward.received);}ui.toast(`You and ${result.friend_name} are now friends. Welcome gifts received!`);}
+    else ui.toast(`You and ${result.friend_name} are now friends.`);
+    await onlineTask('Refreshing friends…',async()=>{await refreshOnline();return {ok:true};});
+  },
+  async claimInviteRewards(){
+    const result=await onlineTask('Collecting invite rewards…',()=>net.claimInviteRewards());
+    if(!result.ok){ui.toast(result.reason);return;}
+    if(!result.claimed){ui.toast('No new friends have joined with your code yet.');return;}
+    const reward=Rules.grantInviteReward(state,'inviter',result.claimed);if(reward.ok){save();sound('complete');ui.rewardBurst(reward.received);}
+    ui.toast(`${result.claimed} friend${result.claimed>1?'s':''} joined with your code. Rewards collected!`);
+    await refreshOnline();refresh();
+  },
+  async shareInvite(){
+    const code=online.profile?.invite_code;if(!code)return;
+    const link=`${location.origin}${location.pathname}?invite=${code}`,text=`Join my kingdom in Crown of Bharat! Use invite code ${code} for 60 gems and ancient ore.`;
+    try{if(navigator.share){await navigator.share({title:'Crown of Bharat',text,url:link});return;}}catch{}
+    try{await navigator.clipboard.writeText(`${text} ${link}`);ui.toast('Invite link copied. Send it to a friend!');}catch{ui.toast(`Your invite code is ${code}.`);}
+  },
+  async challengeFriend(id){
+    const result=await onlineTask('Scouting your friend’s village…',()=>net.friendBase(id));
+    if(!result.ok){ui.toast(result.reason);return;}
+    online.friendBase=result.base;const preview_=Rules.startFriendly(structuredClone(state),result.base);
+    if(!preview_.ok){ui.toast(preview_.reason);return;}
+    view.ensureBuildingModels(preview_.battle.buildings).catch(()=>{});
+    preview={kind:'friendly',id,battle:preview_.battle};clearPlacement();selectedId=null;view.setSelection(null);panel='briefing';refresh();
   },
   async publishVillage(quiet){
     const layout=Rules.publishableLayout(state);
@@ -244,8 +281,8 @@ const actions={
   refreshOnline(){onlineTask('Refreshing standings…',async()=>{await refreshOnline();return {ok:true};});},
   leaveOnline(){net.forget();online.registered=false;online.playerId=null;online.opponent=null;online.leaderboard=[];online.log=[];online.publishedAt=null;online.trophies=0;refresh();ui.toast('This device has left online play. Your kingdom is unchanged.');},
   editArmyFromBriefing(){panel='army';refresh();},
-  reviewBattle(){if(preview)requestBattle(preview.kind,preview.id);},
-  confirmBattle(){if(!preview||mode!=='home')return;const p=preview;Rules.tickHome(state,Date.now());enterBattle(p.kind==='online'?Rules.startOnlineRaid(state,online.opponent):p.kind==='ranked'?Rules.startRanked(state):p.kind==='practice'?Rules.startPractice(state):Rules.createBattle(state,p.id));},
+  reviewBattle(){if(!preview)return;if(preview.kind==='friendly')actions.challengeFriend(preview.id);else if(preview.kind==='online')actions.reviewOnline();else requestBattle(preview.kind,preview.id);},
+  confirmBattle(){if(!preview||mode!=='home')return;const p=preview;Rules.tickHome(state,Date.now());enterBattle(p.kind==='friendly'?Rules.startFriendly(state,online.friendBase):p.kind==='online'?Rules.startOnlineRaid(state,online.opponent):p.kind==='ranked'?Rules.startRanked(state):p.kind==='practice'?Rules.startPractice(state):Rules.createBattle(state,p.id));},
   selectTroop(type){selectedSpell=null;selectedTroop=type;sound('tap');refresh();},
   selectSpell(id){selectedSpell=id&&Rules.SPELLS[id]&&battle?.spells[id]>0?id:null;refresh();},
   retreat(){if(battle&&!settled){panel='retreat';refresh();}},
@@ -286,6 +323,9 @@ try{
   view=new KingdomView(document.getElementById('world'),tapWorld);view.setQuality(quality);audio.setScene('home');
   await view.load((p,t)=>{if(!loadFailed)ui.setLoading(p,t);},state.buildings);view.setBoard(state.buildings,'home');view.setHomeHero(Rules.heroInfo(state,state.activeHero)?.unlocked?state.activeHero:null);ready=true;ui.setLoading(1,'Welcome to your kingdom');save();refresh();
   if(net.registered)refreshOnline().then(refresh).catch(()=>{});
+  // Presence: a light heartbeat keeps this kingdom listed as online while the tab is open.
+  setInterval(()=>{if(!net.registered||document.hidden)return;net.heartbeat().then(r=>{if(r.ok){online.onlineNow=r.online_now||0;}});},45000);
+  if(online.pendingInvite)setTimeout(()=>{attackTab='online';panel='attack';refresh();ui.toast(`A friend invited you! Code ${online.pendingInvite} is ready — join online play to claim your welcome gifts.`);},1800);
   if(Rules.durbarInfo(state,Date.now()).available&&!Rules.tutorialState(state))setTimeout(()=>ui.toast('The Daily Durbar awaits. Open the Royal Court for today\'s gifts.'),2500);
   if(loaded.recovered)ui.toast('Recovered your kingdom from the last valid backup.');
   if(loaded.corrupt)ui.toast('The saved data was damaged. Import an exported backup in Settings.');

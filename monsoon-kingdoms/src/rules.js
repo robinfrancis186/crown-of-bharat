@@ -1121,3 +1121,37 @@ export function claimDurbar(state, now = Date.now()) {
   bump(state, 'durbar');
   return { ok: true, day: info.day, streak: state.durbar.streak, received };
 }
+
+// ---------------------------------------------------------------- friends and invites
+// The server decides who earned an invite reward (once per new player, once per friend
+// who joins with your code); these grant it to the local kingdom within storage limits.
+export const INVITE_REWARDS = { joined: { gems: 60, ore: 20, coin: 1000, grain: 800 }, inviter: { gems: 40, ore: 10 } };
+export function grantInviteReward(state, kind, count = 1) {
+  if (!validState(state) || !INVITE_REWARDS[kind]) return fail('Unknown invite reward.');
+  const n = Math.max(0, Math.min(50, Math.floor(Number(count) || 0))); if (!n) return fail('No invite rewards to collect.');
+  const cap = capacity(state), received = {};
+  for (const [key, each] of Object.entries(INVITE_REWARDS[kind])) {
+    const amount = each * n;
+    if (key === 'gems') { received.gems = Math.min(amount, 999999 - state.gems); state.gems += received.gems; }
+    else if (key === 'ore') { received.ore = Math.min(amount, 999999 - (state.ore || 0)); state.ore = (state.ore || 0) + received.ore; }
+    else { received[key] = Math.min(amount, Math.max(0, cap.storage[key] - state.resources[key])); state.resources[key] += received[key]; }
+  }
+  return { ok: true, kind, count: n, received };
+}
+// A friendly challenge against a friend's published village: practice rules, so the
+// whole army returns and nothing is won or lost.
+export function startFriendly(state, friend) {
+  if (!validState(state)) return fail('Invalid kingdom.');
+  if (state.activeRaid) return fail('Finish the active battle first.');
+  if (!friend?.player_id) return fail('Choose a friend first.');
+  const layout = validateLayout(friend.layout);
+  if (!layout.ok) return layout;
+  const name = String(friend.name ?? 'Friend').slice(0, 28) || 'Friend';
+  const result = beginBattle(state, { id: 'practice', name: `${name}'s village`, difficulty: 1, reward: money(), duration: 180 }, 'practice');
+  if (result.ok) {
+    state.activeRaid.originalArmy = { ...state.activeRaid.reserve };
+    result.battle.buildings = layout.buildings; result.battle.friendly = true;
+    result.battle.opponent = { id: friend.player_id, name, trophies: Number(friend.trophies) || 0, tajLevel: Number(friend.taj_level) || 1 };
+  }
+  return result;
+}

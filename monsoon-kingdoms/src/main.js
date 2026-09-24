@@ -134,12 +134,12 @@ function updateWall(x,z){
   placing.x=first.x;placing.z=first.z;placing.line={locked:placing.line?.locked??false,x1:first.x,z1:first.z,x2:x,z2:z,cells,cost:Object.fromEntries(Object.entries(Rules.CATALOG.wall.cost).map(([k,v])=>[k,v*cells.length]))};
 }
 function clearPlacement(){placing=null;wallStart=null;view.setGhost(null);}
-function returnHome(){panelHistory.length=0;preview=null;selectedSpell=null;mode='home';battle=null;settled=false;selectedId=null;panel=null;audio.setScene('home');view.setBoard(state.buildings,'home');view.setHomeHero(Rules.heroInfo(state,state.activeHero)?.unlocked?state.activeHero:null);refresh();}
+function returnHome(){if(mode==='battle')ui.battleIntro(state.name,'WELCOME HOME');panelHistory.length=0;preview=null;selectedSpell=null;mode='home';battle=null;settled=false;selectedId=null;panel=null;audio.setScene('home');view.setBoard(state.buildings,'home');view.setHomeHero(Rules.heroInfo(state,state.activeHero)?.unlocked?state.activeHero:null);refresh();}
 function enterBattle(result){
   if(!result.ok){ui.toast(result.reason);return;}
   panelHistory.length=0;preview=null;battle=result.battle;selectedSpell=null;save();mode='battle';settled=false;panel=null;clearPlacement();selectedId=null;
   selectedTroop=Object.keys(battle.reserve).find(k=>battle.reserve[k])||(battle.hero?'hero':'guard');
-  lastHeardEvent=0;lastStars=0;lastTick=0;audio.setIntensity(0);audio.setScene('battle');view.setBoard(battle.buildings,'battle');refresh();sound('warcry');ui.toast('Select a warrior or hero, then tap the gold outer band to deploy.');
+  lastHeardEvent=0;lastStars=0;lastTick=0;audio.setIntensity(0);audio.setScene('battle');view.setBoard(battle.buildings,'battle');refresh();sound('warcry');ui.battleIntro(battle.opponent?.name||battle.raid?.name||'For the valley',battle.kind==='practice'?'DEFENSE PRACTICE':'THE BATTLE BEGINS');ui.toast('Select a warrior or hero, then tap the gold outer band to deploy.');
 }
 function settle(){
   if(settled)return;settled=true;
@@ -174,11 +174,11 @@ const actions={
   move(id){const b=state.buildings.find(b=>b.id===id);if(b)startPlacing(b.type,id);},
   followObjective(){const goal=objective();if(goal)actions[goal.action]?.(goal.value);},
   dismissObjective(){preferences.hideObjective=true;savePreferences();refresh();},
-  collectAll(){const before=new Map(state.buildings.map(b=>[b.id,b.stored]));const result=Rules.collectAll(state);if(attempt(result,undefined,'coin')){for(const b of state.buildings){const resource=Rules.CATALOG[b.type].production?.resource,amount=(before.get(b.id)||0)-b.stored;if(resource&&amount>0)view.collectionFeedback(b,{[resource]:amount});}ui.toast(Object.entries(result.amounts).filter(([,n])=>n>0).map(([k,n])=>`${n} ${k}`).join(' · ')+' collected.');}},
+  collectAll(){const before=new Map(state.buildings.map(b=>[b.id,b.stored]));const result=Rules.collectAll(state);if(attempt(result,undefined,'coin')){for(const b of state.buildings){const resource=Rules.CATALOG[b.type].production?.resource,amount=(before.get(b.id)||0)-b.stored;if(resource&&amount>0){view.collectionFeedback(b,{[resource]:amount});ui.flyResources(view.screenForCell(b.x+b.w/2,b.z+b.h/2),{[resource]:amount});}}ui.toast(Object.entries(result.amounts).filter(([,n])=>n>0).map(([k,n])=>`${n} ${k}`).join(' · ')+' collected.');}},
   saveArmyRecipe(){preferences.armyRecipe=Rules.armyRecipe(state);savePreferences();refresh();ui.toast('Army composition saved to your account.');},
   loadArmyRecipe(){attempt(Rules.applyArmyRecipe(state,preferences.armyRecipe),'Saved army restored.');},
   clearArmy(){attempt(Rules.applyArmyRecipe(state,{}),'Army cleared. Camp space is available.');},
-  collect(id){const result=Rules.collect(state,id);if(attempt(result,undefined,result.resource==='gems'?'gem':'coin')){view.collectionFeedback(state.buildings.find(b=>b.id===id),{[result.resource]:result.amount});ui.toast(`${result.amount} ${result.resource} collected.`);}},
+  collect(id){const result=Rules.collect(state,id);if(attempt(result,undefined,result.resource==='gems'?'gem':'coin')){const collected=state.buildings.find(b=>b.id===id);view.collectionFeedback(collected,{[result.resource]:result.amount});if(collected)ui.flyResources(view.screenForCell(collected.x+collected.w/2,collected.z+collected.h/2),{[result.resource]:result.amount});ui.toast(`${result.amount} ${result.resource} collected.`);}},
   train(type,count=1){attempt(Rules.train(state,type,count),`${Rules.UNITS[type].name} ready.`);},
   removeTroop(type,count=1){attempt(Rules.removeTroop(state,type,count),undefined,'tap');},
   quickTrain(){attempt(Rules.quickTrain(state),'Your army is ready.');},
@@ -254,6 +254,7 @@ const actions={
   setCamera(action){view.cameraAction(action);},
   saveName(name){if(!name.trim()){ui.toast('Give your kingdom a name.');return;}state.name=name.trim().slice(0,28);save();refresh();ui.toast('Your kingdom has a new name.');if(net.registered)actions.publishVillage(true).catch(()=>{});},
   openAccount(){account.show();},
+  resultStar(){sound('star');},
   toggleSound(){soundEnabled=!soundEnabled;audio.setEnabled(soundEnabled);savePreferences();sound('select');refresh();},
   toggleMusic(){musicEnabled=!musicEnabled;audio.setMusicEnabled(musicEnabled);savePreferences();sound('select');refresh();},
   toggleMute(){const muted=!soundEnabled;soundEnabled=muted;audio.setEnabled(soundEnabled);savePreferences();if(soundEnabled)sound('select');refresh();ui.toast(soundEnabled?'Sound on.':'Sound muted.');},
@@ -292,7 +293,7 @@ document.addEventListener('keydown',event=>{if(!ready||panel||portraitBlocked||a
 // the last ten seconds tick down.
 function battleCues(b){
   if(settled||b.status!=='active')return;
-  if(b.stars>lastStars){lastStars=b.stars;sound('star');}
+  if(b.stars>lastStars){lastStars=b.stars;sound('star');ui.starEarned(lastStars-1);}
   const left=b.duration-b.elapsed,urgency=left<30?(30-left)/30*.35:0;
   audio.setIntensity(Math.min(1,.15+b.destruction/100*.75+urgency+(b.units.length>12?.1:0)));
   const second=Math.ceil(left);if(left<=10&&second!==lastTick&&second>0){lastTick=second;sound('tick');}

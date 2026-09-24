@@ -7,6 +7,10 @@ import { prepareGroundedModel, stepGroundedMotion } from './grounded-motion.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { ParticleField, waterMaterial, addWindSway, addCloudShade, addRimLight, rangoliTexture, Flock, Butterflies } from './atmosphere.js';
 import { PostFX } from './postfx.js';
+import { CharacterForge } from './characters.js';
+import { PhysicsWorld, RigidBody, Spring, Spring3 } from './physics.js';
+// Stone, plaster, timber and tile colours each structure breaks into.
+const RUBBLE={fort:['#f1ede4','#e4ddd0','#c9b48a'],wall:['#c9ab7c','#b89868','#a88a5c'],barracks:['#b5533a','#d98b5f','#e9dcc0'],archer_tower:['#c77a4a','#e9dcc0','#b5533a'],cannon:['#6d6a64','#8b5a2b','#4a4540'],farm:['#8b5a2b','#d7b56d','#4c8a3a'],lumber:['#8b5a2b','#6d4a2c','#c8553d'],market:['#e8a0a0','#e9dcc0','#c8553d'],stepwell:['#d9b98a','#c9a877','#3f979c'],hero_hall:['#f1ede4','#d9a93f','#c9b48a']};
 
 export const TROOP_GROUND_Y=-.055;
 export const wallVisualScale={x:.90,y:.58,z:.90};
@@ -42,7 +46,11 @@ export class KingdomView {
     this.selection=new THREE.Group();this.scene.add(this.selection); this.ghost=new THREE.Group();this.scene.add(this.ghost);
     this.spellAim=new THREE.Group();this.spellAim.visible=false;this.scene.add(this.spellAim);
     this.labelHost=document.createElement('div');this.labelHost.className='world-labels';document.body.append(this.labelHost);
-    this.postfx=new PostFX(this.renderer,this.scene,this.camera);this.postfx.configure(this.quality);this.heroAuras=new Map();this.ruinSmoke=new Map();this.emitClock=0;this.celebration=null;this.footfalls=new Map();
+    this.postfx=new PostFX(this.renderer,this.scene,this.camera);this.postfx.configure(this.quality);
+    // Procedurally modelled, fully rigged characters and a visual physics world.
+    this.forge=new CharacterForge();this.actors=new Set();this.corpses=new Set();this.lastHit=new Map();
+    this.physics=new PhysicsWorld({maxBodies:170});this.physics.onRemove=body=>{if(body.object){this.scene.remove(body.object);if(body.object.userData.actor){this.actors.delete(body.object.userData.actor);body.object.userData.actor.dispose();}if(body.object.userData.ownMaterial)body.object.material.dispose?.();}if(body.corpse)this.corpses.delete(body);};
+    this.rubbleGeometry=new THREE.BoxGeometry(1,1,1);this.rubbleMaterials=new Map();this.ballGeometry=new THREE.SphereGeometry(.26,12,9);this.ballMaterial=new THREE.MeshStandardMaterial({color:'#3f3d39',roughness:.55,metalness:.4});this.heroAuras=new Map();this.ruinSmoke=new Map();this.emitClock=0;this.celebration=null;this.footfalls=new Map();
     this.labels=new Map();this.resize=()=>{this.renderer.setSize(innerWidth,innerHeight);this.postfx?.resize();this.updateCamera();};addEventListener('resize',this.resize);this.resize();
     const pointers=new Map();let drag=null,pinch=0;
     const release=id=>{if(canvas.hasPointerCapture(id))canvas.releasePointerCapture(id);};
@@ -116,9 +124,11 @@ export class KingdomView {
     });
   }
   async load(progress,buildings=[]){
-    const paths=[...Object.keys(CATALOG).map(x=>['buildings',x]),...Object.keys(HEROES).map(x=>['heroes',x]),...Object.keys(UNITS).map(x=>['units',x]),...['banyan','palm','rocks','bush','cart','jars'].map(x=>['environment',x])];let done=0;const loader=new GLTFLoader();
+    const people=this.forge?[]:[...Object.keys(HEROES).map(x=>['heroes',x]),...Object.keys(UNITS).map(x=>['units',x])];
+    const paths=[...Object.keys(CATALOG).map(x=>['buildings',x]),...people,...['banyan','palm','rocks','bush','cart','jars'].map(x=>['environment',x])];let done=0;const loader=new GLTFLoader();
     await Promise.all([this.loadTextures(),...paths.map(async([folder,name])=>{const gltf=await loader.loadAsync(`./assets/${folder}/${name}.glb`);this.models[name]=gltf.scene;this.animations[name]=gltf.animations;this.modelTops[name]=new THREE.Box3().setFromObject(gltf.scene).max.y;progress(++done/paths.length*.85,`Carving the valley · ${done}/${paths.length}`);})]);
     for(const[folder,name]of paths){this.detailModel(this.models[name],name,folder);if(folder==='units'||folder==='heroes')this.prepareCharacterModel(this.models[name],name);}
+    if(this.forge){for(const id of [...Object.keys(UNITS),...Object.keys(HEROES)])if(this.forge.has(id)){this.forge.blueprint(id);this.modelTops[id]=this.forge.blueprint(id).height;}progress(.9,'Dressing the royal army');}
     await this.ensureBuildingModels(buildings);this.makeLandscape();progress(.95,'Opening the gates of Surajgarh');
   }
   prepareCharacterModel(root,name){
@@ -170,7 +180,15 @@ export class KingdomView {
       if(tracks.length){const clip=new THREE.AnimationClip(authored.name,authored.duration,tracks,authored.blendMode),mixer=new THREE.AnimationMixer(obj);mixer.clipAction(clip).play();mixer.setTime(rand()*2);this.mixers.set(obj,mixer);}
     }return obj;
   }
+  // A rigged character from the forge (or the legacy Blender clone when no forge exists).
+  makeActor(id,{hero=false,scale=1}={}){
+    if(!this.forge?.has(id))return this.clone(id,this.scene,0,0,scale);
+    const actor=this.forge.spawn(id,{hero});actor.root.scale.setScalar(scale);this.scene.add(actor.root);this.actors.add(actor);
+    if(actor.cape)this.scene.add(actor.cape.mesh);
+    return actor.root;
+  }
   releaseMixer(obj){
+    const actor=obj.userData?.actor;if(actor){this.actors.delete(actor);actor.dispose();return;}
     const mixer=this.mixers.get(obj);if(mixer){mixer.stopAllAction();mixer.uncacheRoot(obj);this.mixers.delete(obj);}
     this.groundMotion?.delete(obj);const skeletons=new Set();obj.traverse(o=>{if(o.isSkinnedMesh)skeletons.add(o.skeleton);});for(const skeleton of skeletons)skeleton.dispose();if(obj.userData.decoy)this.clearOverlay(obj);
   }
@@ -205,7 +223,7 @@ export class KingdomView {
     const border=new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(-24,.02,-24),new THREE.Vector3(24,.02,-24),new THREE.Vector3(24,.02,24),new THREE.Vector3(-24,.02,24)]),new THREE.LineBasicMaterial({color:'#eee4b2',transparent:true,opacity:.35}));this.scene.add(border);
     this.grid=new THREE.GridHelper(48,24,'#e0d9ad','#e0d9ad');this.grid.position.y=.035;this.grid.material.transparent=true;this.grid.material.opacity=.22;this.grid.visible=false;this.scene.add(this.grid);
     this.deployment=new THREE.Group();this.scene.add(this.deployment);const band=mat('#e6ca70',{transparent:true,opacity:.32,depthWrite:false});for(const[x,z,w,h]of [[-21,0,6,48],[21,0,6,48],[0,-21,36,6],[0,21,36,6]]){const m=this.mesh(new THREE.PlaneGeometry(w,h),band,x,.04,z,this.deployment);m.rotation.x=-Math.PI/2;}const deploymentLine = new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(-18,.08,-18),new THREE.Vector3(18,.08,-18),new THREE.Vector3(18,.08,18),new THREE.Vector3(-18,.08,18)]),new THREE.LineDashedMaterial({color:'#e8b958',dashSize:1,gapSize:.55}));deploymentLine.computeLineDistances();this.deployment.add(deploymentLine);this.deployment.visible=false;
-    this.ambientPeople=[];for(let i=0;i<8;i++){const obj=this.clone(i%3===0?'engineer':'guard',this.scene,0,0,.85),phase=i*.78;obj.position.set(Math.sin(phase)*3.5-1.5,TROOP_GROUND_Y,Math.cos(phase)*16);obj.rotation.y=Math.atan2(Math.cos(phase)*3.5,-Math.sin(phase)*16);obj.traverse(mesh=>{if(mesh.isMesh)mesh.castShadow=false;});this.ambientPeople.push({obj,phase});}
+    this.ambientPeople=[];for(let i=0;i<8;i++){const obj=this.makeActor(['guard','engineer','archer','healer'][i%4],{scale:1.05}),phase=i*.78;obj.userData.actor?.setAction('walk');obj.position.set(Math.sin(phase)*3.5-1.5,TROOP_GROUND_Y,Math.cos(phase)*16);obj.rotation.y=Math.atan2(Math.cos(phase)*3.5,-Math.sin(phase)*16);obj.traverse(mesh=>{if(mesh.isMesh)mesh.castShadow=false;});this.ambientPeople.push({obj,phase});}
     // One instanced draw adds soft contact beneath every footprint, including walls.
     const shadowCanvas=document.createElement('canvas');shadowCanvas.width=shadowCanvas.height=64;const shadowContext=shadowCanvas.getContext('2d'),gradient=shadowContext.createRadialGradient(32,32,7,32,32,32);gradient.addColorStop(0,'rgba(28,40,17,.48)');gradient.addColorStop(.55,'rgba(28,40,17,.26)');gradient.addColorStop(1,'rgba(28,40,17,0)');shadowContext.fillStyle=gradient;shadowContext.fillRect(0,0,64,64);
     this.contactShadows=new THREE.InstancedMesh(new THREE.PlaneGeometry(1,1).rotateX(-Math.PI/2),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(shadowCanvas),transparent:true,depthWrite:false,toneMapped:false}),576);this.contactShadows.count=0;this.contactShadows.frustumCulled=false;this.scene.add(this.contactShadows);
@@ -234,12 +252,12 @@ export class KingdomView {
     const bloom=new THREE.IcosahedronGeometry(.16,0).translate(0,.55,0);
     place(new THREE.InstancedMesh(bloom,bloomMaterial,flowers.length),flowers,-1.62,['#ffb000','#ff8a00','#f6f0e0','#e8577a','#ffd23f']);
   }
-  setBoard(buildings,mode){this.mode=mode;this.setSpellAim(null);this.glow?.clear();this.dust?.clear();this.ruinSmoke?.clear();this.celebration=null;this.rainUntil=0;if(this.troopRings)this.troopRings.count=0;for(const[id,aura]of this.heroAuras||[])if(id!=='home'){this.scene.remove(aura);this.heroAuras.delete(id);}for(const obj of this.buildings.values())this.board.remove(obj);this.buildings.clear();for(const obj of this.troops.values()){this.releaseMixer(obj);this.scene.remove(obj);}this.troops.clear();for(const area of this.spellAreas.values()){this.scene.remove(area);this.clearOverlay(area);}this.spellAreas.clear();for(const field of this.heroEffects.values()){this.scene.remove(field);this.clearOverlay(field);}this.heroEffects.clear();for(const effect of this.effects){this.scene.remove(effect.mesh);this.clearOverlay(effect.mesh);}this.effects=[];for(const bar of this.unitBars.values()){this.scene.remove(bar);this.clearOverlay(bar);}this.unitBars.clear();this.hitShakes.clear();this.deaths.clear();this.unitDeaths.clear();this.shake=0;if(this.homeHero)this.homeHero.visible=mode==='home';for(const el of this.labels.values())el.remove();this.labels.clear();this.lastEvent=0;this.deployment.visible=mode==='battle';this.ambientPeople.forEach(p=>p.obj.visible=mode==='home');this.setSelection(null);this.setGhost(null);this.syncBuildings(buildings);this.cameraAction('reset');}
-  syncBuildings(buildings){for(const b of buildings){let obj=this.buildings.get(b.id);const wanted=this.buildingAsset(b.type,b.level);if(!this.models[wanted])this.preloadBuilding(b.type,b.level).catch(()=>{});const asset=this.models[wanted]?wanted:(obj?.userData.asset||b.type);const signature=`${asset}/${b.level}/${b.x}/${b.z}/${!!b.readyAt}`;if(obj?.userData.signature!==signature){if(obj)this.board.remove(obj);obj=new THREE.Group();obj.userData={id:b.id,signature,asset,wanted};this.board.add(obj);const body=this.clone(asset,obj);if(b.type==='wall')body.scale.set(wallVisualScale.x,wallVisualScale.y,wallVisualScale.z);if(!b.level)body.scale.y*=.42;obj.userData.body=body;this.buildings.set(b.id,obj);obj.position.set(cell(b.x+b.w/2),0,cell(b.z+b.h/2));obj.userData.home=obj.position.clone();this.renderer.shadowMap.needsUpdate=true;}
+  setBoard(buildings,mode){this.mode=mode;this.setSpellAim(null);this.physics?.clear();this.fallen?.clear();this.lastHit?.clear();this._staticKey=null;this.settingBoard=true;this.glow?.clear();this.dust?.clear();this.ruinSmoke?.clear();this.celebration=null;this.rainUntil=0;if(this.troopRings)this.troopRings.count=0;for(const[id,aura]of this.heroAuras||[])if(id!=='home'){this.scene.remove(aura);this.heroAuras.delete(id);}for(const obj of this.buildings.values())this.board.remove(obj);this.buildings.clear();for(const obj of this.troops.values()){this.releaseMixer(obj);this.scene.remove(obj);}this.troops.clear();for(const area of this.spellAreas.values()){this.scene.remove(area);this.clearOverlay(area);}this.spellAreas.clear();for(const field of this.heroEffects.values()){this.scene.remove(field);this.clearOverlay(field);}this.heroEffects.clear();for(const effect of this.effects){this.scene.remove(effect.mesh);this.clearOverlay(effect.mesh);}this.effects=[];for(const bar of this.unitBars.values()){this.scene.remove(bar);this.clearOverlay(bar);}this.unitBars.clear();this.hitShakes.clear();this.deaths.clear();this.unitDeaths.clear();this.shake=0;if(this.homeHero)this.homeHero.visible=mode==='home';for(const el of this.labels.values())el.remove();this.labels.clear();this.lastEvent=0;this.deployment.visible=mode==='battle';this.ambientPeople.forEach(p=>p.obj.visible=mode==='home');this.setSelection(null);this.setGhost(null);this.syncBuildings(buildings);this.settingBoard=false;this.cameraAction('reset');}
+  syncBuildings(buildings){for(const b of buildings){let obj=this.buildings.get(b.id);const wanted=this.buildingAsset(b.type,b.level);if(!this.models[wanted])this.preloadBuilding(b.type,b.level).catch(()=>{});const asset=this.models[wanted]?wanted:(obj?.userData.asset||b.type);const signature=`${asset}/${b.level}/${b.x}/${b.z}/${!!b.readyAt}`;if(obj?.userData.signature!==signature){if(obj)this.board.remove(obj);obj=new THREE.Group();obj.userData={id:b.id,signature,asset,wanted};this.board.add(obj);const body=this.clone(asset,obj);if(b.type==='wall')body.scale.set(wallVisualScale.x,wallVisualScale.y,wallVisualScale.z);if(!b.level)body.scale.y*=.42;obj.userData.body=body;obj.userData.bodyScale=body.scale.clone();if(!this.settingBoard&&this.mode==='home'&&!this.reducedMotion&&this.physics)obj.userData.pop=new Spring(.45,150,9);this.buildings.set(b.id,obj);obj.position.set(cell(b.x+b.w/2),0,cell(b.z+b.h/2));obj.userData.home=obj.position.clone();this.renderer.shadowMap.needsUpdate=true;}
       const dead=b.hp===0;if(dead&&!obj.userData.ruin){obj.userData.body.visible=false;const ruins=this.clone('rocks',obj,0,0,b.w*.6);ruins.scale.y*=.25;obj.userData.ruin=true;this.renderer.shadowMap.needsUpdate=true;}obj.userData.building=b;
       if(!dead&&!this.labels.has(b.id)){const el=document.createElement('button');el.className='building-bubble';el.tabIndex=-1;el.style.pointerEvents='none';this.labelHost.append(el);this.labels.set(b.id,el);}
       const label=this.labels.get(b.id);if(label){let text='';if(this.mode==='battle'&&b.hp<b.maxHp&&!dead)text=`<i style="width:${b.hp/b.maxHp*100}%"></i>`;else if(this.mode==='home'&&b.readyAt)text=`⚒ ${Math.max(0,Math.ceil((b.readyAt-Date.now())/1000))}s`;else if(this.mode==='home'&&b.stored>=1)text=`${{coin:'●',wood:'♣',grain:'❧',iron:'◆',gems:'⬟'}[CATALOG[b.type].production?.resource]||'●'} ${b.stored>=1000?`${(b.stored/1000).toFixed(1)}k`:Math.floor(b.stored)}`;if(label.innerHTML!==text)label.innerHTML=text;label.hidden=!text||dead;label.classList.toggle('health',this.mode==='battle');label.classList.toggle('resource-marker',this.mode==='home'&&!b.readyAt);label.classList.toggle('construction-marker',this.mode==='home'&&!!b.readyAt);label.dataset.resource=CATALOG[b.type].production?.resource||'';}
-    }if(this.contactShadows){const matrix=new THREE.Matrix4();this.contactShadows.count=Math.min(buildings.length,576);for(let i=0;i<this.contactShadows.count;i++){const b=buildings[i];matrix.makeScale((b.w*2+.7)*(b.type==='wall'?wallVisualScale.x:1),1,(b.h*2+.7)*(b.type==='wall'?wallVisualScale.z:1)).setPosition(cell(b.x+b.w/2),-.035,cell(b.z+b.h/2));this.contactShadows.setMatrixAt(i,matrix);}this.contactShadows.instanceMatrix.needsUpdate=true;}this.trimModelCache();}
+    }if(this.contactShadows){const matrix=new THREE.Matrix4();this.contactShadows.count=Math.min(buildings.length,576);for(let i=0;i<this.contactShadows.count;i++){const b=buildings[i];matrix.makeScale((b.w*2+.7)*(b.type==='wall'?wallVisualScale.x:1),1,(b.h*2+.7)*(b.type==='wall'?wallVisualScale.z:1)).setPosition(cell(b.x+b.w/2),-.035,cell(b.z+b.h/2));this.contactShadows.setMatrixAt(i,matrix);}this.contactShadows.instanceMatrix.needsUpdate=true;}this.syncStatics?.(buildings);this.trimModelCache();}
   outline(w,h,color,group){const geometry=new THREE.PlaneGeometry(w*2,h*2),m=new THREE.Mesh(geometry,new THREE.MeshBasicMaterial({color,transparent:true,opacity:.25,depthWrite:false}));m.rotation.x=-Math.PI/2;m.position.y=.055;group.add(m);const pts=[[-w,-h],[w,-h],[w,h],[-w,h]].map(([x,z])=>new THREE.Vector3(x,.08,z));group.add(new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(pts),new THREE.LineBasicMaterial({color})));}
   clearOverlay(group){group.traverse(o=>{if(!o.userData.borrowedGeometry)o.geometry?.dispose();if(o.material){for(const m of Array.isArray(o.material)?o.material:[o.material])m.dispose();}});group.clear();}
   setSelection(b){this.clearOverlay(this.selection);if(!b)return;this.selection.position.set(cell(b.x+b.w/2),0,cell(b.z+b.h/2));this.outline(b.w,b.h,'#fff0a3',this.selection);const range=CATALOG[b.type].range;if(range){const ring=this.mesh(new THREE.RingGeometry(range*2-.08,range*2,80),new THREE.MeshBasicMaterial({color:'#fff0a3',transparent:true,opacity:.75,side:THREE.DoubleSide}),0,.075,0,this.selection);ring.rotation.x=-Math.PI/2;}}
@@ -350,6 +368,7 @@ export class KingdomView {
   }
   collectionFeedback(building,amounts){
     if(this.mode!=='home'||!building||!Number.isFinite(building.x)||!Number.isFinite(building.z))return;
+    if(building.id&&Object.values(amounts||{}).some(n=>n>0))this.bounceBuilding?.(building.id,.14);
     const colors={coin:'#ffcf42',wood:'#94d957',grain:'#ffe797',iron:'#c9e5ef',gems:'#86efd8'},top=this.modelTops[this.buildingAsset(building.type,building.level)]||3;
     for(const [resource,amount]of Object.entries(amounts||{})){
       if(!colors[resource]||!Number.isFinite(amount)||amount<=0)continue;
@@ -397,6 +416,9 @@ export class KingdomView {
     }
   }
   effect(event){
+    // Remember who struck each warrior so a fall is thrown the right way; flinch on hits.
+    if(event.targetId&&this.troops?.has(event.targetId)){this.lastHit?.set(event.targetId,{x:cell(event.fromX??event.x),z:cell(event.fromZ??event.z),heavy:event.type==='cannon'});this.troops.get(event.targetId).userData.actor?.hit(event.type==='cannon'?1.6:.8);}
+    if(event.type==='lightning')this.knockback?.(cell(event.x),cell(event.z),6,7);
     this.eventParticles(event);
     if(event.type==='freeze'||event.type==='rage'||(event.type==='deploy'&&this.glow))return;
     if(event.type==='canopy'||event.type==='sky_mark'){
@@ -437,7 +459,7 @@ export class KingdomView {
       this.shakeCamera(.5);return;
     }
     if(event.type==='destroy'){
-      this.spawnDebris(event);
+      if(!this.spawnRubble?.(event))this.spawnDebris(event);
       const dust=this.overlay(new THREE.RingGeometry(.3,1.1,36),'#e2d3b0',cell(event.x),.13,cell(event.z),{opacity:.6,side:THREE.DoubleSide});
       dust.rotation.x=-Math.PI/2;this.addEffect({mesh:dust,age:0,duration:.95,kind:'ring',from:.5,to:2.4+(event.w||1)*.6,peak:.6});
       if(event.targetId){this.jolt(event.targetId,.32,.5);this.deaths.set(event.targetId,{age:0});}
@@ -455,7 +477,7 @@ export class KingdomView {
       ? this.mesh(new THREE.SphereGeometry(.26,10,8),new THREE.MeshStandardMaterial({color:'#43413c',roughness:.6,transparent:true}),from.x,from.y,from.z)
       : this.mesh(new THREE.CylinderGeometry(.045,.02,Math.min(1.5,.5+distance*.06),5),new THREE.MeshStandardMaterial({color:'#f4dfa4',roughness:.7,transparent:true,emissive:'#8a6a25',emissiveIntensity:.35}),from.x,from.y,from.z);
     mesh.castShadow=false;
-    this.addEffect({mesh,age:0,duration:Math.max(.16,Math.min(.5,distance*.045)),kind:'shot',heavy,start:from,end:to,arc:heavy?2.4:Math.min(2.2,.5+distance*.14)});
+    this.addEffect({mesh,age:0,duration:Math.max(.16,Math.min(.5,distance*.045)),kind:'shot',type:event.type,heavy,start:from,end:to,arc:heavy?2.4:Math.min(2.2,.5+distance*.14)});
     if(event.targetId)this.jolt(event.targetId,heavy?.17:.075,heavy?.34:.22);
     if(heavy){
       const flash=this.overlay(new THREE.SphereGeometry(.42,8,6),'#ffd79a',from.x,from.y,from.z,{opacity:.8});
@@ -483,7 +505,7 @@ export class KingdomView {
   setHomeHero(id){
     if(this.homeHeroId===id&&this.homeHero){this.homeHero.visible=this.mode==='home';return;}
     if(this.homeHero){this.releaseMixer(this.homeHero);this.scene.remove(this.homeHero);}
-    this.homeHero=null;this.homeHeroId=id;if(!id||!this.models[id])return;this.homeHero=this.clone(id);this.homeHero.visible=this.mode==='home';this.homeHero.position.set(-1,TROOP_GROUND_Y,5.5);this.homeHero.scale.setScalar(1.35);this.homeHero.rotation.y=Math.PI/4;
+    this.homeHero=null;this.homeHeroId=id;if(!id||(!this.models[id]&&!this.forge?.has(id)))return;this.homeHero=this.forge?.has(id)?this.makeActor(id,{hero:true}):this.clone(id);this.homeHero.visible=this.mode==='home';this.homeHero.position.set(-1,TROOP_GROUND_Y,5.5);this.homeHero.scale.setScalar(1.35);this.homeHero.rotation.y=Math.PI/4;
     this.homeHero.traverse(o=>{if(o.isMesh)o.castShadow=false;});
   }
   healthBar(unit){
@@ -495,12 +517,14 @@ export class KingdomView {
     this.syncBuildings(battle.buildings);
     const alive=[];
     for(const unit of battle.units){
+      if(this.fallen?.has(unit.id))continue;
       let obj=this.troops.get(unit.id);const scale=unitScale(unit);
-      if(!obj){obj=unit.decoy?this.makeShieldDecoy():this.clone(unit.heroId||unit.type);obj.scale.setScalar(scale);obj.userData.seed=rand();obj.traverse(o=>{if(o.isMesh)o.castShadow=false;});this.troops.set(unit.id,obj);this.healthBar(unit);this.spawnEffect(unit);}
+      if(!obj){obj=unit.decoy?this.makeShieldDecoy():this.makeActor(unit.heroId||unit.type,{hero:!!unit.heroId});obj.scale.setScalar(scale);obj.userData.seed=rand();if(obj.userData.actor&&!this.reducedMotion)obj.userData.drop={y:unit.heroId?3.2:2.2,v:0};obj.traverse(o=>{if(o.isMesh)o.castShadow=false;});this.troops.set(unit.id,obj);this.healthBar(unit);this.spawnEffect(unit);}
       const flying=!!UNITS[unit.type]?.flying;
       if(unit.hp<=0){
         // Models share materials with every other troop of their type, so a fall is
         // animated with scale and depth rather than by fading a shared material.
+        if(obj.userData.actor&&this.physics){this.fallEffect(unit,obj);this.ragdoll(unit,obj);continue;}
         if(!this.unitDeaths.has(unit.id)){this.unitDeaths.set(unit.id,{age:0});const fell=this.unitBars.get(unit.id);if(fell)fell.visible=false;this.fallEffect(unit,obj);}
         const fall=this.unitDeaths.get(unit.id);fall.age+=dt;const drop=Math.min(1,fall.age/.55);
         obj.visible=drop<1;obj.userData.groundWalking=false;
@@ -514,10 +538,15 @@ export class KingdomView {
       smooth.x+=(x-smooth.x)*follow;smooth.z+=(z-smooth.z)*follow;obj.userData.renderPlaced=true;
       // Melee troops lunge into each blow; archers and bowlers recoil from the shot.
       let lunge=0;
-      if(unit.action==='attack'&&!this.reducedMotion&&!unit.decoy){const period=Math.max(.35,unit.spec?.cooldown||1),phase=(this.time/period+obj.userData.seed)%1,pulse=phase<.18?phase/.18:1-(phase-.18)/.82;lunge=pulse*pulse*(RANGED_UNITS.has(unit.type)&&!unit.heroId?-.12:.34);}
+      const actor=obj.userData.actor;
+      if(actor){const cooldown=unit.spec?.cooldown||1,progress=unit.action==='attack'||unit.action==='heal'?1-Math.max(0,Math.min(1,(unit.attackTimer||0)/cooldown)):null;actor.setAction(unit.action,progress);}
+      if(unit.action==='attack'&&!this.reducedMotion&&!unit.decoy&&!actor){const period=Math.max(.35,unit.spec?.cooldown||1),phase=(this.time/period+obj.userData.seed)%1,pulse=phase<.18?phase/.18:1-(phase-.18)/.82;lunge=pulse*pulse*(RANGED_UNITS.has(unit.type)&&!unit.heroId?-.12:.34);}
       obj.position.x=smooth.x+Math.sin(obj.rotation.y)*lunge;obj.position.z=smooth.z+Math.cos(obj.rotation.y)*lunge;
       if(unit.decoy)for(const wheel of obj.userData.wheels)wheel.rotation.x+=travel/(.16*obj.scale.x);
       obj.position.y=flying?2.2+(this.reducedMotion?0:Math.sin(this.time*3+unit.id.length)*.12):TROOP_GROUND_Y;
+      // Troops drop onto the field and bounce; blasts shove them on a damped spring.
+      const drop=obj.userData.drop;if(drop){drop.v-=34*dt;drop.y+=drop.v*dt;if(drop.y<=0){drop.y=0;if(drop.v<-3){drop.v*=-.28;this.landEffect(obj);}else obj.userData.drop=null;}obj.position.y+=drop.y;}
+      const push=obj.userData.push;if(push){const offset=push.update(dt);obj.position.x+=offset.x;obj.position.z+=offset.z;}
       const mixer=this.mixers.get(obj);if(mixer)mixer.timeScale=unit.action==='attack'?1.2:unit.action==='walk'?1:.7;
       const turn=Math.atan2(Math.sin(unit.facing-obj.rotation.y),Math.cos(unit.facing-obj.rotation.y));obj.rotation.y+=turn*(1-Math.exp(-dt*18));obj.rotation.z=0;
       const bar=this.unitBars.get(unit.id);bar.visible=unit.hp>0&&(unit.hp<unit.maxHp||!!unit.heroId);bar.position.set(obj.position.x,obj.position.y+(obj.userData.visualHeight??this.modelTops[unit.heroId||unit.type]??1.8)*obj.scale.y+.28,obj.position.z);bar.quaternion.copy(this.camera.quaternion);bar.userData.fill.scale.x=unit.hp/unit.maxHp;
@@ -542,6 +571,74 @@ export class KingdomView {
     const heroes=new Set();
     for(const {unit,obj}of alive){if(!unit.heroId)continue;heroes.add(unit.id);let aura=this.heroAuras.get(unit.id);if(!aura){aura=new THREE.Mesh(this.auraGeometry,this.auraMaterial);aura.renderOrder=4;this.scene.add(aura);this.heroAuras.set(unit.id,aura);}aura.position.set(obj.position.x,.07,obj.position.z);aura.rotation.y=this.reducedMotion?0:this.time*.5;}
     for(const[id,aura]of this.heroAuras)if(id!=='home'&&!heroes.has(id)){this.scene.remove(aura);this.heroAuras.delete(id);}
+  }
+  // ---------------------------------------------------------------- physics dressing
+  stepActors(dt){
+    if(!this.actors?.size)return;const a=this._capeA||(this._capeA=new THREE.Vector3()),b=this._capeB||(this._capeB=new THREE.Vector3()),wind=this._wind||(this._wind=new THREE.Vector3());
+    wind.set(Math.sin(this.time*.7)*2.2+1.2,0,Math.cos(this.time*.5)*1.4);
+    for(const actor of this.actors){
+      let visible=true;for(let o=actor.root;o;o=o.parent)if(!o.visible){visible=false;break;}
+      if(!visible){if(actor.cape)actor.cape.mesh.visible=false;continue;}
+      actor.update(dt,this.time,this.reducedMotion);
+      if(actor.cape){actor.cape.mesh.visible=true;if(actor.capeAnchors(a,b))actor.cape.update(dt,a,b,{spheres:actor.capeSpheres(),wind:this.reducedMotion?null:wind});}
+    }
+  }
+  // A fallen warrior becomes a tumbling rigid body: knocked away from the last blow,
+  // tipping over on its own inertia and coming to rest before sinking into the field.
+  ragdoll(unit,obj){
+    (this.fallen??=new Set()).add(unit.id);this.troops.delete(unit.id);
+    const bar=this.unitBars.get(unit.id);if(bar){this.scene.remove(bar);this.clearOverlay(bar);this.unitBars.delete(unit.id);}
+    const actor=obj.userData.actor,height=(actor.bp.height||1.8)*obj.scale.x,kind=actor.bp.kind,heavy=kind==='elephant'||kind==='horse';
+    const half=new THREE.Vector3((heavy?.55:.24)*obj.scale.x,height*.42,(heavy?1:.18)*obj.scale.x);
+    const corpse=new THREE.Group();corpse.position.set(obj.position.x,Math.max(obj.position.y,0)+half.y,obj.position.z);corpse.quaternion.copy(obj.quaternion);this.scene.add(corpse);
+    this.scene.remove(obj);corpse.add(obj);obj.position.set(0,-half.y,0);obj.quaternion.identity();
+    const from=this.lastHit.get(unit.id),away=from?new THREE.Vector3(corpse.position.x-from.x,0,corpse.position.z-from.z):new THREE.Vector3(-Math.sin(unit.facing||0),0,-Math.cos(unit.facing||0));
+    if(away.lengthSq()<1e-4)away.set(rand()-.5,0,rand()-.5);away.normalize();
+    const shove=(heavy?1.4:2.6)*(from?.heavy?1.6:1),side=new THREE.Vector3(-away.z,0,away.x);
+    const body=new RigidBody({half,mass:heavy?6:1,position:corpse.position,quaternion:corpse.quaternion,velocity:away.clone().multiplyScalar(shove).setY(heavy?1:2.4+rand()),angularVelocity:side.multiplyScalar((heavy?2:5)*(.8+rand()*.4)),restitution:.1,friction:.8,object:corpse,life:3.2,sink:.8,collide:false});
+    body.corpse=true;actor.die();this.physics.add(body);this.corpses.add(body);this.lastHit.delete(unit.id);
+  }
+  landEffect(obj){
+    this.dust?.emit({x:obj.position.x,y:.1,z:obj.position.z,count:6,spread:.4,radial:1.4,vy:.3,life:.7,size:.7,grow:1.4,color:'#d8c9a4',alpha:.4,drag:2.4,shape:'dust'});
+  }
+  // Blast waves shove nearby troops on springs (visual only; the rules keep positions).
+  knockback(x,z,radius,strength){
+    for(const obj of this.troops.values()){
+      const dx=obj.position.x-x,dz=obj.position.z-z,d=Math.hypot(dx,dz);if(d>radius||d<1e-3)continue;
+      const k=strength*(1-d/radius);(obj.userData.push??=new Spring3(70,9)).kick(new THREE.Vector3(dx/d*k,0,dz/d*k));obj.userData.actor?.hit(Math.min(2,k*.4));
+    }
+  }
+  rubbleMaterial(color){let m=this.rubbleMaterials.get(color);if(!m){m=new THREE.MeshStandardMaterial({color,roughness:.9,metalness:.02});this.rubbleMaterials.set(color,m);}return m;}
+  // Collapsing masonry: real rigid blocks that tumble, bounce, pile and settle.
+  spawnRubble(event){
+    if(!this.physics)return false;const size=Math.max(1,event.w||2),b=this.buildings.get(event.targetId)?.userData.building,type=b?.type||'wall',palette=RUBBLE[type]||['#d9b98a','#b88e5e','#c8553d'];
+    const top=Math.min(6,(this.modelTops[this.buildingAsset(type,b?.level||1)]||3)*(type==='wall'?wallVisualScale.y:1)),x=cell(event.x),z=cell(event.z),count=this.quality==='low'?Math.min(6,3+size):Math.min(22,6+size*size*1.6);
+    const from=new THREE.Vector3(x-cell(event.fromX??event.x),0,z-cell(event.fromZ??event.z));if(from.lengthSq()>1e-4)from.normalize();
+    for(let i=0;i<count;i++){
+      const s=(.1+rand()*.17)*Math.sqrt(size)*(type==='wall'?.9:1),half=new THREE.Vector3(s*(.8+rand()*.5),s*(.6+rand()*.5),s*(.8+rand()*.5));
+      const p=new THREE.Vector3(x+(rand()-.5)*size*1.6,.3+rand()*top*.75,z+(rand()-.5)*size*1.6),out=new THREE.Vector3(p.x-x,0,p.z-z);if(out.lengthSq()<1e-3)out.set(rand()-.5,0,rand()-.5);out.normalize();
+      const mesh=new THREE.Mesh(this.rubbleGeometry,this.rubbleMaterial(palette[i%palette.length]));mesh.scale.copy(half).multiplyScalar(2);mesh.castShadow=false;mesh.receiveShadow=true;this.scene.add(mesh);
+      const velocity=out.multiplyScalar(.8+rand()*2.2).addScaledVector(from,.6+rand()*1.2).setY(2+rand()*3.8);
+      this.physics.add(new RigidBody({half,mass:half.x*half.y*half.z*8,position:p,quaternion:new THREE.Quaternion().setFromEuler(new THREE.Euler(rand()*3,rand()*3,rand()*3)),velocity,angularVelocity:new THREE.Vector3(rand()-.5,rand()-.5,rand()-.5).multiplyScalar(10),restitution:.2,friction:.7,object:mesh,life:6+rand()*3,sink:.6}));
+    }
+    this.physics.removeStatic(event.targetId);this.knockback(x,z,size*2.2,5);return true;
+  }
+  // A spent cannonball keeps its momentum: it skips, rolls and knocks troops aside.
+  spawnCannonball(effect){
+    if(!this.physics||this.quality==='low')return;const dir=new THREE.Vector3().subVectors(effect.end,effect.start).setY(0);const speed=dir.length()/Math.max(.1,effect.duration);if(dir.lengthSq()>1e-4)dir.normalize();
+    const mesh=new THREE.Mesh(this.ballGeometry,this.ballMaterial);mesh.castShadow=false;this.scene.add(mesh);
+    this.physics.add(new RigidBody({shape:'sphere',radius:.26,mass:3,position:effect.end.clone().setY(.5),velocity:dir.multiplyScalar(Math.min(9,speed*.45)).setY(3.2),restitution:.45,friction:.5,object:mesh,life:3,sink:1.2}));
+    this.knockback(effect.end.x,effect.end.z,2.6,4);
+  }
+  // Arrows stay where they land for a moment, shafts angled along their flight.
+  stickArrow(effect){
+    if(!this.physics||this.quality==='low'||!effect.mesh)return;const mesh=effect.mesh.clone();mesh.geometry=effect.mesh.geometry.clone();mesh.material=effect.mesh.material.clone();mesh.material.transparent=true;mesh.position.copy(effect.end).setY(Math.max(.15,effect.end.y*.35));
+    this.scene.add(mesh);this.addEffect({mesh,age:0,duration:2.4,kind:'stuck'});
+  }
+  // Standing structures are static colliders for rubble and cannonballs.
+  syncStatics(buildings){
+    if(!this.physics||this.mode!=='battle')return;const live=buildings.filter(b=>b.hp>0),key=live.map(b=>b.id).join();if(key===this._staticKey)return;this._staticKey=key;
+    this.physics.setStatics(live.map(b=>{const top=Math.min(5,(this.modelTops[this.buildingAsset(b.type,b.level)]||2)*(b.type==='wall'?wallVisualScale.y:1)*.8),x=cell(b.x+b.w/2),z=cell(b.z+b.h/2),hw=b.w*(b.type==='wall'?wallVisualScale.x:.85),hh=b.h*(b.type==='wall'?wallVisualScale.z:.85);return {id:b.id,min:new THREE.Vector3(x-hw,0,z-hh),max:new THREE.Vector3(x+hw,top,z+hh)};}));
   }
   spawnEffect(unit){
     if(!this.glow)return;const x=cell(unit.x),z=cell(unit.z),hero=!!unit.heroId;
@@ -574,7 +671,7 @@ export class KingdomView {
   }
   updateTroopContactShadows(){
     if(!this.troopContactShadows)return;const actors=this.mode==='home'?[...this.ambientPeople.map(p=>p.obj),this.homeHero]:[...this.troops.values()],matrix=new THREE.Matrix4();let count=0;
-    for(const actor of actors){if(!actor?.visible||count>=256)continue;const spec=actor.userData.groundGait,id=spec?.id||'',radius=(id==='elephant'?1.55:id==='rider'?1.05:id==='yeti'?.9:.65)*actor.scale.x;
+    for(const actor of actors){if(!actor?.visible||count>=256)continue;const spec=actor.userData.groundGait||(actor.userData.actor&&{id:actor.userData.actor.id,quadruped:['horse','elephant'].includes(actor.userData.actor.bp.kind)}),id=spec?.id||'',radius=(id==='elephant'?1.55:id==='rider'?1.05:id==='yeti'?.9:.65)*actor.scale.x;
       matrix.makeScale(radius,1,radius*(spec?.quadruped?1.45:.8)).setPosition(actor.position.x,-.039,actor.position.z);this.troopContactShadows.setMatrixAt(count++,matrix);
     }
     this.troopContactShadows.count=count;this.troopContactShadows.instanceMatrix.needsUpdate=true;
@@ -588,6 +685,7 @@ export class KingdomView {
       if(obj.visible)stepGroundedMotion(obj,distance,dt,obj.userData.groundWalking!==false);
     }
     for(const[obj,mixer]of this.mixers)if(obj.visible&&(!this.reducedMotion||this.mode==='battle'))mixer.update(dt);
+    this.stepActors(dt);this.physics?.update(dt);
     this.updateTroopContactShadows();this.stepEffects(dt);this.stepHeroFields();this.stepImpacts(dt);
     if(this.shake>0.001||this.shaking){
       this.shake=Math.max(0,this.shake-dt*2.6);this.updateCamera();
@@ -650,7 +748,7 @@ export class KingdomView {
   // Monsoon spell: a downpour sweeps the whole battlefield.
   monsoon(){if(this.reducedMotion)return;this.rainUntil=this.time+2.6;this.postfx?.pulse(.35,'#bcd9ff');this.shakeCamera(.12);}
   // Victory: marigold petals and fireworks over the field.
-  celebrate(victory){if(!this.glow||this.reducedMotion||!victory)return;this.celebration={age:0,next:.1};}
+  celebrate(victory){if(victory)for(const obj of this.troops?.values()||[])obj.userData.actor?.celebrate();if(!this.glow||this.reducedMotion||!victory)return;this.celebration={age:0,next:.1};}
   stepCelebration(dt){
     const c=this.celebration;if(!c)return;c.age+=dt;if(c.age>5.5){this.celebration=null;return;}
     const span=this.span||40,cx=this.target?.x||0,cz=this.target?.z||0;
@@ -677,6 +775,7 @@ export class KingdomView {
       const f=this.effects[i];f.age+=dt;const t=Math.min(1,f.age/f.duration);
       if(f.age>=f.duration){
         if(f.kind==='shot'||f.kind==='chakram')this.impact(f);
+        if(f.kind==='shot'&&f.heavy)this.spawnCannonball?.(f);else if(f.kind==='shot'&&f.type==='arrow')this.stickArrow?.(f);
         this.scene.remove(f.mesh);f.mesh.geometry.dispose();f.mesh.material.dispose();this.effects.splice(i,1);continue;
       }
       if(f.kind==='shot'||f.kind==='chakram'){
@@ -703,6 +802,8 @@ export class KingdomView {
         if(this.camera)f.mesh.quaternion.copy(this.camera.quaternion);
         if(!f.stationary&&!this.reducedMotion){f.mesh.position.y=f.start.y+t*2.4;f.mesh.position.x=f.start.x+Math.cos(f.angle)*t*.7;f.mesh.position.z=f.start.z+Math.sin(f.angle)*t*.7;}
         f.mesh.material.opacity=1-t;
+      }else if(f.kind==='stuck'){
+        f.mesh.material.opacity=t<.7?1:1-(t-.7)/.3;
       }else if(f.kind==='beam'){
         f.mesh.scale.set(1-t*.6,1,1-t*.6);f.mesh.material.opacity=.55*(1-t)*(t<.1?t/.1:1);
       }else if(f.kind==='lightning'){
@@ -715,7 +816,14 @@ export class KingdomView {
     }
   }
   // Structures flinch when hit and sink into their own rubble when destroyed.
+  // Squash-and-stretch springs: new and upgraded buildings pop up, taps make them bounce.
+  bounceBuilding(id,amount=.18){const obj=this.buildings?.get(id);if(!obj||this.reducedMotion||!this.physics)return;(obj.userData.pop??=new Spring(1,150,9)).kick(-amount*9);}
   stepImpacts(dt){
+    for(const obj of this.buildings?.values()||[]){
+      const pop=obj.userData.pop,body=obj.userData.body,base=obj.userData.bodyScale;if(!pop||!body||!base)continue;
+      pop.target=1;const v=pop.update(dt);body.scale.set(base.x/Math.sqrt(Math.max(.3,v)),base.y*v,base.z/Math.sqrt(Math.max(.3,v)));
+      if(pop.settled){body.scale.copy(base);obj.userData.pop=null;this.renderer&&(this.renderer.shadowMap.needsUpdate=true);}
+    }
     for(const[id,hit]of this.hitShakes){
       const obj=this.buildings.get(id);
       hit.age+=dt;

@@ -185,7 +185,8 @@ export class KingdomView {
   }
   // A rigged character from the forge (or the legacy Blender clone when no forge exists).
   makeActor(id,{hero=false,scale=1}={}){
-    const forge=this.humans?.has(id)?this.humans:this.forge;
+    // Low quality keeps the light stylised rigs; Balanced and Ultra field the sculpted, motion-captured cast.
+    const forge=this.quality!=='low'&&this.humans?.has(id)?this.humans:this.forge;
     if(!forge?.has(id))return this.clone(id,this.scene,0,0,scale);
     const actor=forge.spawn(id,{hero});actor.root.scale.setScalar(scale);this.scene.add(actor.root);this.actors.add(actor);
     if(actor.cape)this.scene.add(actor.cape.mesh);

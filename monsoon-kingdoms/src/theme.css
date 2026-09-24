@@ -56,18 +56,12 @@ body { background: radial-gradient(ellipse at 50% 40%, #2d6a52, #0b2c26); }
 .cob-ripple { position: absolute; border-radius: 50%; pointer-events: none; z-index: 2; background: radial-gradient(circle, #ffffffb3, #ffffff00 70%); transform: scale(0); animation: cob-ripple .55s ease-out forwards; }
 
 /* ---------------------------------------------------------------- HUD glass */
-.player-medallion, .league-badge, .builder-chip, .resource, .side-button, #camera-tools .icon-button, .objective-chip, .army-button, .build-button, .hero-home-button, .battle-title, .battle-score, .battle-time, .deployment-hint {
+.league-badge, .builder-chip, .side-button, .battle-title, .battle-score, .battle-time, .deployment-hint {
   background: var(--glass) !important; color: var(--parchment-hi);
   border: 1px solid #e8c77a99 !important; border-radius: 14px;
   box-shadow: 0 6px 18px #02110f59, inset 0 1px 0 #ffffff1f, inset 0 0 0 1px #0000002e !important;
   backdrop-filter: blur(6px) saturate(1.2); -webkit-backdrop-filter: blur(6px) saturate(1.2);
 }
-.player-medallion .portrait { background: var(--gild); color: #5a3a0a; border-radius: 12px; box-shadow: inset 0 1px 0 #fff6d6, 0 2px 6px #0006; }
-.player-medallion .portrait b { background: var(--vermilion); color: #fff; box-shadow: 0 0 0 2px var(--gold-1); }
-.resource-icon { background: var(--gild) !important; color: #5a3a0a !important; border-radius: 50% !important; box-shadow: inset 0 1px 0 #fff6d6, 0 2px 5px #0006; }
-.resource-fill { background: linear-gradient(90deg, #2c8b6f66, #58c29a88) !important; box-shadow: inset -2px 0 0 #9ff0cf55; }
-.resource-caption strong { text-shadow: 0 1px 2px #0008; }
-.resource-gems .resource-icon { background: linear-gradient(180deg, #b7ffe9, #3fcf9e 60%, #188a67) !important; }
 .campaign-button {
   position: relative; overflow: hidden; border-radius: 18px !important;
   background: linear-gradient(180deg, #ffe39b, #ffb640 48%, #f0801c) !important; color: #4b2503 !important;
@@ -75,11 +69,7 @@ body { background: radial-gradient(ellipse at 50% 40%, #2d6a52, #0b2c26); }
   animation: cob-attack-glow 2.2s ease-in-out infinite; text-shadow: 0 1px 0 #ffe7b0;
 }
 .campaign-button strong { letter-spacing: 1px; font-family: Space; }
-.army-button > .icon, .build-button > .icon, .hero-home-button > .icon { color: var(--gold-1); filter: drop-shadow(0 0 4px #f7d27a66); }
 /* Tappable controls glow rather than move, so they never become moving targets. */
-.objective-chip { animation: cob-decree-glow 3s ease-in-out infinite; }
-.objective-chip, .objective-chip * { color: var(--parchment-hi) !important; }
-.objective-chip small { color: var(--gold-1) !important; }
 .battle-score .stars .earned, .battle-score .stars .filled { color: #ffd46b; fill: #ffcf4d; filter: drop-shadow(0 0 5px #ffcf4dcc); }
 .battle-time.urgent { animation: cob-urgent .9s ease-in-out infinite; border-color: #ff8a6b !important; }
 .building-bubble.resource-marker { animation: cob-bob 2.4s ease-in-out infinite; }
@@ -120,13 +110,7 @@ body { background: radial-gradient(ellipse at 50% 40%, #2d6a52, #0b2c26); }
 .troop-tray, #troop-actions > div:last-child { border-image: none; }
 
 /* ---------------------------------------------------------------- toast */
-#toast {
-  background: var(--glass) !important; border: 1px solid var(--gold-1) !important; border-radius: 16px !important; padding: 12px 22px !important;
-  box-shadow: 0 0 0 3px #0a2f2bb0, 0 14px 34px #020d0b99 !important; font-weight: 600;
-  transition: opacity .25s, transform .45s var(--spring) !important; transform: translate(-50%, -24px) scale(.9) !important;
-}
-#toast.visible { transform: translate(-50%, 0) scale(1) !important; }
-#toast::before, #toast::after { content: "✦"; color: var(--gold-1); margin: 0 8px; }
+/* The toast banner lives in hud.css. */
 
 /* ---------------------------------------------------------------- loading */
 #loading { background: radial-gradient(ellipse at 50% 35%, #1b6b5c, #07251f 70%) !important; overflow: hidden; }

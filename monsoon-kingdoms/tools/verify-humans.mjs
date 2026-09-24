@@ -30,5 +30,5 @@ assert.ok(bytes < 8 * 1048576, `character download ${(bytes / 1048576).toFixed(2
 const credits = await readFile(new URL('../assets/characters/CREDITS.md', import.meta.url), 'utf8');
 assert.match(credits, /Quaternius/); assert.match(credits, /CC BY-SA 3\.0/); assert.match(credits, /Wildfire Games/);
 const view = await readFile(new URL('../src/view.js', import.meta.url), 'utf8');
-assert.match(view, /this\.humans\?\.has\(id\)\?this\.humans:this\.forge/, 'the view prefers realistic characters and falls back to the stylised forge');
+assert.match(view, /this\.quality!=='low'&&this\.humans\?\.has\(id\)\?this\.humans:this\.forge/, 'the view fields realistic characters above Low quality and falls back to the stylised forge');
 console.log(`PASS: ${Object.keys(LOOKS).length} realistic looks cover every troop and hero; ${clips.size} motion clips back every role; horse and elephant animate with seat bones; ${(bytes / 1048576).toFixed(2)} MiB of character sources, credited.`);

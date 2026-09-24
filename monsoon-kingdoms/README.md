@@ -34,6 +34,13 @@ Drag to pan, scroll/pinch or use the camera buttons to zoom, and rotate in quart
 
 Joining shares only your kingdom name, your Taj level and your village layout. No account, password or email is involved, no save data is uploaded, and this device is identified by a key generated on it. Leave online play forgets that key and stops your village appearing.
 
+**Friends and invites:** every online kingdom has a six-character invite code.
+- **Joining.** Share it as a link (`?invite=CODE`), or type it into the Online tab. The first code a new player redeems makes the two of you friends. The new player gets 60 gems, 20 ore, 1,000 coin and 800 grain, and the inviter gets 40 gems and 10 ore to claim. Storage limits apply to both.
+- **Friend list.** Shows who is online now (from a 45-second heartbeat), their trophies and Taj level.
+- **Challenges.** A friendly challenge attacks a friend's real published base under practice rules, so every troop comes home and nothing is at stake.
+- **Online now.** The tab also lists everyone currently online.
+- **Server checks.** The server refuses your own code, second redemptions and codes that don't exist. It only shows a friend's base to that player's friends.
+
 Be aware of the honest limit: **battles are simulated on the attacking device, so results are trusted rather than verified.** The server clamps stars to 0–3, destruction to 0–100, derives trophy movement itself, enforces a 15-second gap and a daily cap between attacks, and refuses any request without the device's key — but a determined player could still report a battle they did not really win. Server-authoritative combat would need a replay-verifying backend, which this build does not have. Database tables are unreachable from the browser; every read and write goes through a checked Postgres function.
 
 **Test defenses:** available in Army. Attack your actual completed village layout in a friendly challenge. Your buildings stay intact, all troops return even after refresh, and there are no rewards or ranked changes. This is a direct way to test whether your walls and towers protect the capital.
@@ -46,11 +53,40 @@ Progress saves in this browser at this origin. Settings provides JSON export/imp
 
 **Presentation (`src/atmosphere.js`, `src/postfx.js`):** Balanced and Ultra render through a post-processing chain—MSAA HDR target, soft bloom, a warm colour grade with vignette, and a flash channel for lightning and big collapses; Low keeps direct rendering. Image-based room lighting adds reflections to marble and brass. The river is an animated shader with flow streaks, glints and foam; forests and meadow grass sway in the wind; drifting cloud shade crosses the fields; wildflowers, egrets and butterflies populate the valley. Pooled GPU particles (two draw calls) dress every battle event: destruction dust and embers followed by lingering ruin smoke, cannon smoke, frost and rage bursts, monsoon rain, spawn dust, footfalls under elephants and yetis, and a falling-warrior puff. Troops are drawn larger with a fresnel rim light and a saffron ground ring; heroes get a gold rim, a column of light on deployment and a turning rangoli beneath them. Melee troops lunge into blows and archers recoil. Finished construction raises a column of light and marigold petals, and a victory showers the field with petals and fireworks. `tools/verify-audio-atmosphere.mjs` covers raga pitch maps, phrase resolution, particle pool bounds and shader injection.
 
-**Characters and physics (`src/characters.js`, `src/physics.js`):** every troop, hero and mount is modelled procedurally and rigged with a real skeleton (18 bones for people; dedicated horse-and-rider, war-elephant, yeti and winged Garuda rigs), merged into one skinned mesh per character. Animation is full-body and procedural: distance-driven stride, arm counter-swing, weapon-specific attacks timed to the rules' attack clock, flinches, victory cheers, limp falls and verlet cloth capes. A visual-only rigid-body solver throws real rubble when structures fall, skips spent cannonballs, tumbles fallen warriors away from the killing blow, shoves troops with blasts and pops buildings up on springs; the battle rules never read it. The Blender troop and hero GLBs and portraits remain in `assets/` for the interface and other engines.
+**Characters (`src/humans.js`):** troops and heroes are realistic, sculpted human figures, not toy models.
+- **Bodies and motion.** Two CC0 Quaternius base bodies (male and female) with 2K skin textures and a 65-bone skeleton, driven by 34 motion-captured clips. Clips cross-fade by role and speed, and every attack clip is timed so the blow lands when the rules' attack clock fires.
+- **Dressing.** Each character is dressed when the game loads:
+  - Garments are painted into the body texture from its skin weights, with block-print cotton and gold zari seams.
+  - Pleated kurtas and dhotis, turbans, helmets, veils, hair and beards are fitted to the sculpted skull.
+  - Spears, talwars, shields, bows, mallets, staffs, chakrams, a parasol and a falcon are held in the hand bones.
+  - Garuda gets feathered wings and the yeti gets shell fur.
+- **Mounts.** Riders sit on the seat bones of an animated horse and an armoured war elephant from 0 A.D. (CC BY-SA 3.0). The elephant carries a mahout and an archer in the howdah.
+- **Performance.** Each outfit merges into three skinned draws. Low quality uses the lighter procedural rigs in `src/characters.js`, which are also the fallback if the character files fail to load.
+- **Credits.** Licences are listed in `assets/characters/CREDITS.md`.
+
+**Physics (`src/physics.js`):** a visual-only rigid-body solver; the battle rules never read it.
+- Falling structures throw real rubble, and spent cannonballs skip across the ground.
+- Fallen warriors slide away from the blow while their death clip plays.
+- Blasts shove troops, and new buildings pop up on springs.
+- Heroes wear verlet cloth capes.
 
 **Royal Court:** ten Royal Decrees in three tiers (gems and Ancient Ore) track career stats recorded by the rules — upgrades, collection, battles, victories, stars, three-star wins, destruction, deployments, spells, hero abilities and days at court — and a seven-day Daily Durbar ladder rewards consecutive UTC days, resetting on a missed day. Both persist, clamp hostile values and migrate older saves (`tools/verify-decrees.mjs`). The Court button shows a badge whenever something can be claimed.
 
-**Interface:** `src/theme.css` layers a "Royal Jharokha" design over the base stylesheet — gilded parchment panels with jali lattice, peacock-glass HUD, saffron buttons with a physical press and ripples. `src/ui-fx.js` adds the battle curtain, star fly-in, resources flying to the treasury, and the victory sequence: an unfurling banner, stars landing one by one with bursts, count-ups, rays and physics confetti. [docs/AUDIO-VISUAL-RATING.md](docs/AUDIO-VISUAL-RATING.md) rates each pass.
+**Interface:** `src/theme.css` layers a "Royal Jharokha" design over the base stylesheet: gilded parchment panels with jali lattice, and saffron buttons with a physical press and ripples.
+
+`src/hud.css` is the game HUD:
+- The kingdom crest has an XP ring showing how many buildings match the Taj level.
+- Resource gauges have illustrated coin, grain-sack, log, ingot and gem emblems and coloured fill bars that turn orange when storage is full.
+- Next Step is a quest scroll with a wax seal and a go button.
+- Collect All is a glowing coin-stack button.
+- Army, Heroes and Shop are chunky 3D tiles that press down, and the Army tile has a housing meter.
+- The camera controls are glossy orb buttons.
+- Messages appear in a ribbon banner.
+- Settings use real toggle switches.
+
+`src/ui-fx.js` adds the battle curtain, the star fly-in, resources flying to the treasury, and the victory sequence: an unfurling banner, stars landing one by one with bursts, count-ups, rays and physics confetti.
+
+[docs/AUDIO-VISUAL-RATING.md](docs/AUDIO-VISUAL-RATING.md) rates each pass.
 
 ## Research and art
 

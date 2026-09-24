@@ -2881,6 +2881,11 @@ button:disabled {
 .sound-toggle {
   min-width: 64px;
 }
+.volume-row input[type=range] {
+  width: min(220px, 45%);
+  accent-color: var(--gold, #d8a53c);
+  min-height: 32px;
+}
 .settings-note {
   background: #edf0df;
   color: var(--muted);
@@ -3325,6 +3330,10 @@ button:disabled {
   color: #647772;
 }
 .battle-mode #camera-tools {
+  top: calc(var(--edge-top, 12px) + 64px);
+  bottom: auto;
+}
+.battle-mode #camera-tools .icon-button:not(.sound-quick) {
   display: none;
 }
 .has-panel #battle-hud,

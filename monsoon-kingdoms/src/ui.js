@@ -90,6 +90,7 @@ export class GameUI {
     this.orientationQuery.addEventListener('change',syncOrientation);syncOrientation();
     this.root.addEventListener('click', event => {
       const target = event.target.closest('[data-action]'); if (!target || target.disabled) return;
+      const box=target.getBoundingClientRect();this.lastPoint={x:event.clientX||box.left+box.width/2,y:event.clientY||box.top+box.height/2};
       const { action, value } = target.dataset;
       if(action==='uiUpgradeTab'){this.upgradeTab=value==='appearance'?'appearance':'stats';this.render(this.snapshot);return;}
       if(action==='openUpgrade'){this.upgradeTab='stats';this.galleryBuilding=null;}
@@ -159,7 +160,8 @@ export class GameUI {
     this.update('world-label','');
     const coach=snapshot.tutorial;
     this.update('objective-actions',home&&!panel&&!snapshot.placing&&!snapshot.selectedBuilding&&(coach||snapshot.objective)?`<div class="objective-chip"><button data-action="${coach?'tutorialAction':'followObjective'}" class="objective-follow" title="${escape(coach?.body||snapshot.objective?.detail||'')}">${icon('target')}<span><small>${coach?`GUIDE ${coach.number}/${coach.total}`:'NEXT STEP'}</small><strong>${escape(coach?.title||snapshot.objective?.title)}</strong></span>${icon('arrow')}</button>${button(coach?'skipTutorial':'dismissObjective','',{icon:'close',class:'objective-dismiss',title:coach?'Dismiss guided start':'Dismiss objective'})}</div>`:'');
-    this.update('side-tools',home?`${button('openPanel','<span>Chronicle</span>',{value:'chronicle',icon:'book',class:'side-button',title:'Open chronicle'})}${button('openPanel','',{value:'help',icon:'info',class:'icon-button',title:'Field guide'})}${button('collectAll',`${icon('coin')}<span>Collect all</span>`,{class:'button collect-all',disabled:!snapshot.collectable})}`:'');
+    const courtCount=(snapshot.court?.claimable||0)+(snapshot.court?.durbar?.available?1:0);
+    this.update('side-tools',home?`${button('openPanel',`<span>Court</span>${courtCount?`<b class="court-badge">${courtCount}</b>`:''}`,{value:'court',icon:'trophy',class:`side-button court-button ${courtCount?'has-news':''}`,title:'Royal Court: daily gifts and decrees'})}${button('openPanel','<span>Chronicle</span>',{value:'chronicle',icon:'book',class:'side-button',title:'Open chronicle'})}${button('openPanel','',{value:'help',icon:'info',class:'icon-button',title:'Field guide'})}${button('collectAll',`${icon('coin')}<span>Collect all</span>`,{class:'button collect-all',disabled:!snapshot.collectable})}`:'');
     this.update('camera-tools',`${button('toggleMute','',{icon:snapshot.soundEnabled===false?'mute':'sound',class:'icon-button sound-quick',title:snapshot.soundEnabled===false?'Unmute sound':'Mute sound'})}${button('setCamera','',{value:'zoomIn',icon:'plus',class:'icon-button',title:'Zoom in'})}${button('setCamera','',{value:'zoomOut',icon:'minus',class:'icon-button',title:'Zoom out'})}${button('setCamera','',{value:'rotate',icon:'rotate',class:'icon-button',title:'Rotate view'})}${button('setCamera','',{value:'reset',icon:'target',class:'icon-button',title:'Center village'})}`);
     this.update('home-actions',home?`<div class="raid-cluster">${button('openPanel',`${icon('army')}<strong>ATTACK!</strong>`,{value:'attack',class:'campaign-button',title:'Attack'})}</div><div class="home-controls">${button('openPanel',`${icon('army')}<span>Army<small>${cap.used}/${cap.army}</small></span>`,{value:'army',class:'army-button'})}${button('openPanel',`${icon(hasHeroHall?'hero':'lock')}<span>Heroes${hasHeroHall?'':'<small>Build Hall</small>'}</span>`,{value:'heroes',class:'army-button hero-home-button'})}${button('openPanel',`${icon('hammer')}<span>Shop</span>`,{value:'build',class:'build-button',title:'Build: open building shop'})}</div>`:'');
     const selected=typeof snapshot.selectedBuilding==='object'?snapshot.selectedBuilding:s.buildings.find(x=>x.id===snapshot.selectedBuilding);
@@ -189,6 +191,14 @@ export class GameUI {
     return `<section class="game-panel panel-${name}" role="dialog" aria-modal="true" aria-labelledby="panel-title"><header class="panel-header"><div class="panel-heading">${parent?button('backPanel','',{icon:'arrow',class:'icon-button panel-back',title:`Back to ${labels[parent]||parent}`}):''}<div><span class="eyebrow">${eyebrow}</span><h2 id="panel-title">${title}</h2></div></div>${button(closeAction,'',{icon:'close',class:'icon-button panel-close',title:'Close panel'})}</header>${navigation}${toolbar}<div class="panel-content">${content}</div></section>`;
   }
   attackTabs(selected) {return `<nav class="attack-tabs" aria-label="Battle type">${[['campaign','map','Campaign','Six river roads'],['ranked','shield','Royal League','Local AI rivals'],['online','globe','Online','Real kingdoms']].map(([id,glyph,title,detail])=>button('setAttackTab',`${icon(glyph)}<span><strong>${title}</strong><small>${detail}</small></span>`,{value:id,class:`battle-tab ${selected===id?'active':''}`})).join('')}</nav>`;}
+  // The Royal Court: the Daily Durbar ladder and the career Decrees.
+  courtPanel(snapshot) {
+    const court=snapshot.court||{},durbar=court.durbar,decrees=court.decrees||[];
+    const gift=reward=>Object.entries(reward).filter(([,n])=>n>0).map(([k,n])=>`<span class="gift gift-${k}">${icon(k==='ore'?'ore':k)}<b>${number(n)}</b></span>`).join('');
+    const ladder=durbar?`<section class="durbar"><header><div><span class="eyebrow">DAILY DURBAR</span><h3>${durbar.available?'The court awaits your presence':'Court is adjourned until tomorrow'}</h3><p>${durbar.streak?`${durbar.streak}-day streak`:'Hold court each day to climb the ladder'} · a missed day starts again at day one.</p></div>${button('claimDurbar',durbar.available?`${icon('gems')} Hold court`:`${icon('time')} ${countdown(durbar.nextAt-Date.now())}`,{class:`button primary durbar-claim ${durbar.available?'ready':''}`,disabled:!durbar.available})}</header><ol class="durbar-days">${durbar.rewards.map((reward,i)=>{const day=i+1,done=durbar.available?day<durbar.day:day<=durbar.day,today=day===durbar.day&&durbar.available;return `<li class="${done?'done':''} ${today?'today':''} ${day===7?'grand':''}"><small>DAY ${day}</small>${gift(reward)}${done?`<i class="stamp">${icon('check')}</i>`:''}</li>`;}).join('')}</ol></section>`:'';
+    const cards=decrees.map(d=>`<article class="decree ${d.claimable?'claimable':''} ${d.complete?'complete':''}"><span class="decree-icon">${icon(d.icon)}</span><div class="decree-body"><strong>${escape(d.name)}</strong><small>${escape(d.text)}</small><div class="decree-track"><i style="width:${Math.round(d.progress*100)}%"></i><b>${number(Math.min(d.value,d.goal))} / ${number(d.goal)}</b></div><span class="decree-tiers">${[0,1,2].map(t=>icon('star',t<d.tier?'earned':'')).join('')}</span></div>${d.complete?`<span class="decree-done">${icon('check')} Fulfilled</span>`:button('claimDecree',d.claimable?`Claim ${gift(d.reward)}`:gift(d.reward),{value:d.id,class:`button ${d.claimable?'primary':'secondary'} decree-claim`,disabled:!d.claimable})}</article>`).join('');
+    return this.panelShell('court','Royal Court','DECREES AND THE DAILY DURBAR',`${ladder}<h3 class="section-title">Royal decrees</h3><div class="decree-grid">${cards}</div>`);
+  }
   buildersPanel(snapshot) {
     const s=snapshot.state,catalog=snapshot.catalog,cap=this.cap;
     const jobs=[...s.buildings.filter(b=>b.readyAt).map(b=>({kind:'building',id:b.id,name:catalog[b.type].name,level:b.upgradingTo||b.level,art:art(b.type,false,b.level)})),...Object.entries(s.heroes||{}).filter(([,h])=>h.readyAt).map(([id,h])=>({kind:'hero',id,name:HEROES[id].name,level:h.upgradingTo||h.level,art:heroArt(id)}))];
@@ -302,6 +312,7 @@ export class GameUI {
   }
   panel(name, snapshot) {
     if(name==='builders')return this.buildersPanel(snapshot);
+    if(name==='court')return this.courtPanel(snapshot);
     if(name==='build'||name==='army')return this.catalogPanel(name,snapshot);
     if(name==='briefing')return this.briefingPanel(snapshot);
     if(name==='retreat')return this.panelShell('retreat','Leave this battle?','BATTLE PAUSED',`<div class="retreat-summary">${stars(snapshot.battle?.stars||0)}<strong>${Math.floor(snapshot.battle?.destruction||0)}% destruction</strong></div><p class="panel-intro">${snapshot.battle?.kind==='practice'?'Your full army will return. This practice gives no rewards.':'The battle ends now. Deployed troops are consumed; unused troops and your hero return.'}</p><div class="briefing-actions">${button('cancelRetreat','Keep fighting',{class:'button primary'})}${button('confirmRetreat','Retreat',{class:'button danger'})}</div>`,'','cancelRetreat');
@@ -364,5 +375,7 @@ export class GameUI {
   battleIntro(title,subtitle) { curtain(title,subtitle); }
   starEarned(index) { flyStar(index); }
   flyResources(point,amounts) { for(const [key,amount] of Object.entries(amounts||{}))if(amount>0)flyToHud(point,key,amount,icon(key)); }
+  // A celebratory burst from the claim button, with rewards flying to the treasury.
+  rewardBurst(amounts) { const point=this.lastPoint||{x:innerWidth/2,y:innerHeight/2};this.flyResources(point,amounts);const canvas=document.createElement('canvas');canvas.className='result-confetti';canvas.style.position='fixed';canvas.style.zIndex='97';document.body.append(canvas);const field=new ConfettiField(canvas);field.burst(point.x,point.y,{count:70,speed:10});setTimeout(()=>{field.dispose();canvas.remove();},2600); }
 
 }

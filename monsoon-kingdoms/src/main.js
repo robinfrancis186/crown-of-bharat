@@ -117,8 +117,9 @@ function refresh(){
   const check=placementCheck(),cap=Rules.capacity(state);
   if(view){view.inputEnabled=!panel&&!settled&&!portraitBlocked&&!account.blocked;view.setSpellAim?.(!panel&&!settled&&!portraitBlocked&&!account.blocked?Rules.SPELLS[selectedSpell]:null);}
   const collectable=state.buildings.some(b=>{const resource=Rules.CATALOG[b.type].production?.resource;return b.stored>=1&&resource&&(resource==='gems'?state.gems<999999:state.resources[resource]<cap.storage[resource]);});
-  ui.render({mode,state,preview,online,tutorial:mode==='home'?Rules.tutorialState(state):null,objective:objective(),collectable,hasArmyRecipe:!!preferences.armyRecipe,catalog:Rules.CATALOG,units:Rules.UNITS,heroes:Rules.HEROES,raids:Rules.RAIDS,ranked:Rules.getRanked(state),capacity:Rules.capacity(state),selectedBuilding:state.buildings.find(b=>b.id===selectedId),placing,placementValid:check.ok,placementReason:check.reason,battle,selectedTroop,selectedSpell,spells:Rules.SPELLS,quality,panel,parentPanel:panelHistory.at(-1)?.panel,soundEnabled,musicEnabled,volumes,upgradeTarget,finishTarget,attackTab,wallStart,stats:{fps:Math.round(fps)}});
+  ui.render({mode,state,preview,online,tutorial:mode==='home'?Rules.tutorialState(state):null,objective:objective(),collectable,hasArmyRecipe:!!preferences.armyRecipe,catalog:Rules.CATALOG,units:Rules.UNITS,heroes:Rules.HEROES,raids:Rules.RAIDS,ranked:Rules.getRanked(state),capacity:Rules.capacity(state),selectedBuilding:state.buildings.find(b=>b.id===selectedId),placing,placementValid:check.ok,placementReason:check.reason,battle,selectedTroop,selectedSpell,spells:Rules.SPELLS,quality,panel,parentPanel:panelHistory.at(-1)?.panel,soundEnabled,musicEnabled,volumes,court:courtSnapshot(),upgradeTarget,finishTarget,attackTab,wallStart,stats:{fps:Math.round(fps)}});
 }
+function courtSnapshot(){const decrees=Rules.decreeInfo(state);return {decrees,claimable:decrees.filter(d=>d.claimable).length,durbar:Rules.durbarInfo(state,Date.now())};}
 function startPlacing(type,id){
   preview=null;panel=null;panelHistory.length=0;selectedId=null;wallStart=null;
   const old=state.buildings.find(b=>b.id===id);
@@ -255,6 +256,8 @@ const actions={
   saveName(name){if(!name.trim()){ui.toast('Give your kingdom a name.');return;}state.name=name.trim().slice(0,28);save();refresh();ui.toast('Your kingdom has a new name.');if(net.registered)actions.publishVillage(true).catch(()=>{});},
   openAccount(){account.show();},
   resultStar(){sound('star');},
+  claimDurbar(){const result=Rules.claimDurbar(state,Date.now());if(attempt(result,undefined,'complete')){ui.rewardBurst(result.received);ui.toast(`Day ${result.day} of the Durbar · ${result.streak}-day streak. The court sends its gifts.`);}},
+  claimDecree(id){const result=Rules.claimDecree(state,id);if(attempt(result,undefined,'complete')){ui.rewardBurst({gems:result.gems,ore:result.ore});ui.toast(`${result.name} · tier ${result.tier} fulfilled.`);}},
   toggleSound(){soundEnabled=!soundEnabled;audio.setEnabled(soundEnabled);savePreferences();sound('select');refresh();},
   toggleMusic(){musicEnabled=!musicEnabled;audio.setMusicEnabled(musicEnabled);savePreferences();sound('select');refresh();},
   toggleMute(){const muted=!soundEnabled;soundEnabled=muted;audio.setEnabled(soundEnabled);savePreferences();if(soundEnabled)sound('select');refresh();ui.toast(soundEnabled?'Sound on.':'Sound muted.');},
@@ -283,6 +286,7 @@ try{
   view=new KingdomView(document.getElementById('world'),tapWorld);view.setQuality(quality);audio.setScene('home');
   await view.load((p,t)=>{if(!loadFailed)ui.setLoading(p,t);},state.buildings);view.setBoard(state.buildings,'home');view.setHomeHero(Rules.heroInfo(state,state.activeHero)?.unlocked?state.activeHero:null);ready=true;ui.setLoading(1,'Welcome to your kingdom');save();refresh();
   if(net.registered)refreshOnline().then(refresh).catch(()=>{});
+  if(Rules.durbarInfo(state,Date.now()).available&&!Rules.tutorialState(state))setTimeout(()=>ui.toast('The Daily Durbar awaits. Open the Royal Court for today\'s gifts.'),2500);
   if(loaded.recovered)ui.toast('Recovered your kingdom from the last valid backup.');
   if(loaded.corrupt)ui.toast('The saved data was damaged. Import an exported backup in Settings.');
   if(!storageAvailable)ui.toast('Browser storage is disabled. Progress will last for this session only.');

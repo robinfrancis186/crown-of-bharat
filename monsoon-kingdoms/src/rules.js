@@ -52,7 +52,7 @@ export function newGame(now = Date.now()) {
   if (!Number.isFinite(now)) now = Date.now();
   // A small, playable settlement: food production and troop recruitment are ready.
   const positions = [['fort', 10, 9], ['farm', 5, 15], ['barracks', 10, 16]];
-  return { version: 1, name: 'Surajgarh', resources: money(850, 650, 700, 180), buildings: positions.map(([t, x, z], i) => createBuilding(`b${i + 1}`, t, x, z, 1, now)), army: { ...emptyArmy(), guard: 6, archer: 4 }, training: [], lastTick: now, raidStars: {}, raidWins: {}, activeRaid: null, nextId: positions.length + 1, totalRaids: 0, gems: 150, builders: 2, unitLevels: Object.fromEntries(Object.keys(UNITS).map(t => [t, 1])), research: null, heroes: Object.fromEntries(Object.keys(HEROES).map(id => [id, { level: id === 'veer' ? 1 : 0, readyAt: 0, upgradingTo: 0, slots: [null, null] }])), activeHero: 'veer', ore: 0, equipment: {}, achievements: {}, ranked: freshRanked(now), tutorial: { acknowledged: [], skipped: false } };
+  return { version: 1, name: 'Surajgarh', resources: money(850, 650, 700, 180), buildings: positions.map(([t, x, z], i) => createBuilding(`b${i + 1}`, t, x, z, 1, now)), army: { ...emptyArmy(), guard: 6, archer: 4 }, training: [], lastTick: now, raidStars: {}, raidWins: {}, activeRaid: null, nextId: positions.length + 1, totalRaids: 0, gems: 150, builders: 2, unitLevels: Object.fromEntries(Object.keys(UNITS).map(t => [t, 1])), research: null, heroes: Object.fromEntries(Object.keys(HEROES).map(id => [id, { level: id === 'veer' ? 1 : 0, readyAt: 0, upgradingTo: 0, slots: [null, null] }])), activeHero: 'veer', ore: 0, equipment: {}, achievements: {}, stats: freshStats(), decrees: {}, durbar: { lastDay: -1, streak: 0 }, ranked: freshRanked(now), tutorial: { acknowledged: [], skipped: false } };
 }
 export function capacity(state) {
   if (!validState(state)) return { army: 0, used: 0, queued: 0, builders: 2, busy: 0, storage: money() };
@@ -105,7 +105,7 @@ export function upgradeBuilding(state, id, now = Date.now()) {
   if (!info.canUpgrade) return fail(info.reason);
   const b = state.buildings.find(b => b.id === id);
   charge(state, info.cost);
-  if (b.type === 'wall') { b.level++; award(state, 'first_upgrade', 10); }
+  if (b.type === 'wall') { b.level++; award(state, 'first_upgrade', 10); bump(state, 'upgrades'); }
   else { b.upgradingTo = b.level + 1; b.readyAt = now + info.duration * 1000; }
   return { ok: true, building: b, cost: info.cost };
 }
@@ -119,6 +119,7 @@ export function collect(state, id) {
   if (amount <= 0) return fail(b.stored < 1 ? 'More resources are on the way.' : 'Your storage is full. Upgrade a granary.');
   b.stored -= amount;
   if (p.resource === 'gems') state.gems += amount; else state.resources[p.resource] += amount;
+  bump(state, 'collected', amount);
   return { ok: true, amount, resource: p.resource };
 }
 
@@ -210,7 +211,7 @@ export function tickHome(state, now = Date.now()) {
       const produced = (before * b.level + after * (b.upgradingTo || b.level)) * p.rate / 1000;
       b.stored = Math.min(p.cap * (p.resource === 'gems' ? 1 : (b.upgradingTo && b.readyAt <= now ? b.upgradingTo : b.level)), Math.max(0, b.stored + produced));
     }
-    if (b.readyAt && b.readyAt <= now) { const wasUpgrade = b.level > 0; b.level = b.upgradingTo; b.upgradingTo = 0; b.readyAt = 0; if (wasUpgrade) award(state, 'first_upgrade', 10); }
+    if (b.readyAt && b.readyAt <= now) { const wasUpgrade = b.level > 0; b.level = b.upgradingTo; b.upgradingTo = 0; b.readyAt = 0; if (wasUpgrade) { award(state, 'first_upgrade', 10); bump(state, 'upgrades'); } }
   }
   while (state.training.length && state.training[0].readyAt <= now) { const q = state.training.shift(); state.army[q.type]++; }
   if (state.research && state.research.readyAt <= now) { state.unitLevels[state.research.type] = state.research.level; state.research = null; award(state, 'first_research', 15); }
@@ -235,6 +236,9 @@ export function hydrate(raw, now = Date.now()) {
     for (const type of Object.keys(UNITS)) clean.unitLevels[type] = Math.floor(finite(r.unitLevels?.[type], 1, 1, 3));
     for (const id of Object.keys(HEROES)) { const h = r.heroes?.[id]; clean.heroes[id] = { level: Math.floor(finite(h?.level, id === 'veer' ? 1 : 0, 0, 3)), readyAt: finite(h?.readyAt, 0, 0, now + 3600000), upgradingTo: Math.floor(finite(h?.upgradingTo, 0, 0, 3)), slots: [null, null] }; if (!clean.heroes[id].readyAt) clean.heroes[id].upgradingTo = 0; }
     clean.ore = Math.floor(finite(r.ore, 0, 0, 999999));
+    for (const key of STAT_KEYS) clean.stats[key] = Math.floor(finite(r.stats?.[key], 0, 0, 1e9));
+    for (const id of Object.keys(DECREES)) { const tier = Math.floor(finite(r.decrees?.[id], 0, 0, DECREE_REWARDS.length)); if (tier) clean.decrees[id] = tier; }
+    clean.durbar = { lastDay: Math.floor(finite(r.durbar?.lastDay, -1, -1, dayIndex(now))), streak: Math.floor(finite(r.durbar?.streak, 0, 0, 1e6)) };
     clean.equipment = {};
     for (const [itemId, spec] of Object.entries(EQUIPMENT)) { const level = Math.floor(finite(r.equipment?.[itemId]?.level, 0, 0, MAX_EQUIPMENT_LEVEL)); if (level > 0) clean.equipment[itemId] = { level }; void spec; }
     for (const id of Object.keys(HEROES)) {
@@ -554,7 +558,7 @@ export function castRain(battle) {
   if (!battle || battle.status !== 'active' || !battle.rainAvailable) return fail('Build a Sacred Stepwell to unlock the blessing.');
   if (battle.rainUsed || battle.spells?.rain === 0) return fail('The monsoon blessing has already been used.');
   if (!battle.units.some(u => u.hp > 0 && u.hp < u.maxHp)) return fail('Wait until your troops need healing.');
-  battle.rainUsed = true; if (battle.spells) battle.spells.rain = 0;
+  battle.rainUsed = true; if (battle.spells) battle.spells.rain = 0; battle.spellsCast = (battle.spellsCast || 0) + 1;
   for (const unit of battle.units.filter(u => u.hp > 0)) { unit.hp = Math.min(unit.maxHp, unit.hp + unit.maxHp * 0.4); event(battle, 'heal', unit); }
   return { ok: true };
 }
@@ -587,6 +591,13 @@ export function finishRaid(state, battle, now = Date.now()) {
   const refund = practiceArmy(state.activeRaid, cap.army) || state.activeRaid.reserve;
   for (const type of Object.keys(UNITS)) state.army[type] += refund[type] || 0;
   const opponentId = state.activeRaid.opponentId || null;
+  if (!practice) {
+    bump(state, 'battles'); if (won) bump(state, 'victories'); bump(state, 'stars', battle.stars);
+    bump(state, 'destroyed', battle.buildings.filter(b => b.hp <= 0).length);
+    bump(state, 'deployed', Object.values(battle.deployed || {}).reduce((sum, n) => sum + (Number(n) || 0), 0) + (battle.hero?.deployed ? 1 : 0));
+    bump(state, 'spells', battle.spellsCast || 0); bump(state, 'abilities', battle.abilitiesUsed || 0);
+    if (battle.stars === 3) bump(state, 'perfect');
+  }
   state.activeRaid = null; if (!practice) state.totalRaids++;
   const next = rankedBattle || practice || online ? null : RAIDS[RAIDS.indexOf(raid) + 1];
   battle.result = { ok: true, practice, online, opponentId, opponent: battle.opponent || null, victory: won, stars: battle.stars, destruction: battle.destruction, reward: received, loot: received, overflow, gems, ore, scoreGain, ranked: rankedBattle ? getRanked(state, now) : null, firstWin, title: practice ? 'Defense test complete' : rankedBattle ? 'Royal League result' : online ? (won ? `You broke ${battle.opponent?.name || 'their'} defenses` : 'Their walls held') : won ? 'The valley remembers' : 'Regroup and return', story: online ? `A real player's published village. ${won ? 'Trophies move to you.' : 'Trophies move to them.'} Deployed troops are spent; unused troops and your hero return.` : practice ? 'Friendly practice against your own village. Your full army and hero return safely. No loot, gems or league points are earned.' : rankedBattle ? `Local AI opponent. ${scoreGain} points added to this week's Royal League.` : won ? `${raid.name} is free. ${next ? `Your scouts now chart ${next.region}.` : 'The river flows again. Your kingdom has broken the Iron Regent’s hold.'}` : 'Your undeployed troops return safely. Your hero is ready again. Prepare an army and choose another approach.', nextRaid: won ? next?.id || null : null, deployed: { ...battle.deployed } };
@@ -852,7 +863,7 @@ export function finishWithGems(state, kind, id, now = Date.now()) {
   const info = finishCost(state, kind, id, now); if (!info.ok) return info;
   if (state.gems < info.cost) return fail(`You need ${info.cost} gems to finish this timer.`);
   state.gems -= info.cost;
-  if (kind === 'building') { const b = state.buildings.find(b => b.id === id); const wasUpgrade = b.level > 0; b.level = b.upgradingTo; b.readyAt = 0; b.upgradingTo = 0; if (wasUpgrade) award(state, 'first_upgrade', 10); if (b.type === 'hero_hall') unlockHeroes(state); }
+  if (kind === 'building') { const b = state.buildings.find(b => b.id === id); const wasUpgrade = b.level > 0; b.level = b.upgradingTo; b.readyAt = 0; b.upgradingTo = 0; if (wasUpgrade) { award(state, 'first_upgrade', 10); bump(state, 'upgrades'); } if (b.type === 'hero_hall') unlockHeroes(state); }
   if (kind === 'research') { state.unitLevels[id] = state.research.level; state.research = null; award(state, 'first_research', 15); }
   if (kind === 'hero') { const h = state.heroes[id]; h.level = h.upgradingTo; h.readyAt = 0; h.upgradingTo = 0; }
   return { ok: true, spent: info.cost, cost: info.cost };
@@ -929,6 +940,7 @@ export function heroAbility(battle) {
   }
   else return fail('This hero has no battle ability.');
   battle.hero.abilityUsed = true; updateProgress(battle);
+  battle.abilitiesUsed = (battle.abilitiesUsed || 0) + 1;
   return { ok: true, ability: HEROES[unit.heroId].ability };
 }
 const aiNames = ['Amber Falcons', 'Teak Wardens', 'Lotus Company', 'Deccan Shields', 'River Sentinels', 'Copper Caravan', 'Saffron Guard', 'Jade Outriders', 'Monsoon Guild'];
@@ -1033,10 +1045,79 @@ export function castSpell(battle, id, x, z) {
   const spell = SPELLS[id], targets = aliveBuildings(battle).filter(b => distanceTo({ x, z }, b) <= spell.radius);
   if (id === 'lightning' && !targets.length) return fail('Aim Thunderbolt near an enemy building.');
   if (id === 'freeze' && !targets.some(b => CATALOG[b.type].damage)) return fail('Aim Himalayan Frost near an enemy defense.');
-  battle.spells[id]--;
+  battle.spells[id]--; battle.spellsCast = (battle.spellsCast || 0) + 1;
   if (id === 'lightning') for (const b of targets) damage(battle, b, spell.damage, { x, z });
   if (id === 'freeze') for (const b of targets) if (CATALOG[b.type].damage) b.frozenUntil = battle.elapsed + spell.duration;
   if (spell.duration) battle.spellAreas.push({ id: `spell${battle.eventId + 1}`, type: id, x, z, radius: spell.radius, expiresAt: battle.elapsed + spell.duration });
   event(battle, id, { x, z }); updateProgress(battle);
   return { ok: true, spell: id, remaining: battle.spells[id] };
+}
+
+// ---------------------------------------------------------------- Royal Decrees
+// Career milestones in three tiers. Progress comes from stats recorded by the rules
+// themselves (never the renderer), so it survives export/import and cannot drift.
+export const STAT_KEYS = ['upgrades', 'collected', 'battles', 'victories', 'stars', 'perfect', 'destroyed', 'deployed', 'spells', 'abilities', 'durbar'];
+function freshStats() { return Object.fromEntries(STAT_KEYS.map(key => [key, 0])); }
+function bump(state, key, amount = 1) {
+  if (!STAT_KEYS.includes(key)) return;
+  state.stats ||= freshStats(); const n = Math.max(0, Math.floor(Number(amount) || 0));
+  state.stats[key] = Math.min(1e9, (Math.floor(state.stats[key]) || 0) + n);
+}
+export const DECREES = {
+  builder: { name: 'Master Builder', stat: 'upgrades', goals: [3, 15, 60], icon: 'hammer', text: 'Complete building upgrades' },
+  treasurer: { name: 'Royal Treasurer', stat: 'collected', goals: [3000, 40000, 300000], icon: 'coin', text: 'Collect resources from your fields and mines' },
+  conqueror: { name: 'Conqueror of Roads', stat: 'victories', goals: [1, 12, 50], icon: 'map', text: 'Win battles' },
+  stargazer: { name: 'Star of the Durbar', stat: 'stars', goals: [5, 36, 120], icon: 'star', text: 'Earn battle stars' },
+  flawless: { name: 'Flawless Campaign', stat: 'perfect', goals: [1, 8, 30], icon: 'shield', text: 'Win with three stars' },
+  breaker: { name: 'Siege Breaker', stat: 'destroyed', goals: [25, 250, 1200], icon: 'fort', text: 'Destroy enemy structures' },
+  warlord: { name: 'Warlord', stat: 'deployed', goals: [60, 700, 3500], icon: 'army', text: 'Lead troops into battle' },
+  stormcaller: { name: 'Stormcaller', stat: 'spells', goals: [3, 25, 100], icon: 'lightning', text: 'Cast battle spells' },
+  legend: { name: 'Legend of the Valley', stat: 'abilities', goals: [3, 25, 100], icon: 'hero', text: 'Unleash hero abilities' },
+  devotee: { name: 'Devoted Ruler', stat: 'durbar', goals: [3, 14, 60], icon: 'time', text: 'Hold the Daily Durbar' },
+};
+export const DECREE_REWARDS = [{ gems: 10, ore: 0 }, { gems: 25, ore: 10 }, { gems: 60, ore: 30 }];
+export function decreeInfo(state) {
+  return Object.entries(DECREES).map(([id, d]) => {
+    const tier = Math.min(d.goals.length, Math.floor(state.decrees?.[id]) || 0), value = Math.floor(state.stats?.[d.stat]) || 0, goal = d.goals[tier] ?? d.goals.at(-1);
+    return { id, ...d, tier, value, goal, complete: tier >= d.goals.length, claimable: tier < d.goals.length && value >= goal, reward: DECREE_REWARDS[Math.min(tier, DECREE_REWARDS.length - 1)], progress: Math.min(1, value / goal) };
+  });
+}
+export const claimableDecrees = state => decreeInfo(state).filter(d => d.claimable).length;
+export function claimDecree(state, id) {
+  if (!validState(state) || !Object.hasOwn(DECREES, id)) return fail('Choose a royal decree.');
+  const info = decreeInfo(state).find(d => d.id === id);
+  if (info.complete) return fail('This decree is already fulfilled in full.');
+  if (!info.claimable) return fail(`${info.value.toLocaleString('en-IN')} of ${info.goal.toLocaleString('en-IN')} — keep going.`);
+  state.decrees ||= {}; state.decrees[id] = info.tier + 1;
+  const gems = Math.min(info.reward.gems, 999999 - state.gems), ore = Math.min(info.reward.ore, 999999 - (state.ore || 0));
+  state.gems += gems; state.ore = (state.ore || 0) + ore;
+  return { ok: true, id, tier: info.tier + 1, gems, ore, name: info.name };
+}
+
+// ---------------------------------------------------------------- Daily Durbar
+// Hold court once per UTC day. Consecutive days climb a seven-day ladder of gifts;
+// a missed day starts the ladder again. Resources respect storage limits.
+export const DURBAR = [
+  { coin: 300, grain: 200 }, { wood: 350, grain: 350 }, { coin: 600, wood: 300 }, { iron: 140, coin: 300 },
+  { coin: 900, grain: 700, wood: 700 }, { gems: 15, iron: 200 }, { gems: 40, ore: 15, coin: 1200 },
+];
+export const dayIndex = now => Math.floor(now / 86400000);
+export function durbarInfo(state, now = Date.now()) {
+  const today = dayIndex(now), last = Math.floor(state.durbar?.lastDay ?? -1), streak = Math.floor(state.durbar?.streak) || 0;
+  const claimedToday = last === today, continuing = last === today - 1;
+  const nextStreak = claimedToday ? streak : continuing ? streak + 1 : 1, slot = (nextStreak - 1) % DURBAR.length;
+  return { available: !claimedToday, streak: claimedToday ? streak : continuing ? streak : 0, day: slot + 1, reward: DURBAR[slot], rewards: DURBAR, nextAt: (today + 1) * 86400000 };
+}
+export function claimDurbar(state, now = Date.now()) {
+  if (!validState(state) || !Number.isFinite(now)) return fail('Invalid kingdom or time.');
+  const info = durbarInfo(state, now); if (!info.available) return fail('The court has already gathered today. Return tomorrow.');
+  const cap = capacity(state), received = {}, today = dayIndex(now), continuing = state.durbar?.lastDay === today - 1;
+  for (const [key, amount] of Object.entries(info.reward)) {
+    if (key === 'gems') received.gems = Math.min(amount, 999999 - state.gems), state.gems += received.gems;
+    else if (key === 'ore') received.ore = Math.min(amount, 999999 - (state.ore || 0)), state.ore = (state.ore || 0) + received.ore;
+    else { received[key] = Math.min(amount, Math.max(0, cap.storage[key] - state.resources[key])); state.resources[key] += received[key]; }
+  }
+  state.durbar = { lastDay: today, streak: continuing ? (state.durbar.streak || 0) + 1 : 1 };
+  bump(state, 'durbar');
+  return { ok: true, day: info.day, streak: state.durbar.streak, received };
 }

@@ -76,7 +76,8 @@ body { background: radial-gradient(ellipse at 50% 40%, #2d6a52, #0b2c26); }
 }
 .campaign-button strong { letter-spacing: 1px; font-family: Space; }
 .army-button > .icon, .build-button > .icon, .hero-home-button > .icon { color: var(--gold-1); filter: drop-shadow(0 0 4px #f7d27a66); }
-.objective-chip { animation: cob-float 4s ease-in-out infinite; }
+/* Tappable controls glow rather than move, so they never become moving targets. */
+.objective-chip { animation: cob-decree-glow 3s ease-in-out infinite; }
 .objective-chip, .objective-chip * { color: var(--parchment-hi) !important; }
 .objective-chip small { color: var(--gold-1) !important; }
 .battle-score .stars .earned, .battle-score .stars .filled { color: #ffd46b; fill: #ffcf4d; filter: drop-shadow(0 0 5px #ffcf4dcc); }
@@ -223,3 +224,48 @@ body { background: radial-gradient(ellipse at 50% 40%, #2d6a52, #0b2c26); }
   *, *::before, *::after { animation-duration: .001s !important; animation-iteration-count: 1 !important; transition-duration: .001s !important; }
   .result-rays, #loading::before { animation: none !important; }
 }
+
+/* ---------------------------------------------------------------- royal court */
+.court-button { position: relative; }
+.court-button.has-news { animation: cob-attack-glow 2.4s ease-in-out infinite; }
+.court-badge { position: absolute; top: -6px; right: -6px; min-width: 20px; height: 20px; padding: 0 5px; border-radius: 99px; display: grid; place-items: center; font: 800 11px Space; color: #fff; background: linear-gradient(180deg, #ff7a52, var(--vermilion)); box-shadow: 0 0 0 2px var(--gold-1), 0 2px 6px #0007; animation: cob-pop .4s var(--spring) both; }
+.panel-court .panel-content { display: grid; gap: 16px; }
+.durbar { border-radius: 18px; padding: 16px; background: radial-gradient(ellipse at 20% 0, #1d8a8066, transparent 60%), linear-gradient(160deg, var(--royal-700), var(--royal-900)); color: var(--parchment-hi); box-shadow: inset 0 0 0 1px #f7d27a55, 0 10px 24px #02110f40; }
+.durbar header { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.durbar h3 { font: 700 20px Space; color: var(--gold-hi); margin: 2px 0; }
+.durbar p { font-size: 12px; color: #cfe1d6; margin: 0; }
+.durbar .eyebrow { color: var(--gold-1); }
+.durbar-claim.ready { animation: cob-attack-glow 1.8s ease-in-out infinite; }
+.durbar-days { list-style: none; margin: 14px 0 0; padding: 0; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 8px; }
+.durbar-days li { position: relative; min-height: 92px; padding: 8px 6px; border-radius: 12px; display: flex; flex-direction: column; align-items: center; gap: 4px; background: #ffffff0f; border: 1px solid #f7d27a33; text-align: center; }
+.durbar-days li small { font: 700 10px Space; letter-spacing: 1px; color: var(--gold-1); }
+.durbar-days li.today { background: linear-gradient(180deg, #ffe7a3, #f5a531); color: #4a2c05; border-color: #fff0bf; transform: translateY(-4px) scale(1.05); box-shadow: 0 0 22px #ffcf4d88; animation: cob-float 2.6s ease-in-out infinite; }
+.durbar-days li.today small { color: #7a3a0c; }
+.durbar-days li.done { opacity: .55; }
+.durbar-days li.grand { background: linear-gradient(180deg, #5b2a7a55, #ffffff0f); border-color: #f7d27a88; }
+.durbar-days li.grand.today { background: linear-gradient(180deg, #fff0bf, #ff9d2e); }
+.gift { display: inline-flex; align-items: center; gap: 3px; font: 700 12px Space; }
+.gift .icon { width: 14px; height: 14px; }
+.stamp { position: absolute; inset: 0; display: grid; place-items: center; color: #7fe0b4; }
+.stamp .icon { width: 34px; height: 34px; filter: drop-shadow(0 0 6px #0008); }
+.decree-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; }
+.decree { display: grid; grid-template-columns: 48px 1fr auto; gap: 12px; align-items: center; padding: 12px; border-radius: 16px; background: linear-gradient(180deg, #fffdf6, #f6ecd2); border: 1px solid #e0cf9f; box-shadow: 0 3px 0 #d7c292; }
+.decree.claimable { border-color: var(--gold-2); box-shadow: 0 3px 0 #b36b12, 0 0 18px #ffcf4d66; animation: cob-decree-glow 2.2s ease-in-out infinite; }
+@keyframes cob-decree-glow { 0%, 100% { box-shadow: 0 3px 0 #b36b12, 0 0 10px #ffcf4d44; } 50% { box-shadow: 0 3px 0 #b36b12, 0 0 24px #ffcf4daa; } }
+.decree.complete { opacity: .75; }
+.decree-icon { width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; background: var(--gild); color: #5a3a0a; box-shadow: inset 0 1px 0 #fff6d6, 0 3px 8px #0003; }
+.decree-icon .icon { width: 24px; height: 24px; }
+.decree-body strong { display: block; font: 700 14px Space; color: var(--royal-700); }
+.decree-body small { display: block; font-size: 11px; color: var(--muted); }
+.decree-track { position: relative; height: 16px; margin-top: 6px; border-radius: 99px; background: #e7dcc0; overflow: hidden; box-shadow: inset 0 1px 2px #0002; }
+.decree-track i { position: absolute; inset: 0 auto 0 0; background: linear-gradient(90deg, var(--peacock), #3fcf9e); border-radius: 99px; transition: width .6s var(--glide); }
+.decree.claimable .decree-track i { background: linear-gradient(90deg, var(--saffron), var(--gold-1)); }
+.decree-track b { position: relative; display: block; text-align: center; font: 700 10px/16px Space; color: #183b35; }
+.decree-tiers { display: inline-flex; gap: 2px; margin-top: 4px; color: #cdbf9c; }
+.decree-tiers .icon { width: 14px; height: 14px; }
+.decree-tiers .earned { color: #b8861f; fill: #ffcf4d; }
+.decree-claim { white-space: nowrap; }
+.decree-done { font: 700 12px Space; color: #2c7d5f; display: inline-flex; gap: 4px; align-items: center; }
+@media (max-width: 700px) { .durbar-days { grid-template-columns: repeat(4, minmax(0, 1fr)); } .decree-grid { grid-template-columns: 1fr; } }
+/* The court stays reachable on compact phone layouts, where other side tools fold away. */
+#side-tools .court-button { display: inline-flex !important; min-height: 44px; }

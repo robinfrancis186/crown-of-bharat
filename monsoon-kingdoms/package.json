@@ -4,9 +4,9 @@
   "type": "module",
   "scripts": {
     "start": "python3 -m http.server 5191 --bind 127.0.0.1 --directory ..",
-    "test": "node tools/verify-rules.mjs && node tools/verify-layouts.mjs && node tools/verify-progression.mjs && node tools/verify-online.mjs && node tools/verify-levels.mjs && node tools/verify-units.mjs && node tools/verify-heroes.mjs && node tools/verify-storage.mjs && node tools/verify-view-cache.mjs && node tools/verify-starter.mjs && node tools/verify-camera.mjs && node tools/verify-world-motion.mjs && node tools/verify-new-heroes.mjs && node tools/verify-new-hero-assets.mjs && node tools/verify-hero-view.mjs",
+    "test": "node tools/verify-rules.mjs && node tools/verify-layouts.mjs && node tools/verify-progression.mjs && node tools/verify-online.mjs && node tools/verify-levels.mjs && node tools/verify-units.mjs && node tools/verify-heroes.mjs && node tools/verify-storage.mjs && node tools/verify-view-cache.mjs && node tools/verify-starter.mjs && node tools/verify-camera.mjs && node tools/verify-world-motion.mjs && node tools/verify-new-heroes.mjs && node tools/verify-new-hero-assets.mjs && node tools/verify-hero-view.mjs && node tools/verify-audio-atmosphere.mjs",
     "build": "node tools/build-release.mjs --zip",
     "test:levels": "node tools/verify-levels.mjs",
-    "test:fast": "node tools/verify-rules.mjs && node tools/verify-layouts.mjs && node tools/verify-progression.mjs && node tools/verify-online.mjs && node tools/verify-storage.mjs && node tools/verify-account-store.mjs && node tools/verify-starter.mjs && node tools/verify-camera.mjs && node tools/verify-new-heroes.mjs"
+    "test:fast": "node tools/verify-rules.mjs && node tools/verify-layouts.mjs && node tools/verify-progression.mjs && node tools/verify-online.mjs && node tools/verify-storage.mjs && node tools/verify-account-store.mjs && node tools/verify-starter.mjs && node tools/verify-camera.mjs && node tools/verify-new-heroes.mjs && node tools/verify-audio-atmosphere.mjs"
   }
 }
